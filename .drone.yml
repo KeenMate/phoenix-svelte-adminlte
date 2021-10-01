@@ -17,7 +17,7 @@ environment:
 
 steps:
   - name: npm assets
-    image: node:lts-alpine
+    image: node:lts # we're using standard version because git is needed
     volumes:
     - name: npm-temp
       path: /root/.npm

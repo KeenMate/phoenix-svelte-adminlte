@@ -169,7 +169,7 @@
 
   {#if showErrorAlert && !$isValid}
     <WarningAlert closeable={false}>
-      <i class="icon fas fa-exclamation-triangle" />You fucked up dummy
+      <i class="icon fas fa-exclamation-triangle" />Please fix your input
 
       <button type="button" class="close" on:click={() => (showErrorAlert = false)}>×</button>
     </WarningAlert>

@@ -1,6 +1,6 @@
 <script>
   import { createEventDispatcher } from "svelte";
-  import { getUser } from "../../providers/userProvider";
+  // import { getUser } from "../../providers/userProvider";
 
   import { Card, Tabs, TabItem, Loader, LteButton } from "svelte-adminlte";
   import UserProfile from "./UserProfile.svelte";
@@ -24,7 +24,8 @@
     }
 
     loading = true;
-    let user = await getUser(userId);
+    // let user = await getUser(userId);
+    let user = {};
     loading = false;
 
     return user;

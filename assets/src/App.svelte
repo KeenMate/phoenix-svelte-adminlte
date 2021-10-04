@@ -13,6 +13,7 @@
   import { TopNavigation, PageHeader, Sidebar, Loader } from "svelte-adminlte";
 
   import MessageLog from "./controls/modals/MessageLog.svelte";
+  import { initSocket } from "./providers/socket";
 
   $: if ($darkTheme) {
     document.body.classList.remove("skin-black");
@@ -31,6 +32,8 @@
 
   onMount(() => {
     // applySidebarOpenState();
+
+    initSocket();
 
     keymage("ctrl-0", () => {
       console.log("opening logs");

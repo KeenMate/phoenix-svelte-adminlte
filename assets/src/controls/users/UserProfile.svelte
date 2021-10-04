@@ -29,13 +29,13 @@
     <div class="col-6">
       <FormGroup>
         <Label class="pb-1">First name</Label>
-        <TextInput bind:value={user.firstName} />
+        <TextInput bind:value={user.first_name} />
       </FormGroup>
     </div>
     <div class="col-6">
       <FormGroup>
         <Label class="pb-1">Last name</Label>
-        <TextInput bind:value={user.lastName} />
+        <TextInput bind:value={user.last_name} />
       </FormGroup>
     </div>
   </div>
@@ -56,7 +56,7 @@
       <FormGroup>
         <Label class="pb-1">Birth date</Label>
 
-        <DateRangePicker startDate={user.birthDay} inputElement={dateRangePickerElement}>
+        <DateRangePicker startDate={user.birth_day} inputElement={dateRangePickerElement}>
           <InputGroup>
             <InputGroupPrepend>
               <span class="input-group-text">

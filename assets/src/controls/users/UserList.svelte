@@ -1,6 +1,6 @@
 <script>
   import { createEventDispatcher, getContext } from "svelte";
-  import { getUsers } from "../../providers/userProvider";
+  // import { getUsers } from "../../providers/userProvider";
   import {
     Card,
     TableCondensed,
@@ -12,6 +12,8 @@
     InputGroupAppend,
     Pagination,
   } from "svelte-adminlte";
+
+  import { getAllUsers } from "../../providers/socket/usersChannel";
 
   const { setLoading } = getContext("loader");
 
@@ -28,7 +30,8 @@
   async function fetchUsers() {
     // setLoading(true);
     loading = true;
-    users = await getUsers();
+    // users = await getUsers();
+    users = await getAllUsers();
     // setLoading(false);
     loading = false;
   }
@@ -80,13 +83,13 @@
               </LteButton>
             </td>
             <td class="title">
-              <a href="#" on:click|preventDefault={() => dispatch("edit", user.userId)}>
+              <a href="#" on:click|preventDefault={() => dispatch("edit", user.user_id)}>
                 {user.username}
               </a>
             </td>
             {#if expanded}
-              <td>{user.firstName}</td>
-              <td>{user.lastName}</td>
+              <td>{user.first_name}</td>
+              <td>{user.last_name}</td>
             {/if}
           </tr>
         {/each}

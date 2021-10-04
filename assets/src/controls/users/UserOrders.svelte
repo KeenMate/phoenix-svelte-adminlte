@@ -14,7 +14,7 @@
     LteButtonRefresh,
   } from "svelte-adminlte";
 
-  import { getUserOrders } from "../../providers/userProvider";
+  // import { getUserOrders } from "../../providers/userProvider";
 
   export let userId = null;
 
@@ -27,7 +27,8 @@
       return [];
     }
 
-    return await getUserOrders(userId);
+    // return await getUserOrders(userId);
+    return [];
   }
 </script>
 

@@ -24,6 +24,7 @@
   let hide;
   let showErrorAlert = false;
   let oldManufacturer = "";
+  let availableModels = [];
 
   const manufacturers = [
     { value: "toyota", label: "Toyota" },
@@ -95,9 +96,14 @@
   }
 
   $: {
-    if ($data.manufacturer.value != oldManufacturer) {
-      $data.model = "";
+    if (!$data.manufacturer && oldManufacturer != "") {
+      clearModel();
+      availableModels = [];
+      oldManufacturer = "";
+    } else if ($data.manufacturer.value != oldManufacturer) {
+      clearModel();
       oldManufacturer = $data.manufacturer.value;
+      availableModels = models[$data.manufacturer.value];
     }
   }
 
@@ -107,6 +113,10 @@
 
   function clearForm() {
     reset();
+  }
+
+  function clearModel() {
+    $data.model = "";
   }
 
   function errorAlertExtender() {
@@ -131,12 +141,8 @@
     <FormGroup>
       <Label>Manufacturer</Label>
       <ValidationMessage for="manufacturer" let:messages>
-        <SvelteSelect
-          value={$data.manufacturer}
-          items={manufacturers}
-          hasError={messages}
-          on:select={(ev) => setField("manufacturer", ev.detail)}
-        />
+        <SvelteSelect bind:value={$data.manufacturer} items={manufacturers} hasError={messages} />
+
         <!-- <TextInput invalid={messages} name="manufacturer" id="manufacturer" /> -->
 
         <span class="error invalid-feedback">{messages}</span>
@@ -148,10 +154,9 @@
       <ValidationMessage for="model" let:messages>
         <SvelteSelect
           isDisabled={!$data.manufacturer}
-          value={$data.model}
-          items={$data.manufacturer ? models[$data.manufacturer.value] : []}
+          bind:value={$data.model}
+          items={availableModels}
           hasError={messages}
-          on:select={(ev) => setField("model", ev.detail)}
         />
 
         <span class="error invalid-feedback">{messages}</span>

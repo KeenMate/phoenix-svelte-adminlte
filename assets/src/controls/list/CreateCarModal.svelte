@@ -147,6 +147,7 @@
       <Label>Model</Label>
       <ValidationMessage for="model" let:messages>
         <SvelteSelect
+          isDisabled={!$data.manufacturer}
           value={$data.model}
           items={$data.manufacturer ? models[$data.manufacturer.value] : []}
           hasError={messages}

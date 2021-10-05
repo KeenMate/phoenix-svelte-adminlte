@@ -13,18 +13,23 @@
 
   let items = [
     {
+      id: 0,
       title: "Lexus",
     },
     {
+      id: 1,
       title: "Aston Martin",
     },
     {
+      id: 2,
       title: "McLaren",
     },
     {
+      id: 3,
       title: "Alfa Romeo",
     },
     {
+      id: 4,
       title: "Bugatti",
     },
   ];
@@ -41,8 +46,12 @@
 
   const store = {
     set(sortable) {
-      console.log("sortable set", sortable);
-      console.log("children", sortable.toArray());
+      order = sortable.toArray().map((id, index) => {
+        return {
+          currentIndex: index,
+          title: items.find((i) => i.id === Number(id)).title,
+        };
+      });
     },
   };
 
@@ -52,46 +61,11 @@
         store,
         multiDrag: true,
         selectedClass: "draggable-selected",
-        // multiDragKey: "CTRL",
         draggable: ".draggable-callout",
         handle: ".draggable-handle",
         animation: 150,
-        onEnd: handleDragStop,
       });
     }
-  }
-
-  function handleDragStop(event) {
-    let oldIndex = event.oldIndex;
-    let newIndex = event.newIndex;
-
-    order.map((i) => {
-      if (oldIndex < newIndex) {
-        // oldIndex = 0, newIndex = 4
-        // items 1 to 3 => index -= 1
-        // item 0 index = 4
-
-        if (i.currentIndex > oldIndex && i.currentIndex <= newIndex) {
-          i.currentIndex -= 1;
-        } else if (i.currentIndex == oldIndex) {
-          i.currentIndex = newIndex;
-        }
-      }
-
-      if (oldIndex > newIndex) {
-        // oldIndex = 4, newIndex = 0
-        // item 3 to 0 index += 1
-        // item 4 index = 0
-
-        if (i.currentIndex < oldIndex && i.currentIndex >= newIndex) {
-          i.currentIndex += 1;
-        } else if (i.currentIndex == oldIndex) {
-          i.currentIndex = newIndex;
-        }
-      }
-    });
-
-    order = order;
   }
 
   function addCar({ detail: car }) {
@@ -125,8 +99,8 @@
       </LteButton>
 
       <div bind:this={list} id="draggable-list">
-        {#each items as item, i}
-          <div data-id={i} class="draggable-callout">
+        {#each items as item}
+          <div data-id={item.id} class="draggable-callout">
             <Callout color="info">
               <div class="d-inline-flex">
                 <div class="draggable-handle text-muted mr-2">

@@ -1,6 +1,7 @@
 <script>
   import { createEventDispatcher } from "svelte";
-  // import { getUser } from "../../providers/userProvider";
+  import { getUser } from "../../providers/socket/usersChannel";
+  import lazyLoader from "../../helpers/lazy-loader";
 
   import { Card, Tabs, TabItem, Loader, LteButton } from "svelte-adminlte";
   import UserProfile from "./UserProfile.svelte";
@@ -23,10 +24,11 @@
       return emptyUser;
     }
 
-    loading = true;
-    // let user = await getUser(userId);
-    let user = {};
-    loading = false;
+    let user = await lazyLoader(
+      getUser(userId),
+      () => (loading = true),
+      () => (loading = false)
+    );
 
     return user;
   }

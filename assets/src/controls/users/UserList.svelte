@@ -1,6 +1,8 @@
 <script>
   import { createEventDispatcher, getContext } from "svelte";
-  // import { getUsers } from "../../providers/userProvider";
+  import lazyLoader from "../../helpers/lazy-loader";
+  import { debounce } from "lodash";
+  import { TypingDebounceDelay } from "../../constants/ui";
   import {
     Card,
     TableCondensed,
@@ -13,7 +15,7 @@
     Pagination,
   } from "svelte-adminlte";
 
-  import { getAllUsers } from "../../providers/socket/usersChannel";
+  import { getUsers } from "../../providers/socket/usersChannel";
 
   const { setLoading } = getContext("loader");
 
@@ -24,16 +26,25 @@
 
   let page = 1;
   let loading = false;
+  let searchInput = null;
+  let searchDebounce = debounce(() => fetchUsers(), TypingDebounceDelay);
+
+  $: searchDebounce(searchInput);
 
   fetchUsers();
 
   async function fetchUsers() {
-    // setLoading(true);
-    loading = true;
-    // users = await getUsers();
-    users = await getAllUsers();
-    // setLoading(false);
-    loading = false;
+    users = await lazyLoader(
+      getUsers(searchInput),
+      () => {
+        console.log("showing loader");
+        loading = true;
+      },
+      () => {
+        console.log("hiding loader");
+        loading = false;
+      }
+    );
   }
 </script>
 
@@ -54,7 +65,7 @@
       <Form horizontal>
         <FormGroup>
           <InputGroup>
-            <TextInput placeholder="Search for user..." />
+            <TextInput bind:value={searchInput} placeholder="Search for user..." />
             <InputGroupAppend>
               <LteButton small><i class="fas fa-times" /></LteButton>
             </InputGroupAppend>

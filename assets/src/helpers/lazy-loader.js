@@ -7,28 +7,19 @@ export default function lazyLoader(resourceTask, showLoader, hideLoader) {
 
 	let loaderShowed = false
 	const beforeShowTimer = setTimeout(() => {
-		// console.trace("Timeout for showing loader", new Date().getMilliseconds())
 		loaderShowed = new Date()
-		// console.trace("Showing loader", new Date().getMilliseconds())
 		showLoader()
 	}, waitForLoader)
 
 	return resourceTask
 		.then(res => {
 			if (!loaderShowed) {
-				// console.trace("Loader not yet showed, clearing timer", new Date().getMilliseconds())
 				clearTimeout(beforeShowTimer)
-				// console.trace("Hiding loader", new Date().getMilliseconds())
 				hideLoader()
 				return res
 			}
 
-			// hideLoader()
-			// return res
-
-
 			if (new Date() - loaderShowed > leaveLoaderFor) {
-				// console.trace("Hiding loader because it has been shown long enough", new Date().getMilliseconds())
 				hideLoader()
 				return res
 			}
@@ -36,11 +27,13 @@ export default function lazyLoader(resourceTask, showLoader, hideLoader) {
 			// this leaves the loader showed for additional time
 			return new Promise(resolve => {
 				setTimeout(() => {
-					// console.trace("Resolving lazy load value", new Date().getMilliseconds())
-					resolve(res)
-					// console.trace("Hiding loader because additional delay passed away", new Date().getMilliseconds())
 					hideLoader()
+					resolve(res)
 				}, leaveLoaderFor - (new Date() - loaderShowed))
 			})
+		})
+		.catch(err => {
+			hideLoader()
+			throw err
 		})
 }

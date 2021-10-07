@@ -5,59 +5,59 @@
   import { Card, Callout, LteButton } from "svelte-adminlte";
   import CreateCarModal from "../controls/list/CreateCarModal.svelte";
 
+  const initialItems = [
+    {
+      manufacturer: "Lexus",
+      model: "LS",
+      year: 2018,
+    },
+    {
+      manufacturer: "Aston Martin",
+      model: "Vantage",
+      year: 2020,
+    },
+    {
+      manufacturer: "McLaren",
+      model: "P1",
+      year: 2016,
+    },
+    {
+      manufacturer: "Alfa Romeo",
+      model: "Giulietta",
+      year: 2012,
+    },
+    {
+      manufacturer: "Bugatti",
+      model: "Chiron",
+      year: 2018,
+    },
+  ];
+
   onMount(() => {
     try {
       Sortable.mount(new MultiDrag());
     } catch (err) {}
+
+    initialItems.forEach((car) => addCar(car));
   });
 
-  let items = [
-    {
-      id: 0,
-      title: "Lexus",
-    },
-    {
-      id: 1,
-      title: "Aston Martin",
-    },
-    {
-      id: 2,
-      title: "McLaren",
-    },
-    {
-      id: 3,
-      title: "Alfa Romeo",
-    },
-    {
-      id: 4,
-      title: "Bugatti",
-    },
-  ];
+  let items = [];
+  let order = [];
 
-  let order = items.map((item, index) => ({
-    currentIndex: index,
-    title: item.title,
-  }));
-
-  let list;
+  let listElement;
   let sortable;
 
   let showCreateCar;
 
   const store = {
     set(sortable) {
-      order = sortable.toArray().map((id, index) => {
-        return {
-          currentIndex: index,
-          title: items.find((i) => i.id === Number(id)).title,
-        };
-      });
+      recalculateOrder(sortable, items);
     },
   };
 
   $: {
-    if (list) {
-      sortable = new Sortable(list, {
+    if (listElement) {
+      sortable = new Sortable(listElement, {
         store,
         multiDrag: true,
         selectedClass: "draggable-selected",
@@ -68,18 +68,24 @@
     }
   }
 
-  function addCar({ detail: car }) {
-    console.log("adding car", car);
+  $: sortable && recalculateOrder(sortable, items);
 
-    items.push({ title: car.manufacturer.label });
-    let newIndex = maxBy(order, "currentIndex").currentIndex;
+  function recalculateOrder(sortable, items) {
+    order = sortable.toArray().map((id, index) => {
+      const item = items.find((i) => i.id === Number(id));
 
-    console.log("new index", newIndex);
+      return {
+        currentIndex: index,
+        title: `${item.manufacturer} ${item.model}`,
+      };
+    });
+  }
 
-    order.push({ currentIndex: newIndex + 1, title: car.manufacturer.label });
+  function addCar(car) {
+    let maxIndexItem = maxBy(items, "id");
 
-    console.log("items", items);
-    console.log("order", order);
+    let newItemIndex = maxIndexItem ? maxIndexItem.id + 1 : 0;
+    items.push({ id: newItemIndex, manufacturer: car.manufacturer, model: car.model, year: car.year });
 
     items = items;
     order = order;
@@ -98,15 +104,20 @@
         <i class="fas fa-plus" />
       </LteButton>
 
-      <div bind:this={list} id="draggable-list">
+      <div bind:this={listElement} id="draggable-list">
         {#each items as item}
           <div data-id={item.id} class="draggable-callout">
             <Callout color="info">
               <div class="d-inline-flex">
-                <div class="draggable-handle text-muted mr-2">
+                <div class="draggable-handle text-muted mr-3 align-self-center">
                   <i class="fas fa-grip-vertical" />
                 </div>
-                <p>{item.title}</p>
+
+                <div class="col-12">
+                  <div class="row">Manufacturer: {item.manufacturer}</div>
+                  <div class="row">Model: {item.model}</div>
+                  <div class="row">Year: {item.year}</div>
+                </div>
               </div>
             </Callout>
           </div>
@@ -126,7 +137,7 @@
     </Card>
   </div>
 
-  <CreateCarModal bind:openModal={showCreateCar} on:add={addCar} />
+  <CreateCarModal bind:openModal={showCreateCar} on:add={({ detail: car }) => addCar(car)} />
 </div>
 
 <style lang="scss">

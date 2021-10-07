@@ -85,7 +85,7 @@
       model: "",
     },
     onSubmit(values) {
-      dispatch("add", values);
+      dispatch("add", { manufacturer: values.manufacturer.label, model: values.model.label, year: values.year });
       reset();
       hide();
     },

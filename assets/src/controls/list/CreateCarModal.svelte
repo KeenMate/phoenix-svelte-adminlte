@@ -85,7 +85,7 @@
       model: "",
     },
     onSubmit(values) {
-      dispatch("add", { manufacturer: values.manufacturer.label, model: values.model.label, year: values.year });
+      dispatch("add", mapToCar(values));
       reset();
       hide();
     },
@@ -125,6 +125,10 @@
         showErrorAlert = true;
       },
     };
+  }
+
+  function mapToCar(values) {
+    return { manufacturer: values.manufacturer.label, model: values.model.label, year: values.year };
   }
 </script>
 

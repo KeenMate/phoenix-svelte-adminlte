@@ -1,10 +1,14 @@
 <script>
+  import { _ } from "svelte-i18n";
+  import { PageHeader } from "svelte-adminlte";
   import UserDetail from "../controls/users/UserDetail.svelte";
   import UserList from "../controls/users/UserList.svelte";
   import UserOrders from "../controls/users/UserOrders.svelte";
 
   let selectedUserId = null;
 </script>
+
+<PageHeader>{$_("users.title")} <small>Twin Peaks Community</small></PageHeader>
 
 <div class="row">
   <div class:col-12={!selectedUserId} class:col-6={selectedUserId}>

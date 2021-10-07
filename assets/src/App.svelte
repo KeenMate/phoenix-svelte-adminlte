@@ -4,6 +4,7 @@
   import Router from "svelte-spa-router";
   import keymage from "keymage";
 
+  import "./locale/i18n";
   import routes from "./routes";
 
   import darkTheme from "./stores/dark-theme";
@@ -61,7 +62,7 @@
     <!-- {#if loading}
       <Loader />
     {/if} -->
-    <PageHeader />
+    <!-- <PageHeader /> -->
     <div class="content">
       <Router {routes} />
     </div>

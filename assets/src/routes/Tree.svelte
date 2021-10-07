@@ -2,7 +2,7 @@
   import { onMount } from "svelte";
   import { Toastr } from "svelte-adminlte";
 
-  import { Checkbox, Card, Switch, Radio, FormGroup, Label, TreeView } from "svelte-adminlte";
+  import { Checkbox, Card, Switch, Radio, FormGroup, Label, TreeView, PageHeader } from "svelte-adminlte";
 
   const tree = [
     { nodePath: "1", title: "1" },
@@ -31,6 +31,10 @@
     Toastr.success("Hello there");
   });
 </script>
+
+<PageHeader>
+  Tree
+</PageHeader>
 
 <div class="row">
   <div class="col-5">

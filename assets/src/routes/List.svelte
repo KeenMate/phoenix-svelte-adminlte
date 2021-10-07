@@ -2,7 +2,8 @@
   import { sortBy, maxBy } from "lodash";
   import { Sortable, MultiDrag } from "sortablejs";
   import { onMount } from "svelte";
-  import { Card, Callout, LteButton } from "svelte-adminlte";
+  import { _ } from "svelte-i18n";
+  import { Card, Callout, LteButton, PageHeader } from "svelte-adminlte";
   import CreateCarModal from "../controls/list/CreateCarModal.svelte";
 
   const initialItems = [
@@ -94,6 +95,8 @@
 
 <!-- Favorite cars (top 5) - manufacturer, model -->
 <!-- Add, remove, edit functionality-->
+
+<PageHeader>Top cars <small>Let the world know!</small></PageHeader>
 
 <div class="row">
   <div class="col-6">

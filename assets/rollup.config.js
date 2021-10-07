@@ -7,6 +7,7 @@ import postcss from "rollup-plugin-postcss";
 import copy from "rollup-plugin-copy"
 import sveltePreprocess from "svelte-preprocess";
 import dotenv from "rollup-plugin-dotenv";
+import json from '@rollup/plugin-json';
 
 const production = process.env.MIX_ENV === "prod";
 
@@ -30,6 +31,7 @@ export default {
 		// replace({
 		// 	values: {}
 		// }),
+		json(),
 		svelte({
 			compilerOptions: {
 				// enable run-time checks when not in production

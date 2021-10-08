@@ -7,7 +7,6 @@
   import "./locale/i18n";
   import routes from "./routes";
 
-  import darkTheme from "./stores/dark-theme";
   import currentUser from "./stores/current-user";
   import sidebarOpenState from "./stores/sidebar-open-state";
 
@@ -15,14 +14,6 @@
 
   import MessageLog from "./controls/modals/MessageLog.svelte";
   import { initSocket } from "./providers/socket";
-
-  $: if ($darkTheme) {
-    document.body.classList.remove("skin-black");
-    document.body.classList.add("skin-midnight");
-  } else {
-    document.body.classList.remove("skin-midnight");
-    document.body.classList.add("skin-black");
-  }
 
   function applySidebarOpenState() {
     if (!get(sidebarOpenState)) {
@@ -52,9 +43,7 @@
 
 <div class="wrapper">
   <TopNavigation
-    darkTheme={$darkTheme}
     displayName={($currentUser && $currentUser.display_name) || "Unknown"}
-    on:toggleTheme={darkTheme.toggle}
   />
   <Sidebar />
 

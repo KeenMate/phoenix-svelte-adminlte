@@ -9,10 +9,6 @@ export function userRoleToString(user) {
 	switch (user.userRole) {
 		case "admin":
 			return "Admin"
-		case "observer":
-			return "Manažer"
-		case "requester":
-			return "Zadavatel"
 		default:
 			console.log("Unknown user role: ", userRole)
 			return null

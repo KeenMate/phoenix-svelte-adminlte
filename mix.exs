@@ -54,7 +54,9 @@ defmodule PhoenixSvelteAdminlte.MixProject do
   # See the documentation for `Mix` for more info on aliases.
   defp aliases do
     [
-      setup: ["deps.get"],
+      setup: ["assets.setup", "assets.build", "deps.get"],
+      "assets.setup": ["cmd --cd assets npm i"],
+      "assets.build": ["cmd --cd assets npm run build"],
       "assets.deploy": ["esbuild default --minify", "phx.digest"]
     ]
   end

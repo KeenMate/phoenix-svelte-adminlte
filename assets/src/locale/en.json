@@ -1,4 +1,7 @@
 {
+  "home": {
+    "title": "Home"
+  },
   "users": {
     "title": "Users"
   }

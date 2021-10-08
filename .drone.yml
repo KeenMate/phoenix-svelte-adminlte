@@ -12,6 +12,9 @@ trigger:
 concurrency:
   limit: 1
 
+clone:
+  depth: 1
+
 environment:
   MIX_ENV: prod
 

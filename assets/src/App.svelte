@@ -5,12 +5,12 @@
   import keymage from "keymage";
 
   import "./locale/i18n";
-  import routes from "./routes";
+  import routes, { Routes } from "./routes";
 
   import currentUser from "./stores/current-user";
   import sidebarOpenState from "./stores/sidebar-open-state";
 
-  import { TopNavigation, PageHeader, Sidebar, Loader } from "svelte-adminlte";
+  import { TopNavigation, PageHeader, Sidebar, NavItem, Loader } from "svelte-adminlte";
 
   import MessageLog from "./controls/modals/MessageLog.svelte";
   import { initSocket } from "./providers/socket";
@@ -42,10 +42,14 @@
 </script>
 
 <div class="wrapper">
-  <TopNavigation
-    displayName={($currentUser && $currentUser.display_name) || "Unknown"}
-  />
-  <Sidebar />
+  <TopNavigation displayName={($currentUser && $currentUser.display_name) || "Unknown"} />
+  <Sidebar>
+    {#each Routes as route}
+      {#if !route.hide}
+        <NavItem icon={route.icon} href="#{route.route}">{route.name}</NavItem>
+      {/if}
+    {/each}
+  </Sidebar>
 
   <div class="content-wrapper">
     <!-- {#if loading}

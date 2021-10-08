@@ -21,7 +21,8 @@ export default {
 		file: "../priv/static/app.js",
 		globals: {
 			"jquery": "jQuery",
-		}
+		},
+		inlineDynamicImports: true
 	},
 	external: [
 		"jquery",

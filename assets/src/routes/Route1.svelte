@@ -1,6 +1,8 @@
 <script>
+  import {userInfo} from "@dopry/svelte-oidc";
   import { LteButton } from "svelte-adminlte";
   import { getConfig, setConfig } from "svelte-adminlte";
+  import LoginButton from "../controls/LoginButton.svelte";
 
   import notification from "../providers/notificationProvider";
 </script>
@@ -34,3 +36,7 @@ Root
 >
   Notify me
 </LteButton>
+
+<LoginButton>Log In</LoginButton>
+
+<pre>userInfo: {JSON.stringify($userInfo, null, 2)}</pre>

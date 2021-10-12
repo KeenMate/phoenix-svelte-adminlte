@@ -62,7 +62,8 @@ export default {
 
 		copy({
 			targets: [
-				{ src: "static/*", dest: "../priv/static"}
+				{ src: "static/*", dest: "../priv/static" },
+				{ src: "node_modules/jsoneditor/dist/img/jsoneditor-icons.svg", dest: "../priv/static/img" }
 				// {src: "src/assets/*", dest: "public"}
 				// { src: "public/admin-app/index.html", dest: "./public" }
 			]

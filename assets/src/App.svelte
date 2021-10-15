@@ -10,7 +10,7 @@
 
   import currentUser from "./stores/current-user";
   import sidebarOpenState from "./stores/sidebar-open-state";
-  import { setAzureProvider, setZuubrProvider, clientId, issuer } from "./stores/login-provider";
+  import { setAzureProvider, setZuubrProvider, clientId, issuer } from "./stores/authentication";
 
   import {
     TopNavigation,
@@ -99,7 +99,7 @@
     <Sidebar>
       {#each Routes as route}
         {#if !route.hide}
-          <SidebarNavItem icon={route.icon} href="#{route.route}">{route.name}</SidebarNavItem>
+          <SidebarNavItem icon={route.icon} href="#{route.route}"><p>{route.name}</p></SidebarNavItem>
         {/if}
       {/each}
     </Sidebar>

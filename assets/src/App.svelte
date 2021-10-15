@@ -6,11 +6,18 @@
 
   import "./locale/i18n";
   import routes, { Routes } from "./routes";
-  import { OidcContext, userInfo, isAuthenticated } from "@dopry/svelte-oidc";
 
   import currentUser from "./stores/current-user";
   import sidebarOpenState from "./stores/sidebar-open-state";
-  import { setAzureProvider, setZuubrProvider, clientId, issuer } from "./stores/authentication";
+  import {
+    login,
+    isAuthenticated,
+    userInfo,
+    AzureProvider,
+    ZuubrProvider,
+    appMountCallback,
+    logout,
+  } from "./stores/authentication";
 
   import {
     TopNavigation,
@@ -28,8 +35,6 @@
 
   import MessageLog from "./controls/modals/MessageLog.svelte";
   import { initSocket } from "./providers/socket";
-  import LoginButton from "./controls/LoginButton.svelte";
-  import LogoutButton from "./controls/LogoutButton.svelte";
 
   function applySidebarOpenState() {
     if (!get(sidebarOpenState)) {
@@ -55,65 +60,61 @@
   setContext("loader", {
     setLoading: (val) => (loading = val),
   });
+
+  onMount(appMountCallback);
 </script>
 
-<OidcContext
-  client_id="f1b31a4f-f065-4b87-a9a9-eb802130c87d"
-  issuer="https://login.microsoftonline.com/6ee623a2-0b05-4ea4-b931-79c555955cb1/v2.0/"
-  redirect_uri="http://localhost:4000"
-  post_logout_redirect_uri="http://localhost:4000"
->
-  <div class="wrapper">
-    <TopNavigation>
-      <svelte:fragment slot="left">
-        <TopNavItem href="#/">Home</TopNavItem>
-        <Dropdown>
-          <DropdownButton>Pages</DropdownButton>
+<div class="wrapper">
+  <TopNavigation>
+    <svelte:fragment slot="left">
+      <TopNavItem href="#/">Home</TopNavItem>
+      <Dropdown>
+        <DropdownButton>Pages</DropdownButton>
 
-          <DropdownMenu>
-            <DropdownItem href="#/list">List</DropdownItem>
+        <DropdownMenu>
+          <DropdownItem href="#/list">List</DropdownItem>
+        </DropdownMenu>
+      </Dropdown>
+    </svelte:fragment>
+
+    <svelte:fragment slot="right">
+      {#if $isAuthenticated}
+        <Dropdown slot="right">
+          <DropdownButton>{$userInfo.name}</DropdownButton>
+
+          <DropdownMenu right>
+            <DropdownItem on:click={() => logout()}>Log Out</DropdownItem>
           </DropdownMenu>
         </Dropdown>
-      </svelte:fragment>
+      {:else}
+        <Dropdown>
+          <DropdownButton>Log In</DropdownButton>
+          <DropdownMenu right>
+            <DropdownItem on:click={() => login(AzureProvider, false, "http://localhost:4000/")}>Azure</DropdownItem>
+            <DropdownItem on:click={() => login(ZuubrProvider, false, "http://localhost:4000/")}>Zuubr</DropdownItem>
+          </DropdownMenu>
+        </Dropdown>
+      {/if}
+    </svelte:fragment>
+  </TopNavigation>
 
-      <svelte:fragment slot="right">
-        {#if $isAuthenticated}
-          <Dropdown slot="right">
-            <DropdownButton>{$userInfo.name}</DropdownButton>
+  <Sidebar>
+    {#each Routes as route}
+      {#if !route.hide}
+        <SidebarNavItem icon={route.icon} href="#{route.route}"><p>{route.name}</p></SidebarNavItem>
+      {/if}
+    {/each}
+  </Sidebar>
 
-            <DropdownMenu right>
-              <LogoutButton>Log Out</LogoutButton>
-            </DropdownMenu>
-          </Dropdown>
-        {:else}
-          <Dropdown>
-            <DropdownButton>Log In</DropdownButton>
-            <DropdownMenu right>
-              <LoginButton>Azure</LoginButton>
-            </DropdownMenu>
-          </Dropdown>
-        {/if}
-      </svelte:fragment>
-    </TopNavigation>
-
-    <Sidebar>
-      {#each Routes as route}
-        {#if !route.hide}
-          <SidebarNavItem icon={route.icon} href="#{route.route}"><p>{route.name}</p></SidebarNavItem>
-        {/if}
-      {/each}
-    </Sidebar>
-
-    <div class="content-wrapper">
-      <!-- {#if loading}
+  <div class="content-wrapper">
+    <!-- {#if loading}
       <Loader />
     {/if} -->
-      <!-- <PageHeader /> -->
-      <div class="content">
-        <Router {routes} />
-      </div>
+    <!-- <PageHeader /> -->
+    <div class="content">
+      <Router {routes} />
     </div>
-
-    <MessageLog bind:show={showLog} />
   </div>
-</OidcContext>
+
+  <MessageLog bind:show={showLog} />
+</div>

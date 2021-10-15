@@ -17,6 +17,7 @@ clone:
 
 environment:
   MIX_ENV: prod
+  NODE_ENV: prod
 
 steps:
   - name: npm assets

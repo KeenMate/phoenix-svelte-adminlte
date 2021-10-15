@@ -1,5 +1,6 @@
 import { derived, writable, get } from 'svelte/store';
 import { UserManager, WebStorageStateStore } from 'oidc-client';
+import { AppUrl } from '../constants/urls';
 
 export const AzureProvider = "AzureProvider";
 export const ZuubrProvider = "ZuubrProvider";
@@ -9,8 +10,8 @@ const LocalStorageProviderKey = "AuthenticationProvider";
 const azureConfiguration = {
   authority: "https://login.microsoftonline.com/6ee623a2-0b05-4ea4-b931-79c555955cb1/v2.0/",
   client_id: "f1b31a4f-f065-4b87-a9a9-eb802130c87d",
-  redirect_uri: "http://localhost:4000/", // TODO: configure
-  post_logout_redirect_uri: "http://localhost:4000/",
+  redirect_uri: AppUrl, // TODO: configure
+  post_logout_redirect_uri: AppUrl,
   response_type: "code",
   userStore: new WebStorageStateStore({ prefix: "oidc.azure.", store: window.sessionStorage }),
   stateStore: new WebStorageStateStore({ prefix: "oidc.azure.", store: window.localStorage }),
@@ -21,8 +22,8 @@ const azureConfiguration = {
 const zuubrConfiguration = {
   authority: "https://auth.zuubr.com/auth/realms/zuubr",
   client_id: "phoenix-svelte-adminlte-local",
-  redirect_uri: "http://localhost:4000/", // TODO: configure
-  post_logout_redirect_uri: "http://localhost:4000/",
+  redirect_uri: AppUrl, // TODO: configure
+  post_logout_redirect_uri: AppUrl,
   response_type: "code",
   userStore: new WebStorageStateStore({ prefix: "oidc.zuubr.", store: window.sessionStorage }),
   stateStore: new WebStorageStateStore({ prefix: "oidc.zuubr.", store: window.localStorage }),

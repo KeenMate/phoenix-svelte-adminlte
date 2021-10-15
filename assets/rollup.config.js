@@ -28,10 +28,12 @@ export default {
 		"jquery",
 	],
 	plugins: [
-		dotenv(),
-		// replace({
-		// 	values: {}
-		// }),
+		// dotenv(),
+		replace({
+			values: {
+				"process.env.APP_URL": production ? '"https://phoenix-svelte-adminlte.demo.keenmate.com"' : '"http://localhost:4000"'
+			}
+		}),
 		json(),
 		svelte({
 			compilerOptions: {

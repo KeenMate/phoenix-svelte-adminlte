@@ -90,8 +90,8 @@
         <Dropdown>
           <DropdownButton>Log In</DropdownButton>
           <DropdownMenu right>
-            <DropdownItem on:click={() => login(AzureProvider, false, "http://localhost:4000/")}>Azure</DropdownItem>
-            <DropdownItem on:click={() => login(ZuubrProvider, false, "http://localhost:4000/")}>Zuubr</DropdownItem>
+            <DropdownItem on:click={() => login(AzureProvider)}>Azure</DropdownItem>
+            <DropdownItem on:click={() => login(ZuubrProvider)}>Zuubr</DropdownItem>
           </DropdownMenu>
         </Dropdown>
       {/if}

@@ -94,7 +94,7 @@ export async function refreshToken() {
 export async function login(newProvider, preserveRoute = true, callback_url = null) {
   setProvider(newProvider);
 
-  const redirect_uri = callback_url || window.location.href;
+  // const redirect_uri = callback_url || window.location.href;
   const currentUserManager = get(userManager);
 
   if (!currentUserManager) {
@@ -109,7 +109,7 @@ export async function login(newProvider, preserveRoute = true, callback_url = nu
       search: window.location.search,
     }
     : {};
-  await currentUserManager.signinRedirect({ redirect_uri, appState });
+  await currentUserManager.signinRedirect(/*{ redirect_uri, appState }*/);
 }
 
 /**

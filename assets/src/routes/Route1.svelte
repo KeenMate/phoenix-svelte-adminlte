@@ -1,5 +1,5 @@
 <script>
-  import {userInfo} from "@dopry/svelte-oidc";
+  import {userInfo} from "../stores/authentication";
   import { LteButton } from "svelte-adminlte";
   import { getConfig, setConfig } from "svelte-adminlte";
 

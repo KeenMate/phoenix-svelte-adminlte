@@ -5,6 +5,7 @@
 
   import notification from "../providers/notificationProvider";
 
+</script>
 <PageHeader>
   Home
 </PageHeader>

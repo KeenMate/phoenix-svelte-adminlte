@@ -8,7 +8,7 @@ import LocaleEditor from "./routes/LocaleEditor.svelte"
 
 export const Routes = [
 	{
-		name: "Route1",
+		name: "UserProfileInfo",
 		title: "The route no. 1",
 		route: "/",
 		breadcrumb: ["Route 1"],
@@ -73,7 +73,7 @@ export function routeToRegex(route) {
 }
 
 export default {
-	[Urls.Route1]: Route1,
+	[Urls.UserProfileInfo]: Route1,
 	[Urls.Users]: Users,
 	[Urls.Tree]: Tree,
 	[Urls.List]: List,

@@ -9,7 +9,7 @@ import LocaleEditor from "./routes/LocaleEditor.svelte"
 export const Routes = [
 	{
 		name: "UserProfileInfo",
-		title: "The route no. 1",
+		title: "Profile Info",
 		route: "/",
 		breadcrumb: ["Route 1"],
 		icon: "fas fa-th"

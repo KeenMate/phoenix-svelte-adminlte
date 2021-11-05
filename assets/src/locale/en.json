@@ -1,6 +1,7 @@
 {
   "home": {
-    "title": "Home"
+    "title": "Home",
+    "language": "select language"
   },
   "users": {
     "title": "Users"

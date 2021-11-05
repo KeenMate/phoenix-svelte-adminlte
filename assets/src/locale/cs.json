@@ -1,5 +1,8 @@
 {
   "users": {
     "title": "Uživatelé"
+  },
+  "home":{
+    "language": "zvolte jazyk"
   }
 }

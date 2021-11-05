@@ -5,6 +5,8 @@
   import keymage from "keymage";
 
   import "./locale/i18n";
+  import { changeLang, locale, languages } from "./locale/i18n";
+  import { _ } from "svelte-i18n";
   import routes, { Routes } from "./routes";
 
   import currentUser from "./stores/current-user";
@@ -31,14 +33,20 @@
     DropdownItem,
     DropdownButton,
     DropdownMenu,
+    Radio,
+    Label
   } from "svelte-adminlte";
 
   import MessageLog from "./controls/modals/MessageLog.svelte";
   import { initSocket } from "./providers/socket";
+  import { each } from "svelte/internal";
 
   function applySidebarOpenState() {
     if (!get(sidebarOpenState)) {
-      document.body.classList.add("sidebar-collapse", "sidebar-mini-expand-feature");
+      document.body.classList.add(
+        "sidebar-collapse",
+        "sidebar-mini-expand-feature"
+      );
       document.body.classList.remove("sidebar-mini-expand-feature");
     }
   }
@@ -56,12 +64,24 @@
 
   let loading = false;
   let showLog;
-
+  let localeLanguage = "";
+  let selectedLanguage;
+  $: changeLanguage(selectedLanguage);
+  const subscription = locale.subscribe((x) => (localeLanguage = x));
   setContext("loader", {
     setLoading: (val) => (loading = val),
   });
 
+  function changeLanguage(lang) {
+    console.log(lang)
+    if (lang) {
+      changeLang(lang);
+    }
+  }
+
   onMount(appMountCallback);
+
+  console.log(locale.subscribe);
 </script>
 
 <div class="wrapper">
@@ -78,6 +98,16 @@
     </svelte:fragment>
 
     <svelte:fragment slot="right">
+      <Dropdown>
+        <DropdownButton>{$_("home.language")}</DropdownButton>
+        <DropdownMenu right>
+          {#each languages as l}
+          <Radio id={"langRadio-"+l} level="danger" bind:group={selectedLanguage} name="lang" value={l}>
+            <Label inputId={"langRadio-"+l}>{l}</Label>
+          </Radio>
+          {/each}
+        </DropdownMenu>
+      </Dropdown>
       {#if $isAuthenticated}
         <Dropdown slot="right">
           <DropdownButton>{$userInfo.name}</DropdownButton>
@@ -90,8 +120,12 @@
         <Dropdown>
           <DropdownButton>Log In</DropdownButton>
           <DropdownMenu right>
-            <DropdownItem on:click={() => login(AzureProvider)}>Azure</DropdownItem>
-            <DropdownItem on:click={() => login(ZuubrProvider)}>Zuubr</DropdownItem>
+            <DropdownItem on:click={() => login(AzureProvider)}
+              >Azure</DropdownItem
+            >
+            <DropdownItem on:click={() => login(ZuubrProvider)}
+              >Zuubr</DropdownItem
+            >
           </DropdownMenu>
         </Dropdown>
       {/if}
@@ -101,7 +135,9 @@
   <Sidebar>
     {#each Routes as route}
       {#if !route.hide}
-        <SidebarNavItem icon={route.icon} href="#{route.route}"><p>{route.name}</p></SidebarNavItem>
+        <SidebarNavItem icon={route.icon} href="#{route.route}"
+          ><p>{route.title}</p></SidebarNavItem
+        >
       {/if}
     {/each}
   </Sidebar>

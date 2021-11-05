@@ -108,7 +108,7 @@ export async function login(newProvider, preserveRoute = true, callback_url = nu
       pathname: window.location.pathname,
       search: window.location.search,
     }
-    : {};
+    : {}; // TODO: fix route preservation
   await currentUserManager.signinRedirect(/*{ redirect_uri, appState }*/);
 }
 

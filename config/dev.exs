@@ -13,15 +13,16 @@ config :phoenix_svelte_adminlte, PhoenixSvelteAdminlteWeb.Endpoint,
   check_origin: false,
   code_reloader: true,
   debug_errors: true,
-  secret_key_base: "H9fFgrxN+4j/l0rZEqnJTC3fs3wyBZ0zuW7FVMq8VmmCexnhWSywPrgzDaymqy/u",
-  watchers: [
-    node: [
-      "node_modules/rollup/dist/bin/rollup",
-      "--config",
-      "--watch",
-      cd: Path.expand("../assets", __DIR__)
-    ]
-  ]
+  secret_key_base: "H9fFgrxN+4j/l0rZEqnJTC3fs3wyBZ0zuW7FVMq8VmmCexnhWSywPrgzDaymqy/u"
+  # ,
+  # watchers: [
+  #   node: [
+  #     "node_modules/rollup/dist/bin/rollup",
+  #     "--config",
+  #     "--watch",
+  #     cd: Path.expand("../assets", __DIR__)
+  #   ]
+  # ]
 
 # ## SSL Support
 #

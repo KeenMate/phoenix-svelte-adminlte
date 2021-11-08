@@ -5,7 +5,7 @@
   import keymage from "keymage";
 
   import "./locale/i18n";
-  import { changeLang, locale, languages } from "./locale/i18n";
+  import { changeLang, locale, languages ,GetFlagPath} from "./locale/i18n";
   import { _ } from "svelte-i18n";
   import routes, { Routes } from "./routes";
 
@@ -67,6 +67,7 @@
   let localeLanguage = "";
   let selectedLanguage;
   $: changeLanguage(selectedLanguage);
+  $: console.log(localeLanguage)
   const subscription = locale.subscribe((x) => (localeLanguage = x));
   setContext("loader", {
     setLoading: (val) => (loading = val),
@@ -99,12 +100,14 @@
 
     <svelte:fragment slot="right">
       <Dropdown>
-        <DropdownButton>{$_("home.language")}</DropdownButton>
+        <DropdownButton><img src={GetFlagPath(localeLanguage)} alt={localeLanguage} /></DropdownButton>
         <DropdownMenu right>
           {#each languages as l}
-          <Radio id={"langRadio-"+l} level="danger" bind:group={selectedLanguage} name="lang" value={l}>
-            <Label inputId={"langRadio-"+l}>{l}</Label>
+          <div style="padding: 0 1rem;">
+          <Radio id={"langRadio-"+l.code} level="danger" bind:group={selectedLanguage} name="lang" value={l.code}>
+            <Label inputId={"langRadio-"+l.code}> <img src={GetFlagPath(l.code)} alt={l.img} /> - {l.code}</Label>
           </Radio>
+        </div>
           {/each}
         </DropdownMenu>
       </Dropdown>

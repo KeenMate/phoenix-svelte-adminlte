@@ -12,7 +12,7 @@ export function changeLang(lang){
 }
 export {locale};
 
-export const languages = [{code:"cs" , img: "cz",title:"cestina"},{code:"en" , img: "gb"},{code:"en-US" , img: "us"}];
+export const languages = [{code:"cs" , img: "cz",title:"cestina"},{code:"en" , img: "us"}];
 addMessages('en', en);
 addMessages('cs', cs);
 
@@ -22,7 +22,7 @@ init({
 });
 
 export function GetFlagPath(country_code){
-  let lang = languages.find(x => x.code === country_code);
+  let lang = languages.find(x => x.code === country_code.substring(0,2));
   if( lang != undefined)
     return "img/flags/" + lang.img + ".png"
   return "";

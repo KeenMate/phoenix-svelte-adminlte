@@ -12,7 +12,7 @@ export const Routes = [
 		title: "Profile Info",
 		route: "/",
 		breadcrumb: ["Route 1"],
-		icon: "fas fa-th"
+		icon: "fas fa-id-badge"
 	},
 	{
 		name: "Error",
@@ -26,14 +26,14 @@ export const Routes = [
 		title: "Users",
 		route: "/users",
 		breadcrumb: ["Users"],
-		icon: "fas fa-th"
+		icon: "fas fa-users"
 	},
 	{
 		name: "Tree",
 		title: "Tree",
 		route: "/tree",
 		breadcrumb: ["Tree"],
-		icon: "fas fa-th"
+		icon: "fas fa-stream"
 
 	},
 	{
@@ -41,7 +41,7 @@ export const Routes = [
 		title: "List",
 		route: "/list",
 		breadcrumb: ["List"],
-		icon: "fas fa-th"
+		icon: "fas fa-list-ul"
 
 	},
 	{
@@ -49,7 +49,7 @@ export const Routes = [
 		title: "Locale editor",
 		route: "/locale-editor",
 		breadcrumb: ["Locale editor"],
-		icon: "fas fa-th"
+		icon: "fas fa-language"
 	}
 ]
 

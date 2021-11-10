@@ -3,6 +3,10 @@
     "title": "Uživatelé"
   },
   "home":{
-    "language": "zvolte jazyk"
+    "language": "zvolte jazyk",
+    "title":"domov"
+  },
+  "locale-editor":{
+    "test": "hello darkness my old friend"
   }
 }

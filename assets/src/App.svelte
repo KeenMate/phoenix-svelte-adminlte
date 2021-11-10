@@ -33,7 +33,6 @@
     DropdownItem,
     DropdownButton,
     DropdownMenu,
-    Radio,
     Label
   } from "svelte-adminlte";
 
@@ -65,18 +64,15 @@
   let loading = false;
   let showLog;
   let localeLanguage = "";
-  let selectedLanguage;
-  $: changeLanguage(selectedLanguage);
-  $: console.log(localeLanguage)
   const subscription = locale.subscribe((x) => (localeLanguage = x));
   setContext("loader", {
     setLoading: (val) => (loading = val),
   });
 
-  function changeLanguage(lang) {
-    console.log(lang)
+  function changeLanguage(e,lang) {
     if (lang) {
       changeLang(lang);
+      location.reload();
     }
   }
 
@@ -101,15 +97,14 @@
     <svelte:fragment slot="right">
       <Dropdown>
         <DropdownButton><img src={GetFlagPath(localeLanguage)} alt={localeLanguage} /></DropdownButton>
-        <DropdownMenu right>
+        <div id="language-dropdown">
+        <DropdownMenu right >
           {#each languages as l}
-          <div style="padding: 0 1rem;">
-          <Radio id={"langRadio-"+l.code} level="danger" bind:group={selectedLanguage} name="lang" value={l.code}>
-            <Label inputId={"langRadio-"+l.code}> <img src={GetFlagPath(l.code)} alt={l.img} /> - {l.code}</Label>
-          </Radio>
-        </div>
+          
+            <div class="lang-item"style=""  on:click={(e) =>{changeLanguage(e,l.code)}}> <img src={GetFlagPath(l.code)} alt={l.img} /> - {l.title || l.code}</div>
           {/each}
         </DropdownMenu>
+      </div>
       </Dropdown>
       {#if $isAuthenticated}
         <Dropdown slot="right">
@@ -157,3 +152,15 @@
 
   <MessageLog bind:show={showLog} />
 </div>
+
+
+<style lang="sass">
+:global
+  #language-dropdown 
+    .dropdown-menu
+      min-width: 0
+.lang-item
+    cursor: pointer
+    white-space: nowrap
+    padding: 0 1rem
+</style>

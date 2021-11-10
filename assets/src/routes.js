@@ -5,13 +5,14 @@ import List from "./routes/List.svelte"
 import NotFound from "./routes/NotFound.svelte"
 import Error from "./routes/Error.svelte"
 import LocaleEditor from "./routes/LocaleEditor.svelte"
+import { _ } from "svelte-i18n";
 
 export const Routes = [
 	{
 		name: "UserProfileInfo",
 		title: "Profile Info",
 		route: "/",
-		breadcrumb: ["Route 1"],
+		breadcrumb: ["Profile Info"],
 		icon: "fas fa-id-badge"
 	},
 	{

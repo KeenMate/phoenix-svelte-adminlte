@@ -2,12 +2,12 @@
   import {userInfo} from "../stores/authentication";
   import { LteButton, Card,PageHeader } from "svelte-adminlte";
   import { getConfig, setConfig } from "svelte-adminlte";
-
+  import { _ } from "svelte-i18n";
   import notification from "../providers/notificationProvider";
 
 </script>
 <PageHeader>
-  Home
+  {$_("home.title")}
 </PageHeader>
 <div class="row">
   <div class="col-3">

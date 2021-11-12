@@ -36,7 +36,7 @@
     "phoenix": "^1.6.2",
     "postcss": "^8.3.11",
     "postcss-import": "^14.0.2",
-    "rollup": "^2.59.0",
+    "rollup": "^2.60.0",
     "rollup-plugin-bundle-inject": "^1.0.3",
     "rollup-plugin-copy": "^3.4.0",
     "rollup-plugin-css-only": "^3.0.0",
@@ -55,7 +55,7 @@
     "svelte-adminlte": "github:KeenMate/svelte-adminlte#components",
     "svelte-i18n": "^3.3.13",
     "svelte-preprocess": "^4.9.8",
-    "svelte-select": "^4.4.3",
+    "svelte-select": "^4.4.4",
     "toastr": "^2.1.4",
     "typescript": "^4.4.4",
     "zod": "^3.11.6"

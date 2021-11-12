@@ -77,8 +77,6 @@
   }
 
   onMount(appMountCallback);
-
-  console.log(locale.subscribe);
 </script>
 
 <div class="wrapper">

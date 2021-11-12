@@ -5,5 +5,8 @@
   },
   "users": {
     "title": "Users"
+  },
+  "locale-editor":{
+    "title": "locale editor"
   }
 }

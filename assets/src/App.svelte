@@ -5,6 +5,8 @@
   import keymage from "keymage";
 
   import "./locale/i18n";
+  import { changeLang, locale, languages ,GetFlagPath} from "./locale/i18n";
+  import { _ } from "svelte-i18n";
   import routes, { Routes } from "./routes";
 
   import currentUser from "./stores/current-user";
@@ -31,14 +33,19 @@
     DropdownItem,
     DropdownButton,
     DropdownMenu,
+    Label
   } from "svelte-adminlte";
 
   import MessageLog from "./controls/modals/MessageLog.svelte";
   import { initSocket } from "./providers/socket";
+  import { each } from "svelte/internal";
 
   function applySidebarOpenState() {
     if (!get(sidebarOpenState)) {
-      document.body.classList.add("sidebar-collapse", "sidebar-mini-expand-feature");
+      document.body.classList.add(
+        "sidebar-collapse",
+        "sidebar-mini-expand-feature"
+      );
       document.body.classList.remove("sidebar-mini-expand-feature");
     }
   }
@@ -56,10 +63,18 @@
 
   let loading = false;
   let showLog;
-
+  let localeLanguage = "";
+  const subscription = locale.subscribe((x) => (localeLanguage = x));
   setContext("loader", {
     setLoading: (val) => (loading = val),
   });
+
+  function changeLanguage(e,lang) {
+    if (lang) {
+      changeLang(lang);
+      location.reload();
+    }
+  }
 
   onMount(appMountCallback);
 </script>
@@ -78,6 +93,16 @@
     </svelte:fragment>
 
     <svelte:fragment slot="right">
+      <Dropdown>
+        <DropdownButton><img src={GetFlagPath(localeLanguage)} alt={localeLanguage} /></DropdownButton>
+        <div id="language-dropdown">
+        <DropdownMenu right >
+          {#each languages as l}
+            <div class="lang-item" on:click={(e) =>{changeLanguage(e,l.code)}}> <img src={GetFlagPath(l.code)} alt={l.img} /> - {l.title || l.code}</div>
+          {/each}
+        </DropdownMenu>
+      </div>
+      </Dropdown>
       {#if $isAuthenticated}
         <Dropdown slot="right">
           <DropdownButton>{$userInfo.name}</DropdownButton>
@@ -90,8 +115,12 @@
         <Dropdown>
           <DropdownButton>Log In</DropdownButton>
           <DropdownMenu right>
-            <DropdownItem on:click={() => login(AzureProvider)}>Azure</DropdownItem>
-            <DropdownItem on:click={() => login(ZuubrProvider)}>Zuubr</DropdownItem>
+            <DropdownItem on:click={() => login(AzureProvider)}
+              >Azure</DropdownItem
+            >
+            <DropdownItem on:click={() => login(ZuubrProvider)}
+              >Zuubr</DropdownItem
+            >
           </DropdownMenu>
         </Dropdown>
       {/if}
@@ -101,7 +130,9 @@
   <Sidebar>
     {#each Routes as route}
       {#if !route.hide}
-        <SidebarNavItem icon={route.icon} href="#{route.route}"><p>{route.name}</p></SidebarNavItem>
+        <SidebarNavItem icon={route.icon} href="#{route.route}"
+          ><p>{route.title}</p></SidebarNavItem
+        >
       {/if}
     {/each}
   </Sidebar>
@@ -118,3 +149,15 @@
 
   <MessageLog bind:show={showLog} />
 </div>
+
+
+<style lang="sass">
+:global
+  #language-dropdown 
+    .dropdown-menu
+      min-width: 0
+.lang-item
+    cursor: pointer
+    white-space: nowrap
+    padding: 0 1rem
+</style>

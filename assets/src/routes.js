@@ -5,14 +5,15 @@ import List from "./routes/List.svelte"
 import NotFound from "./routes/NotFound.svelte"
 import Error from "./routes/Error.svelte"
 import LocaleEditor from "./routes/LocaleEditor.svelte"
+import { _ } from "svelte-i18n";
 
 export const Routes = [
 	{
-		name: "Route1",
-		title: "The route no. 1",
+		name: "UserProfileInfo",
+		title: "Profile Info",
 		route: "/",
-		breadcrumb: ["Route 1"],
-		icon: "fas fa-th"
+		breadcrumb: ["Profile Info"],
+		icon: "fas fa-id-badge"
 	},
 	{
 		name: "Error",
@@ -26,14 +27,14 @@ export const Routes = [
 		title: "Users",
 		route: "/users",
 		breadcrumb: ["Users"],
-		icon: "fas fa-th"
+		icon: "fas fa-users"
 	},
 	{
 		name: "Tree",
 		title: "Tree",
 		route: "/tree",
 		breadcrumb: ["Tree"],
-		icon: "fas fa-th"
+		icon: "fas fa-stream"
 
 	},
 	{
@@ -41,7 +42,7 @@ export const Routes = [
 		title: "List",
 		route: "/list",
 		breadcrumb: ["List"],
-		icon: "fas fa-th"
+		icon: "fas fa-list-ul"
 
 	},
 	{
@@ -49,7 +50,7 @@ export const Routes = [
 		title: "Locale editor",
 		route: "/locale-editor",
 		breadcrumb: ["Locale editor"],
-		icon: "fas fa-th"
+		icon: "fas fa-language"
 	}
 ]
 
@@ -73,7 +74,7 @@ export function routeToRegex(route) {
 }
 
 export default {
-	[Urls.Route1]: Route1,
+	[Urls.UserProfileInfo]: Route1,
 	[Urls.Users]: Users,
 	[Urls.Tree]: Tree,
 	[Urls.List]: List,

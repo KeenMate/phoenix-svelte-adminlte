@@ -1,0 +1,12 @@
+{
+  "users": {
+    "title": "Uživatelé"
+  },
+  "home":{
+    "language": "zvolte jazyk",
+    "title":"domov"
+  },
+  "locale-editor":{
+    "title": "editor localu"
+  }
+}

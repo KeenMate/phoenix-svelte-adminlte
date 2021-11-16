@@ -5,16 +5,7 @@ import cs from "./cs.json";
 import langs from "./langs.json";
 import { registerLocaleLoader } from "svelte-i18n/types/runtime/includes/loaderQueue";
 
-export function changeLang(lang) {
-  if (languages.find((x) => x.code === lang.substring(0, 2)) != undefined) {
-    console.log("changing lang to:", lang);
-    locale.set(lang);
-    localStorage.setItem("language", lang);
-  } else {
-    console.log("ERROR: language " + lang, " does not exist");
-  }
-  return;
-}
+
 export { locale, locales, langs };
 export const languages = langs;
 
@@ -51,6 +42,7 @@ export function GetFlagPath(country_code) {
 export function saveLanguageFile(json, lang) {
   addMessages(lang, json);
   localStorage.setItem(lang + "-locale", JSON.stringify(json));
+  
 }
 
 export function deleteSaveLocals() {
@@ -65,5 +57,17 @@ export function deleteSaveLocals() {
     }
   }
 
-  console.log("saving locale to console")
+  console.log("deleting saved locals")
+  location.reload();
+}
+
+export function changeLang(lang) {
+  if (languages.find((x) => x.code === lang.substring(0, 2)) != undefined) {
+    console.log("changing lang to:", lang);
+    locale.set(lang);
+    localStorage.setItem("language", lang);
+  } else {
+    console.log("ERROR: language " + lang, " does not exist");
+  }
+  return;
 }

@@ -98,8 +98,7 @@
         <div id="language-dropdown">
         <DropdownMenu right >
           {#each languages as l}
-          
-            <div class="lang-item"style=""  on:click={(e) =>{changeLanguage(e,l.code)}}> <img src={GetFlagPath(l.code)} alt={l.img} /> - {l.title || l.code}</div>
+            <div class="lang-item" on:click={(e) =>{changeLanguage(e,l.code)}}> <img src={GetFlagPath(l.code)} alt={l.img} /> - {l.title || l.code}</div>
           {/each}
         </DropdownMenu>
       </div>

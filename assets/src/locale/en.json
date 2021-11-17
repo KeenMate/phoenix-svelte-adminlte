@@ -7,6 +7,12 @@
     "title": "Users"
   },
   "locale-editor":{
-    "title": "locale editor"
+    "title": "locale editor",
+    "edit":"edit"
+  },
+  "localesList":{
+    "language":"jazyk",
+    "code":"kod",
+    "flag":"vlajka"
   }
 }

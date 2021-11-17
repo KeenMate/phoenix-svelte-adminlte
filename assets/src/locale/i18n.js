@@ -1,4 +1,4 @@
-import { init, getLocaleFromNavigator, locale, addMessages, json,register ,getCurrentLocale} from "svelte-i18n";
+import { init, getLocaleFromNavigator, locale, addMessages, json,register } from "svelte-i18n";
 
 import en from "./en.json";
 import cs from "./cs.json";

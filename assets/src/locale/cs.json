@@ -7,6 +7,12 @@
     "title":"domov"
   },
   "locale-editor":{
-    "title": "editor localu"
+    "title": "editor localu",
+    "edit":"upravit"
+  },
+  "localesList":{
+    "language":"jazyk",
+    "code":"kod",
+    "flag":"vlajka"
   }
 }

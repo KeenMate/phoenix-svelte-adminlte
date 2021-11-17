@@ -14,5 +14,8 @@
     "language":"jazyk",
     "code":"kod",
     "flag":"vlajka"
+  },
+  "components":{
+    "title":"Components"
   }
 }

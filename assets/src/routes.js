@@ -5,6 +5,8 @@ import List from "./routes/List.svelte"
 import NotFound from "./routes/NotFound.svelte"
 import Error from "./routes/Error.svelte"
 import LocaleEditor from "./routes/LocaleEditor.svelte"
+import Components from "./routes/Components.svelte"
+
 import { _ } from "svelte-i18n";
 
 export const Routes = [
@@ -51,6 +53,13 @@ export const Routes = [
 		route: "/locale-editor",
 		breadcrumb: ["Locale editor"],
 		icon: "fas fa-language"
+	},
+	{
+		name: "Components",
+		title: "Components",
+		route: "/components",
+		breadcrumb: ["Components"],
+		icon: "fas fa-file"
 	}
 ]
 
@@ -80,6 +89,7 @@ export default {
 	[Urls.List]: List,
 	[Urls.Error]: Error,
 	[Urls.Locale]: LocaleEditor,
+	[Urls.Components]:Components,
 	// The catch-all route must always be last
 	"*": NotFound
 }

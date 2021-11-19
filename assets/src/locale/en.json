@@ -14,5 +14,13 @@
     "language":"jazyk",
     "code":"kod",
     "flag":"vlajka"
+  },
+  "components":{
+    "title":"Components"
+  },
+  "notifications": {
+    "locale-editor": {
+      "saved":{ "title":"Locales saved", "message":"Locales for {locale} have been sucesfully saved to LocalStorage."}
+    }
   }
 }

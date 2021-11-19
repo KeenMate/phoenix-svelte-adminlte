@@ -9,19 +9,19 @@
     InputGroup,
     Label,
     Tabs,
-    TabItem
+    BreadcrumbItem
   } from "svelte-adminlte";
-  import { _, locale } from "svelte-i18n";
+  import {_} from "svelte-i18n";
   import "jsoneditor/dist/jsoneditor.min.css";
   import JSONEditor from "jsoneditor";
   import LocalesList from "../controls/localEditor/LocalesList.svelte";
+  import notification from "../providers/notificationProvider";
 
   import {
     saveLanguageFile,
     deleteSaveLocals,
     locales,
-    languages,
-    GetFlagPath,
+    
   } from "../locale/i18n";
   import { optional } from "zod";
 
@@ -32,7 +32,6 @@
 
   $: ChangeJson(selectedLanguage);
 
-  $: console.log(editorContainer);
   function saveJson() {
     try {
       var valid_json = editor.get();
@@ -41,6 +40,7 @@
     }
     if (json != undefined) {
       saveLanguageFile(valid_json, selectedLanguage);
+      notification.success($_("notifications.locale-editor.saved.message",{values:{locale: selectedLanguage }}),$_("notifications.locale-editor.saved.title"))
     }
   }
 
@@ -55,15 +55,22 @@
   }
 </script>
 
+
 <PageHeader>
-  {$_("locale-editor.title")} <small>For all the polyglots</small></PageHeader
->
+  <svelte:fragment>
+    {$_("locale-editor.title")} <small>For all the polyglots</small>
+  </svelte:fragment>
+
+  <svelte:fragment slot="breadcrumbs">
+    <BreadcrumbItem><a href="#/">{$_("home.title")}</a></BreadcrumbItem>
+    <BreadcrumbItem active>{$_("locale-editor.title")}</BreadcrumbItem>
+  </svelte:fragment>
+</PageHeader>
 <div class="row">
   <div class:col-12={!selectedLanguage} class:col-3={selectedLanguage}>
     <LocalesList
       expanded={!selectedLanguage}
       on:edit={({ detail: lang }) => {
-        console.log(lang);
         selectedLanguage = lang;
       }}
     />
@@ -87,6 +94,9 @@
                 on:click={() => (selectedLanguage = null)}
               >
                 <i class="fas fa-times" />
+              </LteButton>
+              <LteButton color="danger" small on:click={deleteSaveLocals}>
+                <i class="fas fa-trash" />
               </LteButton>
             </div>
           </Tabs>

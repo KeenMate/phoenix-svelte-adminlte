@@ -1,8 +1,11 @@
 <script>
   import { _ } from "svelte-i18n";
   import { PageHeader, BreadcrumbItem } from "svelte-adminlte";
-
+  import ComponentPageExample from "../controls/Components/ComponentPageExample.svelte"
+  
 </script>
+
+
 
 <PageHeader>
     <svelte:fragment>
@@ -16,9 +19,5 @@
   </PageHeader>
 
   <div class="row mh-100">
-      <div class="col-6"></div>
-      <div class="col-6">
-          <div class="row"></div>
-          <div class="row"></div>
-      </div>
+    <ComponentPageExample></ComponentPageExample>
   </div>

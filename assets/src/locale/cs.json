@@ -17,5 +17,10 @@
   },
   "components":{
     "title":"Komponenty"
+  },
+  "notifications": {
+    "locale-editor": {
+      "saved":{ "title":"Uloženo", "message":"preklad pro {locale} byl uspěšne uloženy do localStorage"}
+    }
   }
 }

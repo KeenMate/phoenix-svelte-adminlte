@@ -14,3 +14,11 @@
       <BreadcrumbItem active>{$_("components.title")}</BreadcrumbItem>
     </svelte:fragment>
   </PageHeader>
+
+  <div class="row mh-100">
+      <div class="col-6"></div>
+      <div class="col-6">
+          <div class="row"></div>
+          <div class="row"></div>
+      </div>
+  </div>

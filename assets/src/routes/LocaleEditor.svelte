@@ -11,15 +11,17 @@
     Tabs,
     BreadcrumbItem
   } from "svelte-adminlte";
+  import {_} from "svelte-i18n";
   import "jsoneditor/dist/jsoneditor.min.css";
   import JSONEditor from "jsoneditor";
   import LocalesList from "../controls/localEditor/LocalesList.svelte";
+  import notification from "../providers/notificationProvider";
 
   import {
     saveLanguageFile,
     deleteSaveLocals,
     locales,
-    _
+    
   } from "../locale/i18n";
   import { optional } from "zod";
 
@@ -38,6 +40,7 @@
     }
     if (json != undefined) {
       saveLanguageFile(valid_json, selectedLanguage);
+      notification.success($_("notifications.locale-editor.saved.message",{values:{locale: selectedLanguage }}),$_("notifications.locale-editor.saved.title"))
     }
   }
 

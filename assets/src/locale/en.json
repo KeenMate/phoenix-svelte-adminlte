@@ -22,5 +22,9 @@
     "locale-editor": {
       "saved":{ "title":"Locales saved", "message":"Locales for {locale} have been sucesfully saved to LocalStorage."}
     }
+  },
+  "component-page-template":{
+    "text-title":"Description",
+    "props-title":"properties"
   }
 }

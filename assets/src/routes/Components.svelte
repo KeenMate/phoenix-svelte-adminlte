@@ -1,24 +1,40 @@
 <script>
   import { _ } from "svelte-i18n";
-  import { PageHeader, BreadcrumbItem } from "svelte-adminlte";
-
+  import { PageHeader, BreadcrumbItem,LteButton } from "svelte-adminlte";
+  import ComponentPageExample from "../component-examples/ComponentPageExample.svelte"
+import CardExample from "../component-examples/CardExample.svelte";
+  
+  let title="card"
 </script>
+
+
 
 <PageHeader>
     <svelte:fragment>
-      {$_("components.title")} <small>Funny Joke</small>
+      {title || $_("components.title")} <small>{title ? $_("components.title") : "Funny Joke" }</small>
     </svelte:fragment>
   
     <svelte:fragment slot="breadcrumbs">
       <BreadcrumbItem><a href="#/">{$_("home.title")}</a></BreadcrumbItem>
-      <BreadcrumbItem active>{$_("components.title")}</BreadcrumbItem>
+      <BreadcrumbItem active>
+        {#if title}
+        <a href="#/components" on:click="{() => title=null}">{$_("components.title")}</a>
+        {:else}
+          {$_("components.title")}
+        {/if}
+        </BreadcrumbItem>
     </svelte:fragment>
   </PageHeader>
-
+<!--TEMPORARY -->
   <div class="row mh-100">
-      <div class="col-6"></div>
-      <div class="col-6">
-          <div class="row"></div>
-          <div class="row"></div>
-      </div>
+    {#if title === null}
+      <LteButton on:click="{() => title="card"}">card</LteButton>
+      <LteButton on:click="{() => title="example"}">example</LteButton>
+    {:else if  title === "card"}
+       <CardExample/>
+       {:else if  title === "example"}
+          <ComponentPageExample />
+       {:else}
+       asd
+    {/if}
   </div>

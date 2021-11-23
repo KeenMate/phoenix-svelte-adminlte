@@ -26,6 +26,7 @@ import CardExample from "../component-examples/CardExample.svelte";
     </svelte:fragment>
   </PageHeader>
 <!--TEMPORARY -->
+{title}
   <div class="row mh-100">
     {#if title === null}
       <LteButton on:click="{() => title="card"}">card</LteButton>

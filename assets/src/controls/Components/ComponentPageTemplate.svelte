@@ -43,7 +43,7 @@
   .scroll
     overflow-y: scroll
     overflow-x: hidden
-    height: 80vh
+    height: 85vh
   .margin
     margin-left: 1px
   ::-webkit-scrollbar 

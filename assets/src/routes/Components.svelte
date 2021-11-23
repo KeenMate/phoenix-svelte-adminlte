@@ -2,12 +2,15 @@
   import { _ } from "svelte-i18n";
   import { PageHeader, BreadcrumbItem,LteButton } from "svelte-adminlte";
   import ComponentPageExample from "../component-examples/ComponentPageExample.svelte"
-import CardExample from "../component-examples/CardExample.svelte";
+  import CardExample from "../component-examples/CardExample.svelte";
+  import github from "svelte-highlight/src/styles/github";
   
   let title="card"
 </script>
 
-
+<svelte:head>
+  {@html github}
+</svelte:head>
 
 <PageHeader>
     <svelte:fragment>

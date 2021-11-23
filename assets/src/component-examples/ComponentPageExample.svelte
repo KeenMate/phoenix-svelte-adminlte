@@ -1,6 +1,6 @@
 <script>
   import ComponentPageTemplate from "../controls/Components/ComponentPageTemplate.svelte";
-  import ComponentExample from "../controls/Components/ComponentExample.svelte";
+  import ComponentExampleTemplate from "../controls/Components/ComponentExampleTemplate.svelte";
 
   let testComponent = {
     name: "Input",
@@ -27,18 +27,18 @@
   properties={testComponent.props}
   ><svelte:fragment slot="examples">
     <div class="row">
-      <ComponentExample
+      <ComponentExampleTemplate
         code={testComponent.examples[0].code}
         name={testComponent.examples[0].name}
       >
         <input type="text" bind:value={a} />
-        <br />{a}</ComponentExample
+        <br />{a}</ComponentExampleTemplate
       >
-      <ComponentExample
+      <ComponentExampleTemplate
         code={testComponent.examples[0].code}
         name={testComponent.examples[0].name}
       >
-        <input type="text" on:change={() => alert("input changed")} /></ComponentExample
+        <input type="text" on:change={() => alert("input changed")} /></ComponentExampleTemplate
       >
     </div>
   </svelte:fragment></ComponentPageTemplate

@@ -5,7 +5,6 @@
 import { languages } from "../../locale/i18n";
   export let name = "";
   export let code = "";
-  console.log(code);
 </script>
 
 <Card class="card-width ">

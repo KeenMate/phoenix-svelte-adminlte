@@ -1,11 +1,28 @@
 <script>
   import { _ } from "svelte-i18n";
   import { PageHeader, BreadcrumbItem,LteButton } from "svelte-adminlte";
-  import ComponentPageExample from "../component-examples/ComponentPageExample.svelte"
+  import InputExample from "../component-examples/InputExample.svelte"
   import CardExample from "../component-examples/CardExample.svelte";
   import github from "svelte-highlight/src/styles/github";
   
+  import {components} from "../component-examples/components"
   let title="card"
+  let componentInfo = null;
+
+  export let params;
+
+  $:setComponentInfo(params)
+  $: console.log(params)
+  //sets component info when parametrs change
+  function setComponentInfo(p){
+    if(p && p.code){
+     let  info =  components.find((x) => x.code == p.code);
+      if(info){
+        componentInfo = info
+      }
+    }
+  }
+
 </script>
 
 <svelte:head>
@@ -36,7 +53,7 @@
     {:else if  title === "card"}
        <CardExample/>
        {:else if  title === "example"}
-          <ComponentPageExample />
+          <InputExample />
        {:else}
        asd
     {/if}

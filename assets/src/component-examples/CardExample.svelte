@@ -3,7 +3,7 @@
   import ComponentExampleTemplate from "../controls/Components/ComponentExampleTemplate.svelte";
 
   import { Card } from "svelte-adminlte";
-import ComponentPageExample from "./ComponentPageExample.svelte";
+import ComponentPageExample from "./InputExample.svelte";
 
 
   let data = {

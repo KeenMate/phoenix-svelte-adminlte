@@ -51,7 +51,6 @@
     </BreadcrumbItem>
   </svelte:fragment>
 </PageHeader>
-<!--TEMPORARY -->
 <div class="row mh-100 m-1">
   <div class="col-12 ">
     {#if componentInfo}

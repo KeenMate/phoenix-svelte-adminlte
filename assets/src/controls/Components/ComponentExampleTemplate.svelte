@@ -7,7 +7,7 @@ import { languages } from "../../locale/i18n";
   export let code = "";
 </script>
 
-<Card class="card-width ">
+<Card class="card-width " color="info" outline>
   <svelte:fragment slot="header">{name}</svelte:fragment>
   <div class="row">
     <div class="col-6">

@@ -3,7 +3,6 @@
   import ComponentExampleTemplate from "../controls/Components/ComponentExampleTemplate.svelte";
 
   import { Card } from "svelte-adminlte";
-import ComponentPageExample from "./InputExample.svelte";
 
 
   let data = {
@@ -19,15 +18,15 @@ import ComponentPageExample from "./InputExample.svelte";
     ],
     examples: {
       minimal: {
-        name: "minimal card usage",
+        name: "minimal Card usage",
         code: '<Card>\r\n<svelte:fragment slot="header"> Title </svelte:fragment>\r\nBody\r\n</Card>',
       },
       colored: {
-        name: "card with colored header",
+        name: "Card with colored header",
         code: '<Card color="primary">\r\n<svelte:fragment slot="header"> Title </svelte:fragment>\r\nBody Lorem ipsum dolor sit amet, consectetuer adipiscing elit.....\r\n</Card>\r\n',
       },
       colored_outline:{
-        name: "card with colored header outline",
+        name: "Card with colored header outline",
         code: '<Card color="danger" outline>\r\n<svelte:fragment slot="header">Title</svelte:fragment>\r\nBody Lorem ipsum dolor sit amet, consectetuer adipiscing elit.....\r\n</Card>'
       }
     },
@@ -37,7 +36,6 @@ import ComponentPageExample from "./InputExample.svelte";
 </script>
 
 <ComponentPageTemplate
-  name={data.name}
   text={data.text}
   properties={data.props}
 >

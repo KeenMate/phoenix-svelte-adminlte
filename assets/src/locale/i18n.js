@@ -22,7 +22,6 @@ function inicialize(){
       addMessages(lang.code, JSON.parse(lc));
       locales[lang.code] = JSON.parse(lc);
     }else{
-      console.log("loading from file: "+ lang.code)
       addMessages(lang.code,locales[lang.code]);
     }
   });

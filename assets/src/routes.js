@@ -64,7 +64,7 @@ export const Routes = [
 	{
 		name: "ComponentsDetail",
 		title: "Components",
-		route: "/components/:code",
+		route: "/components/show/:code",
 		breadcrumb: ["Components"],
 		icon: "fas fa-file",
 		hide: true

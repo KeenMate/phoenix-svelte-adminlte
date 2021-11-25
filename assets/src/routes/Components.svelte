@@ -44,7 +44,7 @@
       {#if componentInfo}
         <a href="#/components" on:click={() => replace("/components")}
           >{$_("components.title")}</a
-        >
+        > / {componentInfo.name}
       {:else}
         {$_("components.title")}
       {/if}

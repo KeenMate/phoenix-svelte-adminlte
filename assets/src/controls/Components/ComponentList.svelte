@@ -17,6 +17,7 @@
   import { components } from "../../component-examples/components";
 import { replace } from "svelte-spa-router";
 import {fillParams} from "../../routes"
+import { _ } from "svelte-i18n";
 
   const dispatch = createEventDispatcher();
 
@@ -26,7 +27,7 @@ import {fillParams} from "../../routes"
   let searchDebounce = debounce(() => getComponents(), TypingDebounceDelay);
 
   $: searchDebounce(searchInput);
-
+  $: console.log(displayedComponents)
   getComponents();
 
   function getComponents() {
@@ -67,6 +68,7 @@ import {fillParams} from "../../routes"
           <th>name</th>
             <th>description</th>
         </tr>
+        
         {#each displayedComponents as component}
           <tr>
             <td class="title">
@@ -80,6 +82,12 @@ import {fillParams} from "../../routes"
               <td>{component.description}</td>
           </tr>
         {/each}
+        {#if displayedComponents.length == 0}
+          <tr>
+              <td class="text-danger">{$_("component-list.not-found.title")}</td>
+              <td class="text-muted">{$_("component-list.not-found.text")}</td>
+          </tr>
+        {/if}
       </TableCondensed>
     </div>
   </div>

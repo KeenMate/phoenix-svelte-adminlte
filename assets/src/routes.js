@@ -60,6 +60,14 @@ export const Routes = [
 		route: "/components",
 		breadcrumb: ["Components"],
 		icon: "fas fa-file"
+	},
+	{
+		name: "ComponentsDetail",
+		title: "Components",
+		route: "/components/show/:code",
+		breadcrumb: ["Components"],
+		icon: "fas fa-file",
+		hide: true
 	}
 ]
 
@@ -90,6 +98,7 @@ export default {
 	[Urls.Error]: Error,
 	[Urls.Locale]: LocaleEditor,
 	[Urls.Components]:Components,
+	[Urls.ComponentsDetail]:Components,
 	// The catch-all route must always be last
 	"*": NotFound
 }

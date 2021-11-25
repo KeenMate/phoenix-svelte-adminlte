@@ -23,7 +23,7 @@
         {@html text}
       </Card>
     {/if}
-    <Card color="info" outline>
+    <Card color="danger" outline>
       <svelte:fragment slot="header">
         {$_("component-page-template.props-title")}
       </svelte:fragment>

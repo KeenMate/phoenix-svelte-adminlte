@@ -55,7 +55,7 @@ import { claim_component } from "svelte/internal";
 </script>
 
 <Card outline color="primary">
-  <svelte:fragment slot="header">List</svelte:fragment>
+  <svelte:fragment slot="header">{$_("component-list.card-title")}</svelte:fragment>
 
   <div class="row">
     <div class="col-12">
@@ -89,8 +89,8 @@ import { claim_component } from "svelte/internal";
     <div class="col-12">
       <TableCondensed class="components-list">
         <tr slot="headers">
-          <th>name</th>
-            <th>description</th>
+          <th>{$_("component-list.name")}</th>
+            <th>{$_("component-list.description")}</th>
         </tr>
         
         {#each displayedComponents as component}

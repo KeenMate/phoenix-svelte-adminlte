@@ -30,8 +30,8 @@
   
   </script>
   
-  <Card  outline color="primary">
-    <svelte:fragment slot="header">List</svelte:fragment>
+  <Card  outline color="primary" noPadding>
+    <svelte:fragment slot="header">{$_("locales-list.card-title")}</svelte:fragment>
   
     <!--<div slot="tools">
       <LteButton color="info" small on:click={() => dispatch("refresh")}>
@@ -62,10 +62,10 @@
         <TableCondensed class="locales-list {expanded ? 'expanded' : ''}">
           <tr slot="headers">
             <!-- <th class="actions">Actions</th> -->
-            <th>{$_("localesList.language")}</th>
+            <th>{$_("locales-list.language")}</th>
             {#if expanded}
-              <th>{$_("localesList.flag")}</th>
-              <th>{$_("localesList.code")}</th>
+              <th>{$_("locales-list.flag")}</th>
+              <th>{$_("locales-list.code")}</th>
             {/if}
           </tr>
           {#each displayedLocales as locale}

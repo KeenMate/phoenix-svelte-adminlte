@@ -31,6 +31,8 @@
     "not-found":{
       "title":"No Components Found",
       "text":"try changing or deleting search query"
-    }
+    },
+    "categories":"categories",
+    "all":"all"
   }
 }

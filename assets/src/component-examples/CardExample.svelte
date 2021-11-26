@@ -7,7 +7,7 @@
 
   let data = {
     name: "Input",
-    text: "Component is used for user input. It can be used for multiple types of input",
+    text: "Component is used everywere. Its supposed to make everything look better. ",
     props: [
       { name: "color", type: "string | colors from bootstrap", comment: "color of header" },
       { name: "outline", type: "bool", comment: "if true, only top border of card is colored instead of full header" },
@@ -18,7 +18,7 @@
     ],
     examples: {
       minimal: {
-        name: "minimal Card usage",
+        name: "Minimal Card usage",
         code: '<Card>\r\n<svelte:fragment slot="header"> Title </svelte:fragment>\r\nBody\r\n</Card>',
       },
       colored: {

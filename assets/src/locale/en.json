@@ -26,5 +26,13 @@
   "component-page-template":{
     "text-title":"Description",
     "props-title":"properties"
+  },
+  "component-list":{
+    "not-found":{
+      "title":"No Components Found",
+      "text":"try changing or deleting search query"
+    },
+    "categories":"categories",
+    "all":"all"
   }
 }

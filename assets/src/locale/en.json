@@ -1,19 +1,20 @@
 {
   "home": {
     "title": "Home",
-    "language": "select language"
+    "language": "Select language"
   },
   "users": {
     "title": "Users"
   },
   "locale-editor":{
     "title": "locale editor",
-    "edit":"edit"
+    "edit":"Edit"
   },
-  "localesList":{
-    "language":"jazyk",
-    "code":"kod",
-    "flag":"vlajka"
+  "locales-list":{
+    "language":"Language",
+    "code":"Code",
+    "flag":"Flag",
+    "card-title":"Click on locale to edit"
   },
   "components":{
     "title":"Components"
@@ -25,14 +26,17 @@
   },
   "component-page-template":{
     "text-title":"Description",
-    "props-title":"properties"
+    "props-title":"Properties"
   },
   "component-list":{
     "not-found":{
       "title":"No Components Found",
       "text":"try changing or deleting search query"
     },
-    "categories":"categories",
-    "all":"all"
+    "categories":"Categories",
+    "all":"All",
+    "name": "Name",
+    "description":"Description",
+    "card-title":"Click to view documentation"
   }
 }

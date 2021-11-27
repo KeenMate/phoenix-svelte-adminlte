@@ -9,6 +9,13 @@ import Components from "./routes/Components.svelte"
 
 import { _ } from "svelte-i18n";
 
+import { categories } from "./component-examples/components"
+
+export const ComponentsSubroutes = categories.map((c) => {
+	return {title:c, icon:"fas fa-circle",route:fillParams("/components/:category",{category:c})}
+
+})
+
 export const Routes = [
 	{
 		name: "UserProfileInfo",
@@ -57,9 +64,12 @@ export const Routes = [
 	{
 		name: "Components",
 		title: "Components",
-		route: "/components",
+		route: "/components/:category",
 		breadcrumb: ["Components"],
-		icon: "fas fa-file"
+		icon: "fas fa-file",
+		nesting: true,
+		subroutes: ComponentsSubroutes
+
 	},
 	{
 		name: "ComponentsDetail",

@@ -26,7 +26,8 @@
   },
   "component-page-template":{
     "text-title":"Popisek",
-    "props-title":"Vlastnosti"
+    "props-title":"Vlastnosti",
+    "events-title":"Události"
   },
   "component-list":{
     "not-found":{

@@ -5,7 +5,7 @@
   import keymage from "keymage";
 
   import "./locale/i18n";
-  import { changeLang, locale, languages ,GetFlagPath} from "./locale/i18n";
+  import { changeLang, locale, languages, GetFlagPath } from "./locale/i18n";
   import { _ } from "svelte-i18n";
   import routes, { Routes } from "./routes";
 
@@ -33,12 +33,13 @@
     DropdownItem,
     DropdownButton,
     DropdownMenu,
-    Label
+    Label,
   } from "svelte-adminlte";
 
   import MessageLog from "./controls/modals/MessageLog.svelte";
   import { initSocket } from "./providers/socket";
   import { each } from "svelte/internal";
+  import SidebarNavTree from "./controls/SidebarNavTree.svelte";
 
   function applySidebarOpenState() {
     if (!get(sidebarOpenState)) {
@@ -69,7 +70,7 @@
     setLoading: (val) => (loading = val),
   });
 
-  function changeLanguage(e,lang) {
+  function changeLanguage(e, lang) {
     if (lang) {
       changeLang(lang);
       location.reload();
@@ -77,6 +78,7 @@
   }
 
   onMount(appMountCallback);
+  console.log(Routes);
 </script>
 
 <div class="wrapper">
@@ -94,14 +96,27 @@
 
     <svelte:fragment slot="right">
       <Dropdown>
-        <DropdownButton><img src={GetFlagPath(localeLanguage)} alt={localeLanguage} /></DropdownButton>
+        <DropdownButton
+          ><img
+            src={GetFlagPath(localeLanguage)}
+            alt={localeLanguage}
+          /></DropdownButton
+        >
         <div id="language-dropdown">
-        <DropdownMenu right >
-          {#each languages as l}
-            <div class="lang-item" on:click={(e) =>{changeLanguage(e,l.code)}}> <img src={GetFlagPath(l.code)} alt={l.img} /> {l.title || l.code}</div>
-          {/each}
-        </DropdownMenu>
-      </div>
+          <DropdownMenu right>
+            {#each languages as l}
+              <div
+                class="lang-item"
+                on:click={(e) => {
+                  changeLanguage(e, l.code);
+                }}
+              >
+                <img src={GetFlagPath(l.code)} alt={l.img} />
+                {l.title || l.code}
+              </div>
+            {/each}
+          </DropdownMenu>
+        </div>
       </Dropdown>
       {#if $isAuthenticated}
         <Dropdown slot="right">
@@ -130,9 +145,22 @@
   <Sidebar>
     {#each Routes as route}
       {#if !route.hide}
-        <SidebarNavItem icon={route.icon} href="#{route.route}"
-          ><p>{route.title}</p></SidebarNavItem
-        >
+        {#if route.nesting}
+          <SidebarNavTree icon={route.icon} href="#{route.route}"
+            ><p>{route.title}</p>
+            <svelte:fragment slot="children">
+              {#each route.subroutes as sub}
+                <SidebarNavItem icon={sub.icon} href="#{sub.route}"> 
+                  <p>{sub.title}</p>
+                </SidebarNavItem>
+              {/each}
+            </svelte:fragment>
+          </SidebarNavTree>
+        {:else}
+          <SidebarNavItem icon={route.icon} href="#{route.route}">
+            <p>{route.title}</p>
+          </SidebarNavItem>
+        {/if}
       {/if}
     {/each}
   </Sidebar>
@@ -149,7 +177,6 @@
 
   <MessageLog bind:show={showLog} />
 </div>
-
 
 <style lang="sass">
 :global

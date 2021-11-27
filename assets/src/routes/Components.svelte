@@ -14,7 +14,7 @@
 
   $: paramsChange(params);
   $: console.log(params);
-  $: console.log(componentInfo);
+  //$: console.log(componentInfo);
   //sets component info when parametrs change
 
 

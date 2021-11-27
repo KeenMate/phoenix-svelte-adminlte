@@ -31,8 +31,8 @@ import { claim_component } from "svelte/internal";
   let searchDebounce = debounce(() => getComponents(category), TypingDebounceDelay);
 
   $: searchDebounce(searchInput);
-  $: console.log(displayedComponents)
-  $: console.log(category)
+  //$: console.log(displayedComponents)
+  //$: console.log(category)
   
   
 

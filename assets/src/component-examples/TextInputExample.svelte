@@ -19,13 +19,11 @@
         { name: "inputMask", type: "string", comment: "" },
         { name: "invalid", type: "bool", comment: "false is default" },
         { name: "inputElement", type: "", comment: "you can direcly acces input through this" },
-        
-    
-    
-    ],
+      ],
+      events:[{name:"keypress",type:"",comment:"event fires everytime user times into input"}],
       examples: {
         minimal: {
-          name: "minimal TextInput usage",
+          name: "Minimal TextInput usage",
           code: '<TextInput bind:value={value}\/>',
         },
         basic: {
@@ -34,7 +32,7 @@
         },
         pattern:{
           name: "TextInput with pattern",
-          code: '<form action=\"\/foo\">\r\n        <TextInput bind:value={c} id=\"inputId\" name=\"inputName\" placeholder=\"Type 3 letter countrycode...\" pattern=\"[A-Za-z]{3}\"\/>\r\n        <input type=\"submit\" \/>\r\n<\/form >'
+          code: '<TextInput bind:value={c} id=\"inputId\" name=\"inputName\" placeholder=\"Type 3 letter countrycode...\" inputMask=\"99\/99\/9999\"\/>'
         }
       },
     };
@@ -45,6 +43,7 @@
   <ComponentPageTemplate
     text={data.text}
     properties={data.props}
+    events={data.events}
   >
     <svelte:fragment slot="examples">
       <ComponentExampleTemplate
@@ -64,10 +63,8 @@
       <ComponentExampleTemplate
         code={data.examples.pattern.code}
         name={data.examples.pattern.name}>
-        <form action="/foo">
-        <TextInput bind:value={c} id="inputId" name="inputName" placeholder="Type 3 letter countrycode..." pattern="[A-Za-z]{3}"/>
-            <input type="submit" />
-    </form >
+        <TextInput bind:value={c} id="inputId" name="inputName" placeholder="Type 3 letter countrycode..." inputMask="(99) 9999[9]-9999"/>
+        INPUT MASK DOESNT WORK IDK WHY 
       </ComponentExampleTemplate>
     </svelte:fragment></ComponentPageTemplate
   >

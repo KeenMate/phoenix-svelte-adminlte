@@ -1,9 +1,11 @@
 <script>
-  import {Card} from "svelte-adminlte";
+  import { Card } from "svelte-adminlte";
   import { _ } from "svelte-i18n";
 
   // name value comment
-  export let properties = [];
+  export let properties = null;
+  //name params comment
+  export let events = null;
   //export let name;
   export let text;
 </script>
@@ -11,31 +13,46 @@
 <div class="row col-12 ml-1 ">
   <div class="col-8 scroll">
     <div class="row margin">
-    <slot name="examples" />
-  </div>
+      <slot name="examples" />
+    </div>
   </div>
   <div class="col-4">
     {#if text}
-      <Card color="danger" outline >
+      <Card color="danger" outline>
         <svelte:fragment slot="header">
           {$_("component-page-template.text-title")}
         </svelte:fragment>
         {@html text}
       </Card>
     {/if}
-    <Card color="danger" outline>
-      <svelte:fragment slot="header">
-        {$_("component-page-template.props-title")}
-      </svelte:fragment>
-      {#each properties as prop}
-      <p>
-        <b>{prop.name}</b>
-        [{prop.type}]
-        <br /><i>{prop.comment}</i>
-      </p>
-      {/each}
-   
-    </Card>
+    {#if properties}
+      <Card color="danger" outline>
+        <svelte:fragment slot="header">
+          {$_("component-page-template.props-title")}
+        </svelte:fragment>
+        {#each properties as prop}
+          <p>
+            <b>{prop.name}</b>
+            [{prop.type}]
+            <br /><i>{prop.comment}</i>
+          </p>
+        {/each}
+      </Card>
+    {/if}
+    {#if events}
+      <Card color="danger" outline>
+        <svelte:fragment slot="header">
+          {$_("component-page-template.events-title")}
+        </svelte:fragment>
+        {#each events as event}
+          <p>
+            <b>{event.name}</b>
+            [{event.params}]
+            <br /><i>{event.comment}</i>
+          </p>
+        {/each}
+      </Card>
+    {/if}
   </div>
 </div>
 
@@ -53,5 +70,5 @@
   // ::-webkit-scrollbar-thumb 
   //   background: #888
   // ::-webkit-scrollbar-thumb:hover
-  //   background: #555 
+  //   background: #555
 </style>

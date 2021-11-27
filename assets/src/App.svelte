@@ -147,7 +147,7 @@
       {#if !route.hide}
         {#if route.nesting}
           <SidebarNavTree icon={route.icon} href="#{route.route}"
-            ><p>{route.title}</p>
+            >{route.title}
             <svelte:fragment slot="children">
               {#each route.subroutes as sub}
                 <SidebarNavItem icon={sub.icon} href="#{sub.route}"> 

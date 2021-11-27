@@ -23,7 +23,7 @@
       events:[{name:"keypress",type:"",comment:"event fires everytime user times into input"}],
       examples: {
         minimal: {
-          name: "minimal TextInput usage",
+          name: "Minimal TextInput usage",
           code: '<TextInput bind:value={value}\/>',
         },
         basic: {

@@ -12,50 +12,57 @@
     InputGroup,
     InputGroupAppend,
     Tabs,
-    TabItem
+    TabItem,
   } from "svelte-adminlte";
 
-  import { components ,categories} from "../../component-examples/components";
+  import { components, categories } from "../../component-examples/components";
 
-import { push } from "svelte-spa-router";
-import {fillParams} from "../../routes"
-import { _ } from "svelte-i18n";
-import { claim_component } from "svelte/internal";
+  import { push } from "svelte-spa-router";
+  import { fillParams } from "../../routes";
+  import { _ } from "svelte-i18n";
+  import { claim_component } from "svelte/internal";
 
   const dispatch = createEventDispatcher();
 
-  export let displayedComponents = components
-  export let category=null;
+  export let displayedComponents = components;
+  export let category = null;
 
   let searchInput = null;
-  let searchDebounce = debounce(() => getComponents(category), TypingDebounceDelay);
+  let searchDebounce = debounce(
+    () => getComponents(category),
+    TypingDebounceDelay
+  );
 
   $: searchDebounce(searchInput);
   //$: console.log(displayedComponents)
   //$: console.log(category)
-  
-  
 
   function getComponents() {
-      if(searchInput == null || searchInput == ""){
-        displayedComponents = components.filter((x)=> (category === null?true : x.category == category ));
-      }else{
-        console.log(`searching components text:${searchInput}`)
-        displayedComponents = components.filter((x)=>  x.name.toLowerCase().includes(searchInput.toLowerCase())  );
-      }
+    if (searchInput == null || searchInput == "") {
+      displayedComponents = components.filter((x) =>
+        category === null ? true : x.category == category
+      );
+    } else {
+      console.log(`searching components text:${searchInput}`);
+      displayedComponents = components.filter((x) =>
+        x.name.toLowerCase().includes(searchInput.toLowerCase())
+      );
+    }
   }
 
-  function changeCategory (cat){
-    if(cat !== category){
-    searchInput = null;
-    category = cat;
-    getComponents();
+  function changeCategory(cat) {
+    if (cat !== category) {
+      searchInput = null;
+      category = cat;
+      getComponents();
     }
   }
 </script>
 
 <Card outline color="primary">
-  <svelte:fragment slot="header">{$_("component-list.card-title")}</svelte:fragment>
+  <svelte:fragment slot="header"
+    >{$_("component-list.card-title")}</svelte:fragment
+  >
 
   <div class="row">
     <div class="col-12">
@@ -67,49 +74,64 @@ import { claim_component } from "svelte/internal";
               placeholder="Search for user..."
             />
             <InputGroupAppend>
-              <LteButton on:click={() => (searchInput = null)} small><i class="fas fa-times" /></LteButton>
+              <LteButton on:click={() => (searchInput = null)} small
+                ><i class="fas fa-times" /></LteButton
+              >
             </InputGroupAppend>
           </InputGroup>
         </FormGroup>
       </Form>
     </div>
   </div>
-<div class="row">
-  <div class="col-12">
-    <Tabs>
-      <li class="pt-2 px-3"><h3 class="card-title">{$_("component-list.categories")}</h3></li>
-      <TabItem active={category === null} on:click={() => changeCategory(null)}>{$_("component-list.all")}</TabItem>
-      {#each categories as c}
-        <TabItem active={category === c } on:click={() => changeCategory(c)}>{c}</TabItem>
-      {/each}
-    </Tabs>
+  <div class="row">
+    <div class="col-12">
+      <Tabs>
+        <li class="pt-2 px-3">
+          <h3 class="card-title">{$_("component-list.categories")}</h3>
+        </li>
+        <TabItem
+          active={category === null}
+          on:click={() => changeCategory(null)}
+          >{$_("component-list.all")}</TabItem
+        >
+        {#each categories as c}
+          <TabItem active={category === c} on:click={() => changeCategory(c)}
+            >{c}</TabItem
+          >
+        {/each}
+      </Tabs>
+    </div>
   </div>
-</div>
   <div class="row">
     <div class="col-12">
       <TableCondensed class="components-list">
         <tr slot="headers">
           <th>{$_("component-list.name")}</th>
-            <th>{$_("component-list.description")}</th>
+          <th>{$_("component-list.description")}</th>
         </tr>
-        
+
         {#each displayedComponents as component}
           <tr>
             <td class="title">
               <a
                 href="#"
-                on:click|preventDefault={() => push(fillParams("/components/show/:code",{code:component.code}))}
+                on:click|preventDefault={() =>
+                  push(
+                    fillParams("/components/show/:code", {
+                      code: component.code,
+                    })
+                  )}
               >
                 {component.name}
               </a>
             </td>
-              <td>{component.description}</td>
+            <td>{component.description}</td>
           </tr>
         {/each}
         {#if displayedComponents.length == 0}
           <tr>
-              <td class="text-danger">{$_("component-list.not-found.title")}</td>
-              <td class="text-muted">{$_("component-list.not-found.text")}</td>
+            <td class="text-danger">{$_("component-list.not-found.title")}</td>
+            <td class="text-muted">{$_("component-list.not-found.text")}</td>
           </tr>
         {/if}
       </TableCondensed>
@@ -125,7 +147,7 @@ import { claim_component } from "svelte/internal";
   :global {
     .components-list {
       display: grid;
-      grid-template-columns: minmax(5em,10em) auto;
+      grid-template-columns: minmax(5em, 7em) auto;
 
       thead,
       tbody,

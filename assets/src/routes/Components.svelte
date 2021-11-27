@@ -4,7 +4,7 @@
   import { PageHeader, BreadcrumbItem, LteButton } from "svelte-adminlte";
   import github from "svelte-highlight/src/styles/github";
 
-  import { components ,categories} from "../component-examples/components";
+  import { components, categories } from "../component-examples/components";
   import ComponentList from "../controls/Components/ComponentList.svelte";
 
   let componentInfo = null;
@@ -17,27 +17,22 @@
   //$: console.log(componentInfo);
   //sets component info when parametrs change
 
-
-  function paramsChange(p){
-    if(p){
-      if(p.code){
+  function paramsChange(p) {
+    if (p) {
+      if (p.code) {
         let info = components.find((x) => x.code == p.code);
         if (info) {
           componentInfo = info;
         } else {
           componentInfo = info;
         }
-      }
-      else{
+      } else {
         componentInfo = null;
       }
-      if(p.category){
-        if(categories.find((x)=>x === p.category)){
-          category = p.category
-        }
-        else{
-          category = null
-        }
+      if (categories.find((x) => x === p.category)) {
+        category = p.category;
+      } else {
+        category = null
       }
     }
   }
@@ -72,7 +67,7 @@
     {#if componentInfo}
       <svelte:component this={componentInfo.component} />
     {:else}
-      <ComponentList {category}/>
+      <ComponentList {category} />
     {/if}
   </div>
 </div>

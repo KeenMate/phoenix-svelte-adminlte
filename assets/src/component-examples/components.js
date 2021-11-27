@@ -5,7 +5,7 @@ import TextInputExample from "./TextInputExample.svelte"
 
 export const components = [
     {name:"Card", code:"card", component: CardExample,category: "Structure", description:"Make everything look better"},
-    {name:"TextInput",code:"text-input", component: TextInputExample, category:"Input", description:"text input made into svelte component"}
+    {name:"TextInput",code:"text-input", component: TextInputExample, category:"Input", description:"Text input made into svelte component"}
 
 ] 
 

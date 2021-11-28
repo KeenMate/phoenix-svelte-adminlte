@@ -19,8 +19,8 @@
   </li>
 
   <style lang="sass">
-    .margin
-      margin-left: 0.5em
+    // .margin
+    //   margin-left: 0.5em
   :global
     .sidebar-collapsed .icon
       display: none

@@ -62,7 +62,7 @@
     </BreadcrumbItem>
   </svelte:fragment>
 </PageHeader>
-<div class="row mh-100 m-1">
+<div class="row mh-100">
   <div class="col-12 ">
     {#if componentInfo}
       <svelte:component this={componentInfo.component} />

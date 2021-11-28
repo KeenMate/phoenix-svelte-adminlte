@@ -27,7 +27,8 @@
   "component-page-template":{
     "text-title":"Popisek",
     "props-title":"Vlastnosti",
-    "events-title":"Události"
+    "events-title":"Události",
+    "slots-title":"Sloty"
   },
   "component-list":{
     "not-found":{

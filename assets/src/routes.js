@@ -12,13 +12,13 @@ import { _ } from "svelte-i18n";
 import { categories } from "./component-examples/components";
 
 export const ComponentsSubroutes = [
-  { name: "all", title: "All", icon: "far fa-circle", route: "/components" },
+  { name: "all", title: "All", icon: "far", route: "/components" },
 ].concat(
   categories.map((c) => {
     return {
       name: c,
       title: c,
-      icon: "far fa-circle",
+      icon: "far",
       route: fillParams("/components/:category", { category: c }),
     };
   })
@@ -102,7 +102,9 @@ export function routeToRegex(route) {
   return "^" + route.replace(/\/:\w+(\??)/, "/?([\\w-d]+)$1") + "$";
 }
 
-
+export function getRoute(name){
+  return Routes.find((o) => o.name === name).route;
+}
 
 export default {
   [Urls.UserProfileInfo]: Route1,

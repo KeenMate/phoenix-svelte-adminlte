@@ -102,7 +102,9 @@ export function routeToRegex(route) {
   return "^" + route.replace(/\/:\w+(\??)/, "/?([\\w-d]+)$1") + "$";
 }
 
-
+export function getRoute(name){
+  return Routes.find((o) => o.name === name).route;
+}
 
 export default {
   [Urls.UserProfileInfo]: Route1,

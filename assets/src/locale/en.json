@@ -27,7 +27,8 @@
   "component-page-template":{
     "text-title":"Description",
     "props-title":"Properties",
-    "events-title":"Events"
+    "events-title":"Events",
+    "slots-title":"Slots"
   },
   "component-list":{
     "not-found":{

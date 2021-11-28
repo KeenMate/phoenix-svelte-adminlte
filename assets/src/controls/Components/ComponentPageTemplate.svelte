@@ -6,6 +6,8 @@
   export let properties = null;
   //name params comment
   export let events = null;
+  //name properties comments
+  export let slots = null;
   //export let name;
   export let text;
 </script>
@@ -47,8 +49,26 @@
         {#each events as event}
           <p>
             <b>{event.name}</b>
+            {#if event.params}
             [{event.params}]
+            {/if}
             <br /><i>{event.comment}</i>
+          </p>
+        {/each}
+      </Card>
+    {/if}
+    {#if slots}
+      <Card color="danger" outline>
+        <svelte:fragment slot="header">
+          {$_("component-page-template.slots-title")}
+        </svelte:fragment>
+        {#each slots as slot}
+          <p>
+            <b>{slot.name}</b>
+            {#if slot.params}
+              [{slot.params}]
+            {/if} 
+            <br /><i>{slot.comment}</i>
           </p>
         {/each}
       </Card>

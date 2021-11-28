@@ -24,7 +24,7 @@
 
   const dispatch = createEventDispatcher();
 
-  export let displayedComponents = components;
+  export let displayedComponents;
   export let category = null;
 
   let searchInput = null;
@@ -34,10 +34,15 @@
   );
 
   $: searchDebounce(searchInput);
+  $: {category, getComponents()}
+
   //$: console.log(displayedComponents)
   //$: console.log(category)
+  
+
 
   function getComponents() {
+    console.log("getting components")
     if (searchInput == null || searchInput == "") {
       displayedComponents = components.filter((x) =>
         category === null ? true : x.category == category
@@ -52,9 +57,15 @@
 
   function changeCategory(cat) {
     if (cat !== category) {
-      searchInput = null;
-      category = cat;
-      getComponents();
+      if(cat){
+      push(
+        fillParams("/components/:category", {
+          category: cat,
+        })
+      );
+      }else{
+        push("/components/")
+      }
     }
   }
 </script>

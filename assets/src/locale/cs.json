@@ -22,6 +22,9 @@
   "notifications": {
     "locale-editor": {
       "saved":{ "title":"Localy ulozeny", "message":"Localy pro {locale} byly uspěšně uloženy do LocalStorage."}
+    },
+    "component-example-template": {
+      "copied":{ "message":"Kod zkopirovan to schranky"}
     }
   },
   "component-page-template":{

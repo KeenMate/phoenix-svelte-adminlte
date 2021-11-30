@@ -18,7 +18,7 @@
       <slot name="examples" />
     </div>
   </div>
-  <div class="col-4">
+  <div class="col-4 pl-3">
     {#if text}
       <Card color="danger" outline>
         <svelte:fragment slot="header">

@@ -22,6 +22,9 @@
   "notifications": {
     "locale-editor": {
       "saved":{ "title":"Locales saved", "message":"Locales for {locale} have been sucesfully saved to LocalStorage."}
+    },
+    "component-example-template": {
+      "copied":{ "message":"Code copied to clipboard"}
     }
   },
   "component-page-template":{

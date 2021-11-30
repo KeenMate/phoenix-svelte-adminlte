@@ -1,6 +1,7 @@
 <script>
 
-  import { Checkbox, Card ,LteSwitch,FormGroup,Label,TreeViewWSearch} from "svelte-adminlte";
+  import { Checkbox, Card ,LteSwitch,FormGroup,Label,TreeViewWSearch,PageHeader,BreadcrumbItem} from "svelte-adminlte";
+  import { _ } from "svelte-i18n";
 
   let tree = [
     { nodePath: "1", title: "1", __visual_state: "indeterminate" },
@@ -87,7 +88,19 @@
   let disableOrHide = false;
 
 </script>
+<PageHeader>
+  <svelte:fragment>
+    {$_("tree.title")}
+  </svelte:fragment>
 
+  <svelte:fragment slot="breadcrumbs">
+    <BreadcrumbItem><a href="#/">{$_("home.title")}</a></BreadcrumbItem>
+    <BreadcrumbItem active>
+      
+        {$_("tree.title")}
+    </BreadcrumbItem>
+  </svelte:fragment>
+</PageHeader>
 <div class="row">
   <div class="col-5">
     <Card outline color="primary">

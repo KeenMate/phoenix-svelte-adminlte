@@ -16,6 +16,13 @@
       { name: "headerClass", type:"string | class", comment:"allows you to direcly add classes to card-header "},
       { name: "class", type:"string | class", comment:"allows you to add classes direcly to card "}
     ],
+    slots:[
+      {name:"[default]",comment:"content of card"},
+      {name:"fullHeader",comment:"make your own header"},
+      {name:"header",comment:"default header text"},
+      {name:"tools",comment:"on the right of header"},
+      {name:"footer",comment:"footer of the card"}
+    ],
     examples: {
       minimal: {
         name: "Minimal Card usage",
@@ -38,6 +45,7 @@
 <ComponentPageTemplate
   text={data.text}
   properties={data.props}
+  slots={data.slots}
 >
   <svelte:fragment slot="examples">
     <ComponentExampleTemplate

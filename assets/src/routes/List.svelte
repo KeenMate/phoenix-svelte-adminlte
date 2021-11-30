@@ -119,7 +119,7 @@
                 <div class="col-12">
                   <div class="row">Manufacturer: {item.manufacturer}</div>
                   <div class="row">Model: {item.model}</div>
-                  <div class="row">Year: {item.year}</div>
+                  <div class="row">Year: {item.year || "all"}</div>
                 </div>
               </div>
             </Callout>

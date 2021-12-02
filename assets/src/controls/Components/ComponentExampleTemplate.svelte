@@ -38,6 +38,8 @@
     margin: 10 20px
     .card-body
       padding: 0.75em
+    .row
+      min-height: 150px
   .highlighter
     background-color: #f5f5f5
     height: 100%

@@ -78,7 +78,6 @@
   }
 
   onMount(appMountCallback);
-  console.log(Routes);
 </script>
 
 <div class="wrapper">

@@ -158,7 +158,7 @@
   :global {
     .components-list {
       display: grid;
-      grid-template-columns: minmax(5em, 7em) auto;
+      grid-template-columns: minmax(10em, max-content) auto;
 
       thead,
       tbody,

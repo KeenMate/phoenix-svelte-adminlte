@@ -66,7 +66,7 @@
           <p>
             <b>{slot.name}</b>
             {#if slot.params}
-              [{slot.params}]
+               ({slot.params})
             {/if} 
             <br /><i>{slot.comment}</i>
           </p>

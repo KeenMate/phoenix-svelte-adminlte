@@ -6,6 +6,7 @@
 
   import { components, categories } from "../component-examples/components";
   import ComponentList from "../controls/Components/ComponentList.svelte";
+  import SvelteMarkdown from 'svelte-markdown'
 
   let componentInfo = null;
   let category = null;
@@ -45,7 +46,7 @@
 <PageHeader>
   <svelte:fragment>
     {componentInfo ? componentInfo.name : $_("components.title")}
-    <small>{componentInfo ? $_("components.title") : "Funny Joke"}</small>
+    <small><SvelteMarkdown isInline source={componentInfo ? componentInfo.breadcrumb || $_("components.title") : "Funny Joke"}/> </small>
   </svelte:fragment>
 
   <svelte:fragment slot="breadcrumbs">

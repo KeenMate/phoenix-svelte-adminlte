@@ -43,5 +43,9 @@
     "name": "Jméno",
     "description":"Popisek",
     "card-title":"Klikněte pro zobrazeni dokumentace"
+  },
+  "not-found":{
+    "link":"Vratit se na domovskou stranku",
+    "header":"Stranka nenalezena"
   }
 }

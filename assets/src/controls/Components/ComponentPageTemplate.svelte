@@ -1,7 +1,7 @@
 <script>
   import { Card } from "svelte-adminlte";
   import { _ } from "svelte-i18n";
-
+  import SvelteMarkdown from 'svelte-markdown'
   // name value comment
   export let properties = null;
   //name params comment
@@ -24,7 +24,7 @@
         <svelte:fragment slot="header">
           {$_("component-page-template.text-title")}
         </svelte:fragment>
-        {@html text}
+        <SvelteMarkdown source={text}/>
       </Card>
     {/if}
     {#if properties}
@@ -36,7 +36,7 @@
           <p>
             <b>{prop.name}</b>
             [{prop.type}]
-            <br /><i>{prop.comment}</i>
+            <br /><i><SvelteMarkdown source={prop.comment}/></i>
           </p>
         {/each}
       </Card>
@@ -52,7 +52,7 @@
             {#if event.params}
             [{event.params}]
             {/if}
-            <br /><i>{event.comment}</i>
+            <br /><i><SvelteMarkdown source={event.comment}/></i>
           </p>
         {/each}
       </Card>
@@ -68,7 +68,7 @@
             {#if slot.params}
                ({slot.params})
             {/if} 
-            <br /><i>{slot.comment}</i>
+            <br /><i><SvelteMarkdown source={slot.comment}/></i>
           </p>
         {/each}
       </Card>

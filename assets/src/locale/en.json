@@ -43,5 +43,9 @@
     "name": "Name",
     "description":"Description",
     "card-title":"Click to view documentation"
+  },
+  "not-found":{
+    "link":"Go to homepage",
+    "header":"Page not found"
   }
 }

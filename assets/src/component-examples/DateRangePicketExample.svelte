@@ -4,9 +4,9 @@
     
     import {DateRangePicker,TextInput} from "svelte-adminlte"
   
-    let data = {
+    export const data = {
       name: "DateRangePicker",
-      text: "DateRangePicker is litePicker wrapped in svelte for easier usage.It can be used for Daterange or Date",
+      text: "DateRangePicker is litePicker wrapped in svelte for easier usage.For single date use [DatePicker](#/components/show/date-picker)",
       props: [
         { name: "inputElement", type: "HTMLElement", comment: "Bind the datepicker to a element. Also is possible to bind to any element (not input) for example you need inline calendar." },
         { name: "startDate", type: "Date | Number | String", comment: "Preselect date.If option singleMode is disabled then endDate must be set too." },
@@ -28,14 +28,11 @@
           name: "visual stuff customised",
           code: '<DateRangePicker inputElement={inputElement} visibleMonths={1} columns={1} position=\"auto\"> <TextInput bind:inputElement={inputElement}\/> <\/DateRangePicker>',
         },
-        single: {
-          name: "single date selection",
-          code: '<DateRangePicker inputElement={inputElement} single={true}> <TextInput bind:inputElement={inputElement}\/> <\/DateRangePicker>',
-        },
-        minmax: {
-          name: "minimal and maximal dates",
-          code: '<DateRangePicker inputElement={inputElement} minDate=\"11-5-2021\" maxDate=\"1-15-2022\" position=\"auto\"> <TextInput bind:inputElement={inputElement}\/> <\/DateRangePicker>',
+        minmax:{
+          name:"minimal and maximal date",
+          code:"<DateRangePicker inputElement={inputElement3} minDate=\"11-5-2021\" maxDate=\"1-15-2022\" position=\"auto\" > <TextInput bind:inputElement={inputElement3}/> </DateRangePicker>"
         }
+       
         
       },
     };
@@ -60,17 +57,13 @@
         name={data.examples.basic.name}
       >
         <DateRangePicker inputElement={inputElement1} visibleMonths={1} columns={1} position="auto"> <TextInput bind:inputElement={inputElement1}/> </DateRangePicker>
-      </ComponentExampleTemplate><ComponentExampleTemplate
-      code={data.examples.single.code}
-      name={data.examples.single.name}
+      </ComponentExampleTemplate>
+      <ComponentExampleTemplate
+      code={data.examples.minmax.code}
+      name={data.examples.minmax.name}
     >
-      <DateRangePicker inputElement={inputElement2} single={true}> <TextInput bind:inputElement={inputElement2}/> </DateRangePicker>
-    </ComponentExampleTemplate><ComponentExampleTemplate
-    code={data.examples.minmax.code}
-    name={data.examples.minmax.name}
-  >
-    <DateRangePicker inputElement={inputElement3} minDate="11-5-2021" maxDate="1-15-2022" position="auto"> <TextInput bind:inputElement={inputElement3}/> </DateRangePicker>
-  </ComponentExampleTemplate>
+      <DateRangePicker inputElement={inputElement3} minDate="11-5-2021" maxDate="1-15-2022" position="auto" > <TextInput bind:inputElement={inputElement3}/> </DateRangePicker>
+    </ComponentExampleTemplate>
     </svelte:fragment></ComponentPageTemplate
   >
   

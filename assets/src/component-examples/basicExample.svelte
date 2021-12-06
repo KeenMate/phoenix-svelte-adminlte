@@ -10,7 +10,7 @@
         { name: "", type: "", comment: "" },
         ],
       events:[
-        {name:"",comment:"", params:""}
+        {name:"",comment:"", params:""},
       ],
       examples: {
         minimal: {

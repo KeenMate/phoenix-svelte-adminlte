@@ -1,7 +1,7 @@
 <script>
-    import ComponentPageTemplate from "../controls/Components/ComponentPageTemplate.svelte";
-    import ComponentExampleTemplate from "../controls/Components/ComponentExampleTemplate.svelte";
-    import notification from "../providers/notificationProvider";
+    import ComponentPageTemplate from "../../controls/Components/ComponentPageTemplate.svelte";
+    import ComponentExampleTemplate from "../../controls/Components/ComponentExampleTemplate.svelte";
+    import notification from "../../providers/notificationProvider";
     import { CkEditor } from "svelte-adminlte";
   
   

@@ -1,6 +1,6 @@
 <script>
-    import ComponentPageTemplate from "../controls/Components/ComponentPageTemplate.svelte";
-    import ComponentExampleTemplate from "../controls/Components/ComponentExampleTemplate.svelte";
+    import ComponentPageTemplate from "../../controls/Components/ComponentPageTemplate.svelte";
+    import ComponentExampleTemplate from "../../controls/Components/ComponentExampleTemplate.svelte";
     
     import {DateRangePicker,TextInput} from "svelte-adminlte"
   

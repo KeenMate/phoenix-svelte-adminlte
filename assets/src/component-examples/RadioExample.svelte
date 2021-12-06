@@ -17,7 +17,7 @@
       examples: {
         minimal: {
           name: "usage",
-          code: '',
+          code: '{#if selected}\r\n      {selected} is selected\r\n      {\/if}\r\n        <Radio bind:group={selected} value={1} name=\"chck\" id=\"chck1\">\r\n          <Label inputId=\"chck1\">Checkbox1<\/Label>\r\n        <\/Radio>\r\n        <Radio bind:group={selected} value={2} name=\"chck\" id=\"chck2\">\r\n          <Label inputId=\"chck2\">Checkbox2<\/Label>\r\n        <\/Radio>\r\n        <Radio bind:group={selected} value={3} name=\"chck\" id=\"chck3\">\r\n          <Label inputId=\"chck3\">Checkbox3<\/Label>\r\n        <\/Radio>',
         }
         
       },

@@ -6,7 +6,7 @@
 
   let data = {
     name: "FileInput",
-    text: "Input elment with type upload. value and placeholder doesnt forks. Its better to use uppy(Uload Modal).",
+    text: "Input elment with type upload. value and placeholder doesnt forks. Its better to use uppy(Upload Modal).",
     props: [
       { name: "id", type: "string", comment: "" },
       { name: "value", type: "string", comment: "doesnt work, dont use" },

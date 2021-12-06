@@ -12,6 +12,7 @@ import FileInputExample from "./Input/FileInputExample.svelte"
 import NumberInputExample from "./Input/NumberInputExample.svelte"
 import RadioExample from "./Input/RadioExample.svelte"
 import SwitchExample from "./Input/SwitchExample.svelte"
+import TextareaExample from "./Input/TextareaExample.svelte"
 
 export const components = [
     {name:"Card", code:"card", component: CardExample,category: "Structure", 
@@ -40,6 +41,8 @@ export const components = [
         description:"input with type radio"},
     {name:"Switch", code:"switch", component: SwitchExample,category: "Input", 
         description:"Switch with slider"},
+    {name:"Textarea", code:"textarea", component: TextareaExample,category: "Input", 
+        description:"input with type textarea"},
 
 ] 
 

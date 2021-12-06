@@ -46,7 +46,7 @@
 <PageHeader>
   <svelte:fragment>
     {componentInfo ? componentInfo.name : $_("components.title")}
-    <small><SvelteMarkdown isInline source={componentInfo ? componentInfo.breadcrumb || $_("components.title") : "Funny Joke"}/> </small>
+    <small><SvelteMarkdown isInline source={componentInfo ? componentInfo.breadcrumb /* || $_("components.title")*/ : "Funny Joke"}/> </small>
   </svelte:fragment>
 
   <svelte:fragment slot="breadcrumbs">

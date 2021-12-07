@@ -40,13 +40,13 @@
       {selected} is selected
       {/if}
         <Radio bind:group={selected} value={1} name="chck" id="chck1">
-          <Label inputId="chck1">Checkbox1</Label>
+          <Label inputId="chck1">Radio 1</Label>
         </Radio>
         <Radio bind:group={selected} value={2} name="chck" id="chck2">
-          <Label inputId="chck2">Checkbox2</Label>
+          <Label inputId="chck2">Radio 2</Label>
         </Radio>
         <Radio bind:group={selected} value={3} name="chck" id="chck3">
-          <Label inputId="chck3">Checkbox3</Label>
+          <Label inputId="chck3">Radio 3</Label>
         </Radio>
       </ComponentExampleTemplate>
       

@@ -6,7 +6,7 @@
   
     let data = {
       name: "DatePicker",
-      text: "[DateRangePicker](#/components/show/date-range-picekr) in sigle date mode",
+      text: "[DateRangePicker](#/components/show/date-range-picekr) in single date mode",
       props: [
         { name: "inputElement", type: "HTMLElement", comment: "Bind the datepicker to a element. Also is possible to bind to any element (not input) for example you need inline calendar." },
         { name: "startDate", type: "Date | Number | String", comment: "Preselect date.If option singleMode is disabled then endDate must be set too." },
@@ -17,7 +17,7 @@
         { name: "single", type: "bool", comment: "**must be set to true to select date instead of daterange**" },
         { name: "disabled", type: "bool", comment: "" },
         { name: "visibleMonths", type: "Number", comment: "Number of visible months." },
-        { name: "collumns", type: "Number", comment: "Number of columns months." },
+        { name: "columns", type: "Number", comment: "Number of columns months." },
         ],
       examples: {
         single: {

@@ -17,7 +17,7 @@
         { name: "single", type: "bool", comment: "Choose a single date instead of a date range." },
         { name: "disabled", type: "bool", comment: "" },
         { name: "visibleMonths", type: "Number", comment: "Number of visible months." },
-        { name: "collumns", type: "Number", comment: "Number of columns months." },
+        { name: "columns", type: "Number", comment: "Number of columns months." },
         ],
       examples: {
         minimal: {

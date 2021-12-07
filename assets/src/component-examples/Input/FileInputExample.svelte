@@ -75,7 +75,7 @@
         name="fileupload"
         >{file.name ? file.name : "click to upload file..."}</FileInput
       >
-      {file.name ? file.size : ""}
+      {file.name ? "total size" +  file.size/(1024*1024) + "mb" : ""}
     </ComponentExampleTemplate>
     <ComponentExampleTemplate
       code={data.examples.multiple.code}

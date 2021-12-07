@@ -1,18 +1,22 @@
 
 import CardExample from "./CardExample.svelte";
-import TextInputExample from "./Input/TextInputExample.svelte"
-import CheckboxExample from "./Input/CheckboxExample.svelte"
-import CkEditorExample from "./Input/CkEditorExample.svelte"
-import DateRangePicketExample from "./Input/DateRangePicketExample.svelte"
-import DatePickerExample from "./Input/DatePickerExample.svelte"
-//import DropdownExample from "./DropdownExample.svelte"
-import EmailInputExample from "./Input/EmailInputExample.svelte"
-import FileInputExample from "./Input/FileInputExample.svelte"
-//import MultiselectExample from "./MultiselectExample.svelte"
-import NumberInputExample from "./Input/NumberInputExample.svelte"
-import RadioExample from "./Input/RadioExample.svelte"
-import SwitchExample from "./Input/SwitchExample.svelte"
-import TextareaExample from "./Input/TextareaExample.svelte"
+//! input
+    import TextInputExample from "./Input/TextInputExample.svelte"
+    import CheckboxExample from "./Input/CheckboxExample.svelte"
+    import CkEditorExample from "./Input/CkEditorExample.svelte"
+    import DateRangePicketExample from "./Input/DateRangePicketExample.svelte"
+    import DatePickerExample from "./Input/DatePickerExample.svelte"
+    //import DropdownExample from "./DropdownExample.svelte"
+    import EmailInputExample from "./Input/EmailInputExample.svelte"
+    import FileInputExample from "./Input/FileInputExample.svelte"
+    //import MultiselectExample from "./MultiselectExample.svelte"
+    import NumberInputExample from "./Input/NumberInputExample.svelte"
+    import RadioExample from "./Input/RadioExample.svelte"
+    import SwitchExample from "./Input/SwitchExample.svelte"
+    import TextareaExample from "./Input/TextareaExample.svelte"
+//! form
+    import FormExamle from "./Form/FormExample.svelte"
+    import FormGroupExamle from "./Form/FormGroupExample.svelte"
 
 export const components = [
     {name:"Card", code:"card", component: CardExample,category: "Structure", 
@@ -23,7 +27,7 @@ export const components = [
         description:"Checkbox input"},
     {name:"CkEditor", code:"ckeditor", component: CkEditorExample, category:"Input", 
         description:"Simple but rich text editor"},
-    {name:"DateRangePicket", code:"date-range-picker", component: DateRangePicketExample, category:"Input", 
+    {name:"DateRangePicker", code:"date-range-picker", component: DateRangePicketExample, category:"Input", 
         description:"Date range picker using Litepicker"},
     {name:"DatePicker", code:"date-picker", component: DatePickerExample, category:"Input", 
         description:"single date picker using Litepicker",breadcrumb:"[DateRangePicker](#/components/show/date-range-picker)"},
@@ -43,7 +47,11 @@ export const components = [
         description:"Switch with slider"},
     {name:"Textarea", code:"textarea", component: TextareaExample,category: "Input", 
         description:"input with type textarea"},
+    {name:"Form", code:"form", component: FormExamle, category:"Form",
+        description:"form element "},
+    {name:"FormGroup", code:"form-group", component: FormGroupExamle, category:"Form",
+        description:"form group "},
 
 ] 
 
-export const categories = ["Structure","Input"]
+export const categories = ["Structure","Input","Form"]

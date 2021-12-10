@@ -2,7 +2,7 @@
     import ComponentPageTemplate from "../../controls/Components/ComponentPageTemplate.svelte";
     import ComponentExampleTemplate from "../../controls/Components/ComponentExampleTemplate.svelte";
   
-    import {NumberInput} from "svelte-adminlte"
+    import {NumberInput,InputGroup,TextInput} from "svelte-adminlte"
     let data = {
       name: "NumberInput",
       text: "Input with type number",
@@ -17,20 +17,26 @@
         { name: "inputMask", type: "string", comment: "" },
         { name: "invalid", type: "bool", comment: "" },
         { name: "inputElement", type: "element", comment: "" },
+        { name: "min", type: "number", comment: "" },
+        { name: "max", type: "number", comment: "" },
         ],
       examples: {
         minimal: {
-          name: "minimal usage",
-          code: '<NumberInput bind:value name=\"number-input\" id=\"number-input\" placeholder=\"Click to start typing...\"\/>',
+          name: "Minimal usage",
+          code: '<NumberInput bind:value \/>',
         },
         basic: {
-          name: "basic usage",
+          name: "Basic usage",
           code: '<NumberInput bind:value name=\"number-input\" id=\"number-input\" placeholder=\"Click to start typing...\"\/>',
+        },
+        minmax: {
+          name: "Min max",
+          code: '<InputGroup class=\"mb-2\">\r\n  <TextInput bind:value={min} placeholder=\"columns\"\/>\r\n  <TextInput bind:value={max} placeholder=\"rows\"\/>\r\n<\/InputGroup>\r\n  <NumberInput bind:value name=\"number-input\" \r\n  id=\"number-input\" placeholder=\"Click to start typing...\"\r\n  {min} {max}\/>',
         }
         
       },
     };
-      let value = null;
+      let value1,value2,value3,min = 1,max = 5;
   </script>
   
   <ComponentPageTemplate
@@ -42,14 +48,26 @@
         code={data.examples.minimal.code}
         name={data.examples.minimal.name}
       >
-        <NumberInput bind:value/>
+        <NumberInput bind:value = {value1}/>
       </ComponentExampleTemplate>
       <ComponentExampleTemplate
         code={data.examples.basic.code}
         name={data.examples.basic.name}
       >
-        <NumberInput bind:value name="number-input" 
+        <NumberInput bind:value = {value2} name="number-input" 
         id="number-input" placeholder="Click to start typing..."/>
+      </ComponentExampleTemplate>
+      <ComponentExampleTemplate
+        code={data.examples.minmax.code}
+        name={data.examples.minmax.name}
+      >
+<InputGroup class="mb-2">
+  <TextInput bind:value={min} placeholder="columns"/>
+  <TextInput bind:value={max} placeholder="rows"/>
+</InputGroup>
+  <NumberInput bind:value = {value3} name="number-input" 
+  id="number-input" placeholder="Click to start typing..."
+  {min} {max}/>
       </ComponentExampleTemplate>
     </svelte:fragment></ComponentPageTemplate
   >

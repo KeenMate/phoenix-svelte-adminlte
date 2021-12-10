@@ -2,7 +2,7 @@
   import ComponentPageTemplate from "../../controls/Components/ComponentPageTemplate.svelte";
   import ComponentExampleTemplate from "../../controls/Components/ComponentExampleTemplate.svelte";
 
-  import { FileInput } from "svelte-adminlte";
+  import { FileInput , TableCondensed} from "svelte-adminlte";
 
   let data = {
     name: "FileInput",
@@ -41,6 +41,10 @@
     },
   };
 
+  function displaySize(size){
+    return Math.round((size / 1024) * 100) / 100
+  }
+
   let file = {};
   let files = [];
   $: console.log(file);
@@ -75,7 +79,9 @@
         name="fileupload"
         >{file.name ? file.name : "click to upload file..."}</FileInput
       >
-      {file.name ? "total size" +  file.size/(1024*1024) + "mb" : ""}
+      {file.name
+        ? "total size" + displaySize(file.size) + "kb"
+        : ""}
     </ComponentExampleTemplate>
     <ComponentExampleTemplate
       code={data.examples.multiple.code}
@@ -88,8 +94,26 @@
         id="fileupload"
         name="fileupload"
         multiple
-      >{files.length ? files.length +" files selected" : "click to upload files..."}</FileInput
+        >{files.length
+          ? files.length + " files selected"
+          : "click to upload files..."}</FileInput
       >
+      {#if files}
+        <TableCondensed>
+          <svelte:fragment slot="headers"
+            ><tr>
+              <th>Name</th>
+              <th>Size</th>
+            </tr></svelte:fragment
+          >
+            {#each files as f}
+               <tr>
+                 <td>{f.name}</td>
+                 <td>{displaySize(f.size)}kb</td>
+               </tr>
+            {/each}
+        </TableCondensed>
+      {/if}
     </ComponentExampleTemplate>
   </svelte:fragment></ComponentPageTemplate
 >

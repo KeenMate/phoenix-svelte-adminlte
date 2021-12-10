@@ -40,8 +40,8 @@
       {/if}
 
       {#each transportType as type}
-        <Radio bind:group={selected} value={type} name="chck" id="chck1">
-          <Label inputId="chck1">{type}</Label>
+        <Radio bind:group={selected} value={type} name="chck" id={type}>
+          <Label inputId={type}>{type}</Label>
         </Radio>
       {/each}
     </ComponentExampleTemplate>

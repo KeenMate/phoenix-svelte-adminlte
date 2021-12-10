@@ -2,7 +2,7 @@
   import ComponentPageTemplate from "../../controls/Components/ComponentPageTemplate.svelte";
   import ComponentExampleTemplate from "../../controls/Components/ComponentExampleTemplate.svelte";
 
-  import { Textarea, TextInput , InputGroup} from "svelte-adminlte";
+  import { Textarea, TextInput, InputGroup } from "svelte-adminlte";
   let data = {
     name: "",
     text: "",
@@ -16,6 +16,7 @@
       { name: "pattern", type: "string", comment: "" },
       { name: "readonly", type: "bool", comment: "" },
       { name: "disabeld", type: "bool", comment: "" },
+      { name: "maxlength", type: "number", comment: "" },
     ],
     examples: {
       minimal: {
@@ -28,20 +29,18 @@
       },
       maxlength: {
         name: "Max length",
-        code: '<Textarea bind:value id="textarea" name="textare" rows={5} placeholder="start typing.."/>',
+        code: '<Textarea\r\n  bind:value = {value3}\r\n  maxlength = {8}\r\n  id="textarea"\r\n  name="textare"\r\n  placeholder="start typing.."\r\n/>',
       },
       size: {
         name: "Cols and Rows",
-        code: '<Textarea bind:value id="textarea" name="textare" rows={5} placeholder="start typing.."/>',
+        code: '<InputGroup class="mb-2">\r\n  <TextInput bind:value={cols} placeholder="columns"/>\r\n  <TextInput bind:value={rows} placeholder="rows"/>\r\n</InputGroup>\r\n\r\n<Textarea bind:value = {value4} id="textarea" name="textare"\r\n  placeholder="start typing.." {cols} {rows}\r\n/>',
       },
       color: {
         name: "Border color based on value length",
-        code: '<Textarea bind:value id="textarea" name="textare" rows={5} placeholder="start typing.."/>',
+        code: '<Textarea\r\n  bind:value = {value5}\r\n  id="textarea"\r\n  name="textare"\r\n  placeholder="start typing.."\r\n  class={border}\r\n/>',
       },
     },
   };
-
-
 
   function getclass(v) {
     if (v) {
@@ -56,15 +55,14 @@
         return "border border-primary";
       }
     }
-    
   }
 
   let border = null;
 
-  $:border = getclass(value5);
+  $: border = getclass(value5);
 
-  let rows,cols;
-  let value1, value2, value3, value4,value5;
+  let rows, cols;
+  let value1, value2, value3, value4, value5;
 </script>
 
 <ComponentPageTemplate text={data.text} properties={data.props}>
@@ -80,8 +78,7 @@
       name={data.examples.basic.name}
     >
       <Textarea
-      bind:value = {value2}
-
+        bind:value={value2}
         id="textarea"
         name="textare"
         placeholder="start typing.."
@@ -92,8 +89,8 @@
       name={data.examples.maxlength.name}
     >
       <Textarea
-      bind:value = {value3}
-        maxlength = {8}
+        bind:value={value3}
+        maxlength={8}
         id="textarea"
         name="textare"
         placeholder="start typing.."
@@ -103,15 +100,13 @@
       code={data.examples.size.code}
       name={data.examples.size.name}
     >
-    
-    <InputGroup class="mb-2">
-      <TextInput bind:value={cols} placeholder="columns"/>
-      <TextInput bind:value={rows} placeholder="rows"/>
-    </InputGroup>
+      <InputGroup class="mb-2">
+        <TextInput bind:value={cols} placeholder="columns" />
+        <TextInput bind:value={rows} placeholder="rows" />
+      </InputGroup>
 
       <Textarea
-      bind:value = {value4}
-
+        bind:value={value4}
         id="textarea"
         name="textare"
         placeholder="start typing.."
@@ -124,7 +119,7 @@
       name={data.examples.color.name}
     >
       <Textarea
-        bind:value = {value5}
+        bind:value={value5}
         id="textarea"
         name="textare"
         placeholder="start typing.."

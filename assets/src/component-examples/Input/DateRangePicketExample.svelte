@@ -30,12 +30,24 @@
         },
         minmax:{
           name:"minimal and maximal date",
-          code:"<DateRangePicker inputElement={inputElement3} minDate=\"11-5-2021\" maxDate=\"1-15-2022\" position=\"auto\" > <TextInput bind:inputElement={inputElement3}/> </DateRangePicker>"
+          code:"<DateRangePicker inputElement={inputElement3} minDate={getmindate()} maxDate={getmaxdate()} position=\"auto\" > <TextInput bind:inputElement={inputElement3}/> </DateRangePicker>"
         }
        
         
       },
     };
+    function getmindate(){
+      var ourDate = new Date();
+      ourDate.setDate(ourDate.getDate() - 7);
+      console.log(ourDate.toISOString())
+      return ourDate.toISOString();
+    }
+    function getmaxdate(){
+      var ourDate = new Date();
+      ourDate.setDate(ourDate.getDate() + 7);
+      console.log(ourDate.toISOString())
+      return ourDate.toISOString();
+    }
   
     let inputElement, inputElement1,inputElement2, inputElement3;
   </script>
@@ -62,7 +74,7 @@
       code={data.examples.minmax.code}
       name={data.examples.minmax.name}
     >
-      <DateRangePicker inputElement={inputElement3} minDate="11-5-2021" maxDate="1-15-2022" position="auto" > <TextInput bind:inputElement={inputElement3}/> </DateRangePicker>
+      <DateRangePicker inputElement={inputElement3} minDate={getmindate()} maxDate={getmaxdate()} position="auto" > <TextInput bind:inputElement={inputElement3}/> </DateRangePicker>
     </ComponentExampleTemplate>
     </svelte:fragment></ComponentPageTemplate
   >

@@ -2,7 +2,8 @@
   import ComponentPageTemplate from "../../controls/Components/ComponentPageTemplate.svelte";
   import ComponentExampleTemplate from "../../controls/Components/ComponentExampleTemplate.svelte";
   import notification from "../../providers/notificationProvider";
-  import { Switch, TableCondensed } from "svelte-adminlte";
+  import { Switch, TableCondensed, Checkbox, Label } from "svelte-adminlte";
+  import SvelteSelect from "svelte-select";
   let data = {
     name: "Switch Example",
     text: "",
@@ -28,16 +29,20 @@
     ],
     examples: {
       minimal: {
-        name: "usage",
-        code: "<Switch bind:checked1 \/>",
+        name: "Usage",
+        code: "<Switch bind:checked1 />",
+      },
+      disabled: {
+        name: "Disabled",
+        code: "<Checkbox bind:checked={dis} id=\"dis\"\r\n  ><Label inputId=\"dis\">Disabled<\/Label><\/Checkbox\r\n>\r\n<Switch\r\n  disabled={dis}\r\n  disabledClass=\"bg-light\"\r\n  checkedClass=\"bg-success\"\r\n  uncheckedClass=\"bg-danger\"\r\n\/>",
       },
       event: {
         name: "Events ",
-        code: "<Switch\r\n  bind:checked2\r\n  checkedClass=\"bg-green\"\r\n  on:change={(e) => {\r\n    console.log(\"CHANGED\");\r\n    notify(\"changed\");\r\n  }}\r\n  on:checked={(e) => {\r\n    notify(\"checked\");\r\n  }}\r\n  on:unchecked={(e) => {\r\n    notify(\"unchecked\");\r\n  }}\r\n\/>",
+        code: '<Switch\r\n  bind:checked2\r\n  checkedClass="bg-green"\r\n  on:change={(e) => {\r\n    console.log("CHANGED");\r\n    notify("changed");\r\n  }}\r\n  on:checked={(e) => {\r\n    notify("checked");\r\n  }}\r\n  on:unchecked={(e) => {\r\n    notify("unchecked");\r\n  }}\r\n/>',
       },
       color: {
         name: "colors",
-        code: '<TableCondensed>\r\n<svelte:fragment slot=\"headers\">\r\n  <tr>\r\n    <th>checked<\/th>\r\n    <th>unchecked<\/th>\r\n    <th>switch<\/th>\r\n  <\/tr>\r\n<\/svelte:fragment>\r\n{#each colors as color}\r\n  <tr>\r\n    <td>{color.f}<\/td>\r\n    <td>{color.s}<\/td>\r\n    <td>\r\n      <Switch checkedClass={color.f} \r\n      uncheckedClass={color.s} \/>\r\n\r\n    <\/td>\r\n  <\/tr>\r\n{\/each}\r\n<\/TableCondensed>',
+        code: '<TableCondensed>\r\n<svelte:fragment slot="headers">\r\n  <tr>\r\n    <th>checked</th>\r\n    <th>unchecked</th>\r\n    <th>switch</th>\r\n  </tr>\r\n</svelte:fragment>\r\n{#each colors as color}\r\n  <tr>\r\n    <td>{color.f}</td>\r\n    <td>{color.s}</td>\r\n    <td>\r\n      <Switch checkedClass={color.f} \r\n      uncheckedClass={color.s} />\r\n\r\n    </td>\r\n  </tr>\r\n{/each}\r\n</TableCondensed>',
       },
     },
   };
@@ -45,14 +50,31 @@
     console.log("NOTIFY");
     notification.success(text);
   }
-  let colors =  [
-    {f:"bg-primary",s:"bg-secondary"},
-    {f:"bg-success",s:"bg-black"},
-    {f:"bg-danger",s:"bg-dark"},
-    {f:"bg-warning  ",s:"bg-muted"},
-    {f:"bg-info",s:"bg-danger"},
-  ]
-  let checked1,checked2;
+  let colors = [
+    { f: "bg-primary", s: "bg-secondary" },
+    { f: "bg-success", s: "bg-danger" },
+    { f: "bg-danger", s: "bg-dark" },
+    { f: "bg-warning  ", s: "bg-muted" },
+    { f: "bg-info", s: "bg-dark" },
+  ];
+
+  let bgcolors = [
+    "bg-primary",
+    "bg-secondary",
+    "bg-success",
+    "bg-danger",
+    "bg-warning",
+    "bg-info",
+    "bg-light",
+    "bg-dark",
+    "bg-muted",
+    "bg-white",
+  ];
+  let checked1,
+    checked2,
+    fcolor,
+    scolor,
+    dis = true;
 </script>
 
 <ComponentPageTemplate
@@ -65,51 +87,74 @@
       code={data.examples.minimal.code}
       name={data.examples.minimal.name}
     >
-      <Switch bind:checked1 />
+      <Switch bind:checked={checked1} />
+    </ComponentExampleTemplate>
+    <ComponentExampleTemplate
+      code={data.examples.disabled.code}
+      name={data.examples.disabled.name}
+    >
+<Checkbox bind:checked={dis} id="dis"
+  ><Label inputId="dis">Disabled</Label></Checkbox
+>
+<Switch
+  disabled={dis}
+  disabledClass="bg-light"
+  checkedClass="bg-success"
+  uncheckedClass="bg-danger"
+/>
     </ComponentExampleTemplate>
     <ComponentExampleTemplate
       code={data.examples.event.code}
       name={data.examples.event.name}
     >
-<Switch
-  bind:checked2
-  checkedClass="bg-green"
-  on:change={(e) => {
-    console.log("CHANGED");
-    notify("changed");
-  }}
-  on:checked={(e) => {
-    notify("checked");
-  }}
-  on:unchecked={(e) => {
-    notify("unchecked");
-  }}
-/>
+      <Switch
+        bind:checked={checked2}
+        checkedClass="bg-green"
+        on:change={(e) => {
+          console.log("CHANGED");
+          notify("changed");
+        }}
+        on:checked={(e) => {
+          notify("checked");
+        }}
+        on:unchecked={(e) => {
+          notify("unchecked");
+        }}
+      />
     </ComponentExampleTemplate>
-    <ComponentExampleTemplate
-      code={data.examples.color.code}
-      name={data.examples.color.name}
-    >
-<TableCondensed>
-<svelte:fragment slot="headers">
-  <tr>
-    <th>checked</th>
-    <th>unchecked</th>
-    <th>switch</th>
-  </tr>
-</svelte:fragment>
-{#each colors as color}
-  <tr>
-    <td>{color.f}</td>
-    <td>{color.s}</td>
-    <td>
-      <Switch checkedClass={color.f} 
-      uncheckedClass={color.s} />
-
-    </td>
-  </tr>
-{/each}
-</TableCondensed>
+    <ComponentExampleTemplate name={data.examples.color.name}>
+      <TableCondensed>
+        <svelte:fragment slot="headers">
+          <tr>
+            <th>checked</th>
+            <th>unchecked</th>
+            <th>switch</th>
+          </tr>
+        </svelte:fragment>
+        <tr>
+          <td>
+            <SvelteSelect items={bgcolors} bind:value={fcolor} />
+          </td>
+          <td>
+            <SvelteSelect items={bgcolors} bind:value={scolor} />
+          </td>
+          <td>
+            <Switch
+              checkedClass={fcolor?.value}
+              uncheckedClass={scolor?.value}
+            />
+          </td>
+        </tr>
+        {#each colors as color}
+          <tr>
+            <td>{color.f}</td>
+            <td>{color.s}</td>
+            <td>
+              <Switch checkedClass={color?.f} uncheckedClass={color?.s} />
+            </td>
+          </tr>
+        {/each}
+      </TableCondensed>
     </ComponentExampleTemplate>
   </svelte:fragment>
 </ComponentPageTemplate>

@@ -20,13 +20,15 @@
   <svelte:fragment slot="header">{name}</svelte:fragment>
   <svelte:fragment slot="tools"><LteButton color="success" on:click={copyToClipboard} small ><i class="fas fa-copy"></i></LteButton></svelte:fragment>
   <div class="row">
-    <div class="col-6">
+    <div class:col-6={code} class:col-12={!code}>
       <slot />
     </div>
+    {#if code}
     <div class="col-6 line-left">
       <div class=" highlighter">
           <HighlightSvelte {code}  /></div>
     </div>
+    {/if}
   </div>
 </Card>
 

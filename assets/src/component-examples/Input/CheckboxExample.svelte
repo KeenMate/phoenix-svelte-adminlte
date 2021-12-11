@@ -2,7 +2,7 @@
     import ComponentPageTemplate from "../../controls/Components/ComponentPageTemplate.svelte";
     import ComponentExampleTemplate from "../../controls/Components/ComponentExampleTemplate.svelte";
   
-    import { Checkbox, Label } from "svelte-adminlte";
+    import { Checkbox, Label,TableCondensed } from "svelte-adminlte";
   
   
     let data = {
@@ -15,7 +15,7 @@
         { name: "checked", type: "bool", comment: "" },
         { name: "disabled", type: "bool", comment: "" },
         { name: "class", type: "bool", comment: "class on div above checkbox" },
-        { name: "level", type: "string ", comment: "" }
+        { name: "level", type: "string ", comment: "colors" }
         ],
         slots: [
           {name: "default", comment:"slot inside the div after input" }
@@ -32,11 +32,15 @@
         disabled:{
           name: "Disabled Checkbox",
           code: '<Checkbox bind:checked={c} name=\"value\" id=\"valueInputc\" disabled><Label inputId=\"valueInputc\"> value <\/Label><\/Checkbox>  '
+        },
+        colors:{
+          name:'colors'
         }
       },
     };
   
     let a = "",b="",c="";
+    let levels = ["red","green","blue","orange","yellow","pink","purple"]
   </script>
   
   <ComponentPageTemplate
@@ -64,6 +68,27 @@
         name={data.examples.disabled.name}>
         <Checkbox bind:checked={c} name="value" id="valueInputc" disabled><Label inputId="valueInputc"> value </Label></Checkbox>
       {c}
+      </ComponentExampleTemplate>
+      <ComponentExampleTemplate
+        name={data.examples.colors.name}>
+        <TableCondensed>
+          <svelte:fragment slot="headers">
+            <tr>
+              <th>level</th>
+              <th>radio</th>
+            </tr>
+          </svelte:fragment>
+          {#each levels as l}
+            <tr>
+              <td>{l}</td>
+              <td>
+                <Checkbox level={l} id={l} checked >
+                  <Label inputId={l} >{l}</Label>
+                </Checkbox>
+              </td>
+            </tr>
+          {/each}
+        </TableCondensed>
       </ComponentExampleTemplate>
     </svelte:fragment></ComponentPageTemplate
   >

@@ -31,7 +31,7 @@
         },
         minmax: {
           name: "Min max",
-          code: '<InputGroup class=\"mb-2\">\r\n  <TextInput bind:value={min} placeholder=\"columns\"\/>\r\n  <TextInput bind:value={max} placeholder=\"rows\"\/>\r\n<\/InputGroup>\r\n  <NumberInput bind:value name=\"number-input\" \r\n  id=\"number-input\" placeholder=\"Click to start typing...\"\r\n  {min} {max}\/>',
+          code: '<InputGroup class=\"mb-2\">\r\n  <TextInput bind:value={min} placeholder=\"min\"\/>\r\n  <TextInput bind:value={max} placeholder=\"max\"\/>\r\n<\/InputGroup>\r\n  <NumberInput bind:value = {value3} name=\"number-input\" \r\n  id=\"number-input\" placeholder=\"Enter number...\"\r\n  {min} {max}\/>',
         }
         
       },
@@ -62,11 +62,11 @@
         name={data.examples.minmax.name}
       >
 <InputGroup class="mb-2">
-  <TextInput bind:value={min} placeholder="columns"/>
-  <TextInput bind:value={max} placeholder="rows"/>
+  <TextInput bind:value={min} placeholder="min"/>
+  <TextInput bind:value={max} placeholder="max"/>
 </InputGroup>
   <NumberInput bind:value = {value3} name="number-input" 
-  id="number-input" placeholder="Click to start typing..."
+  id="number-input" placeholder="Enter number..."
   {min} {max}/>
       </ComponentExampleTemplate>
     </svelte:fragment></ComponentPageTemplate

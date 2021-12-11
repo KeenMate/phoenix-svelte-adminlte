@@ -15,7 +15,7 @@
       { name: "placeholder", type: "string", comment: "" },
       { name: "pattern", type: "string", comment: "" },
       { name: "readonly", type: "bool", comment: "" },
-      { name: "disabeld", type: "bool", comment: "" },
+      { name: "disabled", type: "bool", comment: "" },
       { name: "maxlength", type: "number", comment: "" },
     ],
     examples: {

@@ -30,7 +30,7 @@ export const components = [
     {name:"DateRangePicker", code:"date-range-picker", component: DateRangePicketExample, category:"Input", 
         description:"Date range picker using Litepicker"},
     {name:"DatePicker", code:"date-picker", component: DatePickerExample, category:"Input", 
-        description:"single date picker using Litepicker",breadcrumb:"[DateRangePicker](#/components/show/date-range-picker)"},
+        description:"Single date picker using Litepicker",breadcrumb:"[DateRangePicker](#/components/show/date-range-picker)"},
     
     //{name:"Dropdown", code:"dropdown", component: DropdownExample, category:"Input", description:"Select 2 Dropdown"},
     {name:"EmailInput",code:"email-input-example",component: EmailInputExample, category:"Input",
@@ -40,17 +40,17 @@ export const components = [
     // {name:"Multiselect", code:"multiselect", component: MultiselectExample,category: "Input", 
     //     description:"Multiselect using select2"},
     {name:"NumberInput", code:"number-input", component: NumberInputExample,category: "Input", 
-        description:"input with type number"},
+        description:"Input with type number"},
     {name:"Radio", code:"radio", component: RadioExample,category: "Input", 
-        description:"input with type radio"},
+        description:"Input with type radio"},
     {name:"Switch", code:"switch", component: SwitchExample,category: "Input", 
         description:"Switch with slider"},
     {name:"Textarea", code:"textarea", component: TextareaExample,category: "Input", 
-        description:"input with type textarea"},
+        description:"Input with type textarea"},
     {name:"Form", code:"form", component: FormExamle, category:"Form",
-        description:"form element "},
+        description:"Form element "},
     {name:"FormGroup", code:"form-group", component: FormGroupExamle, category:"Form",
-        description:"form group "},
+        description:"Form group "},
 
 ] 
 

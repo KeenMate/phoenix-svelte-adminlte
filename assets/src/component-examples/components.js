@@ -18,9 +18,12 @@ import CardExample from "./CardExample.svelte";
     import FormExamle from "./Form/FormExample.svelte"
     import FormGroupExamle from "./Form/FormGroupExample.svelte"
     import InputGroupExamle from "./Form/InputGroupExample.svelte"
+    import LabelExample from "./Form/LabelExample.svelte"
+
     
     
 export const components = [
+//! input
     {name:"Card", code:"card", component: CardExample,category: "Structure", 
         description:"Make everything look better"},
     {name:"TextInput",code:"text-input", component: TextInputExample, category:"Input", 
@@ -32,7 +35,7 @@ export const components = [
     {name:"DateRangePicker", code:"date-range-picker", component: DateRangePicketExample, category:"Input", 
         description:"Date range picker using Litepicker"},
     {name:"DatePicker", code:"date-picker", component: DatePickerExample, category:"Input", 
-        description:"single date picker using Litepicker",breadcrumb:"[DateRangePicker](#/components/show/date-range-picker)"},
+        description:"Single date picker using Litepicker",breadcrumb:"[DateRangePicker](#/components/show/date-range-picker)"},
     
     //{name:"Dropdown", code:"dropdown", component: DropdownExample, category:"Input", description:"Select 2 Dropdown"},
     {name:"EmailInput",code:"email-input-example",component: EmailInputExample, category:"Input",
@@ -42,19 +45,22 @@ export const components = [
     // {name:"Multiselect", code:"multiselect", component: MultiselectExample,category: "Input", 
     //     description:"Multiselect using select2"},
     {name:"NumberInput", code:"number-input", component: NumberInputExample,category: "Input", 
-        description:"input with type number"},
+        description:"Input with type number"},
     {name:"Radio", code:"radio", component: RadioExample,category: "Input", 
-        description:"input with type radio"},
+        description:"Input with type radio"},
     {name:"Switch", code:"switch", component: SwitchExample,category: "Input", 
         description:"Switch with slider"},
     {name:"Textarea", code:"textarea", component: TextareaExample,category: "Input", 
-        description:"input with type textarea"},
+        description:"Input with type textarea"},
+//! form
     {name:"Form", code:"form", component: FormExamle, category:"Form",
-        description:"form element "},
+        description:"Form element "},
     {name:"FormGroup", code:"form-group", component: FormGroupExamle, category:"Form",
         description:"form group "},
     {name:"InputGroup", code:"input-group", component: InputGroupExamle, category:"Form",
         description:"input group"},
+    {name:"Label", code:"label", component: LabelExample, category:"Form",
+        description:"label"},
 ] 
 
 export const categories = ["Structure","Input","Form"]

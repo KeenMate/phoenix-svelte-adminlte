@@ -17,7 +17,9 @@ import CardExample from "./CardExample.svelte";
 //! form
     import FormExamle from "./Form/FormExample.svelte"
     import FormGroupExamle from "./Form/FormGroupExample.svelte"
-
+    import InputGroupExamle from "./Form/InputGroupExample.svelte"
+    
+    
 export const components = [
     {name:"Card", code:"card", component: CardExample,category: "Structure", 
         description:"Make everything look better"},
@@ -51,7 +53,8 @@ export const components = [
         description:"form element "},
     {name:"FormGroup", code:"form-group", component: FormGroupExamle, category:"Form",
         description:"form group "},
-
+    {name:"InputGroup", code:"input-group", component: InputGroupExamle, category:"Form",
+        description:"input group"},
 ] 
 
 export const categories = ["Structure","Input","Form"]

@@ -2,7 +2,11 @@
   import ComponentPageTemplate from "../../controls/Components/ComponentPageTemplate.svelte";
   import ComponentExampleTemplate from "../../controls/Components/ComponentExampleTemplate.svelte";
 
-  import { FormGroup, Label, TextInput } from "svelte-adminlte";
+  import {
+    FormGroup,
+    Label,
+    TextInput,
+  } from "svelte-adminlte";
 
   let data = {
     name: "FormGroup",
@@ -18,12 +22,12 @@
     slots: [{ name: "[detail]", comment: "insides of FormGroup", params: "" }],
     examples: {
       minimal: {
-        name: "minimal",
-        code: "<FormGroup>\r\n  <Label>label<\/Label>\r\n  <TextInput \/>\r\n<\/FormGroup>\r\n<FormGroup>\r\n  <Label>label<\/Label>\r\n  <TextInput \/>\r\n<\/FormGroup>",
+        name: "Usage",
+        code: "<FormGroup>\r\n  <Label>label</Label>\r\n  <TextInput />\r\n</FormGroup>\r\n<FormGroup>\r\n  <Label>label</Label>\r\n  <TextInput />\r\n</FormGroup>",
       },
       row: {
-        name: "row",
-        code: "<FormGroup row>\r\n  <Label>label<\/Label>\r\n  <TextInput \/>\r\n<\/FormGroup>\r\n<FormGroup row>\r\n  <Label>label<\/Label>\r\n  <TextInput \/>\r\n<\/FormGroup>",
+        name: "Row",
+        code: "<FormGroup row>\r\n  <Label>label</Label>\r\n  <TextInput />\r\n</FormGroup>\r\n<FormGroup row>\r\n  <Label>label</Label>\r\n  <TextInput />\r\n</FormGroup>",
       },
     },
   };
@@ -61,5 +65,6 @@
         <TextInput />
       </FormGroup>
     </ComponentExampleTemplate>
+    
   </svelte:fragment></ComponentPageTemplate
 >

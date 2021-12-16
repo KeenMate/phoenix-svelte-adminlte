@@ -56,11 +56,11 @@ export const components = [
     {name:"Form", code:"form", component: FormExamle, category:"Form",
         description:"Form element "},
     {name:"FormGroup", code:"form-group", component: FormGroupExamle, category:"Form",
-        description:"form group "},
+        description:"Form group "},
     {name:"InputGroup", code:"input-group", component: InputGroupExamle, category:"Form",
-        description:"input group"},
+        description:"Input group"},
     {name:"Label", code:"label", component: LabelExample, category:"Form",
-        description:"label"},
+        description:"Label"},
 ] 
 
 export const categories = ["Structure","Input","Form"]

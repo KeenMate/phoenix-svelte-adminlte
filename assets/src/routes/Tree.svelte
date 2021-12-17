@@ -1,6 +1,6 @@
 <script>
 
-  import { Checkbox, Card ,LteSwitch,FormGroup,Label,TreeViewWSearch,PageHeader,BreadcrumbItem} from "svelte-adminlte";
+  import { Checkbox, Card ,Switch,FormGroup,Label,TreeViewWSearch,PageHeader,BreadcrumbItem} from "svelte-adminlte";
   import { _ } from "svelte-i18n";
 
   let tree = [
@@ -175,7 +175,7 @@
           <Label inputId="disable-or-hide">disable or hide</Label>
         </Checkbox>
       </FormGroup>
-      <LteSwitch
+      <Switch
         checkedClass="bg-green"
         uncheckedClass="bg-gray"
         bind:checked={showTree}

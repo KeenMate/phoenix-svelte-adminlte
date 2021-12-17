@@ -1,5 +1,5 @@
-
-import CardExample from "./CardExample.svelte";
+//! structure
+    import CardExample from "./Structure/CardExample.svelte";
 //! input
     import TextInputExample from "./Input/TextInputExample.svelte"
     import CheckboxExample from "./Input/CheckboxExample.svelte"
@@ -14,6 +14,8 @@ import CardExample from "./CardExample.svelte";
     import RadioExample from "./Input/RadioExample.svelte"
     import SwitchExample from "./Input/SwitchExample.svelte"
     import TextareaExample from "./Input/TextareaExample.svelte"
+    import UploadModalExample from "./UploadModalExample.svelte"
+    import PhoneFieldExample from "./Input/PhoneFieldExample.svelte"
 //! form
     import FormExamle from "./Form/FormExample.svelte"
     import FormGroupExamle from "./Form/FormGroupExample.svelte"
@@ -52,6 +54,10 @@ export const components = [
         description:"Switch with slider"},
     {name:"Textarea", code:"textarea", component: TextareaExample,category: "Input", 
         description:"Input with type textarea"},
+    {name:"UploadModalExample", code:"upload-modal", component: UploadModalExample,category: "Input", 
+        description:"uppy.io doesnt work at All"},
+    {name:"PhoneField", code:"phone-field", component: PhoneFieldExample,category: "Input", 
+        description:"Phone field"},
 //! form
     {name:"Form", code:"form", component: FormExamle, category:"Form",
         description:"Form element "},

@@ -1,6 +1,8 @@
 <script>
+
   export let code = 500;
   export let message = "";
+  export let email = "";
 </script>
 
 <div id="error-page">
@@ -12,7 +14,7 @@
     <p title="TraceId dotazu: @Model.RequestId">{message}</p>
     <div class="links">
       <a href="/" class="home-btn">Back home</a>
-      <a href="mailto:radek.jiracek@generaliceska.cz" class="contact-btn">Contact us</a>
+      <a href="mailto:{email}" class="contact-btn">Contact us</a>
     </div>
   </div>
 </div>

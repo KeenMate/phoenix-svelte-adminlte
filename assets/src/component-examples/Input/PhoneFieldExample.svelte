@@ -34,7 +34,7 @@
       code={data.examples.minimal.code}
       name={data.examples.minimal.name}
     >
-      <PhoneField phone={phone} on:input={e => console.log(e)}/>
+      <PhoneField phone={phone} on:input={e => phone = e.detail}/>
         {phone}
     </ComponentExampleTemplate>
     

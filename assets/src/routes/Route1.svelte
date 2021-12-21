@@ -13,13 +13,17 @@
   <div class="col-3">
 <Card outline color="danger" >
   <svelte:fragment slot="header">Actions  </svelte:fragment>
-  <FlexContainer>
+  <div class="row">
+    <div class="col-lg-12 m-1">
     <LteButton
     on:click={() => {
       setConfig({ Foo: "Henlo" });
-    }}>
+    }}  >
     Set config
   </LteButton>
+</div>
+<div class="col-lg-12 m-1">
+
   <LteButton
     on:click={() => {
       let arr = null;
@@ -28,6 +32,8 @@
   >
     Throw
   </LteButton>
+</div>
+<div class="col-lg-12 m-1">
   <LteButton
     on:click={() =>
       notification.success(
@@ -37,7 +43,8 @@
   >
     Notify me
   </LteButton>
-</FlexContainer>
+</div>
+  </div>
 </Card>
 </div>
 <div class="col-9">

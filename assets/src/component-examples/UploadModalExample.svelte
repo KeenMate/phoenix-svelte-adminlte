@@ -20,7 +20,7 @@
     examples: {
       minimal: {
         name: "Minimal",
-        code: '',
+        code: '<script>\r\n  let upload\r\n<\/script>\r\n\r\n<LteButton on:click ={upload.openModal}>Upload files<\/LteButton>\r\n<UploadModal bind:this = {upload} endpoint=\"www.example.test\"><\/UploadModal>',
       }
       
     },

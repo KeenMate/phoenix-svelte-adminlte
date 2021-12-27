@@ -55,7 +55,7 @@ export const components = [
     {name:"Textarea", code:"textarea", component: TextareaExample,category: "Input", 
         description:"Input with type textarea"},
     {name:"UploadModalExample", code:"upload-modal", component: UploadModalExample,category: "Input", 
-        description:"uppy.io doesnt work at All"},
+        description:"upload using uppy.io"},
     {name:"PhoneField", code:"phone-field", component: PhoneFieldExample,category: "Input", 
         description:"Phone field"},
 //! form

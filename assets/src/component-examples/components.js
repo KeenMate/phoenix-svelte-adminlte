@@ -1,5 +1,4 @@
-//! structure
-    import CardExample from "./Structure/CardExample.svelte";
+
 //! input
     import TextInputExample from "./Input/TextInputExample.svelte"
     import CheckboxExample from "./Input/CheckboxExample.svelte"
@@ -21,13 +20,14 @@
     import FormGroupExamle from "./Form/FormGroupExample.svelte"
     import InputGroupExamle from "./Form/InputGroupExample.svelte"
     import LabelExample from "./Form/LabelExample.svelte"
-
+//! structure
+    import CardExample from "./Structure/CardExample.svelte";
+    import FlexContainerExample from "./Structure/FlexContainerExample.svelte";
+    import ModalExample from "./Structure/ModalExample.svelte"
     
     
 export const components = [
 //! input
-    {name:"Card", code:"card", component: CardExample,category: "Structure", 
-        description:"Make everything look better"},
     {name:"TextInput",code:"text-input", component: TextInputExample, category:"Input", 
         description:"Text input made into svelte component"},
     {name:"Checkbox", code:"checkbox", component: CheckboxExample, category:"Input", 
@@ -67,6 +67,14 @@ export const components = [
         description:"Input group"},
     {name:"Label", code:"label", component: LabelExample, category:"Form",
         description:"Label"},
+
+//! structure
+    {name:"Card", code:"card", component: CardExample,category: "Structure", 
+        description:"Make everything look better"},
+    {name:"FlexContainer", code:"flex-container", component: FlexContainerExample,category: "Structure", 
+        description:"CSS display: flex"},
+    {name:"Modal", code:"modal", component: ModalExample,category: "Structure", 
+        description:"full page modal "},
 ] 
 
 export const categories = ["Structure","Input","Form"]

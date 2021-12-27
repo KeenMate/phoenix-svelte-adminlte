@@ -10,12 +10,12 @@
       { name: "phone", type: "", comment: "Phone number" },
       ],
     events:[
-      {name:"input",comment:"", params:""},
+      {name:"input",comment:"is fired every time user types or changes prefix", params:"detail = phone number"},
     ],
     examples: {
       minimal: {
-        name: "Usage  EVENTS DONT WORK",
-        code: '',
+        name: "Usage",
+        code: '<PhoneField phone={phone} on:input={e => phone = e.detail}\/>',
       }
       
     },

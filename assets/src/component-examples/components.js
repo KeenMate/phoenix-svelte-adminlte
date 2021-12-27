@@ -23,7 +23,7 @@
 //! structure
     import CardExample from "./Structure/CardExample.svelte";
     import FlexContainerExample from "./Structure/FlexContainerExample.svelte";
-    
+    import ModalExample from "./Structure/ModalExample.svelte"
     
     
 export const components = [
@@ -73,6 +73,8 @@ export const components = [
         description:"Make everything look better"},
     {name:"FlexContainer", code:"flex-container", component: FlexContainerExample,category: "Structure", 
         description:"CSS display: flex"},
+    {name:"Modal", code:"modal", component: ModalExample,category: "Structure", 
+        description:"full page modal "},
 ] 
 
 export const categories = ["Structure","Input","Form"]

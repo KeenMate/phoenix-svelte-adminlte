@@ -4,7 +4,6 @@
   
   
     let data = {
-      name: "",
       text: "",
       props: [
         { name: "", type: "", comment: "" },

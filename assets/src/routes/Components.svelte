@@ -6,7 +6,7 @@
 
   import { components, categories } from "../component-examples/components";
   import ComponentList from "../controls/Components/ComponentList.svelte";
-  import SvelteMarkdown from 'svelte-markdown'
+  import SvelteMarkdown from "svelte-markdown";
 
   let componentInfo = null;
   let category = null;
@@ -33,7 +33,7 @@
       if (categories.find((x) => x === p.category)) {
         category = p.category;
       } else {
-        category = null
+        category = null;
       }
     }
   }
@@ -46,21 +46,33 @@
 <PageHeader>
   <svelte:fragment>
     {componentInfo ? componentInfo.name : $_("components.title")}
-    <small><SvelteMarkdown isInline source={componentInfo ? componentInfo.breadcrumb /* || $_("components.title")*/ : "Funny Joke"}/> </small>
+    <small
+      ><SvelteMarkdown
+        isInline
+        source={componentInfo
+          ? componentInfo.breadcrumb /* || $_("components.title")*/
+          : "Funny Joke"}
+      />
+    </small>
   </svelte:fragment>
 
   <svelte:fragment slot="breadcrumbs">
     <BreadcrumbItem><a href="#/">{$_("home.title")}</a></BreadcrumbItem>
-    <BreadcrumbItem active>
-      {#if componentInfo}
+
+    {#if componentInfo}
+      <BreadcrumbItem>
         <a href="#/components" on:click={() => replace("/components")}
           >{$_("components.title")}</a
-        >
-        / {componentInfo.name}
-      {:else}
+        ></BreadcrumbItem
+      >
+      <BreadcrumbItem active>
+        {componentInfo.name}
+      </BreadcrumbItem>
+    {:else}
+      <BreadcrumbItem active>
         {$_("components.title")}
-      {/if}
-    </BreadcrumbItem>
+      </BreadcrumbItem>
+    {/if}
   </svelte:fragment>
 </PageHeader>
 <div class="row mh-100">

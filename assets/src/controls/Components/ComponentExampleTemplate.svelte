@@ -9,6 +9,7 @@
 
   export let name = "";
   export let code = "";
+  export let codeonly = false;
 
   function copyToClipboard(){
     navigator.clipboard.writeText(code);
@@ -20,11 +21,11 @@
   <svelte:fragment slot="header">{name}</svelte:fragment>
   <svelte:fragment slot="tools"><LteButton color="success" on:click={copyToClipboard} small ><i class="fas fa-copy"></i></LteButton></svelte:fragment>
   <div class="row">
-    <div class:col-6={code} class:col-12={!code}>
+    <div class:col-6={code} class:col-12={!code} class:d-none={codeonly}>
       <slot />
     </div>
     {#if code}
-    <div class="col-6 line-left">
+    <div class:line-left={code && !codeonly} class:col-6={code && !codeonly} class:col-12={codeonly}>
       <div class=" highlighter">
           <HighlightSvelte {code}  /></div>
     </div>

@@ -24,6 +24,7 @@
     import CardExample from "./Structure/CardExample.svelte";
     import FlexContainerExample from "./Structure/FlexContainerExample.svelte";
     import ModalExample from "./Structure/ModalExample.svelte"
+    import PageHeaderExample from "./Structure/PageHeaderExample.svelte";
     
     
 export const components = [
@@ -75,6 +76,8 @@ export const components = [
         description:"CSS display: flex"},
     {name:"Modal", code:"modal", component: ModalExample,category: "Structure", 
         description:"full page modal "},
+    {name:"PageHeader", code:"page-header", component: PageHeaderExample,category: "Structure", 
+        description:"Page header with title and breadcrumbs"},
 ] 
 
 export const categories = ["Structure","Input","Form"]

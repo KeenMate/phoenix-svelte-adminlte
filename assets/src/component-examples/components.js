@@ -25,6 +25,7 @@
     import FlexContainerExample from "./Structure/FlexContainerExample.svelte";
     import ModalExample from "./Structure/ModalExample.svelte"
     import PageHeaderExample from "./Structure/PageHeaderExample.svelte";
+    import OneColumnNarrowExample from "./Structure/OneColumnNarrowExample.svelte"
     
     
 export const components = [
@@ -78,6 +79,8 @@ export const components = [
         description:"full page modal "},
     {name:"PageHeader", code:"page-header", component: PageHeaderExample,category: "Structure", 
         description:"Page header with title and breadcrumbs"},
+    {name:"OneColumnNarrow", code:"one-column-narrow", component: OneColumnNarrowExample,category: "Structure", 
+        description:"One Column Narrow"},
 ] 
 
 export const categories = ["Structure","Input","Form"]

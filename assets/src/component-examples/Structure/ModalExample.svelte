@@ -53,7 +53,7 @@
       name={data.examples.basic.name}
     >
       <LteButton on:click={toggle}>show</LteButton>
-      <Modal bind:toggle>
+      <Modal bind:toggle large>
         HELLO
         <svelte:fragment slot="header">Modal header</svelte:fragment>
         <svelte:fragment slot="actions">

@@ -51,16 +51,18 @@
 
   <svelte:fragment slot="breadcrumbs">
     <BreadcrumbItem><a href="#/">{$_("home.title")}</a></BreadcrumbItem>
-    <BreadcrumbItem active>
+    
       {#if componentInfo}
+      <BreadcrumbItem >
         <a href="#/components" on:click={() => replace("/components")}
           >{$_("components.title")}</a
-        >
-        / {componentInfo.name}
+        ></BreadcrumbItem>
+        <BreadcrumbItem active> {componentInfo.name}</BreadcrumbItem>
       {:else}
+      <BreadcrumbItem active>
         {$_("components.title")}
+      </BreadcrumbItem>
       {/if}
-    </BreadcrumbItem>
   </svelte:fragment>
 </PageHeader>
 <div class="row mh-100">

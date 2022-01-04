@@ -39,7 +39,8 @@
       code={data.examples.minimal.code}
       name={data.examples.minimal.name}
     >
-      <LteButton on:click ={upload.openModal}>Upload files</LteButton>
+      <b>This example always shows upload failed, because it isnt using real Endpoint</b>
+      <LteButton on:click ={upload.openModal}>Upload files</LteButton> 
       <UploadModal bind:this = {upload} endpoint="www.example.test"></UploadModal>
     </ComponentExampleTemplate>
     

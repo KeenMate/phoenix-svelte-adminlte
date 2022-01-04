@@ -21,9 +21,15 @@
         comment:
           "Use classes that add backgroud-color (bg-red ,bg-primary, atd.).",
       },
+      {
+        name: "disabledClass",
+        type: "string",
+        comment:
+          "Use classes that add backgroud-color (bg-red ,bg-primary, atd.).",
+      },
     ],
     events: [
-      { name: "change", comment: "", params: "" },
+      { name: "change", comment: "value changed", params: "" },
       { name: "checked", comment: "value changed to true", params: "" },
       { name: "unchecked", comment: "value changed to false", params: "" },
     ],
@@ -51,11 +57,11 @@
     notification.success(text);
   }
   let colors = [
-    { f: "bg-primary", s: "bg-secondary" },
-    { f: "bg-success", s: "bg-danger" },
-    { f: "bg-danger", s: "bg-dark" },
-    { f: "bg-warning  ", s: "bg-muted" },
-    { f: "bg-info", s: "bg-dark" },
+    { f: "bg-primary", s: "bg-secondary", d: "bg-muted" },
+    { f: "bg-success", s: "bg-danger" , d: "bg-muted"},
+    { f: "bg-danger", s: "bg-dark" , d: "bg-muted"},
+    { f: "bg-warning  ", s: "bg-muted" , d: "bg-muted"},
+    { f: "bg-info", s: "bg-dark", d: "bg-muted" },
   ];
 
   let bgcolors = [
@@ -72,9 +78,19 @@
   ];
   let checked1,
     checked2,
-    fcolor,
-    scolor,
+    checkedColor,
+    uncheckedColor,
+    disabledColor,
     dis = true;
+
+
+
+    
+    function getCode(checkedClass,uncheckedClass,disabledClass){
+      return `<Switch disabledClass=\"${disabledClass?.value || ""}\" checkedClass=\"${checkedClass?.value || ""}\" uncheckedClass=\"${uncheckedClass?.value || ""}\"\/\>`
+    }
+    let generatedCode = null;
+    $: generatedCode = getCode(checkedColor,uncheckedColor,disabledColor)
 </script>
 
 <ComponentPageTemplate
@@ -122,35 +138,47 @@
         }}
       />
     </ComponentExampleTemplate>
-    <ComponentExampleTemplate name={data.examples.color.name}>
+    <ComponentExampleTemplate 
+    name={data.examples.color.name}
+    code={generatedCode}
+    exampleOnly>
+    
       <TableCondensed>
         <svelte:fragment slot="headers">
           <tr>
-            <th>checked</th>
             <th>unchecked</th>
+            <th>checked</th>
+            <th>disabled</th>
             <th>switch</th>
           </tr>
         </svelte:fragment>
         <tr>
           <td>
-            <SvelteSelect items={bgcolors} bind:value={fcolor} />
+            <SvelteSelect items={bgcolors} bind:value={uncheckedColor} />
           </td>
           <td>
-            <SvelteSelect items={bgcolors} bind:value={scolor} />
+            <SvelteSelect items={bgcolors} bind:value={checkedColor} />
           </td>
+          <td>
+            <SvelteSelect items={bgcolors} bind:value={disabledColor} />
+          </td>
+
           <td>
             <Switch
-              checkedClass={fcolor?.value}
-              uncheckedClass={scolor?.value}
+              checkedClass={checkedColor?.value}
+              uncheckedClass={uncheckedColor?.value}
+              disabledClass={uncheckedColor?.value}
             />
           </td>
         </tr>
         {#each colors as color}
           <tr>
-            <td>{color.f}</td>
             <td>{color.s}</td>
+
+            <td>{color.f}</td>
+            <td>{color.d}</td>
             <td>
-              <Switch checkedClass={color?.f} uncheckedClass={color?.s} />
+              <Switch checkedClass={color?.f} uncheckedClass={color?.s}  disabledClass={color?.d}/>
             </td>
           </tr>
         {/each}

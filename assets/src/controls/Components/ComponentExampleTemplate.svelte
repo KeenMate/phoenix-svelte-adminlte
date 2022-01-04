@@ -10,22 +10,26 @@
   export let name = "";
   export let code = "";
   export let codeonly = false;
+  export let exampleOnly = false;
 
-  function copyToClipboard(){
+
+
+  export function copyToClipboard(){
     navigator.clipboard.writeText(code);
     notification.success($_("notifications.component-example-template.copied.message"))
   }
 </script>
-
 <Card class="card-width " color="info" outline>
   <svelte:fragment slot="header">{name}</svelte:fragment>
-  <svelte:fragment slot="tools"><LteButton color="success" on:click={copyToClipboard} small ><i class="fas fa-copy"></i></LteButton></svelte:fragment>
+  <svelte:fragment slot="tools">{#if code != "" && code != null && code != undefined}
+    <LteButton color="success" on:click={copyToClipboard} small ><i class="fas fa-copy"></i></LteButton>
+  {/if}</svelte:fragment>
   <div class="row">
-    <div class:col-6={code} class:col-12={!code} class:d-none={codeonly}>
+    <div class:col-6={!exampleOnly} class:col-12={exampleOnly} class:d-none={codeonly}>
       <slot />
     </div>
-    {#if code}
-    <div class:line-left={code && !codeonly} class:col-6={code && !codeonly} class:col-12={codeonly}>
+    {#if !exampleOnly}
+    <div class:line-left={!codeonly} class:col-6={!codeonly} class:col-12={codeonly}>
       <div class=" highlighter">
           <HighlightSvelte {code}  /></div>
     </div>

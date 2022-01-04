@@ -3,6 +3,7 @@
     import ComponentExampleTemplate from "../../controls/Components/ComponentExampleTemplate.svelte";
   
     import { Checkbox, Label,TableCondensed } from "svelte-adminlte";
+    import SvelteSelect from "svelte-select";
   
   
     let data = {
@@ -39,10 +40,15 @@
       },
     };
   
+    function getCode(col) {
+    return `<Checkbox level=\"${col?.value || ""}\" id=\"radio-example\" >\r\n  <Label inputId=\"radio-example\" >${col?.value || "NOT SELECTED"}<\/Label>\r\n<\/Checkbox>`;
+  }
+
     let a = "",b="",c="";
     let levels = ["red","green","blue","orange","yellow","pink","purple"]
+    let color
   </script>
-  
+
   <ComponentPageTemplate
     text={data.text}
     properties={data.props}
@@ -70,7 +76,10 @@
       {c}
       </ComponentExampleTemplate>
       <ComponentExampleTemplate
-        name={data.examples.colors.name}>
+        name={data.examples.colors.name}
+        code={getCode(color)}
+        exampleOnly>
+        
         <TableCondensed>
           <svelte:fragment slot="headers">
             <tr>
@@ -78,6 +87,14 @@
               <th>radio</th>
             </tr>
           </svelte:fragment>
+          <tr>
+            <td><SvelteSelect items={levels} bind:value={color} /></td>
+            <td>
+              <Checkbox level={color?.value || ""} id="checkbox-example">
+                <Label inputId="checkbox-example">{color?.value || "Not selected"}</Label>
+              </Checkbox>
+            </td>
+          </tr>
           {#each levels as l}
             <tr>
               <td>{l}</td>

@@ -56,7 +56,7 @@ export const components = [
         description:"Switch with slider"},
     {name:"Textarea", code:"textarea", component: TextareaExample,category: "Input", 
         description:"Input with type textarea"},
-    {name:"UploadModalExample", code:"upload-modal", component: UploadModalExample,category: "Input", 
+    {name:"UploadModal", code:"upload-modal", component: UploadModalExample,category: "Input", 
         description:"upload using uppy.io"},
     {name:"PhoneField", code:"phone-field", component: PhoneFieldExample,category: "Input", 
         description:"Phone field"},

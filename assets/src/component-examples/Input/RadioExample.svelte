@@ -50,7 +50,9 @@
       {/each}
     </ComponentExampleTemplate>
     <ComponentExampleTemplate
-      name={data.examples.color.name} >
+      name={data.examples.color.name} 
+      exampleOnly>
+
       <TableCondensed>
         <svelte:fragment slot="headers">
           <tr>

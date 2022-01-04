@@ -70,7 +70,9 @@
       {c}
       </ComponentExampleTemplate>
       <ComponentExampleTemplate
-        name={data.examples.colors.name}>
+        name={data.examples.colors.name}
+        exampleOnly>
+        
         <TableCondensed>
           <svelte:fragment slot="headers">
             <tr>

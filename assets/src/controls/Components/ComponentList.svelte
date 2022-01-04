@@ -121,7 +121,7 @@
           <th>{$_("component-list.description")}</th>
         </tr>
 
-        {#each displayedComponents as component}
+        {#each displayedComponents.sort((x, y) => (x.name > y.name) ? 1 : -1) as component}
           <tr>
             <td class="title">
               <a

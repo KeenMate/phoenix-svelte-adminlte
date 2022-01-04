@@ -2,7 +2,8 @@
   import ComponentPageTemplate from "../../controls/Components/ComponentPageTemplate.svelte";
   import ComponentExampleTemplate from "../../controls/Components/ComponentExampleTemplate.svelte";
 
-  import { Radio, Label ,TableCondensed} from "svelte-adminlte";
+  import { Radio, Label, TableCondensed } from "svelte-adminlte";
+  import SvelteSelect from "svelte-select";
   let data = {
     name: "RadioExample",
     text: "Input with type radio using icheck. You have **to have** label with set id inside slot.",
@@ -17,15 +18,20 @@
     examples: {
       minimal: {
         name: "Usage",
-        code: '{#if selected}\r\n      {selected} is selected\r\n      {/if}\r\n        <Radio bind:group={selected} value={1} name="chck" id="chck1">\r\n          <Label inputId="chck1">Checkbox1</Label>\r\n        </Radio>\r\n        <Radio bind:group={selected} value={2} name="chck" id="chck2">\r\n          <Label inputId="chck2">Checkbox2</Label>\r\n        </Radio>\r\n        <Radio bind:group={selected} value={3} name="chck" id="chck3">\r\n          <Label inputId="chck3">Checkbox3</Label>\r\n        </Radio>',
+        code: '{#if selected}\r\n {selected} is selected\r\n{/if}\r\n<Radio bind:group={selected} value={1} name="chck" id="chck1">\r\n  <Label inputId="chck1">Checkbox1</Label>\r\n</Radio>\r\n<Radio bind:group={selected} value={2} name="chck" id="chck2">\r\n  <Label inputId="chck2">Checkbox2</Label>\r\n</Radio>\r\n<Radio bind:group={selected} value={3} name="chck" id="chck3">\r\n  <Label inputId="chck3">Checkbox3</Label>\r\n</Radio>',
       },
-      color:{
-        name:"Colors"
-      }
+      color: {
+        name: "Colors",
+      },
     },
   };
+
+  function getCode(col) {
+    return `<Radio level=\"${col?.value || ""}\" id=\"radio-example\" >\r\n  <Label inputId=\"radio-example\" >${col?.value || "NOT SELECTED"}<\/Label>\r\n<\/Radio>`;
+  }
+  let color;
   let transportType = ["Bus", "Car", "Train", "Plane"];
-  let levels = ["red","green","blue","orange","yellow","pink","purple"]
+  let levels = ["red", "green", "blue", "orange", "yellow", "pink", "purple"];
   let selected = null;
 </script>
 
@@ -50,9 +56,10 @@
       {/each}
     </ComponentExampleTemplate>
     <ComponentExampleTemplate
-      name={data.examples.color.name} 
-      exampleOnly>
-
+      name={data.examples.color.name}
+      code={getCode(color)}
+      exampleOnly
+    >
       <TableCondensed>
         <svelte:fragment slot="headers">
           <tr>
@@ -60,12 +67,20 @@
             <th>radio</th>
           </tr>
         </svelte:fragment>
+        <tr>
+          <td><SvelteSelect items={levels} bind:value={color} /></td>
+          <td>
+            <Radio level={color?.value || ""} id="radio-example">
+              <Label inputId="radio-example">{color?.value || "Not selected"}</Label>
+            </Radio>
+          </td>
+        </tr>
         {#each levels as l}
           <tr>
             <td>{l}</td>
             <td>
-              <Radio level={l} id={l} >
-                <Label inputId={l} >{l}</Label>
+              <Radio level={l} id={l}>
+                <Label inputId={l}>{l}</Label>
               </Radio>
             </td>
           </tr>

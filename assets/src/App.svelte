@@ -36,10 +36,10 @@
     Label,
   } from "svelte-adminlte";
 
-  import MessageLog from "./controls/modals/MessageLog.svelte";
+  import MessageLog from "./Components/modals/MessageLog.svelte";
   import { initSocket } from "./providers/socket";
   import { each } from "svelte/internal";
-  import SidebarNavTree from "./controls/SidebarNavTree.svelte";
+  import SidebarNavTree from "./Components/SidebarNavTree.svelte";
 
   function applySidebarOpenState() {
     if (!get(sidebarOpenState)) {

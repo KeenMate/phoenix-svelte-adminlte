@@ -1,16 +1,15 @@
-import Route1 from "./routes/Route1.svelte";
-import Users from "./routes/Users.svelte";
-import Tree from "./routes/Tree.svelte";
-import List from "./routes/List.svelte";
-import NotFound from "./routes/NotFound.svelte";
-import Error from "./routes/Error.svelte";
-import LocaleEditor from "./routes/LocaleEditor.svelte";
-import Components from "./routes/Components.svelte";
+import Route1 from "./pages/Route1.svelte";
+import Users from "./pages/Users.svelte";
+import Tree from "./pages/Tree.svelte";
+import List from "./pages/List.svelte";
+import NotFound from "./pages/NotFound.svelte";
+import Error from "./pages/Error.svelte";
+import LocaleEditor from "./pages/LocaleEditor.svelte";
+import Components from "./pages/Components.svelte";
 
 import { _ } from "svelte-i18n";
 
-import { categories } from "./component-examples/components";
-
+import { categories } from "./user-controls/component-examples/components";
 export const ComponentsSubroutes = [
   { name: "all", title: "All", icon: "far", route: "/components" },
 ].concat(

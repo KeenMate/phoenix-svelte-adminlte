@@ -1,0 +1,64 @@
+{
+  "0": {
+  },
+  "componentList": {
+    "all": "All",
+    "cardTitle": "Click to view documentation",
+    "categories": "Categories",
+    "description": "Description",
+    "name": "Name",
+    "notFound": {
+      "text": "try changing or deleting search query",
+      "title": "No Components Found"
+    }
+  },
+  "componentPageTemplate": {
+    "eventsTitle": "Events",
+    "propsTitle": "Properties",
+    "slotsTitle": "Slots",
+    "textTitle": "Description"
+  },
+  "components": {
+    "title": "Components"
+  },
+  "home": {
+    "language": "Select language",
+    "title": "Home"
+  },
+  "i18n": {
+    "savedLocales": "{locale} is loaded from locale storage ."
+  },
+  "localeEditor": {
+    "edit": "Edit",
+    "title": "locale editor"
+  },
+  "localesList": {
+    "cardTitle": "Click on locale to edit",
+    "code": "Code",
+    "flag": "Flag",
+    "language": "Language"
+  },
+  "notFound": {
+    "header": "Page not found",
+    "link": "Go to homepage"
+  },
+  "notifications": {
+    "componentExampleTemplate": {
+      "copied": {
+        "message": "Code copied to clipboard"
+      }
+    },
+    "localeEditor": {
+      "saved": {
+        "message": "Locales for {locale} have been sucesfully saved to LocalStorage.",
+        "title": "Locales saved"
+      }
+    }
+  },
+  "tree": {
+    "title": "Tree"
+  },
+  "users": {
+    "title": "Users"
+  }
+}

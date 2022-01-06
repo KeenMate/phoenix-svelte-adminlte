@@ -70,7 +70,7 @@ export const Routes = [
   {
     name: "Locale",
     title: "Locale editor",
-    route: "/locale-editor",
+    route: "/localeEditor",
     breadcrumb: ["Locale editor"],
     icon: "fas fa-language",
   },

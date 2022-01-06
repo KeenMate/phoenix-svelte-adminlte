@@ -1,10 +1,10 @@
-import {init, getLocaleFromNavigator, locale, addMessages, json, register} from "svelte-i18n"
+import {init, getLocaleFromNavigator, locale, addMessages, json, register,format} from "svelte-i18n"
 
-import en from "./en.json"
-import cs from "./cs.json"
-import langs from "./langs.json"
+import en from "./locale-files/en.json"
+import cs from "./locale-files/cs.json"
+import {langs} from "./langs"
 import {registerLocaleLoader} from "svelte-i18n/types/runtime/includes/loaderQueue"
-
+import notification from "../providers/notificationProvider";
 
 export {locale, locales, langs}
 export const languages = langs
@@ -12,12 +12,14 @@ export const languages = langs
 let locales = {"cs": cs, "en": en}
 initialize()
 
+console.log(cs)
 
 function initialize() {
 	langs.forEach((lang) => {
 		let lc = localStorage.getItem(lang.code + "-locale")
 		if (lc != null) {
 			console.log("loading from ls" + lang.code)
+			notification.warning(lang.title +" ("+lang.code+") loaded from memory");
 			addMessages(lang.code, JSON.parse(lc))
 			locales[lang.code] = JSON.parse(lc)
 		} else {

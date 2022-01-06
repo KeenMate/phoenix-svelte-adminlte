@@ -16,7 +16,7 @@
 
   export function copyToClipboard(){
     navigator.clipboard.writeText(code);
-    notification.success($_("notifications.component-example-template.copied.message"))
+    notification.success($_("notifications.componentExampleTemplate.copied.message"))
   }
 </script>
 <Card class="card-width " color="info" outline>

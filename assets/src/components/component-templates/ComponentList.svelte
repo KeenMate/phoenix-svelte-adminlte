@@ -72,7 +72,7 @@
 
 <Card outline color="primary">
   <svelte:fragment slot="header"
-    >{$_("component-list.card-title")}</svelte:fragment
+    >{$_("componentList.cardTitle")}</svelte:fragment
   >
 
   <div class="row">
@@ -98,12 +98,12 @@
     <div class="col-12">
       <Tabs>
         <li class="pt-2 px-3">
-          <h3 class="card-title">{$_("component-list.categories")}</h3>
+          <h3 class="cardTitle">{$_("componentList.categories")}</h3>
         </li>
         <TabItem
           active={category === null}
           on:click={() => changeCategory(null)}
-          >{$_("component-list.all")}</TabItem
+          >{$_("componentList.all")}</TabItem
         >
         {#each categories as c}
           <TabItem active={category === c} on:click={() => changeCategory(c)}
@@ -117,8 +117,8 @@
     <div class="col-12">
       <TableCondensed class="components-list">
         <tr slot="headers">
-          <th>{$_("component-list.name")}</th>
-          <th>{$_("component-list.description")}</th>
+          <th>{$_("componentList.name")}</th>
+          <th>{$_("componentList.description")}</th>
         </tr>
 
         {#each displayedComponents.sort((x, y) => (x.name > y.name) ? 1 : -1) as component}
@@ -141,8 +141,8 @@
         {/each}
         {#if displayedComponents.length == 0}
           <tr>
-            <td class="text-danger">{$_("component-list.not-found.title")}</td>
-            <td class="text-muted">{$_("component-list.not-found.text")}</td>
+            <td class="text-danger">{$_("componentList.notFound.title")}</td>
+            <td class="text-muted">{$_("componentList.notFound.text")}</td>
           </tr>
         {/if}
       </TableCondensed>

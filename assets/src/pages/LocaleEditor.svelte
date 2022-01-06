@@ -40,7 +40,7 @@
     }
     if (json != undefined) {
       saveLanguageFile(valid_json, selectedLanguage);
-      notification.success($_("notifications.locale-editor.saved.message",{values:{locale: selectedLanguage }}),$_("notifications.locale-editor.saved.title"))
+      notification.success($_("notifications.localeEditor.saved.message",{values:{locale: selectedLanguage }}),$_("notifications.localeEditor.saved.title"))
     }
   }
 
@@ -58,12 +58,12 @@
 
 <PageHeader>
   <svelte:fragment>
-    {$_("locale-editor.title")} <small>For all the polyglots</small>
+    {$_("localeEditor.title")} <small>For all the polyglots</small>
   </svelte:fragment>
 
   <svelte:fragment slot="breadcrumbs">
     <BreadcrumbItem><a href="#/">{$_("home.title")}</a></BreadcrumbItem>
-    <BreadcrumbItem active>{$_("locale-editor.title")}</BreadcrumbItem>
+    <BreadcrumbItem active>{$_("localeEditor.title")}</BreadcrumbItem>
   </svelte:fragment>
 </PageHeader>
 <div class="row">
@@ -82,9 +82,9 @@
         <svelte:fragment slot="fullHeader">
           <Tabs>
             <li class="pt-2 px-3">
-              <h3 class="card-title">{selectedLanguage}</h3>
+              <h3 class="cardTitle">{selectedLanguage}</h3>
             </li>
-            <!-- <TabItem active={true} >{$_("locale-editor.edit")}</TabItem> -->
+            <!-- <TabItem active={true} >{$_("localeEditor.edit")}</TabItem> -->
             <div class="card-tools pull-right ml-auto">
               <LteButton color="primary" small on:click={saveJson}>
                 <i class="fas fa-save" />

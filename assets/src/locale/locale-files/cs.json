@@ -1,0 +1,64 @@
+{
+  "0": {
+  },
+  "componentList": {
+    "all": "Vše",
+    "cardTitle": "Klikněte pro zobrazeni dokumentace",
+    "categories": "Kategorie",
+    "description": "Popisek",
+    "name": "Jméno",
+    "notFound": {
+      "text": "Zkuste zmenit, nebo smazat text",
+      "title": "Žádne komponenty nenelezeny"
+    }
+  },
+  "componentPageTemplate": {
+    "eventsTitle": "Události",
+    "propsTitle": "Vlastnosti",
+    "slotsTitle": "Sloty",
+    "textTitle": "Popisek"
+  },
+  "components": {
+    "title": "Komponenty"
+  },
+  "home": {
+    "language": "Vyberte jazyk",
+    "title": "Domov"
+  },
+  "i18n": {
+    "savedLocales": "{locale} je načteno z úložiště ."
+  },
+  "localeEditor": {
+    "edit": "Upravit",
+    "title": "Editor Localů"
+  },
+  "localesList": {
+    "cardTitle": "Klickněte na localu pro upraveni",
+    "code": "Kód",
+    "flag": "Vlajka",
+    "language": "Jazyk"
+  },
+  "notFound": {
+    "header": "Stranka nenalezena",
+    "link": "Vratit se na domovskou stranku"
+  },
+  "notifications": {
+    "componentExampleTemplate": {
+      "copied": {
+        "message": "Kod zkopirovan to schranky"
+      }
+    },
+    "localeEditor": {
+      "saved": {
+        "message": "Localy pro {locale} byly uspěšně uloženy do LocalStorage.",
+        "title": "Localy ulozeny"
+      }
+    }
+  },
+  "tree": {
+    "title": "Strom"
+  },
+  "users": {
+    "title": "Uživatelé"
+  }
+}

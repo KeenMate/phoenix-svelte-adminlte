@@ -9,17 +9,17 @@
 </script>
 
 <Card outline color="primary" noPadding>
-	<svelte:fragment slot="header">{$_("locales-list.card-title")}</svelte:fragment>
+	<svelte:fragment slot="header">{$_("localesList.cardTitle")}</svelte:fragment>
 
 	<div class="row">
 		<div class="col-12">
-			<TableCondensed class="locales-list {expanded ? 'expanded' : ''}">
+			<TableCondensed class="localesList {expanded ? 'expanded' : ''}">
 				<tr slot="headers">
 					<!-- <th class="actions">Actions</th> -->
-					<th>{$_("locales-list.language")}</th>
+					<th>{$_("localesList.language")}</th>
 					{#if expanded}
-						<th>{$_("locales-list.flag")}</th>
-						<th>{$_("locales-list.code")}</th>
+						<th>{$_("localesList.flag")}</th>
+						<th>{$_("localesList.code")}</th>
 					{/if}
 				</tr>
 				{#each languages as locale}
@@ -50,7 +50,7 @@
 		border-top: none;
 	}
 	:global {
-		.locales-list {
+		.localesList {
 			display: grid;
 			grid-template-columns: auto repeat(2, 1fr);
 			&:not(.expanded) {

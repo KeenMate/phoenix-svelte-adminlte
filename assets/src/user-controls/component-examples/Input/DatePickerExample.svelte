@@ -53,21 +53,26 @@
         comment: "Number of visible months.",
       },
       { name: "columns", type: "Number", comment: "Number of columns months." },
-      { name: "lockDaysFilter", type: "Functions", comment: "viz litepicker [documentation](https://litepicker.com/docs/options#lockdaysfilter-200). Return true for date to be disabled" },
+      {
+        name: "lockDaysFilter",
+        type: "Functions",
+        comment:
+          "viz litepicker [documentation](https://litepicker.com/docs/options#lockdaysfilter-200). Return true for date to be disabled",
+      },
       { name: "lockDays", type: "Array", comment: "" },
     ],
     examples: {
       single: {
         name: "single date selection",
-        code: "<DateRangePicker inputElement={inputElement} single={true}> <TextInput bind:inputElement={inputElement}/> </DateRangePicker>",
+        code: "<DateRangePicker inputElement={inputElement1} single={true}> <TextInput bind:inputElement={inputElement1}/> </DateRangePicker>",
       },
       minmax: {
         name: "minimal and maximal dates",
-        code: '<DateRangePicker inputElement={inputElement3} minDate="11-5-2021" maxDate="1-15-2022" position="auto" single> <TextInput bind:inputElement={inputElement3}/> </DateRangePicker>',
+        code: '<DateRangePicker inputElement={inputElement2} minDate="11-5-2021" maxDate="1-15-2022" position="auto" single> <TextInput bind:inputElement={inputElement2}/> </DateRangePicker>',
       },
       filter: {
         name: "filtering dates using filter function",
-        code: "<DateRangePicker\r\n  inputElement={inputElement3}\r\n  minDate=\"11-5-2021\"\r\n  maxDate=\"1-15-2022\"\r\n  position=\"auto\"\r\n  single\r\n  lockDaysFilter={filterfunction}\r\n>\r\n  <TextInput bind:inputElement={inputElement3} \/>\r\n<\/DateRangePicker>",
+        code: '<DateRangePicker\r\n  inputElement={inputElement}\r\n  minDate="11-5-2021"\r\n  maxDate="1-15-2022"\r\n  position="auto"\r\n  single\r\n  lockDaysFilter={filterfunction}\r\n>\r\n  <TextInput bind:inputElement={inputElement3} />\r\n</DateRangePicker>',
       },
     },
   };
@@ -93,12 +98,26 @@
       code={data.examples.single.code}
       name={data.examples.single.name}
     >
-      <DateRangePicker inputElement={inputElement2} single position="auto">
-        <TextInput bind:inputElement={inputElement2} />
+      <DateRangePicker inputElement={inputElement1} single position="auto">
+        <TextInput bind:inputElement={inputElement1} />
       </DateRangePicker>
     </ComponentExampleTemplate><ComponentExampleTemplate
       code={data.examples.minmax.code}
       name={data.examples.minmax.name}
+    >
+      <DateRangePicker
+        inputElement={inputElement2}
+        minDate="11-5-2021"
+        maxDate="1-15-2022"
+        position="auto"
+        single
+      >
+        <TextInput bind:inputElement={inputElement2} />
+      </DateRangePicker>
+    </ComponentExampleTemplate>
+    <ComponentExampleTemplate
+      code={data.examples.filter.code}
+      name={data.examples.filter.name}
     >
       <DateRangePicker
         inputElement={inputElement3}
@@ -106,25 +125,11 @@
         maxDate="1-15-2022"
         position="auto"
         single
+        lockDaysFilter={filterfunction}
       >
+        <p>example of using function to filter out weekends</p>
         <TextInput bind:inputElement={inputElement3} />
       </DateRangePicker>
-    </ComponentExampleTemplate>
-    <ComponentExampleTemplate
-      code={data.examples.filter.code}
-      name={data.examples.filter.name}
-    >
-<DateRangePicker
-  inputElement={inputElement3}
-  minDate="11-5-2021"
-  maxDate="1-15-2022"
-  position="auto"
-  single
-  lockDaysFilter={filterfunction}
->
-<p>example of using function to filter out weekends</p>
-  <TextInput bind:inputElement={inputElement3} />
-</DateRangePicker>
     </ComponentExampleTemplate>
   </svelte:fragment></ComponentPageTemplate
 >

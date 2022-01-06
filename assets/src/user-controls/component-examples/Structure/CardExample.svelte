@@ -9,7 +9,7 @@
     name: "Input",
     text: "Component is used everywere. Its supposed to make everything look better. ",
     props: [
-      { name: "color", type: "string | colors from bootstrap", comment: "color of header" },
+      { name: "color", type: "string | colors from bootstrap", comment: "color of header, uses [bootstrap color](https://getbootstrap.com/docs/4.0/utilities/colors/) " },
       { name: "outline", type: "bool", comment: "if true, only top border of card is colored instead of full header" },
       { name: "loading", type: "bool", comment: "if true, show loading symbol instead of content" },
       { name: "noPadding", type: "bool", comment: "if true, disables paddings" },

@@ -13,16 +13,16 @@
 </script>
 
 <div class="row col-12 ml-1 ">
-  <div class="col-lg-8 col-md-12  scroll order-lg-0 order-md-1">
+  <div class="col-lg-8 col-md-12  scroll order-lg-0 order-1">
     <div class="row margin">
       <slot name="examples" />
     </div>
   </div>
-  <div class="col-lg-4 col-md-12 order-lg-1 order-md-0">
+  <div class="col-lg-4 col-md-12 order-lg-1 order-0">
     {#if text}
       <Card color="danger" outline>
         <svelte:fragment slot="header">
-          {$_("component-page-template.text-title")}
+          {$_("componentPageTemplate.textTitle")}
         </svelte:fragment>
         <SvelteMarkdown source={text}/>
       </Card>
@@ -30,7 +30,7 @@
     {#if properties}
       <Card color="danger" outline>
         <svelte:fragment slot="header">
-          {$_("component-page-template.props-title")}
+          {$_("componentPageTemplate.propsTitle")}
         </svelte:fragment>
         {#each properties as prop}
           <p>
@@ -44,7 +44,7 @@
     {#if events}
       <Card color="danger" outline>
         <svelte:fragment slot="header">
-          {$_("component-page-template.events-title")}
+          {$_("componentPageTemplate.eventsTitle")}
         </svelte:fragment>
         {#each events as event}
           <p>
@@ -60,7 +60,7 @@
     {#if slots}
       <Card color="danger" outline>
         <svelte:fragment slot="header">
-          {$_("component-page-template.slots-title")}
+          {$_("componentPageTemplate.slotsTitle")}
         </svelte:fragment>
         {#each slots as slot}
           <p>

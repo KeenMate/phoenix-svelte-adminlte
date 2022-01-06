@@ -102,7 +102,7 @@
   </svelte:fragment>
 </PageHeader>
 <div class="row">
-  <div class="col-5">
+  <div class="col-lg-5 col-md-12">
     <Card outline color="primary">
       <svelte:fragment slot="header">Tree</svelte:fragment>
       {#if showTree}
@@ -122,7 +122,7 @@
 
     </Card>
   </div>
-  <div class="col-3">
+  <div class="col-lg-3 col-md-12">
     <Card outline color="primary">
       <svelte:fragment slot="header">Tree options</svelte:fragment>
       <FormGroup>
@@ -182,7 +182,7 @@
       />
     </Card>
   </div>
-  <div class="col-4">
+  <div class="col-lg-4 col-md-12">
     <Card outline color="primary"
       ><svelte:fragment slot="header">Selected</svelte:fragment>
       <ul>

@@ -67,7 +67,7 @@
   </svelte:fragment>
 </PageHeader>
 <div class="row">
-  <div class:col-12={!selectedLanguage} class:col-3={selectedLanguage}>
+  <div class={selectedLanguage ? "col-lg-3 col-md-12": "col-12"}>
     <LocalesList
       expanded={!selectedLanguage}
       on:edit={({ detail: lang }) => {
@@ -75,7 +75,9 @@
       }}
     />
   </div>
-    <div class:col-9={selectedLanguage !== null} class:closed={selectedLanguage === null} >
+    
+  
+    <div class={selectedLanguage ?"col-lg-9 col-md-12" :"closed"} >
       <Card outline color="primary" headerClass="p-0 pt-1 border-bottom-0" noPadding={true} tabs> 
         <svelte:fragment slot="fullHeader">
           <Tabs>
@@ -104,6 +106,7 @@
         <div class="edit-container" bind:this={editorContainer} />
       </Card>
     </div>
+
 </div>
 
 <!-- <div class="row">

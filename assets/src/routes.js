@@ -25,6 +25,14 @@ export const ComponentsSubroutes = [
 
 export const Routes = [
   {
+    name: "ComponentsDetail",
+    title: "Components",
+    route: "/components/show/:code",
+    breadcrumb: ["Components"],
+    icon: "fas fa-file",
+    hide: true,
+  },
+  {
     name: "UserProfileInfo",
     title: "Profile Info",
     route: "/",
@@ -75,14 +83,7 @@ export const Routes = [
     nesting: true,
     subroutes: ComponentsSubroutes,
   },
-  {
-    name: "ComponentsDetail",
-    title: "Components",
-    route: "/components/show/:code",
-    breadcrumb: ["Components"],
-    icon: "fas fa-file",
-    hide: true,
-  },
+
 ];
 
 export const Urls = Routes.reduce((acc, x) => {

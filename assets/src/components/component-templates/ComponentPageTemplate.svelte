@@ -13,12 +13,12 @@
 </script>
 
 <div class="row col-12 ml-1 ">
-  <div class="col-8 scroll">
+  <div class="col-lg-8 col-md-12  scroll order-lg-0 order-md-1">
     <div class="row margin">
       <slot name="examples" />
     </div>
   </div>
-  <div class="col-4 pl-3">
+  <div class="col-lg-4 col-md-12 order-lg-1 order-md-0">
     {#if text}
       <Card color="danger" outline>
         <svelte:fragment slot="header">

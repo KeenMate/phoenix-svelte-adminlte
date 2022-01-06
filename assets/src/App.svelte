@@ -3,11 +3,9 @@
   import {get} from "svelte/store"
   import Router from "svelte-spa-router"
   import keymage from "keymage"
-
   import "./locale/i18n"
   import {locale} from "./locale/i18n"
   import routes, {Routes} from "./routes"
-
   import {
 	  login,
 	  isAuthenticated,
@@ -17,7 +15,6 @@
 	  appMountCallback,
 	  logout
   } from "./stores/authentication"
-
   import {
 	  TopNavigation,
 	  Sidebar,
@@ -28,21 +25,17 @@
 	  DropdownButton,
 	  DropdownMenu
   } from "svelte-adminlte"
-
-  import MessageLog from "./controls/modals/MessageLog.svelte"
+  import MessageLog from "./components/modals/MessageLog.svelte"
   import {initSocket} from "./providers/socket"
-  import SidebarNavTree from "./controls/SidebarNavTree.svelte"
-  import LocaleDropdown from "./components/LocaleDropdown.svelte"
-
+  import SidebarNavTree from "./components/SidebarNavTree.svelte"
+  import LocaleDropdown from "./components/localEditor/LocaleDropdown.svelte"
   onMount(() => {
 	  initSocket()
-
 	  keymage("ctrl-0", () => {
 		  console.log("opening logs")
 		  showLog()
 	  })
   })
-
   let loading = false
   let showLog
   let localeLanguage = ""
@@ -50,7 +43,6 @@
   setContext("loader", {
 	  setLoading: (val) => (loading = val)
   })
-
   onMount(appMountCallback)
 </script>
 

@@ -1,8 +1,8 @@
 import {init, getLocaleFromNavigator, locale, addMessages, json, register} from "svelte-i18n"
 
-import en from "./en.json"
-import cs from "./cs.json"
-import langs from "./langs.json"
+import en from "./locale-files/en.json"
+import cs from "./locale-files/cs.json"
+import langs from "./langs"
 import {registerLocaleLoader} from "svelte-i18n/types/runtime/includes/loaderQueue"
 
 

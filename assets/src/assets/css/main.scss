@@ -1,4 +1,4 @@
-@import "./variables";
+//@import "./variables";
 
 @import "../../../node_modules/bootstrap/scss/functions";
 @import "../../../node_modules/admin-lte/build/scss/bootstrap-variables";
@@ -19,7 +19,6 @@
 @import "../../../node_modules/@fortawesome/fontawesome-free/css/all.min.css";
 @import "../../../node_modules/toastr/build/toastr.min.css";
 
-
-*{
-  background-color: red;
+.selectContainer svg{
+  vertical-align: initial !important;
 }

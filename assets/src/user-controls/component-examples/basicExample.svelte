@@ -1,7 +1,6 @@
 <script>
-    import ComponentPageTemplate from "../controls/Components/ComponentPageTemplate.svelte";
-    import ComponentExampleTemplate from "../controls/Components/ComponentExampleTemplate.svelte";
-  
+      import ComponentPageTemplate from "../../../components/component-templates//ComponentPageTemplate.svelte";
+      import ComponentExampleTemplate from "../../../components/component-templates/ComponentExampleTemplate.svelte";
   
     let data = {
       text: "",

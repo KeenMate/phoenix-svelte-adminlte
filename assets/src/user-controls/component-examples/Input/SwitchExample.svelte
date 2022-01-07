@@ -146,20 +146,20 @@
       <TableCondensed>
         <svelte:fragment slot="headers">
           <tr>
-            <th>unchecked</th>
-            <th>checked</th>
-            <th>disabled</th>
-            <th>switch</th>
+            <th class="col-3">unchecked</th>
+            <th class="col-3">checked</th>
+            <th class="col-3">disabled</th>
+            <th class="col-3">switch</th>
           </tr>
         </svelte:fragment>
         <tr>
-          <td>
+          <td class="col-3">
             <SvelteSelect items={bgcolors} bind:value={uncheckedColor} />
           </td>
-          <td>
+          <td class="col-3">
             <SvelteSelect items={bgcolors} bind:value={checkedColor} />
           </td>
-          <td>
+          <td class="col-3">
             <SvelteSelect items={bgcolors} bind:value={disabledColor} />
           </td>
 
@@ -173,11 +173,11 @@
         </tr>
         {#each colors as color}
           <tr>
-            <td>{color.s}</td>
+            <td class="col-3">{color.s}</td>
 
-            <td>{color.f}</td>
-            <td>{color.d}</td>
-            <td>
+            <td class="col-3">{color.f}</td>
+            <td class="col-3">{color.d}</td>
+            <td class="col-3">
               <Switch checkedClass={color?.f} uncheckedClass={color?.s}  disabledClass={color?.d}/>
             </td>
           </tr>

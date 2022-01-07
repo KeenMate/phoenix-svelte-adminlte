@@ -1,8 +1,8 @@
 import "admin-lte/build/scss/adminlte.scss";
 import "toastr/build/toastr.css";
-
 import "bootstrap/dist/js/bootstrap.bundle";
 import "admin-lte/dist/js/adminlte";
+import "./assets/css/main.scss"
 
 import App from "./App.svelte"
 import Error from "./Error.svelte"

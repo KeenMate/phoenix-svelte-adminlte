@@ -26,6 +26,8 @@
     import ModalExample from "./Structure/ModalExample.svelte"
     import PageHeaderExample from "./Structure/PageHeaderExample.svelte";
     import OneColumnNarrowExample from "./Structure/OneColumnNarrowExample.svelte"
+//! navigation
+    import DropdownExample from "./Navigation/DropdownExample.svelte"
     
     
 export const components = [
@@ -81,6 +83,10 @@ export const components = [
         description:"Page header with title and breadcrumbs"},
     {name:"OneColumnNarrow", code:"one-column-narrow", component: OneColumnNarrowExample,category: "Structure", 
         description:"One Column Narrow"},
+
+//! navigation
+    {name:"Dropdown", code:"dropdown", component: DropdownExample,category: "Navigation", 
+        description:"NOT WORKING Dropdown menu for navigation"},
 ] 
 
-export const categories = ["Structure","Input","Form"]
+export const categories = ["Structure","Input","Form","Navigation"]

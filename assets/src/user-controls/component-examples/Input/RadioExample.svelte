@@ -63,13 +63,13 @@
       <TableCondensed>
         <svelte:fragment slot="headers">
           <tr>
-            <th>color</th>
-            <th>radio</th>
+            <th class="col-6">color</th>
+            <th class="col-6">radio</th>
           </tr>
         </svelte:fragment>
         <tr>
-          <td><SvelteSelect items={levels} bind:value={color} /></td>
-          <td>
+          <td class="col-6"><SvelteSelect items={levels} bind:value={color} /></td>
+          <td class="col-6">
             <Radio level={color?.value || ""} id="radio-example">
               <Label inputId="radio-example">{color?.value || "Not selected"}</Label>
             </Radio>
@@ -77,8 +77,8 @@
         </tr>
         {#each levels as l}
           <tr>
-            <td>{l}</td>
-            <td>
+            <td class="col-6">{l}</td>
+            <td class="col-6">
               <Radio level={l} id={l}>
                 <Label inputId={l}>{l}</Label>
               </Radio>

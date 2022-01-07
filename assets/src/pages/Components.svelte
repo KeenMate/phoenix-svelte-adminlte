@@ -7,6 +7,9 @@
   import { components, categories } from "../user-controls/component-examples/components";
   import ComponentList from "../components/component-templates/ComponentList.svelte";
   import SvelteMarkdown from "svelte-markdown";
+import Card from "../../../../svelte-adminlte/src/structure/Card.svelte";
+import { text } from "svelte/internal";
+
 
   let componentInfo = null;
   let category = null;
@@ -80,6 +83,9 @@
     {#if componentInfo}
       <svelte:component this={componentInfo.component} />
     {:else}
+      <Card color="red" outline>
+        <SvelteMarkdown source={$_("components.text")} ></SvelteMarkdown>
+      </Card>
       <ComponentList {category} />
     {/if}
   </div>

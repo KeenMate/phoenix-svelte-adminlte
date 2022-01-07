@@ -99,7 +99,7 @@
 <PageHeader>Top cars <small>Let the world know!</small></PageHeader>
 
 <div class="row">
-  <div class="col-lg-6 col-md-12 order-md-1">
+  <div class="col-lg-9 col-md-12 order-md-1 order-lg-0">
     <Card outline color="primary">
       <svelte:fragment slot="header">Favorite cars</svelte:fragment>
 
@@ -128,7 +128,7 @@
       </div>
     </Card>
   </div>
-  <div class="col-lg-6 col-md-12 order-md-0">
+  <div class="col-lg-3 col-md-12 order-md-0 order-lg-1">
     <Card>
       <svelte:fragment slot="header">Current order</svelte:fragment>
 

@@ -8,6 +8,7 @@ import copy from "rollup-plugin-copy"
 import sveltePreprocess from "svelte-preprocess";
 import dotenv from "rollup-plugin-dotenv";
 import json from '@rollup/plugin-json';
+import analyze from 'rollup-plugin-analyzer'
 
 const production = process.env.MIX_ENV === "prod";
 
@@ -65,11 +66,12 @@ export default {
 		copy({
 			targets: [
 				{ src: "static/*", dest: "../priv/static" },
-				{ src: "node_modules/jsoneditor/dist/img/jsoneditor-icons.svg", dest: "../priv/static/img" }
+				{ src: "node_modules/jsoneditor/dist/img/jsoneditor-icons.svg", dest: "../priv/static/img" },
 				// {src: "src/assets/*", dest: "public"}
 				// { src: "public/admin-app/index.html", dest: "./public" }
 			]
 		}),
+		analyze({summaryOnly: true,limit: 10})
 	],
 	watch: {
 		clearScreen: true

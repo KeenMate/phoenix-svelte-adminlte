@@ -1,14 +1,12 @@
 <script>
   import { _ } from "svelte-i18n";
   import { replace } from "svelte-spa-router";
-  import { PageHeader, BreadcrumbItem, LteButton } from "svelte-adminlte";
+  import { PageHeader, BreadcrumbItem, LteButton,Card } from "svelte-adminlte";
   import github from "svelte-highlight/src/styles/github";
 
   import { components, categories } from "../user-controls/component-examples/components";
   import ComponentList from "../components/component-templates/ComponentList.svelte";
   import SvelteMarkdown from "svelte-markdown";
-import Card from "../../../../svelte-adminlte/src/structure/Card.svelte";
-import { text } from "svelte/internal";
 
 
   let componentInfo = null;

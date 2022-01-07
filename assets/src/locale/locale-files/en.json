@@ -19,6 +19,7 @@
     "textTitle": "Description"
   },
   "components": {
+    "text": "",
     "title": "Components"
   },
   "home": {
@@ -54,6 +55,10 @@
         "title": "Locales saved"
       }
     }
+  },
+  "route1": {
+    "welcomeHeader": "",
+    "welcomeText": ""
   },
   "tree": {
     "title": "Tree"

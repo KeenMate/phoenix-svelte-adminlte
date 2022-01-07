@@ -25,6 +25,15 @@ export const ComponentsSubroutes = [
 
 export const Routes = [
   {
+    name: "Components",
+    title: "Components",
+    route: '/components/:category?',
+    breadcrumb: ["Components"],
+    icon: "fas fa-file",
+    nesting: true,
+    subroutes: ComponentsSubroutes,
+  },
+  {
     name: "ComponentsDetail",
     title: "Components",
     route: "/components/show/:code",
@@ -74,15 +83,7 @@ export const Routes = [
     breadcrumb: ["Locale editor"],
     icon: "fas fa-language",
   },
-  {
-    name: "Components",
-    title: "Components",
-    route: '/components/:category?',
-    breadcrumb: ["Components"],
-    icon: "fas fa-file",
-    nesting: true,
-    subroutes: ComponentsSubroutes,
-  },
+
 
 ];
 
@@ -107,6 +108,7 @@ export function getRoute(name){
 }
 
 export default {
+  [Urls.ComponentsDetail]: Components,
   [Urls.UserProfileInfo]: Route1,
   [Urls.Users]: Users,
   [Urls.Tree]: Tree,
@@ -114,7 +116,6 @@ export default {
   [Urls.Error]: Error,
   [Urls.Locale]: LocaleEditor,
   [Urls.Components]: Components,
-  [Urls.ComponentsDetail]: Components,
   // The catch-all route must always be last
   "*": NotFound,
 };

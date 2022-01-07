@@ -25,6 +25,11 @@
   } from "../locale/i18n";
   import { optional } from "zod";
 
+//   import('jsoneditor').then(module => {
+//   const JSONEditor = module.default
+//   console.log(JSONEditor)
+// })
+
   let editorContainer;
   let json;
   let selectedLanguage = null;

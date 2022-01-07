@@ -19,6 +19,7 @@
     "textTitle": "Popisek"
   },
   "components": {
+    "text": "",
     "title": "Komponenty"
   },
   "home": {
@@ -54,6 +55,10 @@
         "title": "Localy ulozeny"
       }
     }
+  },
+  "route1": {
+    "welcomeHeader": "",
+    "welcomeText": ""
   },
   "tree": {
     "title": "Strom"

@@ -12,7 +12,6 @@ export const languages = langs
 let locales = {"cs": cs, "en": en}
 initialize()
 
-console.log(cs)
 
 function initialize() {
 	langs.forEach((lang) => {

@@ -54,7 +54,15 @@
 				<DropdownButton>Pages</DropdownButton>
 
 				<DropdownMenu>
-					<DropdownItem href="#/list">List</DropdownItem>
+					{#each Routes as route}
+					{#if !route.hide}
+					<DropdownItem href={route.route}>{route.title}</DropdownItem>
+
+					
+					{/if}
+					
+					{/each}
+
 				</DropdownMenu>
 			</Dropdown>
 		</svelte:fragment>

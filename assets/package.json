@@ -19,7 +19,7 @@
     "@rollup/plugin-replace": "^2.4.1",
     "@shopify/draggable": "^1.0.0-beta.10",
     "@web/rollup-plugin-html": "^1.10.1",
-    "admin-lte": "^3.1.0",
+    "admin-lte": "^3.0.5",
     "autoprefixer": "^10.4.0",
     "bootstrap": "^4.6.1",
     "CBuffer": "^2.2.0",

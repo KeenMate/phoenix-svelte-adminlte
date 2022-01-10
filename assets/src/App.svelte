@@ -56,7 +56,7 @@
 				<DropdownMenu>
 					{#each Routes as route}
 					{#if !route.hide}
-					<DropdownItem href={route.route}>{route.title}</DropdownItem>
+					<DropdownItem href={"#"+route.route}>{route.title}</DropdownItem>
 
 					
 					{/if}

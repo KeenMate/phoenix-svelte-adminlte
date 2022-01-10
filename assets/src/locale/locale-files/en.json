@@ -1,6 +1,9 @@
 {
   "0": {
   },
+  "List": {
+    "text": "More info in [Components](#/components/show/dragable-container)"
+  },
   "componentList": {
     "all": "All",
     "cardTitle": "Click to view documentation",

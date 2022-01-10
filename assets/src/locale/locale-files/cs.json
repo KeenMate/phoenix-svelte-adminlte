@@ -1,6 +1,9 @@
 {
   "0": {
   },
+  "List": {
+    "text": "Vice informaci na [Components](#/components/show/dragable-container)"
+  },
   "componentList": {
     "all": "Vše",
     "cardTitle": "Klikněte pro zobrazeni dokumentace",

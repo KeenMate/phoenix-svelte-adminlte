@@ -53,7 +53,7 @@
     "sortablejs": "^1.14.0",
     "superstruct": "^0.15.3",
     "svelte": "^3.44.3",
-    "svelte-adminlte": "github:KeenMate/svelte-adminlte#main",
+    "svelte-adminlte": "github:KeenMate/svelte-adminlte#dev",
     "svelte-highlight": "^5.1.4",
     "svelte-i18n": "^3.3.13",
     "svelte-preprocess": "^4.10.1",

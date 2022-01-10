@@ -18,7 +18,7 @@ function initialize() {
 		let lc = localStorage.getItem(lang.code + "-locale")
 		if (lc != null) {
 			console.log("loading from ls" + lang.code)
-			notification.warning(lang.title +" ("+lang.code+") loaded from memory");
+			notification.warning(lang.title +" ("+lang.code+") loaded from memory","WARNING",{timeOut: 3000});
 			addMessages(lang.code, JSON.parse(lc))
 			locales[lang.code] = JSON.parse(lc)
 		} else {

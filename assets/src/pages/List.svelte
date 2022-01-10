@@ -3,8 +3,15 @@
   import { Sortable, MultiDrag } from "sortablejs";
   import { onMount } from "svelte";
   import { _ } from "svelte-i18n";
-  import { Card, Callout, LteButton, PageHeader } from "svelte-adminlte";
+  import {
+    Card,
+    Callout,
+    LteButton,
+    PageHeader,
+    DragableContainer,
+  } from "svelte-adminlte";
   import CreateCarModal from "../components/list/CreateCarModal.svelte";
+  import { bind } from "svelte/internal";
 
   const initialItems = [
     {
@@ -86,7 +93,12 @@
     let maxIndexItem = maxBy(items, "id");
 
     let newItemIndex = maxIndexItem ? maxIndexItem.id + 1 : 0;
-    items.push({ id: newItemIndex, manufacturer: car.manufacturer, model: car.model, year: car.year });
+    items.push({
+      id: newItemIndex,
+      manufacturer: car.manufacturer,
+      model: car.model,
+      year: car.year,
+    });
 
     items = items;
     order = order;
@@ -103,29 +115,22 @@
     <Card outline color="primary">
       <svelte:fragment slot="header">Favorite cars</svelte:fragment>
 
-      <LteButton slot="tools" color="success" small on:click={() => showCreateCar()}>
+      <LteButton
+        slot="tools"
+        color="success"
+        small
+        on:click={() => showCreateCar()}
+      >
         <i class="fas fa-plus" />
       </LteButton>
 
-      <div bind:this={listElement} id="draggable-list">
-        {#each items as item}
-          <div data-id={item.id} class="draggable-callout">
-            <Callout color="info">
-              <div class="d-inline-flex">
-                <div class="draggable-handle text-muted mr-3 align-self-center">
-                  <i class="fas fa-grip-vertical" />
-                </div>
-
-                <div class="col-12">
-                  <div class="row">Manufacturer: {item.manufacturer}</div>
-                  <div class="row">Model: {item.model}</div>
-                  <div class="row">Year: {item.year || "all"}</div>
-                </div>
-              </div>
-            </Callout>
-          </div>
-        {/each}
-      </div>
+      <DragableContainer bind:listElement bind:items>
+        <svelte:fragment let:item = {item}>
+          <div class="row">Manufacturer: {item.manufacturer}</div>
+          <div class="row">Model: {item.model}</div>
+          <div class="row">Year: {item.year || "all"}</div>
+        </svelte:fragment>
+      </DragableContainer>
     </Card>
   </div>
   <div class="col-lg-3 col-md-12 order-md-0 order-lg-1">
@@ -140,7 +145,10 @@
     </Card>
   </div>
 
-  <CreateCarModal bind:openModal={showCreateCar} on:add={({ detail: car }) => addCar(car)} />
+  <CreateCarModal
+    bind:openModal={showCreateCar}
+    on:add={({ detail: car }) => addCar(car)}
+  />
 </div>
 
 <style lang="scss">

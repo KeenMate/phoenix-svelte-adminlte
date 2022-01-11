@@ -6,7 +6,7 @@
   
     export const data = {
       name: "DateRangePicker",
-      text: "DateRangePicker is litePicker wrapped in svelte for easier usage.For single date use [DatePicker](#/components/show/date-picker)",
+      text: "DateRangePicker is [litePicker](https://litepicker.com/) wrapped in svelte for easier usage.For single date see [DatePicker](#/components/show/date-picker)",
       props: [
         { name: "inputElement", type: "HTMLElement", comment: "Bind the datepicker to a element. Also is possible to bind to any element (not input) for example you need inline calendar." },
         { name: "startDate", type: "Date | Number | String", comment: "Preselect date.If option singleMode is disabled then endDate must be set too." },
@@ -18,6 +18,13 @@
         { name: "disabled", type: "bool", comment: "" },
         { name: "visibleMonths", type: "Number", comment: "Number of visible months." },
         { name: "columns", type: "Number", comment: "Number of columns months." },
+        { name: "....", type: "", comment: "Rest of properties can be found at [litepicker.com/docs/options](https://litepicker.com/docs/options)" },
+        ],
+      events:[
+        {name:"selected",comment:"Event is called when selection is submitted.", params:"{start: startDate, end: endDate}"},
+        {name:"show",comment:"Event is called after show.", params:"ui (root element of picker)"},
+        {name:"render",comment:"Event is called after render function.", params:"el (triggered element)"},
+        {name:"apply",comment:"Event is called after click on button apply (footer).", params:"{start: startDate, end: endDate}"},
         ],
       examples: {
         minimal: {
@@ -78,4 +85,3 @@
     </ComponentExampleTemplate>
     </svelte:fragment></ComponentPageTemplate
   >
-  

@@ -35,7 +35,9 @@
         {#each properties as prop}
           <p>
             <b>{prop.name}</b>
+            {#if prop.type}
             [{prop.type}]
+            {/if}
             <br /><i><SvelteMarkdown source={prop.comment}/></i>
           </p>
         {/each}

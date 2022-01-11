@@ -6,7 +6,7 @@
 
   let data = {
     name: "DatePicker",
-    text: "[DateRangePicker](#/components/show/date-range-picekr) in single date mode",
+    text: "[DateRangePicker](#/components/show/date-range-picker) in single date mode. **Props and event are same as in [DateRangePicker](#/components/show/date-range-picker). You can see them there.**",
     props: [
       {
         name: "inputElement",
@@ -90,8 +90,6 @@
 
 <ComponentPageTemplate
   text={data.text}
-  properties={data.props}
-  events={data.events}
 >
   <svelte:fragment slot="examples">
     <ComponentExampleTemplate

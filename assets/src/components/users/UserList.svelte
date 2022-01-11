@@ -109,10 +109,10 @@
   </div>
 
   <div class="row">
-    <div class="col-5">
+    <div class="col-xl-5 col-lg-12">
       <div class="table-status">Showing 1 to 10 of 57 entries</div>
     </div>
-    <div class="col-7">
+    <div class="col-xl-7 col-lg-12">
       <Pagination
         class="justify-content-end"
         {page}
@@ -141,8 +141,9 @@
       thead,
       tbody,
       * > tr {
-        display: contents;
+        display: contents; 
       }
     }
+
   }
 </style>

@@ -71,7 +71,7 @@ export default {
 				// { src: "public/admin-app/index.html", dest: "./public" }
 			]
 		}),
-		analyze({summaryOnly: true,limit: 10})
+		//analyze({summaryOnly: true,limit: 10})
 	],
 	watch: {
 		clearScreen: true

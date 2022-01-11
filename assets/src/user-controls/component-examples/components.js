@@ -14,7 +14,6 @@
     import SwitchExample from "./Input/SwitchExample.svelte"
     import TextareaExample from "./Input/TextareaExample.svelte"
     import UploadModalExample from "./Input/UploadModalExample.svelte"
-    import PhoneFieldExample from "./Input/PhoneFieldExample.svelte"
 //! form
     import FormExamle from "./Form/FormExample.svelte"
     import FormGroupExamle from "./Form/FormGroupExample.svelte"

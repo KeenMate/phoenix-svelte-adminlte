@@ -60,13 +60,11 @@
         <TextInput bind:value={b} id="inputId" name="inputName" placeholder="Type something..."/>
         {b}
       </ComponentExampleTemplate>
-<!--       <ComponentExampleTemplate
+      <ComponentExampleTemplate
         code={data.examples.pattern.code}
         name={data.examples.pattern.name}>
-        <TextInput bind:value={c} id="inputId" name="inputName" placeholder="Type 3 letter countrycode..." />
-            INPUT MASK DOESNT WORK IDK WHY 
-          error in console wrong mask maybe inputMask="(99) 9999[9]-9999"
-      </ComponentExampleTemplate> -->
+        <TextInput bind:value={c} id="inputId" name="inputName" placeholder="Type 3 letter countrycode..." inputMask="'mask': '99-9999999'" />
+      </ComponentExampleTemplate>
     </svelte:fragment></ComponentPageTemplate
   >
   

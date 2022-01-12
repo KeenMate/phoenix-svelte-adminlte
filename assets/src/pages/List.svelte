@@ -8,7 +8,7 @@
     Callout,
     LteButton,
     PageHeader,
-    DragableContainer,
+    DraggableContainer,
   } from "svelte-adminlte";
   import CreateCarModal from "../components/list/CreateCarModal.svelte";
   import { bind } from "svelte/internal";
@@ -124,13 +124,13 @@
         <i class="fas fa-plus" />
       </LteButton>
 
-      <DragableContainer bind:listElement bind:items>
+      <DraggableContainer bind:listElement bind:items>
         <svelte:fragment let:item = {item}>
           <div class="row">Manufacturer: {item.manufacturer}</div>
           <div class="row">Model: {item.model}</div>
           <div class="row">Year: {item.year || "all"}</div>
         </svelte:fragment>
-      </DragableContainer>
+      </DraggableContainer>
     </Card>
   </div>
   <div class="col-lg-3 col-md-12 order-md-0 order-lg-1">

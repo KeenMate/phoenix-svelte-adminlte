@@ -2,7 +2,7 @@
   import ComponentPageTemplate from "../../../components/component-templates/ComponentPageTemplate.svelte";
   import ComponentExampleTemplate from "../../../components/component-templates/ComponentExampleTemplate.svelte";
 
-  import { Textarea, TextInput, InputGroup } from "svelte-adminlte";
+  import { Textarea, TextInput, InputGroup,Label } from "svelte-adminlte";
   let data = {
     name: "",
     text: "",
@@ -39,6 +39,9 @@
         name: "Border color based on value length",
         code: '<Textarea\r\n  bind:value = {value5}\r\n  id="textarea"\r\n  name="textare"\r\n  placeholder="start typing.."\r\n  class={border}\r\n/>',
       },
+      sizes:{
+        name:"Sizes"
+      }
     },
   };
 
@@ -125,6 +128,17 @@
         placeholder="start typing.."
         class={border}
       />
-    </ComponentExampleTemplate>
+    </ComponentExampleTemplate>    
+    <ComponentExampleTemplate
+    name={data.examples.sizes.name}
+    exampleOnly
+  >
+    <Label>sm</Label>
+    <Textarea size="sm" placeholder={"size=\"sm\""} />
+    <Label>md</Label> 
+    <Textarea size="md" placeholder={"size=\"md\""}/>
+    <Label>lg</Label>
+    <Textarea size="lg" placeholder={"size=\"lg\""} />
+  </ComponentExampleTemplate>
   </svelte:fragment></ComponentPageTemplate
 >

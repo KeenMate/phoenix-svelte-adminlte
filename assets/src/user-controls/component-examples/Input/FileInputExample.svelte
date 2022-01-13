@@ -116,16 +116,5 @@
         </TableCondensed>
       {/if}
     </ComponentExampleTemplate>
-    <ComponentExampleTemplate
-    name={data.examples.sizes.name}
-    exampleOnly
-  >
-    <Label>sm</Label>
-    <FileInput size="sm" placeholder={"size=\"sm\""} />
-    <Label>md</Label> 
-    <FileInput size="md" placeholder={"size=\"md\""}/>
-    <Label>lg</Label>
-    <FileInput size="lg" placeholder={"size=\"lg\""} />
-  </ComponentExampleTemplate>
   </svelte:fragment></ComponentPageTemplate
 >

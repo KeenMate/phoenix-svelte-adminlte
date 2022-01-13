@@ -31,6 +31,9 @@
         name: "basic usage",
         code: '<FormGroup>\r\n        <Label inputId="name">label:</Label>\r\n        <EmailInput bind:value={value} name="name" id="name" placeholder="type something.."/>\r\n</FormGroup>',
       },
+      sizes:{
+        name:"Sizes"
+      }
     },
   };
 

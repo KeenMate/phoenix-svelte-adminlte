@@ -2,7 +2,7 @@
   import ComponentPageTemplate from "../../../components/component-templates/ComponentPageTemplate.svelte";
   import ComponentExampleTemplate from "../../../components/component-templates/ComponentExampleTemplate.svelte";
 
-  import { FileInput, TableCondensed } from "svelte-adminlte";
+  import { FileInput, TableCondensed,Label } from "svelte-adminlte";
 
   let data = {
     name: "FileInput",
@@ -38,6 +38,9 @@
         name: "Multiple file upload",
         code: '<FileInput\r\n  on:input={(e) => {\r\n    files = e.detail;\r\n  }}\r\n  id="fileupload"\r\n  name="fileupload"\r\n  multiple\r\n  >{files && files.length\r\n    ? files.length + " files selected"\r\n    : "click to upload files..."}</FileInput\r\n>\r\n{#if files && files.length > 0}\r\n  <TableCondensed>\r\n    <svelte:fragment slot="headers"\r\n      ><tr>\r\n        <th>Name</th>\r\n        <th>Size</th>\r\n      </tr></svelte:fragment>\r\n      {#each files as f}\r\n          <tr>\r\n            <td>{f.name}</td>\r\n            <td>{displaySize(f.size)}kb</td>\r\n          </tr>\r\n      {/each}\r\n  </TableCondensed>\r\n{/if}',
       },
+      sizes:{
+        name: "Sizes"
+      }
     },
   };
 
@@ -113,5 +116,16 @@
         </TableCondensed>
       {/if}
     </ComponentExampleTemplate>
+    <ComponentExampleTemplate
+    name={data.examples.sizes.name}
+    exampleOnly
+  >
+    <Label>sm</Label>
+    <FileInput size="sm" placeholder={"size=\"sm\""} />
+    <Label>md</Label> 
+    <FileInput size="md" placeholder={"size=\"md\""}/>
+    <Label>lg</Label>
+    <FileInput size="lg" placeholder={"size=\"lg\""} />
+  </ComponentExampleTemplate>
   </svelte:fragment></ComponentPageTemplate
 >

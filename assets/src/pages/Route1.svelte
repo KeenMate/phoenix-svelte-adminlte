@@ -1,6 +1,6 @@
 <script>
   import { userInfo } from "../stores/authentication";
-  import { LteButton, Card, PageHeader } from "svelte-adminlte";
+  import { LteButton, Card, PageHeader,BreadcrumbItem } from "svelte-adminlte";
   import { getConfig, setConfig } from "svelte-adminlte";
   import { _ } from "svelte-i18n";
   import notification from "../providers/notificationProvider";
@@ -11,6 +11,9 @@
 
 <PageHeader>
   {$_("home.title")}
+  <svelte:fragment slot="breadcrumbs">
+    <BreadcrumbItem><a href="#/">{$_("home.title")}</a></BreadcrumbItem>
+  </svelte:fragment>
 </PageHeader>
 <div class="row">
   <div class="col-12">

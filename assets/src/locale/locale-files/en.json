@@ -32,6 +32,9 @@
   "i18n": {
     "savedLocales": "{locale} is loaded from locale storage ."
   },
+  "list": {
+    "title": "List"
+  },
   "localeEditor": {
     "edit": "Edit",
     "title": "locale editor"

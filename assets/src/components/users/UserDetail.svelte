@@ -37,7 +37,7 @@
 <Card outline tabs {loading} color="primary" headerClass="p-0 pt-1 border-bottom-0">
   <svelte:fragment slot="fullHeader">
     <Tabs>
-      <li class="pt-2 px-3"><h3 class="cardTitle">Detail</h3></li>
+      <li class="pt-2 px-3"><h5 class="cardTitle">Detail</h5></li>
       <TabItem active={currentTab === "profile"} on:click={() => (currentTab = "profile")}>Profile</TabItem>
       <TabItem active={currentTab === "orders"} on:click={() => (currentTab = "orders")}>Orders</TabItem>
       <div class="card-tools pull-right ml-auto">

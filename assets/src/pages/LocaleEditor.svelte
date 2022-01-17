@@ -87,7 +87,7 @@
         <svelte:fragment slot="fullHeader">
           <Tabs>
             <li class="pt-2 px-3">
-              <h3 class="cardTitle">{selectedLanguage}</h3>
+              <h5 class="cardTitle">{selectedLanguage}</h5>
             </li>
             <!-- <TabItem active={true} >{$_("localeEditor.edit")}</TabItem> -->
             <div class="card-tools pull-right ml-auto">

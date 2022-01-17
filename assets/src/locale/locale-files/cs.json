@@ -32,6 +32,9 @@
   "i18n": {
     "savedLocales": "{locale} je načteno z úložiště ."
   },
+  "list": {
+    "title": "Seznam"
+  },
   "localeEditor": {
     "edit": "Upravit",
     "title": "Editor Localů"

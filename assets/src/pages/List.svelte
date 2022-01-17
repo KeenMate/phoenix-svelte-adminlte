@@ -9,6 +9,7 @@
     LteButton,
     PageHeader,
     DraggableContainer,
+    BreadcrumbItem
   } from "svelte-adminlte";
   import CreateCarModal from "../components/list/CreateCarModal.svelte";
   import { bind } from "svelte/internal";
@@ -108,7 +109,12 @@
 <!-- Favorite cars (top 5) - manufacturer, model -->
 <!-- Add, remove, edit functionality-->
 
-<PageHeader>Top cars <small>Let the world know!</small></PageHeader>
+<PageHeader>{$_("list.title")} <small>Change order</small>
+  <svelte:fragment slot="breadcrumbs">
+    <BreadcrumbItem><a href="#/">{$_("home.title")}</a></BreadcrumbItem>
+    <BreadcrumbItem active>{$_("list.title")}</BreadcrumbItem>
+  </svelte:fragment>
+</PageHeader>
 
 <div class="row">
   <div class="col-lg-9 col-md-12 order-md-1 order-lg-0">

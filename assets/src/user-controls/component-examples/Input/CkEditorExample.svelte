@@ -7,7 +7,7 @@
   
     let data = {
       name: "CkEditor",
-      text: "CkEditor from [ckeditor.com](https://ckeditor.com/) wraped inside svelte component for easier use.If you want to bind it contents of editor, cant just bind value to your variable and insted you have to use input event with combination to value. It uses html with style to format. **You can only use one editor at the time, or it doesnt work**",
+      text: "CkEditor from [ckeditor.com](https://ckeditor.com/) wraped inside svelte component for easier use.If you want to bind it contents of editor, cant just bind value to your variable and instead you have to use input event with combination to value. It uses html with style to format. **You can only use one editor at the time, or it doesnt work**",
       props: [
         { name: "id", type: "string", comment: "You have to set this if you want to use more than one ckeditor per page" },
         { name: "value", type: "string", comment: "Content of editor only one way data flow(to component)." },

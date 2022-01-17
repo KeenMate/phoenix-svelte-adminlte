@@ -46,6 +46,10 @@
       }
     );
   }
+
+  function onDelete(user) {
+    
+  }
 </script>
 
 <Card {loading} outline color="primary">

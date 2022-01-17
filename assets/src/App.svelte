@@ -111,7 +111,7 @@
 						</svelte:fragment>
 					</SidebarNavTree>
 				{:else}
-					<SidebarNavItem icon={route.icon} href="#{route.route}">
+					<SidebarNavItem icon={route.icon} href="#{route.route}" >
 						<p>{route.title}</p>
 					</SidebarNavItem>
 				{/if}

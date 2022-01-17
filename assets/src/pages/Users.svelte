@@ -21,11 +21,11 @@
 </PageHeader>
 
 <div class="row">
-  <div class={selectedUserId?" col-lg-6 col-md-12 order-md-1 order-lg-1 ": " col-12 "}>
+  <div class={selectedUserId?" col-lg-6 col-md-12 ": " col-12 "}>
     <UserList expanded={!selectedUserId} on:edit={({ detail: userId }) => (selectedUserId = userId)} />
   </div>
   {#if selectedUserId}
-    <div class="col-lg-6 col-md-12 order-md-0 order-lg-1">
+    <div class="col-lg-6 col-md-12">
       <UserDetail userId={selectedUserId} on:close={() => (selectedUserId = null)} />
     </div>
   {/if}

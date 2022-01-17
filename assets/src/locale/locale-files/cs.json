@@ -22,7 +22,7 @@
     "textTitle": "Popisek"
   },
   "components": {
-    "text": "",
+    "text": "Kliknete na jmena pro zobrazeni dokumentace pro konkretni componenty",
     "title": "Komponenty"
   },
   "home": {
@@ -60,8 +60,8 @@
     }
   },
   "route1": {
-    "welcomeHeader": "",
-    "welcomeText": ""
+    "welcomeHeader": "Vitejte",
+    "welcomeText": "Jdete do  [Componets](#/components) pokud chcete videt dokumentaci pro jednotlive komponenty."
   },
   "tree": {
     "title": "Strom"

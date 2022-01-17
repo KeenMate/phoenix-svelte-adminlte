@@ -22,7 +22,7 @@
     "textTitle": "Description"
   },
   "components": {
-    "text": "",
+    "text": "Click on names to see examples and documentation for particular component.",
     "title": "Components"
   },
   "home": {
@@ -60,8 +60,8 @@
     }
   },
   "route1": {
-    "welcomeHeader": "",
-    "welcomeText": ""
+    "welcomeHeader": "Welcome",
+    "welcomeText": "Go to [Componets](#/components)if you want to  see documentation for individual components."
   },
   "tree": {
     "title": "Tree"

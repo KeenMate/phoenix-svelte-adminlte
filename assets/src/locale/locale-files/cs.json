@@ -1,18 +1,22 @@
 {
-  "0": {
+  "pages": {
+    "home": {
+      "navtitle": ""
+    }
   },
+  
   "List": {
-    "text": "Vice informaci na [Components](#/components/show/dragable-container)"
+    "text": "Více informaci na [Komponenty](#/components/show/dragable-container)"
   },
   "componentList": {
     "all": "Vše",
-    "cardTitle": "Klikněte pro zobrazeni dokumentace",
+    "cardTitle": "Klikněte pro zobrazení dokumentace",
     "categories": "Kategorie",
     "description": "Popisek",
     "name": "Jméno",
     "notFound": {
-      "text": "Zkuste zmenit, nebo smazat text",
-      "title": "Žádne komponenty nenelezeny"
+      "text": "Zkuste změnit nebo smazat text",
+      "title": "Žádné komponenty nenalezeny"
     }
   },
   "componentPageTemplate": {
@@ -22,7 +26,7 @@
     "textTitle": "Popisek"
   },
   "components": {
-    "text": "Kliknete na jmena pro zobrazeni dokumentace pro konkretni componenty",
+    "text": "Klikněte na jména pro zobrazení dokumentace pro konkrétní komponenty",
     "title": "Komponenty"
   },
   "home": {
@@ -30,46 +34,46 @@
     "title": "Domov"
   },
   "i18n": {
-    "savedLocales": "{locale} je načteno z úložiště ."
+    "savedLocales": "{locale} je načteno z lokálního úložiště"
   },
   "list": {
     "title": "Seznam"
   },
   "localeEditor": {
     "edit": "Upravit",
-    "title": "Editor Localů"
+    "title": "Editor překladů"
   },
   "localesList": {
-    "cardTitle": "Klickněte na localu pro upraveni",
+    "cardTitle": "Klikněte na název jazyk pro lokální úpravu",
     "code": "Kód",
     "flag": "Vlajka",
     "language": "Jazyk"
   },
   "notFound": {
-    "header": "Stranka nenalezena",
-    "link": "Vratit se na domovskou stranku"
+    "header": "Stránka nenalezena",
+    "link": "Vrátit se na domovskou stránku"
   },
   "notifications": {
     "componentExampleTemplate": {
       "copied": {
-        "message": "Kod zkopirovan to schranky"
+        "message": "Kod zkopírován to schránky"
       }
     },
     "localeEditor": {
       "saved": {
-        "message": "Localy pro {locale} byly uspěšně uloženy do LocalStorage.",
-        "title": "Localy ulozeny"
+        "message": "Překlady pro {locale} byly úspěšně uloženy do Session Storage.",
+        "title": "Překlady uloženy"
       }
     }
   },
   "route1": {
-    "welcomeHeader": "Vitejte",
-    "welcomeText": "Jdete do  [Componets](#/components) pokud chcete videt dokumentaci pro jednotlive komponenty."
+    "welcomeHeader": "Vítejte v demo projektu [svelte-adminlte](https://github.com/keenmate/svelte-adminlte) komponent",
+    "welcomeText": "## Komponenty\r\n  Pro zobrazení přehledu všech komponent jdete na stránku [Komponenty](#/components). Jednotlivé komponenty obsahují jak ukázku použití, tak i základní dokumentaci \r\n  ## Demo stránky \r\nOstatní odkazy v levém menu slouží jako ukázka reálného použítí jednotlivých komponent"
   },
   "tree": {
-    "title": "Strom"
+    "title": "Strom hrdinů"
   },
   "users": {
-    "title": "Uživatelé"
+    "title": "Přehled uživatelů"
   }
 }

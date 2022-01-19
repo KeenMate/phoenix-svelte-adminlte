@@ -21,10 +21,16 @@
 
 @import "../../../node_modules/icheck-bootstrap/icheck-bootstrap.min.css";
 
+@import "./fonts.scss";
+
 .selectContainer svg{
   vertical-align: initial;
 }
 
 .sidebar {
   overflow-x: hidden !important;
+}
+
+.minWidth{
+ min-width: 10rem;
 }

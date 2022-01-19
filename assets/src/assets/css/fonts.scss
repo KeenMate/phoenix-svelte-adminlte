@@ -1,0 +1,412 @@
+//!Report
+@font-face {
+  font-family: 'Report';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Report'), url('https://fonts.cdnfonts.com/s/72028/ReportRg Regular.woff') format('woff');
+}
+@font-face {
+  font-family: 'Report';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Report'), url('https://fonts.cdnfonts.com/s/72028/ReportRg Bold.woff') format('woff');
+}
+
+//!Assailand
+@font-face {
+  font-family: 'Assailand';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Assailand'), url('https://fonts.cdnfonts.com/s/31982/hinted-Assailand.woff') format('woff');
+}
+@font-face {
+  font-family: 'Assailand';
+  font-style: italic;
+  font-weight: 400;
+  src: local('Assailand'), url('https://fonts.cdnfonts.com/s/31982/hinted-Assailand-Italic.woff') format('woff');
+}
+@font-face {
+  font-family: 'Assailand';
+  font-style: normal;
+  font-weight: 100;
+  src: local('Assailand'), url('https://fonts.cdnfonts.com/s/31982/hinted-Assailand-Thin.woff') format('woff');
+}
+@font-face {
+  font-family: 'Assailand';
+  font-style: italic;
+  font-weight: 100;
+  src: local('Assailand'), url('https://fonts.cdnfonts.com/s/31982/hinted-Assailand-ThinItalic.woff') format('woff');
+}
+@font-face {
+  font-family: 'Assailand';
+  font-style: normal;
+  font-weight: 200;
+  src: local('Assailand'), url('https://fonts.cdnfonts.com/s/31982/hinted-Assailand-ExtraLight.woff') format('woff');
+}
+@font-face {
+  font-family: 'Assailand';
+  font-style: italic;
+  font-weight: 200;
+  src: local('Assailand'), url('https://fonts.cdnfonts.com/s/31982/hinted-Assailand-ExtraLightItalic.woff') format('woff');
+}
+@font-face {
+  font-family: 'Assailand';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Assailand'), url('https://fonts.cdnfonts.com/s/31982/hinted-Assailand-Light.woff') format('woff');
+}
+@font-face {
+  font-family: 'Assailand';
+  font-style: italic;
+  font-weight: 300;
+  src: local('Assailand'), url('https://fonts.cdnfonts.com/s/31982/hinted-Assailand-LightItalic.woff') format('woff');
+}
+@font-face {
+  font-family: 'Assailand';
+  font-style: normal;
+  font-weight: 500;
+  src: local('Assailand'), url('https://fonts.cdnfonts.com/s/31982/hinted-Assailand-Medium.woff') format('woff');
+}
+@font-face {
+  font-family: 'Assailand';
+  font-style: italic;
+  font-weight: 500;
+  src: local('Assailand'), url('https://fonts.cdnfonts.com/s/31982/hinted-Assailand-MediumItalic.woff') format('woff');
+}
+@font-face {
+  font-family: 'Assailand';
+  font-style: normal;
+  font-weight: 600;
+  src: local('Assailand'), url('https://fonts.cdnfonts.com/s/31982/hinted-Assailand-SemiBold.woff') format('woff');
+}
+@font-face {
+  font-family: 'Assailand';
+  font-style: italic;
+  font-weight: 600;
+  src: local('Assailand'), url('https://fonts.cdnfonts.com/s/31982/hinted-Assailand-SemiBoldItalic.woff') format('woff');
+}
+@font-face {
+  font-family: 'Assailand';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Assailand'), url('https://fonts.cdnfonts.com/s/31982/hinted-Assailand-Bold.woff') format('woff');
+}
+@font-face {
+  font-family: 'Assailand';
+  font-style: italic;
+  font-weight: 700;
+  src: local('Assailand'), url('https://fonts.cdnfonts.com/s/31982/hinted-Assailand-BoldItalic.woff') format('woff');
+}
+@font-face {
+  font-family: 'Assailand';
+  font-style: normal;
+  font-weight: 800;
+  src: local('Assailand'), url('https://fonts.cdnfonts.com/s/31982/hinted-Assailand-ExtraBold.woff') format('woff');
+}
+@font-face {
+  font-family: 'Assailand';
+  font-style: italic;
+  font-weight: 800;
+  src: local('Assailand'), url('https://fonts.cdnfonts.com/s/31982/hinted-Assailand-ExtraBoldItalic.woff') format('woff');
+}
+@font-face {
+  font-family: 'Assailand';
+  font-style: normal;
+  font-weight: 900;
+  src: local('Assailand'), url('https://fonts.cdnfonts.com/s/31982/hinted-Assailand-Black.woff') format('woff');
+}
+@font-face {
+  font-family: 'Assailand';
+  font-style: italic;
+  font-weight: 900;
+  src: local('Assailand'), url('https://fonts.cdnfonts.com/s/31982/hinted-Assailand-BlackItalic.woff') format('woff');
+}
+
+//!Iunito
+@font-face {
+  font-family: 'Iunito';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Iunito'), url('https://fonts.cdnfonts.com/s/31980/Iunito-Regular.woff') format('woff');
+}
+@font-face {
+  font-family: 'Iunito';
+  font-style: italic;
+  font-weight: 400;
+  src: local('Iunito'), url('https://fonts.cdnfonts.com/s/31980/Iunito-Italic.woff') format('woff');
+}
+@font-face {
+  font-family: 'Iunito';
+  font-style: normal;
+  font-weight: 200;
+  src: local('Iunito'), url('https://fonts.cdnfonts.com/s/31980/Iunito-ExtraLight.woff') format('woff');
+}
+@font-face {
+  font-family: 'Iunito';
+  font-style: italic;
+  font-weight: 200;
+  src: local('Iunito'), url('https://fonts.cdnfonts.com/s/31980/Iunito-ExtraLightItalic.woff') format('woff');
+}
+@font-face {
+  font-family: 'Iunito';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Iunito'), url('https://fonts.cdnfonts.com/s/31980/Iunito-Light.woff') format('woff');
+}
+@font-face {
+  font-family: 'Iunito';
+  font-style: italic;
+  font-weight: 300;
+  src: local('Iunito'), url('https://fonts.cdnfonts.com/s/31980/Iunito-LightItalic.woff') format('woff');
+}
+@font-face {
+  font-family: 'Iunito';
+  font-style: normal;
+  font-weight: 600;
+  src: local('Iunito'), url('https://fonts.cdnfonts.com/s/31980/Iunito-SemiBold.woff') format('woff');
+}
+@font-face {
+  font-family: 'Iunito';
+  font-style: italic;
+  font-weight: 600;
+  src: local('Iunito'), url('https://fonts.cdnfonts.com/s/31980/Iunito-SemiBoldItalic.woff') format('woff');
+}
+@font-face {
+  font-family: 'Iunito';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Iunito'), url('https://fonts.cdnfonts.com/s/31980/Iunito-Bold.woff') format('woff');
+}
+@font-face {
+  font-family: 'Iunito';
+  font-style: italic;
+  font-weight: 700;
+  src: local('Iunito'), url('https://fonts.cdnfonts.com/s/31980/Iunito-BoldItalic.woff') format('woff');
+}
+@font-face {
+  font-family: 'Iunito';
+  font-style: normal;
+  font-weight: 800;
+  src: local('Iunito'), url('https://fonts.cdnfonts.com/s/31980/Iunito-ExtraBold.woff') format('woff');
+}
+@font-face {
+  font-family: 'Iunito';
+  font-style: italic;
+  font-weight: 800;
+  src: local('Iunito'), url('https://fonts.cdnfonts.com/s/31980/Iunito-ExtraBoldItalic.woff') format('woff');
+}
+@font-face {
+  font-family: 'Iunito';
+  font-style: normal;
+  font-weight: 900;
+  src: local('Iunito'), url('https://fonts.cdnfonts.com/s/31980/Iunito-Black.woff') format('woff');
+}
+@font-face {
+  font-family: 'Iunito';
+  font-style: italic;
+  font-weight: 900;
+  src: local('Iunito'), url('https://fonts.cdnfonts.com/s/31980/Iunito-BlackItalic.woff') format('woff');
+}
+
+//!Codec Pro
+@font-face {
+  font-family: 'Codec Pro';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Codec Pro'), url('https://fonts.cdnfonts.com/s/31902/CodecPro-Regular.woff') format('woff');
+}
+@font-face {
+  font-family: 'Codec Pro';
+  font-style: italic;
+  font-weight: 400;
+  src: local('Codec Pro'), url('https://fonts.cdnfonts.com/s/31902/CodecPro-Italic.woff') format('woff');
+}
+
+//!Betinya Sans
+@font-face {
+  font-family: 'Betinya Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Betinya Sans'), url('https://fonts.cdnfonts.com/s/31973/BetinyaSans-Regular.woff') format('woff');
+}
+@font-face {
+  font-family: 'Betinya Sans';
+  font-style: italic;
+  font-weight: 400;
+  src: local('Betinya Sans'), url('https://fonts.cdnfonts.com/s/31973/BetinyaSans-Italic.woff') format('woff');
+}
+@font-face {
+  font-family: 'Betinya Sans';
+  font-style: normal;
+  font-weight: 200;
+  src: local('Betinya Sans'), url('https://fonts.cdnfonts.com/s/31973/BetinyaSans-ExtraLight.woff') format('woff');
+}
+@font-face {
+  font-family: 'Betinya Sans';
+  font-style: italic;
+  font-weight: 200;
+  src: local('Betinya Sans'), url('https://fonts.cdnfonts.com/s/31973/BetinyaSans-ExtraLightItalic.woff') format('woff');
+}
+@font-face {
+  font-family: 'Betinya Sans';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Betinya Sans'), url('https://fonts.cdnfonts.com/s/31973/BetinyaSans-Light.woff') format('woff');
+}
+@font-face {
+  font-family: 'Betinya Sans';
+  font-style: italic;
+  font-weight: 300;
+  src: local('Betinya Sans'), url('https://fonts.cdnfonts.com/s/31973/BetinyaSans-LightItalic.woff') format('woff');
+}
+@font-face {
+  font-family: 'Betinya Sans';
+  font-style: normal;
+  font-weight: 500;
+  src: local('Betinya Sans'), url('https://fonts.cdnfonts.com/s/31973/BetinyaSans-Medium.woff') format('woff');
+}
+@font-face {
+  font-family: 'Betinya Sans';
+  font-style: italic;
+  font-weight: 500;
+  src: local('Betinya Sans'), url('https://fonts.cdnfonts.com/s/31973/BetinyaSans-MediumItalic.woff') format('woff');
+}
+@font-face {
+  font-family: 'Betinya Sans';
+  font-style: normal;
+  font-weight: 600;
+  src: local('Betinya Sans'), url('https://fonts.cdnfonts.com/s/31973/BetinyaSans-SemiBold.woff') format('woff');
+}
+@font-face {
+  font-family: 'Betinya Sans';
+  font-style: italic;
+  font-weight: 600;
+  src: local('Betinya Sans'), url('https://fonts.cdnfonts.com/s/31973/BetinyaSans-SemiBoldItalic.woff') format('woff');
+}
+@font-face {
+  font-family: 'Betinya Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Betinya Sans'), url('https://fonts.cdnfonts.com/s/31973/BetinyaSans-Bold.woff') format('woff');
+}
+@font-face {
+  font-family: 'Betinya Sans';
+  font-style: italic;
+  font-weight: 700;
+  src: local('Betinya Sans'), url('https://fonts.cdnfonts.com/s/31973/BetinyaSans-BoldItalic.woff') format('woff');
+}
+@font-face {
+  font-family: 'Betinya Sans';
+  font-style: normal;
+  font-weight: 800;
+  src: local('Betinya Sans'), url('https://fonts.cdnfonts.com/s/31973/BetinyaSans-ExtraBold.woff') format('woff');
+}
+@font-face {
+  font-family: 'Betinya Sans';
+  font-style: italic;
+  font-weight: 800;
+  src: local('Betinya Sans'), url('https://fonts.cdnfonts.com/s/31973/BetinyaSans-ExtraBoldItalic.woff') format('woff');
+}
+
+//!Acephimere
+@font-face {
+  font-family: 'Acephimere';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Acephimere'), url('https://fonts.cdnfonts.com/s/31817/Acephimere.woff') format('woff');
+}
+@font-face {
+  font-family: 'Acephimere';
+  font-style: italic;
+  font-weight: 400;
+  src: local('Acephimere'), url('https://fonts.cdnfonts.com/s/31817/Acephimere Italic.woff') format('woff');
+}
+@font-face {
+  font-family: 'Acephimere';
+  font-style: normal;
+  font-weight: 100;
+  src: local('Acephimere'), url('https://fonts.cdnfonts.com/s/31817/Acephimere Thin.woff') format('woff');
+}
+@font-face {
+  font-family: 'Acephimere';
+  font-style: italic;
+  font-weight: 100;
+  src: local('Acephimere'), url('https://fonts.cdnfonts.com/s/31817/Acephimere Thin Italic.woff') format('woff');
+}
+@font-face {
+  font-family: 'Acephimere';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Acephimere'), url('https://fonts.cdnfonts.com/s/31817/Acephimere Bold.woff') format('woff');
+}
+@font-face {
+  font-family: 'Acephimere';
+  font-style: italic;
+  font-weight: 700;
+  src: local('Acephimere'), url('https://fonts.cdnfonts.com/s/31817/Acephimere Bold Italic.woff') format('woff');
+}
+
+//!Tepeno Sans
+@font-face {
+  font-family: 'Tepeno Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Tepeno Sans'), url('https://fonts.cdnfonts.com/s/31800/Tepeno Sans Regular.woff') format('woff');
+}
+@font-face {
+  font-family: 'Tepeno Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Tepeno Sans'), url('https://fonts.cdnfonts.com/s/31800/Tepeno Sans Regular Italic.woff') format('woff');
+}
+@font-face {
+  font-family: 'Tepeno Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Tepeno Sans'), url('https://fonts.cdnfonts.com/s/31800/Tepeno Sans Bold Italic.woff') format('woff');
+}
+@font-face {
+  font-family: 'Tepeno Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Tepeno Sans'), url('https://fonts.cdnfonts.com/s/31800/Tepeno Sans Bold.woff') format('woff');
+}
+@font-face {
+  font-family: 'Tepeno Sans Light';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Tepeno Sans Light'), url('https://fonts.cdnfonts.com/s/31800/Tepeno Sans Light.woff') format('woff');
+}
+@font-face {
+  font-family: 'Tepeno Sans Light';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Tepeno Sans Light'), url('https://fonts.cdnfonts.com/s/31800/Tepeno Sans Light Italic.woff') format('woff');
+}
+
+//!Homizio Nova
+@font-face {
+  font-family: 'Homizio Nova';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Homizio Nova'), url('https://fonts.cdnfonts.com/s/31793/regular.woff') format('woff');
+}
+@font-face {
+  font-family: 'Homizio Nova';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Homizio Nova'), url('https://fonts.cdnfonts.com/s/31793/italic.woff') format('woff');
+}
+@font-face {
+  font-family: 'Homizio Nova';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Homizio Nova'), url('https://fonts.cdnfonts.com/s/31793/light italic.woff') format('woff');
+}
+@font-face {
+  font-family: 'Homizio Nova';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Homizio Nova'), url('https://fonts.cdnfonts.com/s/31793/light.woff') format('woff');
+}
+

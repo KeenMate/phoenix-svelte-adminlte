@@ -29,6 +29,7 @@
   import { initSocket } from "./providers/socket";
   import SidebarNavTree from "./components/SidebarNavTree.svelte";
   import LocaleDropdown from "./components/localEditor/LocaleDropdown.svelte";
+  import { _ } from "svelte-i18n";
 
   import SvelteSelect from "svelte-select";
   onMount(() => {
@@ -124,7 +125,7 @@
       {#if !route.hide}
         {#if route.nesting}
           <SidebarNavTree icon={route.icon} href="#{route.route}"
-            >{route.title}
+            >{$_("routes."+route.name+".navtitle",{default: route.title})} 
             <svelte:fragment slot="children">
               {#each route.subroutes as sub}
                 <SidebarNavItem icon={sub.icon} href="#{sub.route}">
@@ -135,7 +136,7 @@
           </SidebarNavTree>
         {:else}
           <SidebarNavItem icon={route.icon} href="#{route.route}">
-            <p>{route.title}</p>
+            <p>{$_("routes."+route.name+".navtitle",{default: route.title})} </p>
           </SidebarNavItem>
         {/if}
       {/if}

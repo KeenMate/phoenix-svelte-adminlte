@@ -64,12 +64,7 @@
   },
   "route1": {
     "welcomeHeader": "Vítejte v demo projektu Svelte-AdminLTE komponent",
-    "welcomeText": "#Komponenty \
-    Pro zobrazení přehledu všech komponent jdete na stránku [Komponenty](#/components). Jednotlivé komponenty obsahují jak ukázku použití, tak i základní dokumentaci.\
-  \
-    #Demo stránky\
-  Ostatní odkazy v levém menu slouží jako ukázka reálného použítí jednotlivých komponent.\
-    "
+    "welcomeText": "#Komponenty\r\n  Pro zobrazení přehledu všech komponent jdete na stránku [Komponenty](#/components). Jednotlivé komponenty obsahují jak ukázku použití, tak i základní dokumentaci \r\n  #Demo stránky \r\nOstatní odkazy v levém menu slouží jako ukázka reálného použítí jednotlivých komponent"
   },
   "tree": {
     "title": "Strom hrdinů"

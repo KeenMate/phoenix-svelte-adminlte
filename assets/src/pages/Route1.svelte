@@ -18,7 +18,7 @@
 <div class="row">
   <div class="col-12">
     <Card outline color="danger">
-      <svelte:fragment slot="header"> {$_("route1.welcomeHeader")} </svelte:fragment>
+      <svelte:fragment slot="header"> <SvelteMarkdown source={$_("route1.welcomeHeader")}/> </svelte:fragment>
       <SvelteMarkdown source={$_("route1.welcomeText")}/>
     </Card>
   </div>

@@ -63,8 +63,13 @@
     }
   },
   "route1": {
-    "welcomeHeader": "Vitejte",
-    "welcomeText": "Jdete do  [Componets](#/components) pokud chcete videt dokumentaci pro jednotlive komponenty."
+    "welcomeHeader": "Vítejte v demo projektu Svelte-AdminLTE komponent",
+    "welcomeText": "#Komponenty
+    Pro zobrazení přehledu všech komponent jdete na stránku [Komponenty](#/components). Jednotlivé komponenty obsahují jak ukázku použití, tak i základní dokumentaci.
+  
+    #Demo stránky
+  Ostatní odkazy v levém menu slouží jako ukázka reálného použítí jednotlivých komponent.
+    "
   },
   "tree": {
     "title": "Strom"

@@ -1,6 +1,6 @@
 <script>
   import { createEventDispatcher, getContext } from "svelte";
-  import { debounce } from "lodash";
+  import  debounce  from "lodash/debounce";
   import { TypingDebounceDelay } from "../../constants/ui";
   import {
     Card,

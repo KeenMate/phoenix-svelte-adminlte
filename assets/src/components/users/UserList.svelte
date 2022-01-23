@@ -1,7 +1,7 @@
 <script>
   import { createEventDispatcher, getContext } from "svelte";
   import lazyLoader from "../../helpers/lazy-loader";
-  import { debounce } from "lodash";
+  import  debounce  from "lodash/debounce";
   import { TypingDebounceDelay } from "../../constants/ui";
   import {
     Card,

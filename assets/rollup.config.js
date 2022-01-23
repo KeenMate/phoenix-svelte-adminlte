@@ -9,7 +9,7 @@ import sveltePreprocess from "svelte-preprocess";
 import dotenv from "rollup-plugin-dotenv";
 import json from '@rollup/plugin-json';
 import analyze from 'rollup-plugin-analyzer'
-// import { visualizer } from 'rollup-plugin-visualizer';
+import { visualizer } from 'rollup-plugin-visualizer';
 
 const production = process.env.MIX_ENV === "prod";
 
@@ -72,7 +72,7 @@ export default {
 			]
 		}),
 		analyze({summaryOnly: true,limit: 10}),
-		//visualizer()
+		visualizer()
 	],
 	watch: {
 		clearScreen: true

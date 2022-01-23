@@ -3,7 +3,6 @@ import {init, getLocaleFromNavigator, locale, addMessages, json, register,format
 import en from "./locale-files/en.json"
 import cs from "./locale-files/cs.json"
 import {langs} from "./langs"
-import {registerLocaleLoader} from "svelte-i18n/types/runtime/includes/loaderQueue"
 import notification from "../providers/notificationProvider";
 
 export {locale, locales, langs}

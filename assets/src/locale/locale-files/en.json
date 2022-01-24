@@ -3,14 +3,17 @@
     "Componets":{
       "navtitle": "Componets"
     },
-    "ProfileInfo":{
-      "navtitle": "Profile Info"
+    "UserProfileInfo":{
+      "navtitle": "Profile Info",
+      "tooltip":  "Profile info and welcome"
     },
     "Users":{
-      "navtitle": "Users"
+      "navtitle": "Users",
+      "tooltip":  "Users list"
     },
     "Tree":{
-      "navtitle": "Tree"
+      "navtitle": "Tree",
+      "tooltip":"Treeview"
     },
     "List":{
       "navtitle": "List"

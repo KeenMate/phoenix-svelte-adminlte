@@ -17,7 +17,6 @@
   var JSONEditor;
   import("jsoneditor").then((module) => {
     JSONEditor = module.default;
-    console.log(JSONEditor);
   });
 
   import LocalesList from "../components/localEditor/LocalesList.svelte";

@@ -3,14 +3,17 @@
     "Componets":{
       "navtitle": "Komponenty"
     },
-    "ProfileInfo":{
-      "navtitle": "Info profilu"
+    "UserProfileInfo":{
+      "navtitle": "Info profilu",
+      "tooltip":"Informace o uzivateli a uvodni pokec."
     },
     "Users":{
-      "navtitle": "Uzivatele"
+      "navtitle": "Uzivatele",
+      "tooltip":"Prehled uzivatelu s moznosti editace"
     },
     "Tree":{
-      "navtitle": "Tree"
+      "navtitle": "Strom",
+      "tooltip":"Stromove zobrazeni polozek"
     },
     "List":{
       "navtitle": "List"

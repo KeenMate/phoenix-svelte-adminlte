@@ -9,26 +9,21 @@
     InputGroup,
     Label,
     Tabs,
-    BreadcrumbItem
+    BreadcrumbItem,
   } from "svelte-adminlte";
-  import {_} from "svelte-i18n";
+  import { _ } from "svelte-i18n";
   import "jsoneditor/dist/jsoneditor.min.css";
-  import JSONEditor from "jsoneditor";
+  
+  var JSONEditor;
+  import("jsoneditor").then((module) => {
+    JSONEditor = module.default;
+  });
+
   import LocalesList from "../components/localEditor/LocalesList.svelte";
   import notification from "../providers/notificationProvider";
 
-  import {
-    saveLanguageFile,
-    deleteSaveLocals,
-    locales,
-    
-  } from "../locale/i18n";
+  import { saveLanguageFile, deleteSaveLocals, locales } from "../locale/i18n";
   import { optional } from "zod";
-
-//   import('jsoneditor').then(module => {
-//   const JSONEditor = module.default
-//   console.log(JSONEditor)
-// })
 
   let editorContainer;
   let json;
@@ -45,7 +40,12 @@
     }
     if (json != undefined) {
       saveLanguageFile(valid_json, selectedLanguage);
-      notification.success($_("notifications.localeEditor.saved.message",{values:{locale: selectedLanguage }}),$_("notifications.localeEditor.saved.title"))
+      notification.success(
+        $_("notifications.localeEditor.saved.message", {
+          values: { locale: selectedLanguage },
+        }),
+        $_("notifications.localeEditor.saved.title")
+      );
     }
   }
 
@@ -60,7 +60,6 @@
   }
 </script>
 
-
 <PageHeader>
   <svelte:fragment>
     {$_("localeEditor.title")} <small>For all the polyglots</small>
@@ -72,7 +71,7 @@
   </svelte:fragment>
 </PageHeader>
 <div class="row">
-  <div class={selectedLanguage ? "col-lg-3 col-md-12": "col-12"}>
+  <div class={selectedLanguage ? "col-lg-3 col-md-12" : "col-12"}>
     <LocalesList
       expanded={!selectedLanguage}
       on:edit={({ detail: lang }) => {
@@ -80,38 +79,42 @@
       }}
     />
   </div>
-    
-  
-    <div class={selectedLanguage ?"col-lg-9 col-md-12" :"closed"} >
-      <Card outline color="primary" headerClass="p-0 pt-1 border-bottom-0" noPadding={true} tabs> 
-        <svelte:fragment slot="fullHeader">
-          <Tabs>
-            <li class="pt-2 px-3">
-              <h5 class="cardTitle">{selectedLanguage}</h5>
-            </li>
-            <!-- <TabItem active={true} >{$_("localeEditor.edit")}</TabItem> -->
-            <div class="card-tools pull-right ml-auto">
-              <LteButton color="primary" small on:click={saveJson}>
-                <i class="fas fa-save" />
-              </LteButton>
 
-              <LteButton
-                color="danger"
-                small
-                on:click={() => (selectedLanguage = null)}
-              >
-                <i class="fas fa-times" />
-              </LteButton>
-              <LteButton color="danger" small on:click={deleteSaveLocals}>
-                <i class="fas fa-trash" />
-              </LteButton>
-            </div>
-          </Tabs>
-        </svelte:fragment>
-        <div class="edit-container" bind:this={editorContainer} />
-      </Card>
-    </div>
+  <div class={selectedLanguage ? "col-lg-9 col-md-12" : "closed"}>
+    <Card
+      outline
+      color="primary"
+      headerClass="p-0 pt-1 border-bottom-0"
+      noPadding={true}
+      tabs
+    >
+      <svelte:fragment slot="fullHeader">
+        <Tabs>
+          <li class="pt-2 px-3">
+            <h5 class="cardTitle">{selectedLanguage}</h5>
+          </li>
+          <!-- <TabItem active={true} >{$_("localeEditor.edit")}</TabItem> -->
+          <div class="card-tools pull-right ml-auto">
+            <LteButton color="primary" small on:click={saveJson}>
+              <i class="fas fa-save" />
+            </LteButton>
 
+            <LteButton
+              color="danger"
+              small
+              on:click={() => (selectedLanguage = null)}
+            >
+              <i class="fas fa-times" />
+            </LteButton>
+            <LteButton color="danger" small on:click={deleteSaveLocals}>
+              <i class="fas fa-trash" />
+            </LteButton>
+          </div>
+        </Tabs>
+      </svelte:fragment>
+      <div class="edit-container" bind:this={editorContainer} />
+    </Card>
+  </div>
 </div>
 
 <!-- <div class="row">

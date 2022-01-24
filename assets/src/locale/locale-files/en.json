@@ -1,5 +1,26 @@
 {
-  "0": {
+  "routes": {
+    "Componets":{
+      "navtitle": "Componets"
+    },
+    "UserProfileInfo":{
+      "navtitle": "Profile Info",
+      "tooltip":  "Profile info and welcome"
+    },
+    "Users":{
+      "navtitle": "Users",
+      "tooltip":  "Users list"
+    },
+    "Tree":{
+      "navtitle": "Tree",
+      "tooltip":"Treeview"
+    },
+    "List":{
+      "navtitle": "List"
+    },
+    "Locale":{
+      "navtitle": "Locale Editor"
+    }
   },
   "List": {
     "text": "More info in [Components](#/components/show/dragable-container)"

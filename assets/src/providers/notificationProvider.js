@@ -1,6 +1,6 @@
 import CBuffer from "CBuffer";
 import { writable } from "svelte/store";
-import { DateTime } from "luxon";
+
 
 import { Toastr } from "svelte-adminlte";
 
@@ -17,7 +17,7 @@ class NotificationProvider {
   }
 
   #saveMessage(type, message, title) {
-    this.buffer.push({ type, message, title, timestamp: DateTime.now() });
+    this.buffer.push({ type, message, title, timestamp: + new Date() });
     this.messages.set(this.buffer.toArray());
   }
 

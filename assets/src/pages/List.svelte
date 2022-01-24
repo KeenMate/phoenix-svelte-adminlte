@@ -1,5 +1,6 @@
 <script>
-  import { sortBy, maxBy } from "lodash";
+  import  sortBy from "lodash/sortBy";
+  import maxBy  from "lodash/maxBy";
   import { Sortable, MultiDrag } from "sortablejs";
   import { onMount } from "svelte";
   import { _ } from "svelte-i18n";

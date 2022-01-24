@@ -30,6 +30,7 @@
   import SidebarNavTree from "./components/SidebarNavTree.svelte";
   import LocaleDropdown from "./components/localEditor/LocaleDropdown.svelte";
   import { _ } from "svelte-i18n";
+  import jq from "jquery";
 
   import SvelteSelect from "svelte-select";
   onMount(() => {
@@ -68,6 +69,9 @@
     console.log(ev.detail.value);
     document.querySelector("body").style.fontFamily = ev.detail.value;
   }
+  jq(function () {
+    jq('[data-toggle="tooltip"]').tooltip();
+  });
 </script>
 
 <div class="wrapper">
@@ -125,7 +129,9 @@
       {#if !route.hide}
         {#if route.nesting}
           <SidebarNavTree icon={route.icon} href="#{route.route}"
-            >{$_("routes."+route.name+".navtitle",{default: route.title})} 
+            >{$_("routes." + route.name + ".navtitle", {
+              default: route.title,
+            })}
             <svelte:fragment slot="children">
               {#each route.subroutes as sub}
                 <SidebarNavItem icon={sub.icon} href="#{sub.route}">
@@ -135,8 +141,13 @@
             </svelte:fragment>
           </SidebarNavTree>
         {:else}
-          <SidebarNavItem icon={route.icon} href="#{route.route}">
-            <p>{$_("routes."+route.name+".navtitle",{default: route.title})} </p>
+          <SidebarNavItem icon={route.icon} href="#{route.route}" 
+          tooltip= {$_("routes." + route.name + ".tooltip", {default: ""})}>
+            <p>
+              {$_("routes." + route.name + ".navtitle", {
+                default: route.title,
+              })}
+            </p>
           </SidebarNavItem>
         {/if}
       {/if}

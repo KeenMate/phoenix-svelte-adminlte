@@ -1,7 +1,6 @@
 <script>
   import notification, { Success, Warning, Error } from "../../providers/notificationProvider";
   import { getConfig } from "svelte-adminlte";
-  import { DateTime } from "luxon";
 
   import { Modal, Card, TableCondensed } from "svelte-adminlte";
 

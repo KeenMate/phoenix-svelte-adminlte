@@ -1,5 +1,6 @@
 <script>
-  import { sortBy, maxBy } from "lodash";
+  import  sortBy from "lodash/sortBy";
+  import maxBy  from "lodash/maxBy";
   import { Sortable, MultiDrag } from "sortablejs";
   import { onMount } from "svelte";
   import { _ } from "svelte-i18n";
@@ -8,7 +9,8 @@
     Callout,
     LteButton,
     PageHeader,
-    DragableContainer,
+    DraggableContainer,
+    BreadcrumbItem
   } from "svelte-adminlte";
   import CreateCarModal from "../components/list/CreateCarModal.svelte";
   import { bind } from "svelte/internal";
@@ -108,7 +110,12 @@
 <!-- Favorite cars (top 5) - manufacturer, model -->
 <!-- Add, remove, edit functionality-->
 
-<PageHeader>Top cars <small>Let the world know!</small></PageHeader>
+<PageHeader>{$_("list.title")} <small>Change order</small>
+  <svelte:fragment slot="breadcrumbs">
+    <BreadcrumbItem><a href="#/">{$_("home.title")}</a></BreadcrumbItem>
+    <BreadcrumbItem active>{$_("list.title")}</BreadcrumbItem>
+  </svelte:fragment>
+</PageHeader>
 
 <div class="row">
   <div class="col-lg-9 col-md-12 order-md-1 order-lg-0">
@@ -124,13 +131,13 @@
         <i class="fas fa-plus" />
       </LteButton>
 
-      <DragableContainer bind:listElement bind:items>
+      <DraggableContainer bind:listElement bind:items>
         <svelte:fragment let:item = {item}>
           <div class="row">Manufacturer: {item.manufacturer}</div>
           <div class="row">Model: {item.model}</div>
           <div class="row">Year: {item.year || "all"}</div>
         </svelte:fragment>
-      </DragableContainer>
+      </DraggableContainer>
     </Card>
   </div>
   <div class="col-lg-3 col-md-12 order-md-0 order-lg-1">

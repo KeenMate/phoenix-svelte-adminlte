@@ -3,7 +3,6 @@ import {init, getLocaleFromNavigator, locale, addMessages, json, register,format
 import en from "./locale-files/en.json"
 import cs from "./locale-files/cs.json"
 import {langs} from "./langs"
-import {registerLocaleLoader} from "svelte-i18n/types/runtime/includes/loaderQueue"
 import notification from "../providers/notificationProvider";
 
 export {locale, locales, langs}
@@ -15,7 +14,7 @@ initialize()
 
 function initialize() {
 	langs.forEach((lang) => {
-		let lc = localStorage.getItem(lang.code + "-locale")
+		let lc = sessionStorage.getItem(lang.code + "-locale")
 		if (lc != null) {
 			console.log("loading from ls" + lang.code)
 			notification.warning(lang.title +" ("+lang.code+") loaded from memory","WARNING",{timeOut: 3000});
@@ -28,7 +27,7 @@ function initialize() {
 
 	init({
 		fallbackLocale: "cs",
-		initialLocale: localStorage.getItem("language") || getLocaleFromNavigator()
+		initialLocale: sessionStorage.getItem("language") || getLocaleFromNavigator()
 	})
 
 }
@@ -42,19 +41,19 @@ export function getFlagPath(countryCode) {
 
 export function saveLanguageFile(json, lang) {
 	addMessages(lang, json)
-	localStorage.setItem(lang + "-locale", JSON.stringify(json))
+	sessionStorage.setItem(lang + "-locale", JSON.stringify(json))
 
 }
 
 export function deleteSaveLocals() {
 
 	let keys, i
-	keys = Object.keys(localStorage)
+	keys = Object.keys(sessionStorage)
 	i = keys.length
 
 	while (i--) {
 		if (keys[i].substring(3) === "locale") {
-			localStorage.removeItem(keys[i])
+			sessionStorage.removeItem(keys[i])
 		}
 	}
 
@@ -66,7 +65,7 @@ export function changeLang(lang) {
 	if (languages.find((x) => x.code === lang.substring(0, 2))) {
 		console.log("changing lang to:", lang)
 		locale.set(lang)
-		localStorage.setItem("language", lang)
+		sessionStorage.setItem("language", lang)
 	} else {
 		console.log("ERROR: language " + lang, " does not exist")
 	}

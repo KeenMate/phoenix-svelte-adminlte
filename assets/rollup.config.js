@@ -9,6 +9,7 @@ import sveltePreprocess from "svelte-preprocess";
 import dotenv from "rollup-plugin-dotenv";
 import json from '@rollup/plugin-json';
 import analyze from 'rollup-plugin-analyzer'
+import { visualizer } from 'rollup-plugin-visualizer';
 
 const production = process.env.MIX_ENV === "prod";
 
@@ -16,18 +17,17 @@ export default {
 	input: "src/main.js",
 	output: {
 		sourcemap: !production,
-		format: "iife",
+		format: "esm",
 		name: "app",
 		// dir: "public",
-		file: "../priv/static/app.js",
-		globals: {
-			"jquery": "jQuery",
-		},
-		inlineDynamicImports: true
+		dir: "../priv/static/",
+		// globals: {
+		// 	"jquery": "jQuery",
+		// }
 	},
-	external: [
-		"jquery",
-	],
+	// external: [
+	// 	"jquery",
+	// ],
 	plugins: [
 		// dotenv(),
 		replace({
@@ -47,9 +47,9 @@ export default {
 			}),
 			onwarn() { }
 		}),
-		postcss({
-			extract: true
-		}),
+		postcss(
+			{ extract: true, minimize: true }
+		),
 
 		resolve({
 			browser: true,
@@ -71,7 +71,8 @@ export default {
 				// { src: "public/admin-app/index.html", dest: "./public" }
 			]
 		}),
-		//analyze({summaryOnly: true,limit: 10})
+		analyze({summaryOnly: true,limit: 10}),
+		visualizer()
 	],
 	watch: {
 		clearScreen: true

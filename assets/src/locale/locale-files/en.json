@@ -1,5 +1,26 @@
 {
-  "0": {
+  "routes": {
+    "Componets":{
+      "navtitle": "Componets"
+    },
+    "UserProfileInfo":{
+      "navtitle": "Profile Info",
+      "tooltip":  "Profile info and welcome"
+    },
+    "Users":{
+      "navtitle": "Users",
+      "tooltip":  "Users list"
+    },
+    "Tree":{
+      "navtitle": "Tree",
+      "tooltip":"Treeview"
+    },
+    "List":{
+      "navtitle": "List"
+    },
+    "Locale":{
+      "navtitle": "Locale Editor"
+    }
   },
   "List": {
     "text": "More info in [Components](#/components/show/dragable-container)"
@@ -22,7 +43,7 @@
     "textTitle": "Description"
   },
   "components": {
-    "text": "",
+    "text": "Click on names to see examples and documentation for particular component.",
     "title": "Components"
   },
   "home": {
@@ -31,6 +52,9 @@
   },
   "i18n": {
     "savedLocales": "{locale} is loaded from locale storage ."
+  },
+  "list": {
+    "title": "List"
   },
   "localeEditor": {
     "edit": "Edit",
@@ -60,8 +84,8 @@
     }
   },
   "route1": {
-    "welcomeHeader": "",
-    "welcomeText": ""
+    "welcomeHeader": "Welcome",
+    "welcomeText": "Go to [Componets](#/components)if you want to  see documentation for individual components."
   },
   "tree": {
     "title": "Tree"

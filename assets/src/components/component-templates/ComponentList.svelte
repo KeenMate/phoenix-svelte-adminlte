@@ -1,6 +1,6 @@
 <script>
   import { createEventDispatcher, getContext } from "svelte";
-  import { debounce } from "lodash";
+  import  debounce  from "lodash/debounce";
   import { TypingDebounceDelay } from "../../constants/ui";
   import {
     Card,
@@ -98,7 +98,7 @@
     <div class="col-12">
       <Tabs>
         <li class="pt-2 px-3">
-          <h3 class="cardTitle">{$_("componentList.categories")}</h3>
+          <h5 class="cardTitle">{$_("componentList.categories")}</h5>
         </li>
         <TabItem
           active={category === null}

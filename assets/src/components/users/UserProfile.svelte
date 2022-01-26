@@ -22,6 +22,13 @@
   export let user;
 
   let dateRangePickerElement = null;
+
+  let listOpen = false;
+  let isFocused = false;
+
+  $: {
+    if (!listOpen && isFocused) listOpen = true;
+  }
 </script>
 
 <Form>
@@ -56,7 +63,10 @@
       <FormGroup>
         <Label class="pb-1">Birth date</Label>
 
-        <DateRangePicker startDate={user.birth_day} inputElement={dateRangePickerElement}>
+        <DateRangePicker
+          startDate={user.birth_day}
+          inputElement={dateRangePickerElement}
+        >
           <InputGroup>
             <InputGroupPrepend>
               <span class="input-group-text">
@@ -104,7 +114,13 @@
           <option value="drama">Drama</option>
         </Multiselect> -->
         <div class="svelte-select">
-          <SvelteSelect items={categoryItems} isMulti isCreatable />
+          <SvelteSelect
+            bind:listOpen
+            bind:isFocused
+            items={categoryItems}
+            isMulti
+            isCreatable
+          />
         </div>
       </FormGroup>
     </div>
@@ -118,7 +134,10 @@
           <InputGroupPrepend>
             <span class="input-group-text"><i class="fas fa-phone" /></span>
           </InputGroupPrepend>
-          <TextInput inputMask="'mask': '999 999 999'" bind:value={user.phone} />
+          <TextInput
+            inputMask="'mask': '999 999 999'"
+            bind:value={user.phone}
+          />
         </InputGroup>
       </FormGroup>
     </div>

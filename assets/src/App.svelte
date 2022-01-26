@@ -70,7 +70,7 @@
     document.querySelector("body").style.fontFamily = ev.detail.value;
   }
   jq(function () {
-    jq('[data-toggle="tooltip"]').tooltip();
+    jq('[data-toggle="tooltip"]').tooltip({delay: { "show": 800, "hide": 0 }});
   });
 </script>
 

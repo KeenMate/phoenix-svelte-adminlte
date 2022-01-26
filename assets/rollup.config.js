@@ -47,9 +47,9 @@ export default {
 			}),
 			onwarn() { }
 		}),
-		postcss({
-			extract: true
-		}),
+		postcss(
+			{ extract: true, minimize: true }
+		),
 
 		resolve({
 			browser: true,

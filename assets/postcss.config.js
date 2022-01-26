@@ -10,6 +10,6 @@ module.exports = {
     require("postcss-import"),
     require("autoprefixer"),
     production ? require("cssnano") : false,
-     ...(production ? [purgecss] : [])
+    //...(production ? [purgecss] : []),
   ],
 };

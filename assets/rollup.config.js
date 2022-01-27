@@ -6,13 +6,14 @@ import esbuild from "rollup-plugin-esbuild"
 import postcss from "rollup-plugin-postcss";
 import copy from "rollup-plugin-copy"
 import sveltePreprocess from "svelte-preprocess";
-import dotenv from "rollup-plugin-dotenv";
+//import dotenv from "rollup-plugin-dotenv";
 import json from '@rollup/plugin-json';
 import analyze from 'rollup-plugin-analyzer'
 import { visualizer } from 'rollup-plugin-visualizer';
 import { terser } from 'rollup-plugin-terser';
 
 const production = process.env.MIX_ENV === "prod";
+const dev = process.env.BRANCH === "dev";
 
 export default {
 	input: "src/main.js",
@@ -26,7 +27,7 @@ export default {
 	plugins: [
 		replace({
 			values: {
-				"process.env.APP_URL": production ? '"https://phoenix-svelte-adminlte.demo.keenmate.com"' : '"http://localhost:4000"'
+				"process.env.APP_URL": production ?  (dev ? "https://dev.phoenix-svelte-adminlte.demo.keenmate.com" : "https://phoenix-svelte-adminlte.demo.keenmate.com") : '"http://localhost:4000"'
 			}
 		}),
 		json(),

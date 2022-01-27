@@ -18,7 +18,6 @@ clone:
 environment:
   MIX_ENV: prod
   NODE_ENV: prod
-  BRANCH: dev
 
 steps:
   - name: npm assets
@@ -130,7 +129,6 @@ clone:
 environment:
   MIX_ENV: prod
   NODE_ENV: prod
-  BRANCH: master
 
 steps:
   - name: npm assets

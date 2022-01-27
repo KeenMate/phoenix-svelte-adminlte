@@ -10,6 +10,7 @@ import dotenv from "rollup-plugin-dotenv";
 import json from '@rollup/plugin-json';
 import analyze from 'rollup-plugin-analyzer'
 import { visualizer } from 'rollup-plugin-visualizer';
+import { terser } from 'rollup-plugin-terser';
 
 const production = process.env.MIX_ENV === "prod";
 
@@ -19,17 +20,10 @@ export default {
 		sourcemap: !production,
 		format: "esm",
 		name: "app",
-		// dir: "public",
 		dir: "../priv/static/",
-		// globals: {
-		// 	"jquery": "jQuery",
-		// }
+		plugins:[terser()]
 	},
-	// external: [
-	// 	"jquery",
-	// ],
 	plugins: [
-		// dotenv(),
 		replace({
 			values: {
 				"process.env.APP_URL": production ? '"https://phoenix-svelte-adminlte.demo.keenmate.com"' : '"http://localhost:4000"'

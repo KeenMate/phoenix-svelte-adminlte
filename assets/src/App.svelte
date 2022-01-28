@@ -32,6 +32,8 @@
   import { _ } from "svelte-i18n";
   import jq from "jquery";
 
+  import { AppUrl } from './constants/urls';
+
   import SvelteSelect from "svelte-select";
   onMount(() => {
     initSocket();
@@ -90,6 +92,13 @@
           {/each}
         </DropdownMenu>
       </Dropdown>
+      <TopNavItem >
+        {#if AppUrl.startsWith("http://l")}
+        <span class="text-danger font-weight-bold">LOCALHOST</span>
+        {:else}
+          { AppUrl.startsWith("https://d") ? "DEV" : "MAIN"}
+        {/if}
+        </TopNavItem>
     </svelte:fragment>
 
     <svelte:fragment slot="right">

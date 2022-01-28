@@ -14,7 +14,7 @@ import { terser } from 'rollup-plugin-terser';
 
 const production = process.env.MIX_ENV === "prod";
 const devBranch = process.env.DRONE_COMMIT_BRANCH === "dev";
-const url = devBranch ? "https://dev.phoenix-svelte-adminlte.demo.keenmate.com" :"https://phoenix-svelte-adminlte.demo.keenmate.com";
+const url = devBranch ? '"https://dev.phoenix-svelte-adminlte.demo.keenmate.com"' :'"https://phoenix-svelte-adminlte.demo.keenmate.com"';
 export default {
 	input: "src/main.js",
 	output: {

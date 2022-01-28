@@ -13,7 +13,8 @@ import { visualizer } from 'rollup-plugin-visualizer';
 import { terser } from 'rollup-plugin-terser';
 
 const production = process.env.MIX_ENV === "prod";
-
+const devBranch = process.env.DRONE_COMMIT_BRANCH === "dev";
+const url = devBranch ? "https://dev.phoenix-svelte-adminlte.demo.keenmate.com" :"https://phoenix-svelte-adminlte.demo.keenmate.com";
 export default {
 	input: "src/main.js",
 	output: {
@@ -26,7 +27,7 @@ export default {
 	plugins: [
 		replace({
 			values: {
-				"process.env.APP_URL": production ? '"https://phoenix-svelte-adminlte.demo.keenmate.com"' : '"http://localhost:4000"'
+				"process.env.APP_URL": production ? url : '"http://localhost:4000"'
 			}
 		}),
 		json(),

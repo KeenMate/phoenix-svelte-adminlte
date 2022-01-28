@@ -67,7 +67,8 @@ export default {
 			]
 		}),
 		analyze({summaryOnly: true,limit: 10}),
-		visualizer()
+		visualizer(),
+		terser()
 	],
 	watch: {
 		clearScreen: true

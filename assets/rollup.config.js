@@ -21,8 +21,7 @@ export default {
 		sourcemap: !production,
 		format: "esm",
 		name: "app",
-		dir: "../priv/static/",
-		plugins:[terser()]
+		dir: "../priv/static/"
 	},
 	plugins: [
 		replace({
@@ -53,10 +52,10 @@ export default {
 
 		commonjs(),
 
-		esbuild({
-			minify: production,
-			target: 'es2015'
-		}),
+		// esbuild({
+		// 	minify: production,
+		// 	target: 'es2015'
+		// }),
 
 		copy({
 			targets: [

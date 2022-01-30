@@ -14,6 +14,7 @@
     import SwitchExample from "./Input/SwitchExample.svelte"
     import TextareaExample from "./Input/TextareaExample.svelte"
     import UploadModalExample from "./Input/UploadModalExample.svelte"
+    import SvelteSelectExample from "./Input/SvelteSelectExample.svelte"
 //! form
     import FormExamle from "./Form/FormExample.svelte"
     import FormGroupExamle from "./Form/FormGroupExample.svelte"
@@ -59,6 +60,8 @@ export const components = [
         description:"Input with type textarea"},
     {name:"UploadModal", code:"upload-modal", component: UploadModalExample,category: "Input", 
         description:"upload using uppy.io"},
+    {name:"SvelteSelect", code:"svelte-select", component: SvelteSelectExample,category: "Input", 
+        description:"SvelteSelect from rob-balfre"},
 //! form
     {name:"Form", code:"form", component: FormExamle, category:"Form",
         description:"Form element "},

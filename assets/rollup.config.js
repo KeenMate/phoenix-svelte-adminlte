@@ -52,10 +52,10 @@ export default {
 
     commonjs(),
 
-    // esbuild({
-    // 	minify: production,
-    // 	target: 'es2015'
-    // }),
+    esbuild({
+    	minify: production,
+    	target: 'es2015'
+    }),
 
     copy({
       targets: [
@@ -66,9 +66,8 @@ export default {
         },
       ],
     }),
-    analyze({ summaryOnly: true, limit: 10 }),
-    visualizer(),
-    terser({ compress: true, mangle: true }),
+    //analyze({ summaryOnly: true, limit: 10 }),
+    !production && visualizer()
   ],
   watch: {
     clearScreen: true,

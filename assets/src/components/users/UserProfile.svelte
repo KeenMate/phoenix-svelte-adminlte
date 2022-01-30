@@ -50,6 +50,7 @@
     <div class="col-6">
       <FormGroup>
         <Label class="pb-1">Gender</Label>
+        <div class="svelte-select">
         <SvelteSelect
           items={[
             { value: "male", label: "Male" },
@@ -57,6 +58,7 @@
             { value: "other", label: "Other" },
           ]}
         />
+      </div>
       </FormGroup>
     </div>
     <div class="col-6">
@@ -137,6 +139,7 @@
           <TextInput
             inputMask="'mask': '999 999 999'"
             bind:value={user.phone}
+            size="md"
           />
         </InputGroup>
       </FormGroup>
@@ -145,10 +148,9 @@
 </Form>
 
 <style>
-  .svelte-select {
-    /* --border: 3px solid blue; */
+  :global(.svelte-select ){
     --borderRadius: 4px;
-    --height: 2.25rem;
+    --height:calc(2.25rem + 2px);
     --multiItemBorderRadius: 8px;
     --multiSelectPadding: 0 25px 0 6px;
     --multiItemPadding: 0 7px 0 7px;

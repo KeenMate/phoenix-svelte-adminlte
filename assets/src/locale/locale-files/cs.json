@@ -80,7 +80,7 @@
     "localeEditor": {
       "saved": {
         "message": "Překlady pro {locale} byly úspěšně uloženy do Session Storage.",
-        "title": "Překlady uloženy"
+        "title": "Překlady uloženy "
       }
     }
   },

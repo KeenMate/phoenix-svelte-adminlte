@@ -1,93 +1,47 @@
 <script>
-
-  import { Checkbox, Card ,Switch,FormGroup,Label,TreeViewWSearch,PageHeader,BreadcrumbItem} from "svelte-adminlte";
+  import {
+    PageHeader,
+    BreadcrumbItem,
+    Card,
+    Checkbox,
+    LteButton,
+    NumberInput
+  } from "svelte-adminlte";
   import { _ } from "svelte-i18n";
+  import { TreeView } from "svelte-treeview";
+  import MenuOption from "svelte-treeview/src/MenuOption.svelte";
+  import  MenuDivider from "svelte-treeview/src/MenuDivider.svelte";
+  import { onMount } from "svelte";
+  import Label from "svelte-adminlte/src/form/structure/Label.svelte";
 
   let tree = [
-    { nodePath: "1", title: "1", __visual_state: "indeterminate" },
-    { nodePath: "2", title: "2" },
-
-    { nodePath: "3", title: "3", hasChildren: true, __expanded: true },
-    { nodePath: "3.1", title: "Hecarim" },
-    { nodePath: "3.2", 
-    title: "3.2", 
-    hasChildren: true,
-     __expanded: false },
-    {
-      nodePath: "3.2.2",
-      title: "Visage",
-      __expanded: true,
-      __selected: true,
-      test: "test223",
-    },
-    {
-      nodePath: "3.2.3",
-      title: "Lycan",
-      __expanded: true,
-      __selected: true,
-      test: "test223",
-    },
-    {
-      nodePath: "3.2.4",
-      title: "Bloodseeker",
-      __expanded: true,
-      __selected: true,
-    },
-
-    { nodePath: "3.3", title: "3.3", hasChildren: true, __expanded: true },
-
-    {
-      nodePath: "3.3.1",
-      title: "3.3.1",
-      __expanded: true,
-      __selected: false,
-    },
-    { nodePath: "3.4", title: "	Omniknight" },
-
-    { nodePath: "4", title: "	Necrophos" },
-    { nodePath: "5", title: "	Underlord" },
-
-    { nodePath: "6", title: "6", hasChildren: true },
-    { nodePath: "6.1", title: "6.1", hasChildren: true },
-    { nodePath: "6.1.1", title: "	Death Prophet", __selected: true },
-
-    { nodePath: "6.1.2", title: "Outworld Destroyer" },
-    { nodePath: "6.1.3", title: "Puck" },
-    { nodePath: "6.2", title: "6.2", hasChildren: true },
-
-    { nodePath: "6.2.1", title: "6.2.1", hasChildren: true },
-
-    { nodePath: "6.2.1.1", title: "Sniper" },
-    { nodePath: "6.2.1.2", title: "	Alchemist" },
-    { nodePath: "6.2.1.3", title: "Mirana" },
-    { nodePath: "6.2.2", title: "Batrider" },
-    { nodePath: "7", title: "7" },
-    { nodePath: "8", title: "8", hasChildren: true },
-    { nodePath: "8.1", title: "8.1", hasChildren: true },
-    { nodePath: "8.1.1", title: "Night Stalker" },
-
-    { nodePath: "8.1.2", title: "Lycan" },
-    { nodePath: "8.1.3", title: "Troll Warlord" },
-    { nodePath: "8.2", title: "8.2", hasChildren: true },
-
-    { nodePath: "8.2.1", title: "8.2.1", hasChildren: true },
-
-    { nodePath: "8.2.1.1", title: "Bane" },
-    { nodePath: "8.2.1.2", title: "Ogre Magi" },
-    { nodePath: "8.2.1.3", title: "Luna" },
-    { nodePath: "8.2.2", title: "Keeper of the Light" },
+    { nodePath: "1" },
+    { nodePath: "2" },
+    { nodePath: "3", hasChildren: true },
+    { nodePath: "3.1" },
+    { nodePath: "3.2", hasChildren: true },
+    { nodePath: "3.2.1" },
+    { nodePath: "3.2.2" },
+    { nodePath: "3.2.3" },
+    { nodePath: "3.2.4" },
+    { nodePath: "3.3" },
   ];
 
-
-  let showCheckboxes = true;
-  let hideGroup = 1;
-  let showTree = true;
-  let recursive = true;
-  let leafNodeCheckboxesOnly = false;
-  let search = true;
-  let disableOrHide = false;
+  let recursive = false,
+    checkboxes = false,
+    leafNodeCheckboxesOnly = false,
+    disableOrHide = false,
+    thisTree,
+    dragAndDrop = false,
+    timeToNest = 1000,
+    pixelNestTreshold = 150,
+    showContexMenu = false,
+    enableVerticalLines = false,
+    recalculateNodePath = false,
+    expandedLevel = 0;
 
 </script>
+
 <PageHeader>
   <svelte:fragment>
     {$_("tree.title")}
@@ -96,103 +50,100 @@
   <svelte:fragment slot="breadcrumbs">
     <BreadcrumbItem><a href="#/">{$_("home.title")}</a></BreadcrumbItem>
     <BreadcrumbItem active>
-      
-        {$_("tree.title")}
+      {$_("tree.title")}
     </BreadcrumbItem>
   </svelte:fragment>
 </PageHeader>
+
 <div class="row">
-  <div class="col-lg-5 col-md-12">
-    <Card outline color="primary">
-      <svelte:fragment slot="header">Tree</svelte:fragment>
-      {#if showTree}
-        <TreeViewWSearch
-          {recursive}
-          bind:tree
-          maxExpandedDepth="5"
-          let:node
-          bind:showCheckboxes={showCheckboxes}
-          bind:leafNodeCheckboxesOnly
-          showInput={search}
-          {disableOrHide}
-        >
-          {node.title}
-        </TreeViewWSearch>
+  <dir class="col-8">
+    <Card>
+      <svelte:fragment slot="header">
+        {$_("tree.treeCardTitle")}
+      </svelte:fragment>
+
+      <TreeView
+        bind:this={thisTree}
+        bind:tree
+        treeId="tree"
+        let:node
+        {recursive}
+        {checkboxes}
+        {leafNodeCheckboxesOnly}
+        {disableOrHide}
+        {dragAndDrop}
+        {timeToNest }
+        {pixelNestTreshold}
+        {showContexMenu}
+        {enableVerticalLines}
+        {recalculateNodePath}
+        {expandedLevel}
+      >
+        {JSON.stringify(node)}
+        <svelte:fragment slot="context-menu" let:node>
+          <MenuOption text={node.nodePath} isDisabled />
+          <MenuDivider />
+          <MenuOption text="alert object" on:click={alert(JSON.stringify(node))} />
+          <MenuOption text="delete node" on:click={handleClick(node)} />
+        </svelte:fragment>
+      </TreeView>
+    </Card>
+  </dir>
+  <dir class="col-4">
+    <Card>
+      <svelte:fragment slot="header">
+        {$_("tree.options")}
+      </svelte:fragment>
+
+      <LteButton on:click={thisTree.changeAllExpansion(true)}
+        >expand All</LteButton
+      >
+      <LteButton on:click={thisTree.changeAllExpansion(false)}
+        >colapse All</LteButton
+      >
+      <Checkbox bind:checked={checkboxes} id="checkboxes"
+        ><Label inputId="checkboxes">checkboxes</Label>
+      </Checkbox>
+      {#if checkboxes}
+        <div style="margin-left: 2em;">
+          <Checkbox bind:checked={recursive} id="recursive"
+            ><Label inputId="recursive">recursive</Label>
+          </Checkbox>
+          <Checkbox
+            bind:checked={leafNodeCheckboxesOnly}
+            id="leafNodeCheckboxesOnly"
+            ><Label inputId="leafNodeCheckboxesOnly"
+              >leafNodeCheckboxesOnly</Label
+            >
+          </Checkbox>
+          <Checkbox bind:checked={disableOrHide} id="disableOrHide"
+            ><Label inputId="disableOrHide">disableOrHide</Label></Checkbox
+          >
+          <Checkbox bind:checked={recalculateNodePath} id="recalculateNodePath"
+            ><Label inputId="recalculateNodePath">recalculateNodePath</Label></Checkbox
+          >
+        </div>
       {/if}
 
+      <Checkbox bind:checked={dragAndDrop} id="dragAndDrop"
+        ><Label inputId="dragAndDrop">dragAndDrop</Label>
+      </Checkbox>
+      {#if dragAndDrop}
+        <div style="margin-left: 2em;">
+          <NumberInput bind:value={timeToNest}></NumberInput>
+
+          <NumberInput bind:value={pixelNestTreshold}></NumberInput>
+
+        </div>
+      {/if}
+      <Checkbox bind:checked={showContexMenu} id="showContexMenu"
+        ><Label inputId="showContexMenu">showContexMenu</Label>
+      </Checkbox>
+      <Checkbox bind:checked={enableVerticalLines} id="enableVerticalLines"
+        ><Label inputId="enableVerticalLines">enableVerticalLines</Label>
+      </Checkbox>
+      <NumberInput bind:value={expandedLevel}></NumberInput>
     </Card>
-  </div>
-  <div class="col-lg-3 col-md-12">
-    <Card outline color="primary">
-      <svelte:fragment slot="header">Tree options</svelte:fragment>
-      <FormGroup>
-        <Checkbox
-          level="danger"
-          name="show-checkboxes"
-          id="show-checkboxes"
-          bind:checked={showCheckboxes}
-        >
-          <Label inputId="show-checkboxes">Show checkboxes</Label>
-        </Checkbox>
-      </FormGroup>
-      <FormGroup>
-        <Checkbox
-          level="danger"
-          name="recursivee-selection"
-          id="recursivee-selection"
-          bind:checked={recursive}
-        >
-          <Label inputId="recursivee-selection">recursivee selection</Label>
-        </Checkbox>
-      </FormGroup>
-      <FormGroup>
-        <Checkbox
-          level="danger"
-          name="leafNodeCheckboxesOnly"
-          id="leafNodeCheckboxesOnly"
-          bind:checked={leafNodeCheckboxesOnly}
-        >
-          <Label inputId="leafNodeCheckboxesOnly"
-            >leaf node checkboxes only</Label
-          >
-        </Checkbox>
-      </FormGroup>
-      <FormGroup>
-        <Checkbox
-          name="show-search"
-          id="show-search"
-          bind:checked={search}
-        >
-          <Label inputId="show-search">show search</Label>
-        </Checkbox>
-      </FormGroup>
-      <FormGroup>
-        <Checkbox
-          name="disable-or-hide"
-          id="disable-or-hide"
-          bind:checked={disableOrHide}
-        >
-          <Label inputId="disable-or-hide">disable or hide</Label>
-        </Checkbox>
-      </FormGroup>
-      <Switch
-        checkedClass="bg-green"
-        uncheckedClass="bg-gray"
-        bind:checked={showTree}
-      />
-    </Card>
-  </div>
-  <div class="col-lg-4 col-md-12">
-    <Card outline color="primary"
-      ><svelte:fragment slot="header">Selected</svelte:fragment>
-      <ul>
-        {#each tree as node}
-          {#if node.__selected === true}
-            <li>{node.nodePath} - {node.title}</li>
-          {/if}
-          <!-- {tr.__selected} - {tr.nodePath} <br/> -->
-        {/each}
-      </ul>
-    </Card>
-  </div>
+  </dir>
+  <!-- <dir class="row-4"></dir> -->
 </div>

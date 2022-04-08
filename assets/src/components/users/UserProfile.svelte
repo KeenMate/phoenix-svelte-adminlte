@@ -51,14 +51,14 @@
       <FormGroup>
         <Label class="pb-1">Gender</Label>
         <div class="svelte-select">
-        <SvelteSelect
-          items={[
-            { value: "male", label: "Male" },
-            { value: "female", label: "Female" },
-            { value: "other", label: "Other" },
-          ]}
-        />
-      </div>
+          <SvelteSelect
+            items={[
+              { value: "male", label: "Male" },
+              { value: "female", label: "Female" },
+              { value: "other", label: "Other" },
+            ]}
+          />
+        </div>
       </FormGroup>
     </div>
     <div class="col-6">
@@ -107,30 +107,6 @@
     </div>
     <div class="col-6">
       <FormGroup>
-        <Label class="pb-1">Favorite categories</Label>
-        <!-- <Multiselect value="" on:change={({ detail: d }) => console.log("select", d)}>
-          <option value="adventure">Adventure</option>
-          <option value="action">Action</option>
-          <option value="sci-fi">Sci-Fi</option>
-          <option value="comedy">Comedy</option>
-          <option value="drama">Drama</option>
-        </Multiselect> -->
-        <div class="svelte-select">
-          <SvelteSelect
-            bind:listOpen
-            bind:isFocused
-            items={categoryItems}
-            isMulti
-            isCreatable
-          />
-        </div>
-      </FormGroup>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-6">
-      <FormGroup>
         <Label class="pb-1">Phone number</Label>
         <InputGroup>
           <InputGroupPrepend>
@@ -145,12 +121,29 @@
       </FormGroup>
     </div>
   </div>
+
+  <div class="row">
+    <div class="col-6">
+      <FormGroup>
+        <Label class="pb-1">Favorite categories</Label>
+        <div class="svelte-select">
+          <SvelteSelect
+            bind:listOpen
+            bind:isFocused
+            items={categoryItems}
+            isMulti
+            isCreatable
+          />
+        </div>
+      </FormGroup>
+    </div>
+  </div>
 </Form>
 
 <style>
-  :global(.svelte-select ){
+  :global(.svelte-select) {
     --borderRadius: 4px;
-    --height:calc(2.25rem + 2px);
+    --height: calc(2.25rem + 2px);
     --multiItemBorderRadius: 8px;
     --multiSelectPadding: 0 25px 0 6px;
     --multiItemPadding: 0 7px 0 7px;

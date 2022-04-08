@@ -88,7 +88,9 @@
     "welcomeText": "Go to [Componets](#/components)if you want to  see documentation for individual components."
   },
   "tree": {
-    "title": "Tree"
+    "title": "Tree of heroes",
+    "treeCardTitle":"TreeView",
+    "options":"Options"
   },
   "users": {
     "title": "Users"

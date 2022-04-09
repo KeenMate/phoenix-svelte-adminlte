@@ -88,8 +88,8 @@
     "welcomeText": "Go to [Componets](#/components)if you want to  see documentation for individual components."
   },
   "tree": {
-    "title": "Tree of heroes",
-    "treeCardTitle":"TreeView",
+    "title": "Demo of Keenmate/svelte-treeview",
+    "treeCardTitle":"Treeview",
     "options":"Options"
   },
   "users": {

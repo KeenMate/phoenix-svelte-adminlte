@@ -90,7 +90,8 @@
   "tree": {
     "title": "Demo of Keenmate/svelte-treeview",
     "treeCardTitle":"Treeview",
-    "options":"Options"
+    "options":"Options",
+    "events":"Events"
   },
   "users": {
     "title": "Users"

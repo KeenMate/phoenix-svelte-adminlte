@@ -15,27 +15,27 @@
   import Label from "svelte-adminlte/src/form/structure/Label.svelte";
 
   let tree = [
-//1
+    //1
     { nodePath: "1", hasChildren: true, title: "Strength" },
     { nodePath: "1.1", title: " Abbadon" },
     { nodePath: "1.2", title: " Axe" },
     { nodePath: "1.3", title: " Mars" },
     { nodePath: "1.4", title: " Tusk" },
-//2
-    { nodePath: "2", hasChildren: true, title: "Agility"  },
+    //2
+    { nodePath: "2", hasChildren: true, title: "Agility" },
     { nodePath: "2.1", title: " Juggernaut" },
     { nodePath: "2.2", title: " Gyrocopter" },
     { nodePath: "2.3", title: " Lone Druid" },
     { nodePath: "2.4", title: " Sniper" },
     { nodePath: "2.5", title: " Viper" },
-//3
-    { nodePath: "3", hasChildren: true, title: "Intelligence"  },
+    //3
+    { nodePath: "3", hasChildren: true, title: "Intelligence" },
     { nodePath: "3.1", title: " Dazzle" },
     { nodePath: "3.2", title: " Chen" },
     { nodePath: "3.3", title: " Lion" },
     { nodePath: "3.4", title: " Techies" },
     { nodePath: "3.5", title: " Void Spirit" },
-//4
+    //4
     // { nodePath: "4", hasChildren: true, title: " TEST0" },
     // { nodePath: "4.1", title: " TEST1"},
     // { nodePath: "4.2", hasChildren: true , title: " TEST2"},
@@ -58,10 +58,19 @@
     enableVerticalLines = false,
     recalculateNodePath = false,
     expandedLevel = 0,
-    showNodes = false;
+    showNodes = false,
+    events = [],
+    showConsole = false;
 
   function handleClick(node) {
     tree = tree.filter((n) => n.nodePath != node.nodePath);
+  }
+
+  function handleEvent(e,t) {
+    if(!t)
+    return
+    events.push({detail:e.detail, type:t});
+    events = events;
   }
 </script>
 
@@ -79,7 +88,7 @@
 </PageHeader>
 
 <div class="row">
-  <dir class="col-8">
+  <div class:col-8={!showConsole} class:col-4={showConsole}>
     <Card>
       <svelte:fragment slot="header">
         {$_("tree.treeCardTitle")}
@@ -89,6 +98,13 @@
         bind:this={thisTree}
         bind:tree
         treeId="tree"
+        on:selection={(e)=>handleEvent(e,"selection")}
+        on:selected={(e)=>handleEvent(e,"selected")}
+        on:unselected={(e)=>handleEvent(e,"unselected")}
+        on:expansion={(e)=>handleEvent(e,"expansion")}
+        on:expanded={(e)=>handleEvent(e,"expanded")}
+        on:closed={(e)=>handleEvent(e,"closed")}
+        on:moved={(e)=>handleEvent(e,"moved")}
         let:node
         {recursive}
         {checkboxes}
@@ -111,29 +127,29 @@
           <MenuDivider />
           <MenuOption
             text="alert object"
-            on:click={alert(JSON.stringify(node))}
-          />
+            on:click={alert(JSON.stringify(node))} />
           <MenuOption text="delete node" on:click={handleClick(node)} />
         </svelte:fragment>
       </TreeView>
     </Card>
-  </dir>
+  </div>
 
-  <dir class="col-4">
+  <div class="col-4">
     <Card>
       <svelte:fragment slot="header">
         {$_("tree.options")}
       </svelte:fragment>
+      <Checkbox bind:checked={showConsole} id="showConsole"
+        ><Label inputId="showConsole">Show console</Label>
+      </Checkbox>
       <Checkbox bind:checked={showNodes} id="showNodes"
         ><Label inputId="showNodes">showNodes</Label>
       </Checkbox>
 
       <LteButton on:click={thisTree.changeAllExpansion(true)}
-        >expand All</LteButton
-      >
+        >expand All</LteButton>
       <LteButton on:click={thisTree.changeAllExpansion(false)}
-        >colapse All</LteButton
-      >
+        >colapse All</LteButton>
       <Checkbox bind:checked={checkboxes} id="checkboxes"
         ><Label inputId="checkboxes">checkboxes</Label>
       </Checkbox>
@@ -142,20 +158,18 @@
           <Checkbox bind:checked={recursive} id="recursive"
             ><Label inputId="recursive">recursive</Label>
           </Checkbox>
-          <Checkbox
-            bind:checked={leafNodeCheckboxesOnly}
-            id="leafNodeCheckboxesOnly"
-            ><Label inputId="leafNodeCheckboxesOnly"
-              >leafNodeCheckboxesOnly</Label
-            >
-          </Checkbox>
-          <Checkbox bind:checked={disableOrHide} id="disableOrHide"
-            ><Label inputId="disableOrHide">disableOrHide</Label></Checkbox
-          >
-          <Checkbox bind:checked={recalculateNodePath} id="recalculateNodePath"
-            ><Label inputId="recalculateNodePath">recalculateNodePath</Label
-            ></Checkbox
-          >
+          {#if recursive}
+            <div style="margin-left: 2em;">
+              <Checkbox
+                bind:checked={leafNodeCheckboxesOnly}
+                id="leafNodeCheckboxesOnly"
+                ><Label inputId="leafNodeCheckboxesOnly"
+                  >leafNodeCheckboxesOnly</Label>
+              </Checkbox>
+              <Checkbox bind:checked={disableOrHide} id="disableOrHide"
+                ><Label inputId="disableOrHide">disableOrHide</Label></Checkbox>
+            </div>
+          {/if}
         </div>
       {/if}
 
@@ -167,6 +181,10 @@
           <NumberInput bind:value={timeToNest} />
 
           <NumberInput bind:value={pixelNestTreshold} />
+
+          <Checkbox bind:checked={recalculateNodePath} id="recalculateNodePath"
+            ><Label inputId="recalculateNodePath">recalculateNodePath</Label
+            ></Checkbox>
         </div>
       {/if}
       <Checkbox bind:checked={showContexMenu} id="showContexMenu"
@@ -177,6 +195,31 @@
       </Checkbox>
       <NumberInput bind:value={expandedLevel} />
     </Card>
-  </dir>
-  <!-- <dir class="row-4"></dir> -->
+  </div>
+
+  {#if showConsole}
+  
+  <div class="col-4">
+    <Card>
+      <svelte:fragment slot="header">
+        {$_("tree.events")}
+      </svelte:fragment>
+      {#each events as ev}
+        <ul class="ul">
+          <li>
+            <b>{ev.type}</b>  detail: <i>{JSON.stringify(ev.detail)}</i>
+          </li>
+        </ul>
+      {/each}
+    </Card>
+  </div>
+  {/if}
 </div>
+
+<style>
+  .ul{
+    list-style: none;
+    margin:0;
+    padding: 0.25em;
+  }
+</style>

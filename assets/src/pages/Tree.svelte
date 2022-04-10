@@ -121,7 +121,7 @@
 </PageHeader>
 
 <div class="row">
-  <div class:col-8={!showConsole} class:col-4={showConsole}>
+  <div class:col-lg-8={!showConsole} class:col-lg-4={showConsole} class="col-md-12">
     <Card loading={!tree?.length}>
       <svelte:fragment slot="header">
         {$_("tree.treeCardTitle")}
@@ -169,7 +169,7 @@
     </Card>
   </div>
 
-  <div class="col-4">
+  <div class="col-lg-4 col-md-12">
     <Card>
       <svelte:fragment slot="header">
         {$_("tree.options")}
@@ -234,7 +234,7 @@
   </div>
 
   {#if showConsole}
-    <div class="col-4">
+    <div class="col-lg-4 col-md-12">
       <Card>
         <svelte:fragment slot="header">
           {$_("tree.events")}

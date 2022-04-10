@@ -6,14 +6,17 @@
     Checkbox,
     LteButton,
     NumberInput,
+    Label,
   } from "svelte-adminlte";
   import { _ } from "svelte-i18n";
   import { TreeView } from "svelte-treeview";
   import MenuOption from "svelte-treeview/src/MenuOption.svelte";
   import MenuDivider from "svelte-treeview/src/MenuDivider.svelte";
   import { onMount } from "svelte";
-  import Label from "svelte-adminlte/src/form/structure/Label.svelte";
+  import treeProvider from "../providers/treeProvider";
+  import formatHighlight from 'json-format-highlight'
 
+  /* 
   let tree = [
     //1
     { nodePath: "1", hasChildren: true, title: "Strength" },
@@ -34,7 +37,7 @@
     { nodePath: "3.2", title: " Chen" },
     { nodePath: "3.3", title: " Lion" },
     { nodePath: "3.4", title: " Techies" },
-    { nodePath: "3.5", title: " Void Spirit" },
+    { nodePath: "3.5", title: " Void Spirit" }, 
     //4
     // { nodePath: "4", hasChildren: true, title: " TEST0" },
     // { nodePath: "4.1", title: " TEST1"},
@@ -44,17 +47,19 @@
     // { nodePath: "4.2.3" , title: " TEST5"},
     // { nodePath: "4.2.4" , title: " TEST6"},
     // { nodePath: "4.3" , title: " TEST7"},
-  ];
+  ]; 
+  */
 
+  let tree = [];
   let recursive = false,
     checkboxes = false,
     leafNodeCheckboxesOnly = false,
     disableOrHide = false,
     thisTree,
-    dragAndDrop = false,
+    dragAndDrop = true,
     timeToNest = 1000,
     pixelNestTreshold = 150,
-    showContexMenu = false,
+    showContexMenu = true,
     enableVerticalLines = false,
     recalculateNodePath = false,
     expandedLevel = 0,
@@ -63,15 +68,43 @@
     showConsole = false;
 
   function handleClick(node) {
-    tree = tree.filter((n) => n.nodePath != node.nodePath);
+    console.log("deleting: "+node.node_path)
+    tree = tree.filter((n) => n.node_path != node.node_path);
   }
 
-  function handleEvent(e,t) {
-    if(!t)
-    return
-    events.push({detail:e.detail, type:t});
+  function handleEvent(e, t) {
+    if (!t) return;
+    events.push({ detail: e.detail, type: t });
     events = events;
   }
+
+  function loadInitialTree() {
+    treeProvider
+      .getTree()
+      .then((data) => {
+        console.log(data);
+        if (data.length) tree = data;
+      })
+      .catch((er) => console.log(er));
+  }
+
+  function loadTree() {
+    if (localStorage.tree?.length) {
+      tree = JSON.parse(localStorage.tree);
+    } else {
+      loadInitialTree();
+    }
+  }
+  $: saveTree(tree);
+  function saveTree(data) {
+    if (tree.length) {
+      localStorage.tree = JSON.stringify(data);
+    }
+  }
+
+  onMount(() => {
+    loadTree();
+  });
 </script>
 
 <PageHeader>
@@ -89,7 +122,7 @@
 
 <div class="row">
   <div class:col-8={!showConsole} class:col-4={showConsole}>
-    <Card>
+    <Card loading={!tree?.length}>
       <svelte:fragment slot="header">
         {$_("tree.treeCardTitle")}
       </svelte:fragment>
@@ -98,13 +131,13 @@
         bind:this={thisTree}
         bind:tree
         treeId="tree"
-        on:selection={(e)=>handleEvent(e,"selection")}
-        on:selected={(e)=>handleEvent(e,"selected")}
-        on:unselected={(e)=>handleEvent(e,"unselected")}
-        on:expansion={(e)=>handleEvent(e,"expansion")}
-        on:expanded={(e)=>handleEvent(e,"expanded")}
-        on:closed={(e)=>handleEvent(e,"closed")}
-        on:moved={(e)=>handleEvent(e,"moved")}
+        on:selection={(e) => handleEvent(e, "selection")}
+        on:selected={(e) => handleEvent(e, "selected")}
+        on:unselected={(e) => handleEvent(e, "unselected")}
+        on:expansion={(e) => handleEvent(e, "expansion")}
+        on:expanded={(e) => handleEvent(e, "expanded")}
+        on:closed={(e) => handleEvent(e, "closed")}
+        on:moved={(e) => handleEvent(e, "moved")}
         let:node
         {recursive}
         {checkboxes}
@@ -117,6 +150,8 @@
         {enableVerticalLines}
         {recalculateNodePath}
         {expandedLevel}
+        nodePathProperty="node_path"
+        hasChildrenProperty="has_children"
         >{#if showNodes}
           {JSON.stringify(node)}
         {:else}
@@ -139,6 +174,8 @@
       <svelte:fragment slot="header">
         {$_("tree.options")}
       </svelte:fragment>
+      <LteButton on:click={loadInitialTree}
+        >reset tree</LteButton>
       <Checkbox bind:checked={showConsole} id="showConsole"
         ><Label inputId="showConsole">Show console</Label>
       </Checkbox>
@@ -146,8 +183,7 @@
         ><Label inputId="showNodes">showNodes</Label>
       </Checkbox>
 
-      <LteButton on:click={thisTree.changeAllExpansion(true)}
-        >expand All</LteButton>
+      
       <LteButton on:click={thisTree.changeAllExpansion(false)}
         >colapse All</LteButton>
       <Checkbox bind:checked={checkboxes} id="checkboxes"
@@ -198,28 +234,27 @@
   </div>
 
   {#if showConsole}
-  
-  <div class="col-4">
-    <Card>
-      <svelte:fragment slot="header">
-        {$_("tree.events")}
-      </svelte:fragment>
-      {#each events as ev}
-        <ul class="ul">
-          <li>
-            <b>{ev.type}</b>  detail: <i>{JSON.stringify(ev.detail)}</i>
-          </li>
-        </ul>
-      {/each}
-    </Card>
-  </div>
+    <div class="col-4">
+      <Card>
+        <svelte:fragment slot="header">
+          {$_("tree.events")}
+        </svelte:fragment>
+        {#each events as ev}
+          <ul class="ul">
+            <li>
+              <b>{ev.type}</b> <br/> <code>{@html formatHighlight(ev.detail)}</code>
+            </li>
+          </ul>
+        {/each}
+      </Card>
+    </div>
   {/if}
 </div>
 
 <style>
-  .ul{
+  .ul {
     list-style: none;
-    margin:0;
+    margin: 0;
     padding: 0.25em;
   }
 </style>

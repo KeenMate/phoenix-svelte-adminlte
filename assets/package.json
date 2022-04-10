@@ -71,6 +71,8 @@
     "@uppy/svelte": "^0.1.9",
     "@uppy/xhr-upload": "^1.7.2",
     "ckeditor5-svelte": "^0.0.10",
+    "json-format-highlight": "^1.0.4",
+    "jwt-decode": "^3.1.2",
     "password-validator": "^5.2.1",
     "svelte-markdown": "^0.1.14",
     "svelte-spa-router": "^3.1.0",

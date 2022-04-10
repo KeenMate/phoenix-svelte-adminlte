@@ -57,7 +57,7 @@
     disableOrHide = false,
     thisTree,
     dragAndDrop = true,
-    timeToNest = 1000,
+    timeToNest = 10000,
     pixelNestTreshold = 150,
     showContexMenu = true,
     enableVerticalLines = false,
@@ -99,6 +99,21 @@
   function saveTree(data) {
     if (tree.length) {
       localStorage.tree = JSON.stringify(data);
+    }
+  }
+
+  function callback(node, oldParent, targetNode, inspost) {
+    console.log(inspost)
+    console.log(targetNode)
+    if(targetNode?.node_path?.startsWith("4")){
+      let teamNodeParth = targetNode?.node_path.slice(0, 3);
+
+      let count = tree.filter((n)=>n.node_path.startsWith(teamNodeParth))?.length
+      console.log(count)
+      if(!(count <= 5)){
+        alert("You can have max 5 heroes in one team")
+        return false
+      }
     }
   }
 
@@ -152,6 +167,8 @@
         {expandedLevel}
         nodePathProperty="node_path"
         hasChildrenProperty="has_children"
+        isDraggableProperty="is_draggable"
+        beforeMovedCallback={callback}
         >{#if showNodes}
           {JSON.stringify(node)}
         {:else}

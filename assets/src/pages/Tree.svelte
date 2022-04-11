@@ -15,41 +15,6 @@
   import { onMount } from "svelte";
   import treeProvider from "../providers/treeProvider";
   import formatHighlight from 'json-format-highlight'
-
-  /* 
-  let tree = [
-    //1
-    { nodePath: "1", hasChildren: true, title: "Strength" },
-    { nodePath: "1.1", title: " Abbadon" },
-    { nodePath: "1.2", title: " Axe" },
-    { nodePath: "1.3", title: " Mars" },
-    { nodePath: "1.4", title: " Tusk" },
-    //2
-    { nodePath: "2", hasChildren: true, title: "Agility" },
-    { nodePath: "2.1", title: " Juggernaut" },
-    { nodePath: "2.2", title: " Gyrocopter" },
-    { nodePath: "2.3", title: " Lone Druid" },
-    { nodePath: "2.4", title: " Sniper" },
-    { nodePath: "2.5", title: " Viper" },
-    //3
-    { nodePath: "3", hasChildren: true, title: "Intelligence" },
-    { nodePath: "3.1", title: " Dazzle" },
-    { nodePath: "3.2", title: " Chen" },
-    { nodePath: "3.3", title: " Lion" },
-    { nodePath: "3.4", title: " Techies" },
-    { nodePath: "3.5", title: " Void Spirit" }, 
-    //4
-    // { nodePath: "4", hasChildren: true, title: " TEST0" },
-    // { nodePath: "4.1", title: " TEST1"},
-    // { nodePath: "4.2", hasChildren: true , title: " TEST2"},
-    // { nodePath: "4.2.1" , title: " TEST3"},
-    // { nodePath: "4.2.2" , title: " TEST4"},
-    // { nodePath: "4.2.3" , title: " TEST5"},
-    // { nodePath: "4.2.4" , title: " TEST6"},
-    // { nodePath: "4.3" , title: " TEST7"},
-  ]; 
-  */
-
   let tree = [];
   let recursive = false,
     checkboxes = false,
@@ -103,6 +68,7 @@
   }
 
   function callback(node, oldParent, targetNode, inspost) {
+    console.log(":)")
     console.log(inspost)
     console.log(targetNode)
     if(targetNode?.node_path?.startsWith("4")){
@@ -115,6 +81,7 @@
         return false
       }
     }
+    return true
   }
 
   onMount(() => {
@@ -168,6 +135,8 @@
         nodePathProperty="node_path"
         hasChildrenProperty="has_children"
         isDraggableProperty="is_draggable"
+        nestDisabledProperty="nest_disabled"
+        insertDisabledProperty="insert_disabled"
         beforeMovedCallback={callback}
         >{#if showNodes}
           {JSON.stringify(node)}

@@ -7,6 +7,7 @@
     LteButton,
     NumberInput,
     Label,
+    FormGroup
   } from "svelte-adminlte";
   import { _ } from "svelte-i18n";
   import { TreeView } from "svelte-treeview";
@@ -19,14 +20,14 @@
   let recursive = false,
     checkboxes = false,
     leafNodeCheckboxesOnly = false,
-    disableOrHide = false,
+    checkboxesDisabled = false,
     thisTree,
     dragAndDrop = true,
     timeToNest = 10000,
     pixelNestTreshold = 150,
     showContexMenu = true,
     enableVerticalLines = false,
-    recalculateNodePath = false,
+    recalculateNodePath = true,
     expandedLevel = 0,
     showNodes = false,
     events = [],
@@ -124,7 +125,7 @@
         {recursive}
         {checkboxes}
         {leafNodeCheckboxesOnly}
-        {disableOrHide}
+        {checkboxesDisabled}
         {dragAndDrop}
         {timeToNest}
         {pixelNestTreshold}
@@ -188,8 +189,8 @@
                 ><Label inputId="leafNodeCheckboxesOnly"
                   >leafNodeCheckboxesOnly</Label>
               </Checkbox>
-              <Checkbox bind:checked={disableOrHide} id="disableOrHide"
-                ><Label inputId="disableOrHide">disableOrHide</Label></Checkbox>
+              <Checkbox bind:checked={checkboxesDisabled} id="checkboxesDisabled"
+                ><Label inputId="checkboxesDisabled">checkboxesDisabled</Label></Checkbox>
             </div>
           {/if}
         </div>
@@ -215,7 +216,11 @@
       <Checkbox bind:checked={enableVerticalLines} id="enableVerticalLines"
         ><Label inputId="enableVerticalLines">enableVerticalLines</Label>
       </Checkbox>
-      <NumberInput bind:value={expandedLevel} />
+      <FormGroup>
+        <Label>expandedLevel</Label>
+        <NumberInput bind:value={expandedLevel} />
+
+      </FormGroup>
     </Card>
   </div>
 
@@ -225,13 +230,15 @@
         <svelte:fragment slot="header">
           {$_("tree.events")}
         </svelte:fragment>
-        {#each events as ev}
-          <ul class="ul">
-            <li>
-              <b>{ev.type}</b> <br/> <code>{@html formatHighlight(ev.detail)}</code>
-            </li>
-          </ul>
-        {/each}
+        <div class="mh80">
+          {#each events as ev}
+            <ul class="ul">
+              <li>
+                <b>{ev.type}</b> <br/> <code>{@html formatHighlight(ev.detail)}</code>
+              </li>
+            </ul>
+          {/each}
+        </div>
       </Card>
     </div>
   {/if}
@@ -242,5 +249,9 @@
     list-style: none;
     margin: 0;
     padding: 0.25em;
+  }
+  .mh80{
+    max-height: 70vh;
+    overflow-y:scroll ;
   }
 </style>

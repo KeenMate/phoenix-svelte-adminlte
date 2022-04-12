@@ -47,9 +47,9 @@
   function loadInitialTree() {
     treeProvider
       .getTree()
-      .then((data) => {
-        console.log(data);
-        if (data.length) tree = data;
+      .then((res) => {
+        console.log(res.data);
+        if (res.data.length) tree = res.data;
       })
       .catch((er) => console.log(er));
   }
@@ -133,11 +133,11 @@
         {enableVerticalLines}
         {recalculateNodePath}
         {expandedLevel}
-        nodePathProperty="node_path"
-        hasChildrenProperty="has_children"
-        isDraggableProperty="is_draggable"
-        nestDisabledProperty="nest_disabled"
-        insertDisabledProperty="insert_disabled"
+        nodePathProperty="nodePath"
+        hasChildrenProperty="hasChildren"
+        isDraggableProperty="isDraggable"
+        nestDisabledProperty="nestDisabled"
+        insertDisabledProperty="insertDisabled"
         beforeMovedCallback={callback}
         >{#if showNodes}
           {JSON.stringify(node)}

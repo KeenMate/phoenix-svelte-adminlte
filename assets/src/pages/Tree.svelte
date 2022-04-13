@@ -23,7 +23,7 @@
     checkboxesDisabled = false,
     thisTree,
     dragAndDrop = true,
-    timeToNest = 10000,
+    timeToNest = null,
     pixelNestTreshold = 150,
     showContexMenu = true,
     enableVerticalLines = false,

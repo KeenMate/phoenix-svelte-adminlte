@@ -34,8 +34,8 @@
     showConsole = false;
 
   function handleClick(node) {
-    console.log("deleting: "+node.node_path)
-    tree = tree.filter((n) => n.node_path != node.node_path);
+    console.log("deleting: "+node.nodePath)
+    tree = tree.filter((n) => n.nodePath != node.nodePath);
   }
 
   function handleEvent(e, t) {
@@ -72,10 +72,10 @@
     console.log(":)")
     console.log(inspost)
     console.log(targetNode)
-    if(targetNode?.node_path?.startsWith("4")){
-      let teamNodeParth = targetNode?.node_path.slice(0, 3);
+    if(targetNode?.nodePath?.startsWith("4")){
+      let teamNodeParth = targetNode?.nodePath.slice(0, 3);
 
-      let count = tree.filter((n)=>n.node_path.startsWith(teamNodeParth))?.length
+      let count = tree.filter((n)=>n.nodePath.startsWith(teamNodeParth))?.length
       console.log(count)
       if(!(count <= 5)){
         alert("You can have max 5 heroes in one team")

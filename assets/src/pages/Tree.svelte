@@ -16,6 +16,8 @@
   import { onMount } from "svelte";
   import treeProvider from "../providers/treeProvider";
   import formatHighlight from 'json-format-highlight'
+  import SvelteMarkdown from 'svelte-markdown'
+
   let tree = [];
   let recursive = false,
     checkboxes = false,
@@ -69,9 +71,6 @@
   }
 
   function callback(node, oldParent, targetNode, inspost) {
-    console.log(":)")
-    console.log(inspost)
-    console.log(targetNode)
     if(targetNode?.nodePath?.startsWith("4")){
       let teamNodeParth = targetNode?.nodePath.slice(0, 3);
 
@@ -83,6 +82,10 @@
       }
     }
     return true
+  }
+
+  function dragEnterCallback(movedNode,oldParent,TargetNode) {  
+    // console.log(`dragEnterCallback called entered ${TargetNode.nodePath}`)
   }
 
   onMount(() => {
@@ -102,6 +105,13 @@
     </BreadcrumbItem>
   </svelte:fragment>
 </PageHeader>
+<div class="row">
+      <div class="col-12">
+        <Card >
+            <SvelteMarkdown source={$_("tree.text")}/>
+        </Card>
+      </div>
+</div>
 
 <div class="row">
   <div class:col-lg-8={!showConsole} class:col-lg-4={showConsole} class="col-md-12">
@@ -139,6 +149,7 @@
         nestDisabledProperty="nestDisabled"
         insertDisabledProperty="insertDisabled"
         beforeMovedCallback={callback}
+        dragEnterCallback={dragEnterCallback}
         >{#if showNodes}
           {JSON.stringify(node)}
         {:else}

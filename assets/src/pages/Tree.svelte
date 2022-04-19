@@ -84,7 +84,10 @@
     return true
   }
 
-  function dragEnterCallback(movedNode,oldParent,TargetNode) {  
+  function dragEnterCallback(movedNode,oldParent,targetNode) { 
+    console.log(!targetNode?.nodePath?.startsWith("4") && movedNode?.type != targetNode?.type)
+    if(!targetNode?.nodePath?.startsWith("4") && movedNode?.type != targetNode?.type) 
+      return false
     // console.log(`dragEnterCallback called entered ${TargetNode.nodePath}`)
   }
 

@@ -20,6 +20,10 @@
     },
     "Locale":{
       "navtitle": "Locale Editor"
+    },
+    "Multiselect":{
+      "navtitle": "Multiselect",
+      "tooltip":"svelte-multiselect"
     }
   },
   "List": {
@@ -96,5 +100,8 @@
   },
   "users": {
     "title": "Users"
+  },
+  "multiselect":{
+    "title":"svelte-multiselect"
   }
 }

@@ -6,6 +6,7 @@ import NotFound from "./pages/NotFound.svelte";
 import Error from "./pages/Error.svelte";
 import LocaleEditor from "./pages/LocaleEditor.svelte";
 import Components from "./pages/Components.svelte";
+import Multiselect from "./pages/Multiselect.svelte"
 
 import { _ } from "svelte-i18n";
 
@@ -62,14 +63,7 @@ export const Routes = [
     breadcrumb: ["Users"],
     icon: "fas fa-users",
   },
-  {
-    name: "Tree",
-    title: "Tree",
-    route: "/tree",
-    breadcrumb: ["Tree"],
-    icon: "fas fa-stream",
-  },
-  {
+    {
     name: "List",
     title: "List",
     route: "/list",
@@ -83,6 +77,21 @@ export const Routes = [
     breadcrumb: ["Locale editor"],
     icon: "fas fa-language",
   },
+  {
+    name: "Tree",
+    title: "Tree",
+    route: "/tree",
+    breadcrumb: ["Tree"],
+    icon: "fas fa-stream",
+  },
+  {
+    name: "Multiselect",
+    title: "Multiselect",
+    route: "/multiselect",
+    breadcrumb: ["Multiselect"],
+    icon: "fas fa-stream",
+  },
+
 
 
 ];
@@ -111,11 +120,14 @@ export default {
   [Urls.ComponentsDetail]: Components,
   [Urls.UserProfileInfo]: Route1,
   [Urls.Users]: Users,
-  [Urls.Tree]: Tree,
   [Urls.List]: List,
   [Urls.Error]: Error,
   [Urls.Locale]: LocaleEditor,
   [Urls.Components]: Components,
+  [Urls.Tree]: Tree,
+  [Urls.Multiselect]: Multiselect,
+
+
   // The catch-all route must always be last
   "*": NotFound,
 };

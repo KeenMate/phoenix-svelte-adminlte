@@ -1,5 +1,5 @@
 {
   "i18n-ally.localesPaths": [
-    "assets/src/locale"
+    "assets/src/locale/locale-files/"
   ]
 }

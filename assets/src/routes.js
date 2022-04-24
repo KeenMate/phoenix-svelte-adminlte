@@ -82,7 +82,7 @@ export const Routes = [
     title: "Tree",
     route: "/tree",
     breadcrumb: ["Tree"],
-    icon: "fas fa-stream",
+    icon: "fas fa-tree",
   },
   {
     name: "Multiselect",

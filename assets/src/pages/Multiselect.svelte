@@ -165,7 +165,10 @@
 			"searchable",
 		];
 	let isInvalid;
-	$: isInvalid = isTouched && (customConfigurationValue?.length === 0 || customConfigurationValue == null);
+	$: isInvalid =
+		isTouched &&
+		(customConfigurationValue?.length === 0 ||
+			customConfigurationValue == null);
 
 	$: console.log(isInvalid);
 

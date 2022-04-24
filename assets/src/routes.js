@@ -7,6 +7,7 @@ import Error from "./pages/Error.svelte";
 import LocaleEditor from "./pages/LocaleEditor.svelte";
 import Components from "./pages/Components.svelte";
 import Multiselect from "./pages/Multiselect.svelte"
+import Otp from "./pages/Otp.svelte"
 
 import { _ } from "svelte-i18n";
 
@@ -88,11 +89,16 @@ export const Routes = [
     name: "Multiselect",
     title: "Multiselect",
     route: "/multiselect",
-    breadcrumb: ["Multiselect"],
+    breadcrumb: ["keenmate/svelte-multiselect"],
     icon: "fas fa-stream",
   },
-
-
+  {
+    name: "Otp",
+    title: "Otp",
+    route: "/otp",
+    breadcrumb: ["keenmate/svelte-otp"],
+    icon: "fas fa-lock",
+  },
 
 ];
 
@@ -126,6 +132,7 @@ export default {
   [Urls.Components]: Components,
   [Urls.Tree]: Tree,
   [Urls.Multiselect]: Multiselect,
+  [Urls.Otp]: Otp,
 
 
   // The catch-all route must always be last

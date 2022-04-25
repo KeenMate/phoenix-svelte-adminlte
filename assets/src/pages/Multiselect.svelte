@@ -9,7 +9,19 @@
 	import { countries } from "../constants/countries";
 
 	import { Multiselect } from "svelte-multiselect";
-	import { compute_rest_props } from "svelte/internal";
+	import ComponentExampleTemplate from "../components/component-templates/ComponentExampleTemplate.svelte";
+
+	let singleSelectCode =
+		'<label class="typo__label">Single select</label>\r<Multiselect\r\tbind:value={value1}\r\toptions={stringOptions}\r\tsearchable={false}\r\tcloseOnSelect={false}\r\tshowLabels={false}\r\tplaceholder="Pick a value"\r/>\r<pre class="language-json"><code>{value1 ?? ""}</code></pre>';
+	let objectCode =
+		'<label class="typo__label">Single select / dropdown</label>\r<Multiselect\r\tbind:value={value2}\r\toptions={objectOptions}\r\tdeselectLabel="Can\'t remove this value"\r\ttrackBy="name"\r\tlabel="name"\r\tplaceholder="Select one"\r\tsearchable={false}\r\tallowEmpty={false}\r/>\r<pre class="language-json"><code>{value2?.language ?? ""}</code></pre>';
+	let searchCode =
+		'<label class="typo__label">Select with search</label>\r<Multiselect\r\tbind:value={value3}\r\toptions={objectOptions}\r\tcustomLabel={({ name, language }) => {\r\t\treturn `${name} — [${language}]`;\r\t}}\r\tplaceholder="Select one"\r\tlabel="name"\r\ttrackBy="name"\r/>\r<pre class="language-json"><code>{JSON.stringify(value3) ?? ""}</code\r\t></pre>';
+	let multiselectCode =
+		'<label class="typo__label">Simple select / dropdown</label>\r<Multiselect\r\tbind:value={value4}\r\toptions={objectOptions}\r\tmultiple={true}\r\tcloseOnSelect={false}\r\tclearOnSelect={false}\r\tpreserveSearch={true}\r\tplaceholder="Pick some"\r\tlabel="name"\r\ttrackBy="name"\r\tpreselectFirst={true}\r\tmax={10}\r>\r\t<svelte:fragment slot="selection" let:values let:search let:isOpen>\r\t\t{#if values.length && !isOpen}\r\t\t\t{values.length} options selected\r\t\t{/if}\r\t</svelte:fragment>\r</Multiselect>\r<pre class="language-json"><code>{JSON.stringify(value4) ?? ""}</code\r\t></pre>';
+
+	let asyncCode =
+		'<label class="typo__label">Async multiselect</label>\r<Multiselect\r\tbind:value={selectedCountries}\r\tlabel="name"\r\ttrackBy="code"\r\tplaceholder="Type to search"\r\toptions={searchedCountries}\r\tmultiple={true}\r\tsearchable={true}\r\tloading={isLoading}\r\tinternalSearch={false}\r\tclearOnSelect={false}\r\tcloseOnSelect={false}\r\toptionsLimit={300}\r\tlimit={3}\r\tlimitText={(c) => {\r\t\treturn `and ${c} other countries`;\r\t}}\r\tmaxHeight={600}\r\thideSelected={true}\r\ton:search-change={(e) => {\r\t\tif (e.detail) {\r\t\t\tisLoading = true;\r\t\t\tgetOptions(e.detail).then((response) => {\r\t\t\t\tsearchedCountries = response;\r\t\t\t\tisLoading = false;\r\t\t\t});\r\t\t}\r\t}}\r>\r\t<svelte:fragment slot="tag" let:option let:remove>\r\t\t<span class="custom__tag"\r\t\t\t><span>{option.name}</span><span\r\t\t\t\tclass="custom__remove"\r\t\t\t\ton:click={() => {\r\t\t\t\t\tconsole.log(option);\r\t\t\t\t\tremove(option);\r\t\t\t\t}}>❌</span\r\t\t\t></span\r\t\t>\r\t</svelte:fragment>\r\r\t<svelte:fragment slot="clear">\r\t\t{#if selectedCountries.length}\r\t\t\t<div\r\t\t\t\tclass="multiselect__clear"\r\t\t\t\ton:mousedown|preventDefault|stopPropagation={() =>\r\t\t\t\t\t(selectedCountries = [])}\r\t\t\t>\r\t\t\t\t❌\r\t\t\t</div>\r\t\t{/if}\r\t</svelte:fragment>\r\r\t<span slot="noResult"\r\t\t>Oops! No elements found. Consider changing the search query.</span\r\t>\r</Multiselect>\r<pre class="language-json"><code>{JSON.stringify(value5) ?? ""}</code\r\t></pre>';
 	let stringOptions = [
 		"Select option",
 		"options",
@@ -203,148 +215,138 @@
 <div class="row">
 	<div class="col-12">
 		<Card>info text</Card>
-		<Card>
-			<svelte:fragment slot="header">Single select</svelte:fragment>
-			<div>
-				<label class="typo__label">Single select</label>
-				<Multiselect
-					bind:value={value1}
-					options={stringOptions}
-					searchable={false}
-					closeOnSelect={false}
-					showLabels={false}
-					placeholder="Pick a value"
-				/>
-				<pre class="language-json"><code>{value1 ?? ""}</code></pre>
-			</div>
-		</Card>
-		<Card>
-			<svelte:fragment slot="header">Single select (object)</svelte:fragment>
-			<div>
-				<label class="typo__label">Single select / dropdown</label>
-				<Multiselect
-					bind:value={value2}
-					options={objectOptions}
-					deselectLabel="Can't remove this value"
-					trackBy="name"
-					label="name"
-					placeholder="Select one"
-					searchable={false}
-					allowEmpty={false}
-				/>
-				<pre class="language-json"><code>{value2?.language ?? ""}</code></pre>
-			</div>
-		</Card>
-		<Card>
-			<svelte:fragment slot="header">Select with search</svelte:fragment>
-			<div>
-				<label class="typo__label">Select with search</label>
-				<Multiselect
-					bind:value={value3}
-					options={objectOptions}
-					customLabel={({ name, language }) => {
-						return `${name} — [${language}]`;
-					}}
-					placeholder="Select one"
-					label="name"
-					trackBy="name"
-				/>
-				<pre class="language-json"><code>{JSON.stringify(value3) ?? ""}</code
-					></pre>
-			</div>
-		</Card>
-		<Card>
-			<svelte:fragment slot="header">Multiple select</svelte:fragment>
-			<div>
-				<label class="typo__label">Simple select / dropdown</label>
-				<Multiselect
-					bind:value={value4}
-					options={objectOptions}
-					multiple={true}
-					closeOnSelect={false}
-					clearOnSelect={false}
-					preserveSearch={true}
-					placeholder="Pick some"
-					label="name"
-					trackBy="name"
-					preselectFirst={true}
-					max={10}
-				>
-					<svelte:fragment slot="selection" let:values let:search let:isOpen>
-						{#if values.length && !isOpen}
-							{values.length} options selected
-						{/if}
-					</svelte:fragment>
-				</Multiselect>
-				<pre class="language-json"><code>{JSON.stringify(value4) ?? ""}</code
-					></pre>
-			</div>
-		</Card>
-		<Card>
-			<svelte:fragment slot="header">Asynchronous select</svelte:fragment>
-			<div>
-				<label class="typo__label">Async multiselect</label>
-				<Multiselect
-					bind:value={selectedCountries}
-					label="name"
-					trackBy="code"
-					placeholder="Type to search"
-					options={searchedCountries}
-					multiple={true}
-					searchable={true}
-					loading={isLoading}
-					internalSearch={false}
-					clearOnSelect={false}
-					closeOnSelect={false}
-					optionsLimit={300}
-					limit={3}
-					limitText={(c) => {
-						return `and ${c} other countries`;
-					}}
-					maxHeight={600}
-					hideSelected={true}
-					on:search-change={(e) => {
-						if (e.detail) {
-							isLoading = true;
-							getOptions(e.detail).then((response) => {
-								searchedCountries = response;
-								isLoading = false;
-							});
-						}
-					}}
-				>
-					<svelte:fragment slot="tag" let:option let:remove>
-						<span class="custom__tag"
-							><span>{option.name}</span><span
-								class="custom__remove"
-								on:click={() => {
-									console.log(option);
-									remove(option);
-								}}>❌</span
-							></span
-						>
-					</svelte:fragment>
 
-					<svelte:fragment slot="clear">
-						{#if selectedCountries.length}
-							<div
-								class="multiselect__clear"
-								on:mousedown|preventDefault|stopPropagation={() =>
-									(selectedCountries = [])}
-							>
-								❌
-							</div>
-						{/if}
-					</svelte:fragment>
+		<ComponentExampleTemplate code={singleSelectCode} name="Single select">
+			<label class="typo__label">Single select</label>
+			<Multiselect
+				bind:value={value1}
+				options={stringOptions}
+				searchable={false}
+				closeOnSelect={false}
+				showLabels={false}
+				placeholder="Pick a value"
+			/>
+			<pre class="language-json"><code>{value1 ?? ""}</code></pre>
+		</ComponentExampleTemplate>
 
-					<span slot="noResult"
-						>Oops! No elements found. Consider changing the search query.</span
+		<ComponentExampleTemplate code={objectCode} name="Single select (object)">
+			<label class="typo__label">Single select / dropdown</label>
+			<Multiselect
+				bind:value={value2}
+				options={objectOptions}
+				deselectLabel="Can't remove this value"
+				trackBy="name"
+				label="name"
+				placeholder="Select one"
+				searchable={false}
+				allowEmpty={false}
+			/>
+			<pre class="language-json"><code>{value2?.language ?? ""}</code></pre>
+		</ComponentExampleTemplate>
+
+		<ComponentExampleTemplate code={searchCode} name="Select with search">
+			<label class="typo__label">Select with search</label>
+			<Multiselect
+				bind:value={value3}
+				options={objectOptions}
+				customLabel={({ name, language }) => {
+					return `${name} — [${language}]`;
+				}}
+				placeholder="Select one"
+				label="name"
+				trackBy="name"
+			/>
+			<pre class="language-json"><code>{JSON.stringify(value3) ?? ""}</code
+				></pre>
+		</ComponentExampleTemplate>
+
+		<ComponentExampleTemplate code={multiselectCode} name="Multiple select">
+			<label class="typo__label">Simple select / dropdown</label>
+			<Multiselect
+				bind:value={value4}
+				options={objectOptions}
+				multiple={true}
+				closeOnSelect={false}
+				clearOnSelect={false}
+				preserveSearch={true}
+				placeholder="Pick some"
+				label="name"
+				trackBy="name"
+				preselectFirst={true}
+				max={10}
+			>
+				<svelte:fragment slot="selection" let:values let:search let:isOpen>
+					{#if values.length && !isOpen}
+						{values.length} options selected
+					{/if}
+				</svelte:fragment>
+			</Multiselect>
+			<pre class="language-json"><code>{JSON.stringify(value4) ?? ""}</code
+				></pre>
+		</ComponentExampleTemplate>
+
+		<ComponentExampleTemplate code={multiselectCode} name="Asynchronous select">
+			<label class="typo__label">Async multiselect</label>
+			<Multiselect
+				bind:value={selectedCountries}
+				label="name"
+				trackBy="code"
+				placeholder="Type to search"
+				options={searchedCountries}
+				multiple={true}
+				searchable={true}
+				loading={isLoading}
+				internalSearch={false}
+				clearOnSelect={false}
+				closeOnSelect={false}
+				optionsLimit={300}
+				limit={3}
+				limitText={(c) => {
+					return `and ${c} other countries`;
+				}}
+				maxHeight={600}
+				hideSelected={true}
+				on:search-change={(e) => {
+					if (e.detail) {
+						isLoading = true;
+						getOptions(e.detail).then((response) => {
+							searchedCountries = response;
+							isLoading = false;
+						});
+					}
+				}}
+			>
+				<svelte:fragment slot="tag" let:option let:remove>
+					<span class="custom__tag"
+						><span>{option.name}</span><span
+							class="custom__remove"
+							on:click={() => {
+								console.log(option);
+								remove(option);
+							}}>❌</span
+						></span
 					>
-				</Multiselect>
-				<pre class="language-json"><code>{JSON.stringify(value5) ?? ""}</code
-					></pre>
-			</div>
-		</Card>
+				</svelte:fragment>
+
+				<svelte:fragment slot="clear">
+					{#if selectedCountries.length}
+						<div
+							class="multiselect__clear"
+							on:mousedown|preventDefault|stopPropagation={() =>
+								(selectedCountries = [])}
+						>
+							❌
+						</div>
+					{/if}
+				</svelte:fragment>
+
+				<span slot="noResult"
+					>Oops! No elements found. Consider changing the search query.</span
+				>
+			</Multiselect>
+			<pre class="language-json"><code>{JSON.stringify(value5) ?? ""}</code
+				></pre>
+		</ComponentExampleTemplate>
 		<Card>
 			<svelte:fragment slot="header">Tagging</svelte:fragment>
 			<div>

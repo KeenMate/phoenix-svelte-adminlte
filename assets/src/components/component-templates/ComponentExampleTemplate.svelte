@@ -1,40 +1,55 @@
 <script>
-   import { HighlightSvelte } from "svelte-highlight";
+	import { HighlightSvelte } from "svelte-highlight";
 
-  import { Card ,LteButton} from "svelte-adminlte";
-  import notification from "../../providers/notificationProvider";
-  
+	import { Card, LteButton } from "svelte-adminlte";
+	import notification from "../../providers/notificationProvider";
 
-  import { _ } from "svelte-i18n";
+	import { _ } from "svelte-i18n";
 
-  export let name = "";
-  export let code = "";
-  export let codeonly = false;
-  export let exampleOnly = false;
+	export let name = "";
+	export let code = "";
+	export let codeonly = false;
+	export let exampleOnly = false;
 
-
-
-  export function copyToClipboard(){
-    navigator.clipboard.writeText(code);
-    notification.success($_("notifications.componentExampleTemplate.copied.message"))
-  }
+	export function copyToClipboard() {
+		navigator.clipboard.writeText(code);
+		notification.success(
+			$_("notifications.componentExampleTemplate.copied.message")
+		);
+	}
 </script>
+
 <Card class="card-width " color="info" outline>
-  <svelte:fragment slot="header">{name}</svelte:fragment>
-  <svelte:fragment slot="tools">{#if code != "" && code != null && code != undefined}
-    <LteButton color="success" on:click={copyToClipboard} small ><i class="fas fa-copy"></i></LteButton>
-  {/if}</svelte:fragment>
-  <div class="row">
-    <div class:col-6={!exampleOnly} class:col-12={exampleOnly} class:d-none={codeonly}>
-      <slot />
-    </div>
-    {#if !exampleOnly}
-    <div class:line-left={!codeonly} class:col-6={!codeonly} class:col-12={codeonly}>
-      <div class=" highlighter">
-          <HighlightSvelte {code}  /></div>
-    </div>
-    {/if}
-  </div>
+	<svelte:fragment slot="header">{name}</svelte:fragment>
+	<svelte:fragment slot="tools"
+		>{#if code != "" && code != null && code != undefined}
+			<LteButton color="success" on:click={copyToClipboard} small
+				><i class="fas fa-copy" /></LteButton
+			>
+		{/if}</svelte:fragment
+	>
+	<div class="row">
+		<div
+			class:col-md-6={!exampleOnly}
+			class:col-md-12={exampleOnly}
+			class:d-none={codeonly}
+			class="col-12"
+		>
+			<slot />
+		</div>
+		{#if !exampleOnly}
+			<div
+				class:line-left={!codeonly}
+				class:col-md-6={!codeonly}
+				class:col-md-12={codeonly}
+				class="col-12"
+			>
+				<div class=" highlighter">
+					<HighlightSvelte {code} />
+				</div>
+			</div>
+		{/if}
+	</div>
 </Card>
 
 <style lang="sass">
@@ -62,6 +77,6 @@
       font-size: 0.8em
       white-space: break-spaces
       background-color: #f5f5f5
-    
+
 
 </style>

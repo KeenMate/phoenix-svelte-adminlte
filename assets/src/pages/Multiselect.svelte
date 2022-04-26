@@ -10,18 +10,10 @@
 
 	import { Multiselect } from "svelte-multiselect";
 	import ComponentExampleTemplate from "../components/component-templates/ComponentExampleTemplate.svelte";
+	import github from "svelte-highlight/src/styles/github";
+	import SvelteMarkdown from "svelte-markdown";
 
-	let singleSelectCode =
-		'<label class="typo__label">Single select</label>\r<Multiselect\r\tbind:value={value1}\r\toptions={stringOptions}\r\tsearchable={false}\r\tcloseOnSelect={false}\r\tshowLabels={false}\r\tplaceholder="Pick a value"\r/>\r<pre class="language-json"><code>{value1 ?? ""}</code></pre>';
-	let objectCode =
-		'<label class="typo__label">Single select / dropdown</label>\r<Multiselect\r\tbind:value={value2}\r\toptions={objectOptions}\r\tdeselectLabel="Can\'t remove this value"\r\ttrackBy="name"\r\tlabel="name"\r\tplaceholder="Select one"\r\tsearchable={false}\r\tallowEmpty={false}\r/>\r<pre class="language-json"><code>{value2?.language ?? ""}</code></pre>';
-	let searchCode =
-		'<label class="typo__label">Select with search</label>\r<Multiselect\r\tbind:value={value3}\r\toptions={objectOptions}\r\tcustomLabel={({ name, language }) => {\r\t\treturn `${name} — [${language}]`;\r\t}}\r\tplaceholder="Select one"\r\tlabel="name"\r\ttrackBy="name"\r/>\r<pre class="language-json"><code>{JSON.stringify(value3) ?? ""}</code\r\t></pre>';
-	let multiselectCode =
-		'<label class="typo__label">Simple select / dropdown</label>\r<Multiselect\r\tbind:value={value4}\r\toptions={objectOptions}\r\tmultiple={true}\r\tcloseOnSelect={false}\r\tclearOnSelect={false}\r\tpreserveSearch={true}\r\tplaceholder="Pick some"\r\tlabel="name"\r\ttrackBy="name"\r\tpreselectFirst={true}\r\tmax={10}\r>\r\t<svelte:fragment slot="selection" let:values let:search let:isOpen>\r\t\t{#if values.length && !isOpen}\r\t\t\t{values.length} options selected\r\t\t{/if}\r\t</svelte:fragment>\r</Multiselect>\r<pre class="language-json"><code>{JSON.stringify(value4) ?? ""}</code\r\t></pre>';
-
-	let asyncCode =
-		'<label class="typo__label">Async multiselect</label>\r<Multiselect\r\tbind:value={selectedCountries}\r\tlabel="name"\r\ttrackBy="code"\r\tplaceholder="Type to search"\r\toptions={searchedCountries}\r\tmultiple={true}\r\tsearchable={true}\r\tloading={isLoading}\r\tinternalSearch={false}\r\tclearOnSelect={false}\r\tcloseOnSelect={false}\r\toptionsLimit={300}\r\tlimit={3}\r\tlimitText={(c) => {\r\t\treturn `and ${c} other countries`;\r\t}}\r\tmaxHeight={600}\r\thideSelected={true}\r\ton:search-change={(e) => {\r\t\tif (e.detail) {\r\t\t\tisLoading = true;\r\t\t\tgetOptions(e.detail).then((response) => {\r\t\t\t\tsearchedCountries = response;\r\t\t\t\tisLoading = false;\r\t\t\t});\r\t\t}\r\t}}\r>\r\t<svelte:fragment slot="tag" let:option let:remove>\r\t\t<span class="custom__tag"\r\t\t\t><span>{option.name}</span><span\r\t\t\t\tclass="custom__remove"\r\t\t\t\ton:click={() => {\r\t\t\t\t\tconsole.log(option);\r\t\t\t\t\tremove(option);\r\t\t\t\t}}>❌</span\r\t\t\t></span\r\t\t>\r\t</svelte:fragment>\r\r\t<svelte:fragment slot="clear">\r\t\t{#if selectedCountries.length}\r\t\t\t<div\r\t\t\t\tclass="multiselect__clear"\r\t\t\t\ton:mousedown|preventDefault|stopPropagation={() =>\r\t\t\t\t\t(selectedCountries = [])}\r\t\t\t>\r\t\t\t\t❌\r\t\t\t</div>\r\t\t{/if}\r\t</svelte:fragment>\r\r\t<span slot="noResult"\r\t\t>Oops! No elements found. Consider changing the search query.</span\r\t>\r</Multiselect>\r<pre class="language-json"><code>{JSON.stringify(value5) ?? ""}</code\r\t></pre>';
+	import texts from "../texts/multiselectTexts.js";
 	let stringOptions = [
 		"Select option",
 		"options",
@@ -199,6 +191,9 @@
 	//#endregion
 </script>
 
+<svelte:head>
+	{@html github}
+</svelte:head>
 <PageHeader>
 	<svelte:fragment>
 		{$_("multiselect.title")}
@@ -215,13 +210,10 @@
 <div class="row">
 	<div class="col-12">
 		<Card>
-			[Svelte-multiselect](https://github.com/KeenMate/svelte-multiselect) is vue-multiselect converted into svelte. Goal is to make as close of a copy as possible. 
-Below are examples from vue multiselect [docs](https://vue-multiselect.js.org/#sub-getting-started).
-Goal was to make exact copies of their examples in svelte, so you can test it and compare differences.
-
+			<SvelteMarkdown source={texts.aboutText} />
 		</Card>
 
-		<ComponentExampleTemplate code={singleSelectCode} name="Single select">
+		<ComponentExampleTemplate code={texts.singleSelect} name="Single select">
 			<label class="typo__label">Single select</label>
 			<Multiselect
 				bind:value={value1}
@@ -234,7 +226,7 @@ Goal was to make exact copies of their examples in svelte, so you can test it an
 			<pre class="language-json"><code>{value1 ?? ""}</code></pre>
 		</ComponentExampleTemplate>
 
-		<ComponentExampleTemplate code={objectCode} name="Single select (object)">
+		<ComponentExampleTemplate code={texts.object} name="Single select (object)">
 			<label class="typo__label">Single select / dropdown</label>
 			<Multiselect
 				bind:value={value2}
@@ -249,7 +241,7 @@ Goal was to make exact copies of their examples in svelte, so you can test it an
 			<pre class="language-json"><code>{value2?.language ?? ""}</code></pre>
 		</ComponentExampleTemplate>
 
-		<ComponentExampleTemplate code={searchCode} name="Select with search">
+		<ComponentExampleTemplate code={texts.search} name="Select with search">
 			<label class="typo__label">Select with search</label>
 			<Multiselect
 				bind:value={value3}
@@ -265,7 +257,7 @@ Goal was to make exact copies of their examples in svelte, so you can test it an
 				></pre>
 		</ComponentExampleTemplate>
 
-		<ComponentExampleTemplate code={multiselectCode} name="Multiple select">
+		<ComponentExampleTemplate code={texts.multiselect} name="Multiple select">
 			<label class="typo__label">Simple select / dropdown</label>
 			<Multiselect
 				bind:value={value4}
@@ -290,7 +282,10 @@ Goal was to make exact copies of their examples in svelte, so you can test it an
 				></pre>
 		</ComponentExampleTemplate>
 
-		<ComponentExampleTemplate code={multiselectCode} name="Asynchronous select">
+		<ComponentExampleTemplate
+			code={texts.multiselect}
+			name="Asynchronous select"
+		>
 			<label class="typo__label">Async multiselect</label>
 			<Multiselect
 				bind:value={selectedCountries}
@@ -339,8 +334,7 @@ Goal was to make exact copies of their examples in svelte, so you can test it an
 							class="multiselect__clear"
 							on:mousedown|preventDefault|stopPropagation={() =>
 								(selectedCountries = [])}
-						>
-						</div>
+						/>
 					{/if}
 				</svelte:fragment>
 
@@ -351,129 +345,110 @@ Goal was to make exact copies of their examples in svelte, so you can test it an
 			<pre class="language-json"><code>{JSON.stringify(value5) ?? ""}</code
 				></pre>
 		</ComponentExampleTemplate>
-		<Card>
-			<svelte:fragment slot="header">Tagging</svelte:fragment>
-			<div>
-				<label class="typo__label">Tagging</label>
-				<Multiselect
-					bind:value={taggingValue}
-					tagPlaceholder="Add this as new tag"
-					placeholder="Search or add a tag"
-					label="name"
-					trackBy="code"
-					options={taggingOptions}
-					multiple
-					taggable
-					on:tag={addTag}
-				/>
-				<pre class="language-json"><code
-						>{JSON.stringify(taggingValue) ?? ""}</code
-					></pre>
-			</div>
-		</Card>
-		<Card>
-			<svelte:fragment slot="header">Custom option template</svelte:fragment>
-			<div>
-				<label class="typo__label">Custom option template</label>
-				<Multiselect
-					bind:value={customValue}
-					placeholder="Fav No Man’s Sky path"
-					label="title"
-					trackBy="title"
-					options={customOptions}
-					optionHeight={104}
-					customLabel={({ title, desc }) => `${title} – ${desc}`}
-					showLabels={false}
-				>
-					<svelte:fragment slot="singleLabel" let:option>
-						<img
-							class="option__image"
-							src={option.img}
-							alt="No Man’s Sky"
-						/><span class="option__desc"
-							><span class="option__title">{option.title}</span></span
+		<ComponentExampleTemplate code={texts.tagging} name="Tagging">
+			<label class="typo__label">Tagging</label>
+			<Multiselect
+				bind:value={taggingValue}
+				tagPlaceholder="Add this as new tag"
+				placeholder="Search or add a tag"
+				label="name"
+				trackBy="code"
+				options={taggingOptions}
+				multiple
+				taggable
+				on:tag={addTag}
+			/>
+			<pre class="language-json"><code
+					>{JSON.stringify(taggingValue) ?? ""}</code
+				></pre>
+		</ComponentExampleTemplate>
+		<ComponentExampleTemplate code={texts.custom} name="Custom option template">
+			<label class="typo__label">Custom option template</label>
+			<Multiselect
+				bind:value={customValue}
+				placeholder="Fav No Man’s Sky path"
+				label="title"
+				trackBy="title"
+				options={customOptions}
+				optionHeight={104}
+				customLabel={({ title, desc }) => `${title} – ${desc}`}
+				showLabels={false}
+			>
+				<svelte:fragment slot="singleLabel" let:option>
+					<img class="option__image" src={option.img} alt="No Man’s Sky" /><span
+						class="option__desc"
+						><span class="option__title">{option.title}</span></span
+					>
+				</svelte:fragment>
+				<svelte:fragment slot="option" let:option>
+					<img class="option__image" src={option.img} alt="No Man’s Sky" />
+					<div class="option__desc">
+						<span class="option__title">{option.title}</span><span
+							class="option__small">{option.desc}</span
 						>
-					</svelte:fragment>
-					<svelte:fragment slot="option" let:option>
-						<img class="option__image" src={option.img} alt="No Man’s Sky" />
-						<div class="option__desc">
-							<span class="option__title">{option.title}</span><span
-								class="option__small">{option.desc}</span
-							>
-						</div>
-					</svelte:fragment>
-				</Multiselect>
-				<pre class="language-json"><code
-						>{JSON.stringify(customValue) ?? ""}</code
-					></pre>
-			</div>
-		</Card>
-		<Card>
-			<svelte:fragment slot="header">Groups</svelte:fragment>
-			<div>
-				<label class="typo__label">Groups</label>
-				<Multiselect
-					bind:value={groupValue}
-					options={groupOptions}
-					multiple
-					groupValues="libs"
-					groupLabel="language"
-					groupSelect
-					placeholder="Type to search"
-					trackBy="name"
-					label="name"
+					</div>
+				</svelte:fragment>
+			</Multiselect>
+			<pre class="language-json"><code>{JSON.stringify(customValue) ?? ""}</code
+				></pre>
+		</ComponentExampleTemplate>
+		<ComponentExampleTemplate code={texts.groups} name="Groups">
+			<label class="typo__label">Groups</label>
+			<Multiselect
+				bind:value={groupValue}
+				options={groupOptions}
+				multiple
+				groupValues="libs"
+				groupLabel="language"
+				groupSelect
+				placeholder="Type to search"
+				trackBy="name"
+				label="name"
+			>
+				<span slot="noResult"
+					>Oops! No elements found. Consider changing the search query.</span
 				>
-					<span slot="noResult"
-						>Oops! No elements found. Consider changing the search query.</span
-					>
-				</Multiselect>
-				<pre class="language-json"><code
-						>{JSON.stringify(groupValue) ?? ""}</code
-					></pre>
-			</div>
-		</Card>
-		<Card>
-			<svelte:fragment slot="header">Action dispatcher</svelte:fragment>
-			<div>
-				<label class="typo__label">Open console to see logs.</label>
-				<Multiselect
-					placeholder="Pick action"
-					options={actions}
-					searchable={false}
-					resetAfter
-					on:select={dispatchAction}
-				/>
-			</div>
-		</Card>
-		<Card>
-			<svelte:fragment slot="header">Custom configuration</svelte:fragment>
-			<div>
-				<label class="typo__label">Customized multiselect</label>
-				<Multiselect
-					placeholder="Pick at least one"
-					selectLabel="Enter doesn’t work here!"
-					value={customConfigurationValue}
-					options={customConfigurationOptions}
-					multiple
-					searchable
-					allowEmpty={false}
-					hideSelected
-					maxHeight={150}
-					max={3}
-					disabled={isDisabled}
-					blockKeys={["Tab", "Enter"]}
-					on:input={(e) => onChange(e.detail)}
-					on:close={(e) => onTouch(e.detail)}
-					on:select={(e) => onSelect(e.detail)}
-				/>
+			</Multiselect>
+			<pre class="language-json"><code>{JSON.stringify(groupValue) ?? ""}</code
+				></pre>
+		</ComponentExampleTemplate>
+		<ComponentExampleTemplate code={texts.actions} name="Action dispatcher">
+			<label class="typo__label">Open console to see logs.</label>
+			<Multiselect
+				placeholder="Pick action"
+				options={actions}
+				searchable={false}
+				resetAfter
+				on:select={dispatchAction}
+			/>
+		</ComponentExampleTemplate>
 
-				{#if isInvalid}
-					<WarningAlert closable={false}
-						>Must have at least one value</WarningAlert
-					>
-				{/if}
-			</div>
-		</Card>
+		<ComponentExampleTemplate code={texts.conf} name="Custom configuration">
+			<label class="typo__label">Customized multiselect</label>
+			<Multiselect
+				placeholder="Pick at least one"
+				selectLabel="Enter doesn’t work here!"
+				value={customConfigurationValue}
+				options={customConfigurationOptions}
+				multiple
+				searchable
+				allowEmpty={false}
+				hideSelected
+				maxHeight={150}
+				max={3}
+				disabled={isDisabled}
+				blockKeys={["Tab", "Enter"]}
+				on:input={(e) => onChange(e.detail)}
+				on:close={(e) => onTouch(e.detail)}
+				on:select={(e) => onSelect(e.detail)}
+			/>
+
+			{#if isInvalid}
+				<WarningAlert closable={false}
+					>Must have at least one value</WarningAlert
+				>
+			{/if}
+		</ComponentExampleTemplate>
 	</div>
 </div>
 

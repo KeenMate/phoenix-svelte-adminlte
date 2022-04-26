@@ -335,7 +335,6 @@
 							on:mousedown|preventDefault|stopPropagation={() =>
 								(selectedCountries = [])}
 						>
-							❌
 						</div>
 					{/if}
 				</svelte:fragment>

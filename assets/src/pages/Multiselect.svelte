@@ -214,7 +214,12 @@
 
 <div class="row">
 	<div class="col-12">
-		<Card>info text</Card>
+		<Card>
+			[Svelte-multiselect](https://github.com/KeenMate/svelte-multiselect) is vue-multiselect converted into svelte. Goal is to make as close of a copy as possible. 
+Below are examples from vue multiselect [docs](https://vue-multiselect.js.org/#sub-getting-started).
+Goal was to make exact copies of their examples in svelte, so you can test it and compare differences.
+
+		</Card>
 
 		<ComponentExampleTemplate code={singleSelectCode} name="Single select">
 			<label class="typo__label">Single select</label>

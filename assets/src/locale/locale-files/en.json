@@ -93,7 +93,7 @@
 	},
 	"route1": {
 		"welcomeHeader": "Welcome",
-		"welcomeText": "Go to [Componets](#/components)if you want to  see documentation for individual components."
+		"welcomeText": "Go to [Componets](#/components) if you want to  see documentation for individual components."
 	},
 	"tree": {
 		"title": "svelte-treeview",

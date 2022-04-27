@@ -22,8 +22,9 @@
 @import "../../../node_modules/icheck-bootstrap/icheck-bootstrap.min.css";
 
 @import "./fonts.scss";
+@import "./condensed-override.scss";
 
-.selectContainer svg{
+.selectContainer svg {
   vertical-align: initial;
 }
 
@@ -31,6 +32,6 @@
   overflow-x: hidden !important;
 }
 
-.minWidth{
- min-width: 10rem;
+.minWidth {
+  min-width: 10rem;
 }

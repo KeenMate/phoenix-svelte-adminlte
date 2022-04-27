@@ -3,8 +3,10 @@
 .condensed {
   font-size: 0.9rem;
   line-height: 1.2;
-  --borderRadius: 0;
 
+  .svelte-select {
+    --height: calc(2rem + 2px) !important;
+  }
 
   .card {
     border-radius: 0;
@@ -154,6 +156,7 @@
 
   .nav-tabs .nav-link {
     border-radius: 0;
+    height: 100%;
   }
 
 
@@ -199,4 +202,21 @@
 
 .content-header {
   padding: 8px 0.3rem;
+}
+
+.form-control {
+  font-size: 1em;
+  padding: 0.275rem 0.65rem;
+  height: calc(2rem + 2px);
+
+
+}
+
+.custom-file,
+.custom-file-input {
+  height: calc(2rem + 2px);
+}
+
+.custom-file-label {
+  height: calc(2rem + 2px);
 }

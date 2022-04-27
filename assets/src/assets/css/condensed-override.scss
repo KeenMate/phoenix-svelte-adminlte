@@ -207,21 +207,51 @@
 .form-control {
   font-size: 1em;
   padding: 0.275rem 0.65rem;
-  height: calc(2rem + 2px);
-
-
+  height: calc(1.8125rem + 2px);
 }
+
+
 
 .custom-file,
 .custom-file-input {
-  height: calc(2rem + 2px);
+  height: calc(1.8125rem + 2px);
 }
 
 .custom-file-label {
-  height: calc(2rem + 2px);
+  height: calc(1.8125rem + 2px);
 }
 
 .btn {
   line-height: 1.4;
   padding: 0.25rem 0.55rem;
+}
+
+.input-group {
+  height: calc(1.8125rem + 2px) !important;
+}
+
+// .selectContainer {
+//   --height: calc(2rem + 2px) !important;
+// }
+
+.input-group {
+  height: calc(1.8125rem + 2px) !important;
+}
+
+.input-group-prepend {
+  height: 100%;
+}
+
+.input-group-append {
+  height: 100%;
+}
+
+.alert-dismissible {
+  padding-right: 3rem;
+}
+
+.alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 0.5rem;
+  border-radius: 0;
 }

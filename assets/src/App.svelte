@@ -115,11 +115,11 @@
 		</svelte:fragment>
 
 		<svelte:fragment slot="right">
-			<FormGroup>
+			<!-- <FormGroup>
 				<Checkbox bind:checked={condensed} id="condensed"
 					><Label inputId="condensed">condensed</Label></Checkbox
 				>
-			</FormGroup>
+			</FormGroup> -->
 
 			<SvelteSelect
 				items={fonts}

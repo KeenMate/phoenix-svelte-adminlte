@@ -9,7 +9,6 @@
   }
 
   .card {
-    border-radius: 0;
     margin-bottom: 0.7rem;
   }
 
@@ -26,9 +25,7 @@
     margin: -0.25rem 0rem -0.25rem 0;
   }
 
-  .content-wrapper .content:first-child {
-    padding-left: 20px;
-  }
+
 
   .col-xl,
   .col-xl-auto,
@@ -117,9 +114,6 @@
     padding: 3px 2px 1px 2px;
   }
 
-  .btn {
-    border-radius: 0;
-  }
 
   .elevation-4 {
     box-shadow: 0 14px 28px rgb(0 0 0 / 25%), 0 10px 10px rgb(0 0 0 / 22%) !important;
@@ -130,17 +124,6 @@
     padding: 0.25rem;
   }
 
-  .input-group>.input-group-append>.btn,
-  .input-group>.input-group-append>.input-group-text,
-  .input-group>.input-group-prepend:not(:first-child)>.btn,
-  .input-group>.input-group-prepend:not(:first-child)>.input-group-text,
-  .input-group>.input-group-prepend:first-child>.btn:not(:first-child),
-  .input-group>.input-group-prepend:first-child>.input-group-text:not(:first-child) {
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-    border-top-left-radius: 0.2em;
-    border-top-right-radius: 0.2em;
-  }
 
   .table {
     margin-bottom: 0.2em;
@@ -155,7 +138,6 @@
   }
 
   .nav-tabs .nav-link {
-    border-radius: 0;
     height: 100%;
   }
 
@@ -192,66 +174,145 @@
   .fr-box.fr-basic .fr-element {
     padding: 10px !important;
   }
-}
-
-
-.callout {
-  margin-bottom: 0.5rem;
-  padding: 0.5rem;
-}
-
-.content-header {
-  padding: 8px 0.3rem;
-}
-
-.form-control {
-  font-size: 1em;
-  padding: 0.275rem 0.65rem;
-  height: calc(1.8125rem + 2px);
-}
 
 
 
-.custom-file,
-.custom-file-input {
-  height: calc(1.8125rem + 2px);
-}
+  .callout {
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
+  }
 
-.custom-file-label {
-  height: calc(1.8125rem + 2px);
-}
+  .content-header {
+    padding: 8px 0.3rem;
+  }
 
-.btn {
-  line-height: 1.4;
-  padding: 0.25rem 0.55rem;
-}
+  .form-control {
+    font-size: 1em;
+    padding: 0.275rem 0.65rem;
+    height: calc(1.8125rem + 2px);
+  }
 
-.input-group {
-  height: calc(1.8125rem + 2px) !important;
-}
 
-// .selectContainer {
-//   --height: calc(2rem + 2px) !important;
-// }
 
-.input-group {
-  height: calc(1.8125rem + 2px) !important;
-}
+  .custom-file,
+  .custom-file-input {
+    height: calc(1.8125rem + 2px);
+  }
 
-.input-group-prepend {
-  height: 100%;
-}
+  .custom-file-label {
+    height: calc(1.8125rem + 2px);
+  }
 
-.input-group-append {
-  height: 100%;
-}
+  .btn {
+    line-height: 1.4;
+    padding: 0.25rem 0.55rem;
+  }
 
-.alert-dismissible {
-  padding-right: 3rem;
-}
+  .input-group {
+    height: calc(1.8125rem + 2px) !important;
+  }
 
-.alert {
-  padding: 0.5rem 1rem;
-  margin-bottom: 0.5rem;
-  border-radius: 0;
+  // .selectContainer {
+  //   --height: calc(2rem + 2px) !important;
+  // }
+
+  .input-group {
+    height: calc(1.8125rem + 2px) !important;
+  }
+
+  .input-group-prepend {
+    height: 100%;
+  }
+
+  .input-group-append {
+    height: 100%;
+  }
+
+  .alert-dismissible {
+    padding-right: 3rem;
+  }
+
+  .alert {
+    padding: 0.5rem 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .content-header h1 {
+    font-size: 1.5rem !important;
+  }
+
+  .container,
+  .container-fluid,
+  .container-lg,
+  .container-md,
+  .container-sm,
+  .container-xl {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+
+  .table-sm tr {
+    line-height: 1.3;
+  }
+
+  //! setting Multiselect height to 31 px to be in line with other sm inputs
+  .multiselect {
+    min-height: 31px !important;
+  }
+
+  .multiselect,
+  .multiselect__input,
+  .multiselect__single {
+    font-size: 14px;
+  }
+
+  .multiselect__tags {
+    min-height: 31px !important;
+    padding: 4px 28px 0 4px !important;
+
+  }
+
+  .multiselect__select {
+    height: 31px !important;
+    width: 30px !important;
+  }
+
+  .multiselect__single {
+    margin-bottom: 4px !important;
+    padding-left: 4px !important;
+  }
+
+  .multiselect__input {
+    margin-bottom: 4px !important;
+  }
+
+
+  .multiselect__placeholder {
+    padding-top: 0 !important;
+    margin-bottom: 4px !important;
+  }
+
+  .multiselect__option {
+    min-height: 25px !important;
+    padding: 4px 8px !important;
+    line-height: 23px !important;
+  }
+
+  .multiselect__current {
+    min-height: 31px !important;
+  }
+
+  .multiselect__option:after {
+    line-height: 31px !important;
+  }
+
+  .multiselect__tag {
+    margin-bottom: 0 !important;
+    padding: 3px 26px 3px 10px !important;
+    margin-right: 5px !important;
+  }
+
+  .multiselect__tag-icon {
+    line-height: 19px !important;
+  }
 }

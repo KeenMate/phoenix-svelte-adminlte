@@ -216,6 +216,7 @@
 		<ComponentExampleTemplate code={texts.singleSelect} name="Single select">
 			<label class="typo__label">Single select</label>
 			<Multiselect
+				optionHeight={31}
 				bind:value={value1}
 				options={stringOptions}
 				searchable={false}
@@ -229,6 +230,7 @@
 		<ComponentExampleTemplate code={texts.object} name="Single select (object)">
 			<label class="typo__label">Single select / dropdown</label>
 			<Multiselect
+				optionHeight={31}
 				bind:value={value2}
 				options={objectOptions}
 				deselectLabel="Can't remove this value"
@@ -244,6 +246,7 @@
 		<ComponentExampleTemplate code={texts.search} name="Select with search">
 			<label class="typo__label">Select with search</label>
 			<Multiselect
+				optionHeight={31}
 				bind:value={value3}
 				options={objectOptions}
 				customLabel={({ name, language }) => {
@@ -260,6 +263,7 @@
 		<ComponentExampleTemplate code={texts.multiselect} name="Multiple select">
 			<label class="typo__label">Simple select / dropdown</label>
 			<Multiselect
+				optionHeight={31}
 				bind:value={value4}
 				options={objectOptions}
 				multiple={true}
@@ -288,6 +292,7 @@
 		>
 			<label class="typo__label">Async multiselect</label>
 			<Multiselect
+				optionHeight={31}
 				bind:value={selectedCountries}
 				label="name"
 				trackBy="code"
@@ -348,6 +353,7 @@
 		<ComponentExampleTemplate code={texts.tagging} name="Tagging">
 			<label class="typo__label">Tagging</label>
 			<Multiselect
+				optionHeight={31}
 				bind:value={taggingValue}
 				tagPlaceholder="Add this as new tag"
 				placeholder="Search or add a tag"
@@ -395,6 +401,7 @@
 		<ComponentExampleTemplate code={texts.groups} name="Groups">
 			<label class="typo__label">Groups</label>
 			<Multiselect
+				optionHeight={31}
 				bind:value={groupValue}
 				options={groupOptions}
 				multiple
@@ -415,6 +422,7 @@
 		<ComponentExampleTemplate code={texts.actions} name="Action dispatcher">
 			<label class="typo__label">Open console to see logs.</label>
 			<Multiselect
+				optionHeight={31}
 				placeholder="Pick action"
 				options={actions}
 				searchable={false}
@@ -426,6 +434,7 @@
 		<ComponentExampleTemplate code={texts.conf} name="Custom configuration">
 			<label class="typo__label">Customized multiselect</label>
 			<Multiselect
+				optionHeight={31}
 				placeholder="Pick at least one"
 				selectLabel="Enter doesn’t work here!"
 				value={customConfigurationValue}
@@ -456,8 +465,8 @@
 	.multiselect__clear {
 		position: absolute;
 		right: 41px;
-		height: 40px;
-		width: 40px;
+		height: 31px;
+		width: 31px;
 		display: block;
 		cursor: pointer;
 		z-index: 2;
@@ -470,7 +479,7 @@
 		width: 3px;
 		height: 16px;
 		background: #aaa;
-		top: 12px;
+		top: 8px;
 		right: 4px;
 	}
 	.multiselect__clear:before {
@@ -493,10 +502,10 @@
 
 	.custom__tag {
 		display: inline-block;
-		padding: 3px 12px;
+		padding: 3px 8px;
 		background: #d2d7ff;
-		margin-right: 8px;
-		margin-bottom: 8px;
+		margin-right: 4px;
+		margin-bottom: 4px;
 		border-radius: 10px;
 		cursor: pointer;
 	}

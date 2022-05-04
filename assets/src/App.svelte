@@ -38,6 +38,7 @@
 
 	import SvelteSelect from "svelte-select";
 	import FormGroup from "svelte-adminlte/src/form/structure/FormGroup.svelte";
+	import { Multiselect } from "svelte-multiselect";
 	onMount(() => {
 		initSocket();
 		keymage("ctrl-0", () => {
@@ -78,15 +79,19 @@
 		jq('[data-toggle="tooltip"]').tooltip({ delay: { show: 800, hide: 0 } });
 	});
 
-	let condensed = true;
-	$: setCondensed(condensed);
-	function setCondensed(val) {
-		if (val) {
-			document.body.classList.add("condensed");
-		} else {
-			document.body.classList.remove("condensed");
-		}
+	let condensed = false;
+	function setCondensed(e) {
+		setTimeout(() => {
+			condensed = !condensed;
+			if (condensed) {
+				document.body.classList.add("condensed");
+			} else {
+				document.body.classList.remove("condensed");
+			}
+		});
 	}
+	//will set initial condension
+	setCondensed();
 </script>
 
 <div class="wrapper">
@@ -115,25 +120,44 @@
 		</svelte:fragment>
 
 		<svelte:fragment slot="right">
-			<!-- <FormGroup>
-				<Checkbox bind:checked={condensed} id="condensed"
-					><Label inputId="condensed">condensed</Label></Checkbox
-				>
-			</FormGroup> -->
-
-			<SvelteSelect
+			<!-- <SvelteSelect
 				items={fonts}
 				on:select={changeFont}
 				value={fonts[0]}
 				containerClasses="minWidth"
-			/>
-			<LocaleDropdown />
+			/> -->
+			<div class="m-1">
+				<Multiselect
+					optionHeight={31}
+					options={fonts}
+					on:input={changeFont}
+					showLabels={false}
+					value={fonts[0]}
+					trackBy="value"
+					label="label"
+					class="p1"
+					allowEmpty={false}
+				/>
+			</div>
+
+			<div class="m-1">
+				<LocaleDropdown />
+			</div>
 			{#if $isAuthenticated}
 				<Dropdown slot="right">
 					<DropdownButton>{$userInfo.name}</DropdownButton>
 
 					<DropdownMenu right>
 						<DropdownItem on:click={() => logout()}>Log Out</DropdownItem>
+						<div
+							class="dropdown-item"
+							on:click={() => {
+								setCondensed(!condensed);
+								return false;
+							}}
+						>
+							{condensed ? "Mobile" : "Condensed"} style
+						</div>
 					</DropdownMenu>
 				</Dropdown>
 			{:else}
@@ -197,3 +221,10 @@
 
 	<MessageLog bind:show={showLog} />
 </div>
+
+<style>
+	.dropdown-item {
+		cursor: pointer;
+		white-space: nowrap;
+	}
+</style>

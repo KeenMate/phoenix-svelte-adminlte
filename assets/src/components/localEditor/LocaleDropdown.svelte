@@ -1,20 +1,30 @@
 <script>
-	import {onMount} from "svelte"
-	import {changeLang, languages, getFlagPath, locale} from "../../locale/i18n"
-	import {Dropdown, DropdownMenu, DropdownButton} from "svelte-adminlte"
-	let localeLanguage = ""
+	import { onMount } from "svelte";
+	import {
+		changeLang,
+		languages,
+		getFlagPath,
+		locale,
+	} from "../../locale/i18n";
+	import { Dropdown, DropdownMenu, DropdownButton } from "svelte-adminlte";
+	import { Multiselect } from "svelte-multiselect";
+	let localeLanguage = "";
 	onMount(() => {
-		const subscription = locale.subscribe((x) => (localeLanguage = x))
-	})
+		const subscription = locale.subscribe((x) => (localeLanguage = x));
+	});
 	function changeLanguage(lang) {
-		if (!lang)
-			return
-		changeLang(lang)
-		location.reload()
+		console.log(lang);
+		if (!lang) return;
+		changeLang(lang.code);
+		//location.reload();
 	}
+
+	let value;
+
+	$: value = languages.find((x) => x.code == localeLanguage);
 </script>
 
-<div class="language-dropdown">
+<!-- <div class="language-dropdown">
 	<Dropdown>
 		<DropdownButton>
 			<img
@@ -26,32 +36,44 @@
 
 		<DropdownMenu right>
 			{#each languages as l (l.code)}
-				<div
-					class="lang-item"
-					on:click={() => changeLanguage(l.code)}
-				>
+				<div class="lang-item" on:click={() => changeLanguage(l.code)}>
 					<img src={getFlagPath(l.code)} alt={l.img} />
 					{l.title || l.code}
 				</div>
 			{/each}
 		</DropdownMenu>
 	</Dropdown>
+</div> -->
+
+<div class="multiselect">
+	<Multiselect
+		optionHeight={31}
+		options={languages}
+		on:input={(e) => changeLanguage(e.detail)}
+		showLabels={false}
+		trackBy="code"
+		searchable={false}
+		{value}
+		customLabel={(o) => o?.code + "-" + o.value}
+		allowEmpty={false}
+	>
+		<svelte:fragment slot="option" let:option>
+			<img src={getFlagPath(option.code)} alt={option.code} />
+			{option.value || option.code}
+		</svelte:fragment>
+
+		<svelte:fragment slot="singleLabel">
+			<img
+				src={getFlagPath(localeLanguage)}
+				class="selected-locale-img"
+				alt={localeLanguage}
+			/>
+		</svelte:fragment>
+	</Multiselect>
 </div>
 
-<style lang="sass">
-	:global
-		.language-dropdown
-			.dropdown-menu
-				min-width: 0
-			.dropdown-toggle
-				display: flex
-				align-items: center
-				gap: .2rem
-	.lang-item
-		display: flex
-		align-items: center
-		gap: .5rem
-		cursor: pointer
-		white-space: nowrap
-		padding: 0 .5rem
+<style>
+	.selected-locale-img {
+		vertical-align: initial;
+	}
 </style>

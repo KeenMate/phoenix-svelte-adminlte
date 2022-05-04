@@ -22,6 +22,9 @@
 @import "../../../node_modules/icheck-bootstrap/icheck-bootstrap.min.css";
 
 @import "./fonts.scss";
+
+@import "./overrides";
+@import "./squared-corners.scss";
 @import "./condensed-override.scss";
 
 .selectContainer svg {

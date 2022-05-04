@@ -74,6 +74,11 @@
   -webkit-border-radius: 0 !important;
 }
 
-.multiselect-tags {
-  border-radius: 0;
+//keenmate/svelte-multiselect
+.multiselect__tags {
+  border-radius: 0 !important;
+}
+
+.multiselect__content-wrapper {
+  border-radius: 0 !important;
 }

@@ -48,6 +48,7 @@
 <div class="multiselect">
 	<Multiselect
 		small
+		overflow
 		options={languages}
 		on:input={(e) => changeLanguage(e.detail)}
 		showLabels={false}
@@ -59,7 +60,7 @@
 	>
 		<svelte:fragment slot="option" let:option>
 			<img src={getFlagPath(option.code)} alt={option.code} />
-			{option.value || option.code}
+			{option.title || option.code}
 		</svelte:fragment>
 
 		<svelte:fragment slot="singleLabel">

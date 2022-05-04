@@ -3,6 +3,8 @@ let aboutText = `
 Below are examples from vue multiselect [docs](https://vue-multiselect.js.org/#sub-getting-started).
 Goal was to make exact copies of their examples in svelte, so you can test it and compare differences.
 
+In this project we use custom css override to make multiselct same heigh as sm bootstrap input. We do that by setting containerClass.
+You also have to set optionHeight to new coresponding heigh
 `;
 
 let singleSelect = `

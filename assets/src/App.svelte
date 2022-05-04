@@ -137,6 +137,7 @@
 					label="label"
 					class="p1"
 					allowEmpty={false}
+					containerClass="multiselect-sm"
 				/>
 			</div>
 

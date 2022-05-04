@@ -128,7 +128,7 @@
 			/> -->
 			<div class="m-1">
 				<Multiselect
-					optionHeight={31}
+					small
 					options={fonts}
 					on:input={changeFont}
 					showLabels={false}
@@ -137,7 +137,6 @@
 					label="label"
 					class="p1"
 					allowEmpty={false}
-					containerClass="multiselect-sm"
 				/>
 			</div>
 

@@ -47,7 +47,7 @@
 
 <div class="multiselect">
 	<Multiselect
-		optionHeight={31}
+		small
 		options={languages}
 		on:input={(e) => changeLanguage(e.detail)}
 		showLabels={false}
@@ -56,7 +56,6 @@
 		{value}
 		customLabel={(o) => o?.code + "-" + o.value}
 		allowEmpty={false}
-		containerClass="multiselect-sm"
 	>
 		<svelte:fragment slot="option" let:option>
 			<img src={getFlagPath(option.code)} alt={option.code} />

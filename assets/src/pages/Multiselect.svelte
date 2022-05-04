@@ -216,7 +216,7 @@
 		<ComponentExampleTemplate code={texts.singleSelect} name="Single select">
 			<label class="typo__label">Single select</label>
 			<Multiselect
-				containerClass="multiselect-sm"
+				small
 				optionHeight={31}
 				bind:value={value1}
 				options={stringOptions}
@@ -231,7 +231,7 @@
 		<ComponentExampleTemplate code={texts.object} name="Single select (object)">
 			<label class="typo__label">Single select / dropdown</label>
 			<Multiselect
-				containerClass="multiselect-sm"
+				small
 				optionHeight={31}
 				bind:value={value2}
 				options={objectOptions}
@@ -248,7 +248,7 @@
 		<ComponentExampleTemplate code={texts.search} name="Select with search">
 			<label class="typo__label">Select with search</label>
 			<Multiselect
-				containerClass="multiselect-sm"
+				small
 				optionHeight={31}
 				bind:value={value3}
 				options={objectOptions}
@@ -266,7 +266,7 @@
 		<ComponentExampleTemplate code={texts.multiselect} name="Multiple select">
 			<label class="typo__label">Simple select / dropdown</label>
 			<Multiselect
-				containerClass="multiselect-sm"
+				small
 				optionHeight={31}
 				bind:value={value4}
 				options={objectOptions}
@@ -296,8 +296,7 @@
 		>
 			<label class="typo__label">Async multiselect</label>
 			<Multiselect
-				containerClass="multiselect-sm"
-				optionHeight={31}
+				small
 				bind:value={selectedCountries}
 				label="name"
 				trackBy="code"
@@ -358,8 +357,7 @@
 		<ComponentExampleTemplate code={texts.tagging} name="Tagging">
 			<label class="typo__label">Tagging</label>
 			<Multiselect
-				containerClass="multiselect-sm"
-				optionHeight={31}
+				small
 				bind:value={taggingValue}
 				tagPlaceholder="Add this as new tag"
 				placeholder="Search or add a tag"
@@ -377,7 +375,7 @@
 		<ComponentExampleTemplate code={texts.custom} name="Custom option template">
 			<label class="typo__label">Custom option template</label>
 			<Multiselect
-				containerClass="multiselect-sm"
+				small
 				bind:value={customValue}
 				placeholder="Fav No Man’s Sky path"
 				label="title"
@@ -408,8 +406,7 @@
 		<ComponentExampleTemplate code={texts.groups} name="Groups">
 			<label class="typo__label">Groups</label>
 			<Multiselect
-				containerClass="multiselect-sm"
-				optionHeight={31}
+				small
 				bind:value={groupValue}
 				options={groupOptions}
 				multiple
@@ -430,8 +427,7 @@
 		<ComponentExampleTemplate code={texts.actions} name="Action dispatcher">
 			<label class="typo__label">Open console to see logs.</label>
 			<Multiselect
-				containerClass="multiselect-sm"
-				optionHeight={31}
+				small
 				placeholder="Pick action"
 				options={actions}
 				searchable={false}
@@ -443,8 +439,7 @@
 		<ComponentExampleTemplate code={texts.conf} name="Custom configuration">
 			<label class="typo__label">Customized multiselect</label>
 			<Multiselect
-				containerClass="multiselect-sm"
-				optionHeight={31}
+				small
 				placeholder="Pick at least one"
 				selectLabel="Enter doesn’t work here!"
 				value={customConfigurationValue}

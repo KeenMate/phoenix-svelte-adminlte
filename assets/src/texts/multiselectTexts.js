@@ -3,13 +3,13 @@ let aboutText = `
 Below are examples from vue multiselect [docs](https://vue-multiselect.js.org/#sub-getting-started).
 Goal was to make exact copies of their examples in svelte, so you can test it and compare differences.
 
-In this project we use custom css override to make multiselct same heigh as sm bootstrap input. We do that by setting containerClass.
-You also have to set optionHeight to new coresponding heigh
+if you set small to true multiselect will have same size as sm bootstrap input
 `;
 
 let singleSelect = `
 <label class="typo__label">Single select</label>
 <Multiselect
+	small
 	bind:value={value1}
 	options={stringOptions}
 	searchable={false}
@@ -23,6 +23,7 @@ let singleSelect = `
 let object = `
 <label class="typo__label">Single select / dropdown</label>
 <Multiselect
+	small
 	bind:value={value2}
 	options={objectOptions}
 	deselectLabel="Can't remove this value"
@@ -38,6 +39,7 @@ let object = `
 let search = `
 <label class="typo__label">Select with search</label>
 <Multiselect
+	small
 	bind:value={value3}
 	options={objectOptions}
 	customLabel={({ name, language }) => {
@@ -54,6 +56,7 @@ let search = `
 let multiselect = `
 <label class="typo__label">Simple select / dropdown</label>
 <Multiselect
+	small
 	bind:value={value4}
 	options={objectOptions}
 	multiple={true}
@@ -79,6 +82,7 @@ let multiselect = `
 let async = `
 <label class="typo__label">Async multiselect</label>
 <Multiselect
+	small
 	bind:value={selectedCountries}
 	label="name"
 	trackBy="code"
@@ -142,6 +146,7 @@ let async = `
 let tagging = `
 <label class="typo__label">Tagging</label>
 <Multiselect
+	small
 	bind:value={taggingValue}
 	tagPlaceholder="Add this as new tag"
 	placeholder="Search or add a tag"
@@ -160,6 +165,7 @@ let tagging = `
 let custom = `
 <label class="typo__label">Custom option template</label>
 <Multiselect
+	small
 	bind:value={customValue}
 	placeholder="Fav No Man’s Sky path"
 	label="title"
@@ -190,6 +196,7 @@ let custom = `
 let groups = `
 	<label class="typo__label">Groups</label>
 <Multiselect
+	small
 	bind:value={groupValue}
 	options={groupOptions}
 	multiple
@@ -210,6 +217,7 @@ let groups = `
 let actions = `
 	<label class="typo__label">Open console to see logs.</label>
 <Multiselect
+	small
 	placeholder="Pick action"
 	options={actions}
 	searchable={false}
@@ -220,6 +228,7 @@ let actions = `
 let conf = `
 <label class="typo__label">Customized multiselect</label>
 <Multiselect
+	small
 	placeholder="Pick at least one"
 	selectLabel="Enter doesn’t work here!"
 	value={customConfigurationValue}

@@ -69,6 +69,7 @@
 		{ label: "Acephimere", value: "Acephimere" },
 		{ label: "Tepeno Sans", value: "Tepeno Sans" },
 		{ label: "Homizio Nova", value: "Homizio Nova" },
+		{ label: "Fira Sans Condensed", value: "Fira Sans Condensed" },
 	];
 
 	function changeFont(ev) {

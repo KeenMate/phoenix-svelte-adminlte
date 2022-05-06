@@ -12,7 +12,7 @@
 	export let text;
 </script>
 
-<div class="row col-12">
+<div class="row ">
 	<div class="col-lg-8 col-md-12  scroll order-lg-0 order-1">
 		<div class="row margin">
 			<slot name="examples" />

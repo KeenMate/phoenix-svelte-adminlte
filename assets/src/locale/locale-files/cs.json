@@ -1,28 +1,4 @@
 {
-  "routes": {
-    "Componets":{
-      "navtitle": "Komponenty"
-    },
-    "UserProfileInfo":{
-      "navtitle": "Info profilu",
-      "tooltip":"Informace o uzivateli a uvodni pokec."
-    },
-    "Users":{
-      "navtitle": "Uzivatele",
-      "tooltip":"Prehled uzivatelu s moznosti editace"
-    },
-    "Tree":{
-      "navtitle": "Strom",
-      "tooltip":"Stromove zobrazeni polozek"
-    },
-    "List":{
-      "navtitle": "List"
-    },
-    "Locale":{
-      "navtitle": "Editor Jazyku"
-    }
-  },
-  
   "List": {
     "text": "Více informaci na [Komponenty](#/components/show/dragable-container)"
   },
@@ -88,8 +64,34 @@
     "welcomeHeader": "Vítejte v demo projektu [svelte-adminlte](https://github.com/keenmate/svelte-adminlte) komponent",
     "welcomeText": "### Komponenty\r\n  Pro zobrazení přehledu všech komponent jdete na stránku [Komponenty](#/components). Jednotlivé komponenty obsahují jak ukázku použití, tak i základní dokumentaci \r\n  ### Demo stránky \r\nOstatní odkazy v levém menu slouží jako ukázka reálného použítí jednotlivých komponent"
   },
+  "routes": {
+    "Componets": {
+      "navtitle": "Komponenty"
+    },
+    "List": {
+      "navtitle": "List"
+    },
+    "Locale": {
+      "navtitle": "Editor Jazyku"
+    },
+    "Tree": {
+      "navtitle": "Strom",
+      "tooltip": "Stromove zobrazeni polozek"
+    },
+    "UserProfileInfo": {
+      "navtitle": "Info profilu",
+      "tooltip": "Informace o uzivateli a uvodni pokec."
+    },
+    "Users": {
+      "navtitle": "Uzivatele",
+      "tooltip": "Prehled uzivatelu s moznosti editace"
+    }
+  },
   "tree": {
-    "title": "Strom hrdinů"
+    "events": "Udalosti",
+    "options": "Moznosti",
+    "title": "Strom hrdinů",
+    "treeCardTitle": "TreeView"
   },
   "users": {
     "title": "Přehled uživatelů"

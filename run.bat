@@ -1,1 +1,1 @@
-iex.bat -S mix phx.server
+wt .\run-server.bat ; split-pane --title "Admin" -s .5 .\run-frontend.bat

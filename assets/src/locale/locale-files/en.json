@@ -1,96 +1,114 @@
 {
-  "routes": {
-    "Componets":{
-      "navtitle": "Componets"
-    },
-    "UserProfileInfo":{
-      "navtitle": "Profile Info",
-      "tooltip":  "Profile info and welcome"
-    },
-    "Users":{
-      "navtitle": "Users",
-      "tooltip":  "Users list"
-    },
-    "Tree":{
-      "navtitle": "Tree",
-      "tooltip":"Treeview"
-    },
-    "List":{
-      "navtitle": "List"
-    },
-    "Locale":{
-      "navtitle": "Locale Editor"
-    }
-  },
-  "List": {
-    "text": "More info in [Components](#/components/show/dragable-container)"
-  },
-  "componentList": {
-    "all": "All",
-    "cardTitle": "Click to view documentation",
-    "categories": "Categories",
-    "description": "Description",
-    "name": "Name",
-    "notFound": {
-      "text": "try changing or deleting search query",
-      "title": "No Components Found"
-    }
-  },
-  "componentPageTemplate": {
-    "eventsTitle": "Events",
-    "propsTitle": "Properties",
-    "slotsTitle": "Slots",
-    "textTitle": "Description"
-  },
-  "components": {
-    "text": "Click on names to see examples and documentation for particular component.",
-    "title": "Components"
-  },
-  "home": {
-    "language": "Select language",
-    "title": "Home"
-  },
-  "i18n": {
-    "savedLocales": "{locale} is loaded from locale storage ."
-  },
-  "list": {
-    "title": "List"
-  },
-  "localeEditor": {
-    "edit": "Edit",
-    "title": "locale editor"
-  },
-  "localesList": {
-    "cardTitle": "Click on locale to edit",
-    "code": "Code",
-    "flag": "Flag",
-    "language": "Language"
-  },
-  "notFound": {
-    "header": "Page not found",
-    "link": "Go to homepage"
-  },
-  "notifications": {
-    "componentExampleTemplate": {
-      "copied": {
-        "message": "Code copied to clipboard"
-      }
-    },
-    "localeEditor": {
-      "saved": {
-        "message": "Locales for {locale} have been sucesfully saved to LocalStorage.",
-        "title": "Locales saved"
-      }
-    }
-  },
-  "route1": {
-    "welcomeHeader": "Welcome",
-    "welcomeText": "Go to [Componets](#/components)if you want to  see documentation for individual components."
-  },
-  "tree": {
-    "title": "Tree"
-  },
-  "users": {
-    "title": "Users"
-  }
+	"routes": {
+		"Componets": {
+			"navtitle": "Componets"
+		},
+		"UserProfileInfo": {
+			"navtitle": "Profile Info",
+			"tooltip": "Profile info and welcome"
+		},
+		"Users": {
+			"navtitle": "Users",
+			"tooltip": "Users list"
+		},
+		"Tree": {
+			"navtitle": "Tree",
+			"tooltip": "svelte-treeview"
+		},
+		"List": {
+			"navtitle": "List"
+		},
+		"Locale": {
+			"navtitle": "Locale Editor"
+		},
+		"Multiselect": {
+			"navtitle": "Multiselect",
+			"tooltip": "keenmate/svelte-multiselect"
+		},
+		"Otp": {
+			"navtitle": "One time password",
+			"tooltip": "keenmate/svelte-otp"
+		}
+	},
+	"List": {
+		"text": "More info in [Components](#/components/show/dragable-container)"
+	},
+	"componentList": {
+		"all": "All",
+		"cardTitle": "Click to view documentation",
+		"categories": "Categories",
+		"description": "Description",
+		"name": "Name",
+		"notFound": {
+			"text": "try changing or deleting search query",
+			"title": "No Components Found"
+		}
+	},
+	"componentPageTemplate": {
+		"eventsTitle": "Events",
+		"propsTitle": "Properties",
+		"slotsTitle": "Slots",
+		"textTitle": "Description"
+	},
+	"components": {
+		"text": "Click on names to see examples and documentation for particular component.",
+		"title": "Components"
+	},
+	"home": {
+		"language": "Select language",
+		"title": "Home"
+	},
+	"i18n": {
+		"savedLocales": "{locale} is loaded from locale storage ."
+	},
+	"list": {
+		"title": "List"
+	},
+	"localeEditor": {
+		"edit": "Edit",
+		"title": "locale editor"
+	},
+	"localesList": {
+		"cardTitle": "Click on locale to edit",
+		"code": "Code",
+		"flag": "Flag",
+		"language": "Language"
+	},
+	"notFound": {
+		"header": "Page not found",
+		"link": "Go to homepage"
+	},
+	"notifications": {
+		"componentExampleTemplate": {
+			"copied": {
+				"message": "Code copied to clipboard"
+			}
+		},
+		"localeEditor": {
+			"saved": {
+				"message": "Locales for {locale} have been sucesfully saved to LocalStorage.",
+				"title": "Locales saved"
+			}
+		}
+	},
+	"route1": {
+		"welcomeHeader": "Welcome",
+		"welcomeText": "Go to [Componets](#/components) if you want to  see documentation for individual components."
+	},
+	"tree": {
+		"title": "svelte-treeview",
+		"treeCardTitle": "Treeview",
+		"options": "Options",
+		"events": "Events",
+		"text": "This is demo of [keenmate/svelte-treeview](https://github.com/keenmate/svelte-treeview) component. View full documentation [here](https://github.com/KeenMate/svelte-treeview/blob/master/README.md). \r\nYou can change properties of Treeview in options tab.\r\nView all events by enabling *show console*.\r\nTree is saved in your local storage so if something isnt working first try restarting the tree.\r\nYou can see all properties of nodes if you enable *showNodes*\r\n\r\nThis demo is about creating Dota 2 team, where you can have maximum of 5 heroes per team\r\nDragging teams and categories is disabled,\r\nsame as inserting nodes on root level and above/below games.  This is done with **nestDisabled**, **insertDisabled** and **isDraggable**.\r\nLimit of 5 heroes is enforced by **beforeMovedCallback**, that cancels any move that would put more than 5 heores in one team. You can also only place hero into its category or team. This is done with **dragEnterCallback**"
+	},
+	"users": {
+		"title": "Users"
+	},
+	"multiselect": {
+		"title": "svelte-multiselect"
+	},
+	"otp": {
+		"title": "svelte-otp"
+	}
 }

@@ -7,12 +7,12 @@
 @import "../../../node_modules/admin-lte/build/scss/variables-alt";
 @import "../../../node_modules/admin-lte/build/scss/mixins";
 
-@import "../../../node_modules/bootstrap/scss/bootstrap";
+@import "../../../node_modules/bootstrap/scss/mixins";
 @import "../../../node_modules/admin-lte/build/scss/parts/core";
 @import "../../../node_modules/admin-lte/build/scss/parts/components";
-@import "../../../node_modules/admin-lte/build/scss/parts/extra-components";
-@import "../../../node_modules/admin-lte/build/scss/parts/pages";
-@import "../../../node_modules/admin-lte/build/scss/parts/plugins";
+//@import "../../../node_modules/admin-lte/build/scss/parts/extra-components";
+//@import "../../../node_modules/admin-lte/build/scss/parts/pages";
+//@import "./admintltePlugins.scss";
 @import "../../../node_modules/admin-lte/build/scss/parts/miscellaneous";
 //@import "../../../node_modules/admin-lte/build/scss/adminlte";
 
@@ -23,7 +23,11 @@
 
 @import "./fonts.scss";
 
-.selectContainer svg{
+@import "./overrides";
+@import "./squared-corners.scss";
+@import "./condensed-override.scss";
+
+.selectContainer svg {
   vertical-align: initial;
 }
 
@@ -31,6 +35,6 @@
   overflow-x: hidden !important;
 }
 
-.minWidth{
- min-width: 10rem;
+.minWidth {
+  min-width: 10rem;
 }

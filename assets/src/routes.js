@@ -6,6 +6,8 @@ import NotFound from "./pages/NotFound.svelte";
 import Error from "./pages/Error.svelte";
 import LocaleEditor from "./pages/LocaleEditor.svelte";
 import Components from "./pages/Components.svelte";
+import Multiselect from "./pages/Multiselect.svelte"
+import Otp from "./pages/Otp.svelte"
 
 import { _ } from "svelte-i18n";
 
@@ -62,14 +64,7 @@ export const Routes = [
     breadcrumb: ["Users"],
     icon: "fas fa-users",
   },
-  {
-    name: "Tree",
-    title: "Tree",
-    route: "/tree",
-    breadcrumb: ["Tree"],
-    icon: "fas fa-stream",
-  },
-  {
+    {
     name: "List",
     title: "List",
     route: "/list",
@@ -83,7 +78,27 @@ export const Routes = [
     breadcrumb: ["Locale editor"],
     icon: "fas fa-language",
   },
-
+  {
+    name: "Tree",
+    title: "Tree",
+    route: "/tree",
+    breadcrumb: ["Tree"],
+    icon: "fas fa-tree",
+  },
+  {
+    name: "Multiselect",
+    title: "Multiselect",
+    route: "/multiselect",
+    breadcrumb: ["keenmate/svelte-multiselect"],
+    icon: "fas fa-stream",
+  },
+  {
+    name: "Otp",
+    title: "Otp",
+    route: "/otp",
+    breadcrumb: ["keenmate/svelte-otp"],
+    icon: "fas fa-lock",
+  },
 
 ];
 
@@ -111,11 +126,15 @@ export default {
   [Urls.ComponentsDetail]: Components,
   [Urls.UserProfileInfo]: Route1,
   [Urls.Users]: Users,
-  [Urls.Tree]: Tree,
   [Urls.List]: List,
   [Urls.Error]: Error,
   [Urls.Locale]: LocaleEditor,
   [Urls.Components]: Components,
+  [Urls.Tree]: Tree,
+  [Urls.Multiselect]: Multiselect,
+  [Urls.Otp]: Otp,
+
+
   // The catch-all route must always be last
   "*": NotFound,
 };

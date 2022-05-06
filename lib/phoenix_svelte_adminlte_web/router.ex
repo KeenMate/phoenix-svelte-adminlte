@@ -19,6 +19,11 @@ defmodule PhoenixSvelteAdminlteWeb.Router do
 
     get "/", PageController, :index
   end
+  scope "/data", PhoenixSvelteAdminlteWeb do
+    pipe_through :browser
+
+    get "/tree", DemoDataController, :tree_inital_data
+  end
 
   # Other scopes may use custom stacks.
   # scope "/api", PhoenixSvelteAdminlteWeb do

@@ -1,12 +1,13 @@
-import BaseProvider from "./baseProvider"
+import BaseProvider from "./baseProvider";
+import { GET } from "../constants/methods";
+import { BaseTreeDataPath } from "../constants/urls";
 
 export class UrlProvider extends BaseProvider {
-
 	async getTree() {
-		const response = await this.fetchResource("GET", "/data/tree")
+		const response = await this.fetchResource(GET, BaseTreeDataPath);
 
-		return response
+		return response;
 	}
 }
 
-export default new UrlProvider()
+export default new UrlProvider();

@@ -2,6 +2,16 @@
   "List": {
     "text": "Více informaci na [Komponenty](#/components/show/dragable-container)"
   },
+  "commen": {
+    "error": {
+      "noDataToShow": "Žádná data k zobrazení"
+    }
+  },
+  "common": {
+    "buttons": {
+      "delete": ""
+    }
+  },
   "componentList": {
     "all": "Vše",
     "cardTitle": "Klikněte pro zobrazení dokumentace",
@@ -23,6 +33,7 @@
     "text": "Klikněte na jména pro zobrazení dokumentace pro konkrétní komponenty",
     "title": "Komponenty"
   },
+  "deletePhotosError": "Chyba při mazání fotek",
   "home": {
     "language": "Vyberte jazyk",
     "title": "Domov"
@@ -43,6 +54,9 @@
     "flag": "Vlajka",
     "language": "Jazyk"
   },
+  "multiselect": {
+    "title": ""
+  },
   "notFound": {
     "header": "Stránka nenalezena",
     "link": "Vrátit se na domovskou stránku"
@@ -60,6 +74,16 @@
       }
     }
   },
+  "otp": {
+    "title": ""
+  },
+  "photos": {
+    "cancelSelection": "Zrusit vyber",
+    "deleteSelected": "",
+    "preview": "Náhled",
+    "title": "Fotky",
+    "upload": "Nahravani"
+  },
   "route1": {
     "welcomeHeader": "Vítejte v demo projektu [svelte-adminlte](https://github.com/keenmate/svelte-adminlte) komponent",
     "welcomeText": "### Komponenty\r\n  Pro zobrazení přehledu všech komponent jdete na stránku [Komponenty](#/components). Jednotlivé komponenty obsahují jak ukázku použití, tak i základní dokumentaci \r\n  ### Demo stránky \r\nOstatní odkazy v levém menu slouží jako ukázka reálného použítí jednotlivých komponent"
@@ -73,6 +97,14 @@
     },
     "Locale": {
       "navtitle": "Editor Jazyku"
+    },
+    "Multiselect": {
+      "navtitle": "",
+      "tooltip": ""
+    },
+    "Otp": {
+      "navtitle": "",
+      "tooltip": ""
     },
     "Tree": {
       "navtitle": "Strom",
@@ -90,6 +122,7 @@
   "tree": {
     "events": "Udalosti",
     "options": "Moznosti",
+    "text": "",
     "title": "Strom hrdinů",
     "treeCardTitle": "TreeView"
   },

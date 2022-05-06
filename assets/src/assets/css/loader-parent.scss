@@ -1,0 +1,12 @@
+﻿.loader-parent {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	//min-height: 60vh
+
+	& > * {
+		width: 4rem;
+		height: 4rem;
+	}
+}

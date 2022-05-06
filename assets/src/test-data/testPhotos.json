@@ -1,0 +1,47 @@
+[
+	{
+		"id": 1,
+		"uuid": "1",
+		"original_url": "https://placeimg.com/1920/1080/arch",
+		"thumbnail_url": "https://placeimg.com/400/400/arch",
+		"size": 307200,
+		"width": 480,
+		"height": 640
+	},
+	{
+		"id": 2,
+		"uuid": "2",
+		"original_url": "https://placeimg.com/1920/1080/tech",
+		"thumbnail_url": "https://placeimg.com/400/400/tech",
+		"size": 307200,
+		"width": 480,
+		"height": 640
+	},
+	{
+		"id": 3,
+		"uuid": "3",
+		"original_url": "https://placeimg.com/1920/1080/arch",
+		"thumbnail_url": "https://placeimg.com/400/400/arch",
+		"size": 307200,
+		"width": 480,
+		"height": 640
+	},
+	{
+		"id": 4,
+		"uuid": "4",
+		"original_url": "https://placeimg.com/1920/1080/nature",
+		"thumbnail_url": "https://placeimg.com/400/400/nature",
+		"size": 307200,
+		"width": 480,
+		"height": 640
+	},
+	{
+		"id": 5,
+		"uuid": "5",
+		"original_url": "https://placeimg.com/1920/1080/arch",
+		"thumbnail_url": "https://placeimg.com/400/400/arch",
+		"size": 307200,
+		"width": 480,
+		"height": 640
+	}
+]

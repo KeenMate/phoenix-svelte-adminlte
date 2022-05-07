@@ -20,9 +20,11 @@
 	import Image from "../components/gallery/Image.svelte";
 	import Gallery from "../components/gallery/Gallery.svelte";
 	import selectMany from "../helpers/select-many-helper";
+	import { Fancybox } from "@fancyapps/ui";
 
 	import "filepond/dist/filepond.css";
 	import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
+	import "@fancyapps/ui/dist/fancybox.css";
 
 	registerPlugin(
 		FilePondPluginImageExifOrientation,

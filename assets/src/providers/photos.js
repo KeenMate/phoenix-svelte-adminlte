@@ -81,7 +81,6 @@ export class PhotosProvider extends BaseProvider {
 	}
 
 	async getImages() {
-		/*
 		const response =
 			(await this.fetchResource(GET, PhotosEndpoints.listPhotos)) || [];
 
@@ -89,35 +88,35 @@ export class PhotosProvider extends BaseProvider {
 			console.error("Error during loading images: ", response.message);
 			throw new Error(response.message);
 		}
+		console.log(response);
 
-		return response.map(
+		return response.data.map(
 			(x) =>
 				new GalleryImage(
 					null,
 					x.id,
 					x.uuid,
-					AppUrl + x.original_url,
-					AppUrl + x.thumbnail_url,
+					x.original_url,
+					x.thumbnail_url,
 					x.size,
 					x.width,
 					x.height
 				)
 		);
-		*/
 
-		return testPhotos.map(
-			(p) =>
-				new GalleryImage(
-					null,
-					p.id,
-					p.uuid,
-					p.original_url,
-					p.thumbnail_url,
-					p.size,
-					p.width,
-					p.height
-				)
-		);
+		// return testPhotos.map(
+		// 	(p) =>
+		// 		new GalleryImage(
+		// 			null,
+		// 			p.id,
+		// 			p.uuid,
+		// 			p.original_url,
+		// 			p.thumbnail_url,
+		// 			p.size,
+		// 			p.width,
+		// 			p.height
+		// 		)
+		// );
 	}
 
 	async deleteImage(uuid) {

@@ -1,4 +1,4 @@
-defmodule Pluto.Image.InputImage do
+defmodule PhoenixSvelteAdminlte.Image.InputImage do
   @keys [
     :input_file,
     :uuid,

@@ -31,6 +31,7 @@ defmodule PhoenixSvelteAdminlteWeb.Router do
 
     scope "/image" do
       get "/", PhotosApiController, :get
+      post "/process", PhotosApiController, :process
     end
   end
 

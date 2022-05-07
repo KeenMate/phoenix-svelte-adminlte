@@ -3,6 +3,8 @@ defmodule PhoenixSvelteAdminlteWeb.UserSocket do
 
   ## Channels
   channel "users:*", PhoenixSvelteAdminlteWeb.UsersChannel
+  channel "photo:*", PhoenixSvelteAdminlteWeb.PhotoChannel
+
   # channel "room:*", OctoroAuthWeb.RoomChannel
 
   # Socket params are passed from the client and can

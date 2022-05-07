@@ -34,6 +34,7 @@ defmodule PhoenixSvelteAdminlte.MixProject do
   defp deps do
     [
       {:phoenix, "~> 1.6.0"},
+      {:phoenix_ecto, "~> 4.4"},
       {:phoenix_html, "~> 3.0"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:phoenix_live_view, "~> 0.16.0"},
@@ -43,7 +44,7 @@ defmodule PhoenixSvelteAdminlte.MixProject do
       {:gettext, "~> 0.18"},
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
-      {:inflex, "~> 2.0"},
+      {:inflex, "~> 2.0"}
     ]
   end
 

@@ -77,7 +77,7 @@ export class GalleryImage {
 
 export class PhotosProvider extends BaseProvider {
 	getProcessUrl() {
-		//return PhotosEndpoints.process;
+		return PhotosEndpoints.process;
 	}
 
 	async getImages() {

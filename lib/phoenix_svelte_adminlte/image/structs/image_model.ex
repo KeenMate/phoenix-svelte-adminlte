@@ -1,4 +1,4 @@
-defmodule Pluto.Image.ImageModel do
+defmodule PhoenixSvelteAdminlte.Image.ImageModel do
   @keys [
     :id,
     :uuid,

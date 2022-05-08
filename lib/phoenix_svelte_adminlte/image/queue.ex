@@ -23,8 +23,6 @@ defmodule PhoenixSvelteAdminlte.Image.Queue do
 
   @impl true
   def handle_cast({:enqueue_image, image}, state) do
-    Logger.info("POME!")
-
     Logger.info("Enqueing image",
       input_path: image.input_file,
       output_dir: image.output_directory,
@@ -37,7 +35,6 @@ defmodule PhoenixSvelteAdminlte.Image.Queue do
 
   @impl true
   def handle_info({:enqueued_images, images}, state) do
-    Logger.info("POME 2xxxxxxxxx")
     Image.Proxy.process_images(images)
 
     {:noreply, state}

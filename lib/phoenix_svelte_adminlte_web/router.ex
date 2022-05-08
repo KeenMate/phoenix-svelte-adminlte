@@ -35,7 +35,7 @@ defmodule PhoenixSvelteAdminlteWeb.Router do
     end
   end
 
-  scope "/assets", PlutoWeb do
+  scope "/assets", PhoenixSvelteAdminlteWeb do
     pipe_through :api
 
     get "/img/:uuid", ImageApiController, :original

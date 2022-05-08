@@ -68,10 +68,11 @@ defmodule PhoenixSvelteAdminlte.Image.Manager do
       {:ok, path} ->
         # Logger.info("Image copied to uploaded directory")
         Logger.info(Path.dirname(PathHelpers.image_dir()))
+        Logger.info("Going to query it now...")
 
         # TODO add to que
-        # input_image(path, uuid, PathHelpers.image_dir(), [75, 400])
-        # |> Pluto.Image.Queue.enqueue_image()
+        input_image(path, uuid, PathHelpers.image_dir(), [75, 400])
+        |> PhoenixSvelteAdminlte.Image.Queue.enqueue_image()
 
         :ok
 

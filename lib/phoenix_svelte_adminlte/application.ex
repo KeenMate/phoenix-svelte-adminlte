@@ -13,7 +13,9 @@ defmodule PhoenixSvelteAdminlte.Application do
       # Start the PubSub system
       {Phoenix.PubSub, name: PhoenixSvelteAdminlte.PubSub},
       # Start the Endpoint (http/https)
-      PhoenixSvelteAdminlteWeb.Endpoint
+      PhoenixSvelteAdminlteWeb.Endpoint,
+      PhoenixSvelteAdminlte.Image.Supervisor
+
       # Start a worker by calling: PhoenixSvelteAdminlte.Worker.start_link(arg)
       # {PhoenixSvelteAdminlte.Worker, arg}
     ]

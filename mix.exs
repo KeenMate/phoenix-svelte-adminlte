@@ -44,7 +44,12 @@ defmodule PhoenixSvelteAdminlte.MixProject do
       {:gettext, "~> 0.18"},
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
-      {:inflex, "~> 2.0"}
+      {:poolboy, "~> 1.5.1"},
+      {:pubsub, "~> 1.0"},
+      {:inflex, "~> 2.0"},
+      {:erlport, "~> 0.10.1"},
+
+      {:ex_image_info, "~> 0.2.4"}
     ]
   end
 

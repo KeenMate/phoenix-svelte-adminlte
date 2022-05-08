@@ -231,15 +231,15 @@ defmodule PhoenixSvelteAdminlte.Image.PilWorker do
     do: Enum.take(list, limit)
 
   defp create_thumbnail(port, input_path, output_path, size) do
-    # Logger.info("Creating thumbnail", input_path: input_path, size: size)
+    Logger.info("Creating thumbnail", input_path: input_path, size: size)
 
     convert_image(port, input_path, output_path, size)
   end
 
   defp convert_image(port, input_path, output_path, size \\ nil, max_size \\ nil) do
-    # Logger.info("Converting image", input_path: input_path, resizing: size != nil)
+    Logger.info("Converting image", input_path: input_path, resizing: size != nil)
 
-    Logger.debug("PORT is: #{max_size}")
+    Logger.debug("PORT is: #{inspect(port)}")
     Logger.debug("What is max_size: #{max_size}")
 
     python_result =

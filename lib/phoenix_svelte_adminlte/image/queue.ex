@@ -37,6 +37,7 @@ defmodule PhoenixSvelteAdminlte.Image.Queue do
 
   @impl true
   def handle_info({:enqueued_images, images}, state) do
+    Logger.info("POME 2xxxxxxxxx")
     Image.Proxy.process_images(images)
 
     {:noreply, state}

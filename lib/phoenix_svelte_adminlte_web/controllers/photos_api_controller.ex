@@ -3,6 +3,8 @@ defmodule PhoenixSvelteAdminlteWeb.PhotosApiController do
   require Logger
   alias PhoenixSvelteAdminlte.Image.Manager, as: ImageManager
   alias PhoenixSvelteAdminlte.Image.Helpers
+  alias PhoenixSvelteAdminlteWeb.PhotoQueueDispatcher
+
   # alias PhoenixSvelteAdminlteWeb.Router.Helpers, as: WebRoutes
 
   def get(conn, _params) do
@@ -47,8 +49,8 @@ defmodule PhoenixSvelteAdminlteWeb.PhotosApiController do
     result = PhoenixSvelteAdminlte.Image.Manager.save_image(image.path, uuid, image.content_type)
 
     # TODO uncomment
-    # Logger.debug("Registering image for Queue dispatch")
-    # PhotoQueueDispatcher.register(image.filename, uuid)
+    Logger.debug("Registering image for Queue dispatch")
+    PhotoQueueDispatcher.register(image.filename, uuid)
 
     case result do
       :ok -> send_resp(conn, 200, "")
@@ -68,8 +70,8 @@ defmodule PhoenixSvelteAdminlteWeb.PhotosApiController do
     result = PhoenixSvelteAdminlte.Image.Manager.save_image(image.path, uuid, image.content_type)
 
     # TODO uncomment
-    # Logger.debug("Registering image for Queue dispatch")
-    # PhotoQueueDispatcher.register(image.filename, uuid)
+    Logger.debug("Registering image for Queue dispatch")
+    PhotoQueueDispatcher.register(image.filename, uuid)
 
     case result do
       :ok -> send_resp(conn, 200, "")

@@ -198,6 +198,8 @@
 			const channel = socket.channel("photo:upload", { files });
 
 			channel.on("image_processed", (msg) => {
+				console.log("image processed");
+				console.log(msg);
 				if (msg.status === "ok" && !processedFiles.includes(msg.filename)) {
 					processedFiles.push(msg.filename);
 					Toastr.success(`Fotka ${msg.filename} byla úspěšně zpracována`);

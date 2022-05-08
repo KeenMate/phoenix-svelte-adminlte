@@ -1,6 +1,7 @@
 defmodule PhoenixSvelteAdminlte.Helpers.MsgHelpers do
   use GenServer
 
+  require Logger
   @timeout 500
 
   def debounce(key, timeout \\ @timeout) do
@@ -8,6 +9,7 @@ defmodule PhoenixSvelteAdminlte.Helpers.MsgHelpers do
   end
 
   def window(id, item, timeout) do
+    Logger.info("WINDOW CALLED")
     GenServer.cast(__MODULE__, {:window, self(), id, item, timeout})
   end
 
@@ -22,6 +24,8 @@ defmodule PhoenixSvelteAdminlte.Helpers.MsgHelpers do
   end
 
   def handle_cast({:window, pid, id, item, timeout}, state) do
+    Logger.info("POME Z MSG HELPERS")
+
     key = {pid, id}
     state_key = {:window, key}
 

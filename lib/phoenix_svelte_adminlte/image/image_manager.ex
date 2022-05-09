@@ -1,62 +1,12 @@
 defmodule PhoenixSvelteAdminlte.Image.Manager do
   require Logger
   import PhoenixSvelteAdminlte.Image.Helpers
-  alias PhoenixSvelteAdminlte.Image.ImageModel
+  alias PhoenixSvelteAdminlte.Image
   alias PhoenixSvelteAdminlte.Helpers.PathHelpers
 
   # get
   def all_images() do
-    {:ok,
-     [
-       %ImageModel{
-         gallery_photo_id: 1,
-         id: 2,
-         uuid: "2",
-         width: 1920,
-         height: 1080,
-         size: 132_456
-       },
-       %ImageModel{
-         gallery_photo_id: 1,
-         id: 3,
-         uuid: "3",
-         width: 1920,
-         height: 1080,
-         size: 132_456
-       },
-       %ImageModel{
-         gallery_photo_id: 1,
-         id: 4,
-         uuid: "4",
-         width: 1920,
-         height: 1080,
-         size: 132_456
-       },
-       %ImageModel{
-         gallery_photo_id: 1,
-         id: 5,
-         uuid: "5",
-         width: 1920,
-         height: 1080,
-         size: 132_456
-       },
-       %ImageModel{
-         gallery_photo_id: 1,
-         id: 6,
-         uuid: "6",
-         width: 1920,
-         height: 1080,
-         size: 132_456
-       },
-       %ImageModel{
-         gallery_photo_id: 1,
-         id: 7,
-         uuid: "7",
-         width: 1920,
-         height: 1080,
-         size: 132_456
-       }
-     ]}
+    Image.Database.all_images()
   end
 
   # save
@@ -109,5 +59,21 @@ defmodule PhoenixSvelteAdminlte.Image.Manager do
 
         error
     end
+  end
+
+  def get_image_path(uuid) do
+    Path.join(PathHelpers.image_dir(), image_filename(uuid))
+  end
+
+  def get_thumbnail_path(uuid, size) do
+    Path.join(PathHelpers.image_dir(), thumbnail_filename(uuid, size))
+  end
+
+  def get_random_image(gallery_code) do
+    Image.Database.get_random_image(gallery_code)
+  end
+
+  def image_dimensions(uuid) do
+    Image.Proxy.dimensions(get_image_path(uuid))
   end
 end

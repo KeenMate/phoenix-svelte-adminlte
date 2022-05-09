@@ -48,8 +48,7 @@ defmodule PhoenixSvelteAdminlteWeb.PhotosApiController do
     uuid = Helpers.generate_uuid()
     result = PhoenixSvelteAdminlte.Image.Manager.save_image(image.path, uuid, image.content_type)
 
-    # TODO uncomment
-    Logger.debug("Registering image for Queue dispatch")
+    # Logger.debug("Registering image for Queue dispatch")
     PhotoQueueDispatcher.register(image.filename, uuid)
 
     case result do
@@ -69,8 +68,7 @@ defmodule PhoenixSvelteAdminlteWeb.PhotosApiController do
     uuid = Helpers.generate_uuid()
     result = PhoenixSvelteAdminlte.Image.Manager.save_image(image.path, uuid, image.content_type)
 
-    # TODO uncomment
-    Logger.debug("Registering image for Queue dispatch")
+    # Logger.debug("Registering image for Queue dispatch")
     PhotoQueueDispatcher.register(image.filename, uuid)
 
     case result do

@@ -116,7 +116,7 @@ defmodule PhoenixSvelteAdminlte.Image.PilWorker do
 
     case port_res do
       {:ok, port} ->
-        Logger.debug("Python port started")
+        # Logger.debug("Python port started")
 
         {:noreply, %{state | port: port}}
 
@@ -132,14 +132,14 @@ defmodule PhoenixSvelteAdminlte.Image.PilWorker do
 
     case Settings.get_settings("max_image_dimensions") do
       {:ok, %{value: max_size}} ->
-        Logger.debug("Loaded max image dimensions: #{max_size}")
+        # Logger.debug("Loaded max image dimensions: #{max_size}")
         {:noreply, %{state | max_size: max_size}}
 
       {:error, reason} ->
-        Logger.debug(
-          "Image worker could not load max_size from settings. reason: #{inspect(reason)}",
-          reason: inspect(reason)
-        )
+        # Logger.debug(
+        #   "Image worker could not load max_size from settings. reason: #{inspect(reason)}",
+        #   reason: inspect(reason)
+        # )
 
         {:stop, {:shutdown, :enotinit}, state}
     end
@@ -170,11 +170,11 @@ defmodule PhoenixSvelteAdminlte.Image.PilWorker do
 
     File.mkdir_p!(Path.dirname(output_path))
 
-    Logger.debug("""
-    Calling convert_image
-    Input path: #{input_file}
-    Output path: #{output_path}
-    """)
+    # Logger.debug("""
+    # Calling convert_image
+    # Input path: #{input_file}
+    # Output path: #{output_path}
+    # """)
 
     convert_image(port, input_file, output_path, nil, max_size)
     {:ok, size} = get_image_size(output_path)
@@ -185,8 +185,7 @@ defmodule PhoenixSvelteAdminlte.Image.PilWorker do
       create_thumbnail(port, input_file, output_path, size)
     end
 
-    # TODO add to database
-    # Image.Database.create_image(uuid, width, height, size)
+    Image.Database.create_image(uuid, width, height, size)
 
     :ok
   end
@@ -239,8 +238,8 @@ defmodule PhoenixSvelteAdminlte.Image.PilWorker do
   defp convert_image(port, input_path, output_path, size \\ nil, max_size \\ nil) do
     Logger.info("Converting image", input_path: input_path, resizing: size != nil)
 
-    Logger.debug("PORT is: #{inspect(port)}")
-    Logger.debug("What is max_size: #{max_size}")
+    # Logger.debug("PORT is: #{inspect(port)}")
+    # Logger.debug("What is max_size: #{max_size}")
 
     python_result =
       if size == nil do
@@ -257,7 +256,7 @@ defmodule PhoenixSvelteAdminlte.Image.PilWorker do
         ])
       end
 
-    Logger.debug("Received result from python", result: inspect(python_result))
+    # Logger.debug("Received result from python", result: inspect(python_result))
   end
 
   # defp squared_size(size) when is_binary(size) do

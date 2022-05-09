@@ -17,12 +17,9 @@ defmodule PhoenixSvelteAdminlteWeb.ImageApiController do
   end
 
   def dimensions(conn, %{"uuid" => uuid}) do
-    # TODO return real dimensions
-    # result_path = Image.Manager.get_image_path(uuid)
+    result_path = Image.Manager.get_image_path(uuid)
 
-    # {w, h} = Image.Proxy.dimensions(result_path)
-
-    {w, h} = {1920, 1080}
+    {w, h} = Image.Proxy.dimensions(result_path)
 
     conn
     |> put_resp_header("Content-Type", "application/json")

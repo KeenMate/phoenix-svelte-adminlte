@@ -22,13 +22,13 @@ defmodule PhoenixSvelteAdminlteWeb.PhotoChannel do
         %{filename: filename} = msg,
         %Phoenix.Socket{topic: "photo:upload"} = socket
       ) do
-    Logger.debug("Intercepted event image_processed")
+    # Logger.debug("Intercepted event image_processed")
 
     new_socket =
       if filename in socket.assigns.files do
-        Logger.debug("Received image processed and matched filename. Sending websocket msg",
-          filename: filename
-        )
+        # Logger.debug("Received image processed and matched filename. Sending websocket msg",
+        #   filename: filename
+        # )
 
         push(socket, event, msg)
 
@@ -43,7 +43,7 @@ defmodule PhoenixSvelteAdminlteWeb.PhotoChannel do
       end
 
     if new_socket.assigns.files == [] do
-      Logger.debug("No more image filenames for this socket. Disconnecting")
+      # Logger.debug("No more image filenames for this socket. Disconnecting")
 
       push(new_socket, "phx_leave", %{})
     end
@@ -52,7 +52,7 @@ defmodule PhoenixSvelteAdminlteWeb.PhotoChannel do
   end
 
   def handle_out(ev, msg, socket) do
-    Logger.debug("Fallback branch for outgoing events")
+    # Logger.debug("Fallback branch for outgoing events")
     push(socket, ev, msg)
 
     {:noreply, socket}

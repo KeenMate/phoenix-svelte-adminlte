@@ -92,32 +92,17 @@ export class PhotosProvider extends BaseProvider {
 
 		return response.data.map(
 			(x) =>
-
 				new GalleryImage(
 					null,
 					x.id,
 					x.uuid,
 					x.original_url,
 					x.thumbnail_url,
-					x.size,
+					x.file_size,
 					x.width,
 					x.height
 				)
 		);
-
-		// return testPhotos.map(
-		// 	(p) =>
-		// 		new GalleryImage(
-		// 			null,
-		// 			p.id,
-		// 			p.uuid,
-		// 			p.original_url,
-		// 			p.thumbnail_url,
-		// 			p.size,
-		// 			p.width,
-		// 			p.height
-		// 		)
-		// );
 	}
 
 	async deleteImage(uuid) {

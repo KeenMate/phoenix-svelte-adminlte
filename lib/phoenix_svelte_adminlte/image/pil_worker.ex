@@ -259,13 +259,4 @@ defmodule PhoenixSvelteAdminlte.Image.PilWorker do
 
     Logger.debug("Received result from python", response: inspect(python_result))
   end
-
-  # defp squared_size(size) when is_binary(size) do
-  #   size <> "x" <> size
-  # end
-
-  # defp squared_size(size) when is_integer(size) do
-  #   str = Integer.to_string(size)
-  #   str <> "x" <> str
-  # end
 end

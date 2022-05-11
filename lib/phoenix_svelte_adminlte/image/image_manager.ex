@@ -18,8 +18,6 @@ defmodule PhoenixSvelteAdminlte.Image.Manager do
     case copy_to_upload(image_path, filename) do
       {:ok, path} ->
         # Logger.info("Image copied to uploaded directory")
-        Logger.info(Path.dirname(PathHelpers.image_dir()))
-        Logger.info("Going to query it now...")
 
         input_image(path, uuid, PathHelpers.image_dir(), Settings.thumbnail_sizes(), og_filename)
         |> PhoenixSvelteAdminlte.Image.Queue.enqueue_image()
@@ -80,8 +78,6 @@ defmodule PhoenixSvelteAdminlte.Image.Manager do
   end
 
   def delete_image(uuid) do
-    Logger.emergency("deleting" <> uuid)
-
     with :ok <- Image.Database.delete_image(uuid),
          delete_image_result <- File.rm(get_image_path(uuid)) do
       if delete_image_result in [:ok, {:error, :enoent}] do

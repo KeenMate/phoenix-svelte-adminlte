@@ -8,7 +8,6 @@ defmodule PhoenixSvelteAdminlte.Image.Queue do
   @window_duration 3000
 
   def enqueue_image(%PhoenixSvelteAdminlte.Image.InputImage{} = image) do
-    Logger.info("queue recived in module")
     GenServer.cast(__MODULE__, {:enqueue_image, image})
   end
 

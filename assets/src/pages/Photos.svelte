@@ -25,6 +25,7 @@
 	import "filepond/dist/filepond.css";
 	import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
 	import "@fancyapps/ui/dist/fancybox.css";
+	import Label from "svelte-adminlte/src/form/structure/Label.svelte";
 
 	registerPlugin(
 		FilePondPluginImageExifOrientation,
@@ -89,6 +90,7 @@
 
 	// the name to use for the internal file input
 	let name = "filepond";
+	let size = 100;
 
 	// handle filepond events
 	function handleInit() {
@@ -317,6 +319,15 @@
 				{$_("photos.title")}
 			</svelte:fragment>
 			<svelte:fragment slot="tools">
+				<Label inputId="sizeRange">{$_("photos.size")}</Label>
+				<input
+					type="range"
+					min="75"
+					max="250"
+					class="form-range"
+					bind:value={size}
+					id="sizeRange"
+				/>
 				{#if selectedImageIds.length}
 					<LteButton
 						small
@@ -334,7 +345,7 @@
 			</svelte:fragment>
 			<WithLazyLoader task={photosTask}>
 				{#if photos?.length}
-					<Gallery images={photos}>
+					<Gallery images={photos} imageSize={size + "px"}>
 						<svelte:fragment slot="image" let:image>
 							<div class="photo">
 								<figure>
@@ -381,6 +392,10 @@
 </div>
 
 <style global lang="scss">
+	.form-range {
+		align-self: center;
+	}
+
 	.images-gallery {
 		.row {
 			margin-bottom: 0.8rem;
@@ -390,6 +405,7 @@
 	.photo {
 		position: relative;
 		padding-bottom: 2em;
+		aspect-ratio: 1;
 
 		figure {
 			position: relative;

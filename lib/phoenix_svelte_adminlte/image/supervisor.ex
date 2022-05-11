@@ -7,9 +7,8 @@ defmodule PhoenixSvelteAdminlte.Image.Supervisor do
     children = [
       Image.ProcessedImagesPubSub,
       worker_pool_spec(),
-      Image.Queue
-      # TODO uncomment
-      # Image.Maid
+      Image.Queue,
+      Image.Maid
     ]
 
     Supervisor.start_link(children, strategy: :one_for_one, name: __MODULE__)

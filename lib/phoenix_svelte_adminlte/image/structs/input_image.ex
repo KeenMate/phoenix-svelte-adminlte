@@ -3,7 +3,8 @@ defmodule PhoenixSvelteAdminlte.Image.InputImage do
     :input_file,
     :uuid,
     :output_directory,
-    :thumbnail_sizes
+    :thumbnail_sizes,
+    :original_filename
   ]
 
   @enforce_keys @keys

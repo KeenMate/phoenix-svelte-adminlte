@@ -92,6 +92,7 @@ export class PhotosProvider extends BaseProvider {
 
 		return response.data.map(
 			(x) =>
+
 				new GalleryImage(
 					null,
 					x.id,
@@ -120,7 +121,6 @@ export class PhotosProvider extends BaseProvider {
 	}
 
 	async deleteImage(uuid) {
-		/*
 		return this.fetchResource(
 			DELETE,
 			PhotosEndpoints.deletePhoto(uuid),
@@ -128,7 +128,6 @@ export class PhotosProvider extends BaseProvider {
 			null,
 			false
 		);
-		*/
 	}
 }
 

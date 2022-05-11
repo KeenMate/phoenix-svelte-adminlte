@@ -48,7 +48,9 @@ defmodule PhoenixSvelteAdminlte.MixProject do
       {:pubsub, "~> 1.0"},
       {:inflex, "~> 2.0"},
       {:erlport, "~> 0.10.1"},
-
+      {:ecto_gen, "~> 0.7.1", runtime: false, only: :dev},
+      {:ecto_sql, "~> 3.6"},
+      {:postgrex, ">= 0.0.0"},
       {:ex_image_info, "~> 0.2.4"}
     ]
   end

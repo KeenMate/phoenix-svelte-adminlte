@@ -36,7 +36,7 @@ defmodule PhoenixSvelteAdminlte.Settings.Manager do
         %Record{value: "1600x1200", key: "max_image_dimensions", id: 4}
 
       _ ->
-        :not_found
+        {:error, :not_found}
     end
   end
 end

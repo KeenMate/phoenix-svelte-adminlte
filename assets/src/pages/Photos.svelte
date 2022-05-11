@@ -170,6 +170,7 @@
 	}
 
 	async function deleteImage(image, noToast, toggleModal) {
+		console.log(image);
 		const task = PhotosProvider.deleteImage(image.uuid);
 
 		task.then((_x) => {

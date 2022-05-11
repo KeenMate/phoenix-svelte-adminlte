@@ -1,77 +1,81 @@
 defmodule PhoenixSvelteAdminlte.Image.Database do
-  alias PhoenixSvelteAdminlte.Image.ImageModel
+  # alias PhoenixSvelteAdminlte.Image.ImageModel
+  import PhoenixSvelteAdminlte.Database.DbContext
 
-  def create_image(code, width, height, file_size) do
-    # TODO implement
-    # with {:ok, _} <-
-    #        Repo.query("SELECT add_photo($1, $2, $3, $4)", [
-    #          code,
-    #          width,
-    #          height,
-    #          file_size
-    #        ]),
-    #      do: :ok
+  def create_image(code, original_filename, width, height, file_size) do
+    add_photo(code, original_filename, width, height, file_size)
   end
 
   def delete_image(code) do
-    # TODO implement
+    with {:ok, _} <- remove_photo(code),
+         do: :ok
+  end
 
-    # with {:ok, _} <- Repo.query("SELECT remove_photo($1)", [code]),
-    #      do: :ok
+  defp add_uuid(images) do
+    Enum.map(images, fn %{code: code} = image ->
+      image |> Map.put(:uuid, code) |> Map.delete(:code)
+    end)
   end
 
   def all_images() do
-    {:ok,
-     [
-       %ImageModel{
-         gallery_photo_id: 1,
-         id: 2,
-         uuid: "2",
-         width: 1920,
-         height: 1080,
-         size: 132_456
-       },
-       %ImageModel{
-         gallery_photo_id: 1,
-         id: 3,
-         uuid: "3",
-         width: 1920,
-         height: 1080,
-         size: 132_456
-       },
-       %ImageModel{
-         gallery_photo_id: 1,
-         id: 4,
-         uuid: "4",
-         width: 1920,
-         height: 1080,
-         size: 132_456
-       },
-       %ImageModel{
-         gallery_photo_id: 1,
-         id: 5,
-         uuid: "5",
-         width: 1920,
-         height: 1080,
-         size: 132_456
-       },
-       %ImageModel{
-         gallery_photo_id: 1,
-         id: 6,
-         uuid: "6",
-         width: 1920,
-         height: 1080,
-         size: 132_456
-       },
-       %ImageModel{
-         gallery_photo_id: 1,
-         id: 7,
-         uuid: "7",
-         width: 1920,
-         height: 1080,
-         size: 132_456
-       }
-     ]}
+    # {:ok,
+    #  [
+    #    %ImageModel{
+    #      gallery_photo_id: 1,
+    #      id: 2,
+    #      uuid: "2",
+    #      width: 1920,
+    #      height: 1080,
+    #      size: 132_456
+    #    },
+    #    %ImageModel{
+    #      gallery_photo_id: 1,
+    #      id: 3,
+    #      uuid: "3",
+    #      width: 1920,
+    #      height: 1080,
+    #      size: 132_456
+    #    },
+    #    %ImageModel{
+    #      gallery_photo_id: 1,
+    #      id: 4,
+    #      uuid: "4",
+    #      width: 1920,
+    #      height: 1080,
+    #      size: 132_456
+    #    },
+    #    %ImageModel{
+    #      gallery_photo_id: 1,
+    #      id: 5,
+    #      uuid: "5",
+    #      width: 1920,
+    #      height: 1080,
+    #      size: 132_456
+    #    },
+    #    %ImageModel{
+    #      gallery_photo_id: 1,
+    #      id: 6,
+    #      uuid: "6",
+    #      width: 1920,
+    #      height: 1080,
+    #      size: 132_456
+    #    },
+    #    %ImageModel{
+    #      gallery_photo_id: 1,
+    #      id: 7,
+    #      uuid: "7",
+    #      width: 1920,
+    #      height: 1080,
+    #      size: 132_456
+    #    }
+    #  ]}
+    case get_all_photos() do
+      {:ok, images} ->
+        {:ok, add_uuid(images)}
+
+      error ->
+        error
+    end
   end
 
   def get_random_image(gallery_code) do

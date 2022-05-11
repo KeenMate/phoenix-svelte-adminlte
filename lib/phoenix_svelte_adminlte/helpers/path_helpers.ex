@@ -1,5 +1,5 @@
 defmodule PhoenixSvelteAdminlte.Helpers.PathHelpers do
-  # alias Pluto.Settings.Helpers, as: Settings
+  alias PhoenixSvelteAdminlte.Settings.Helpers, as: Settings
 
   def priv_path(rest) when not is_binary(rest) do
     {:err, "Cannot create priv path for non-string parameter"}
@@ -10,14 +10,12 @@ defmodule PhoenixSvelteAdminlte.Helpers.PathHelpers do
   end
 
   def upload_dir() do
-    # Settings.upload_directory()
-    "upload"
+    Settings.upload_directory()
     |> priv_path()
   end
 
   def image_dir() do
-    # Settings.image_directory()
-    "media/images"
+    Settings.image_directory()
     |> priv_path()
   end
 

@@ -3,6 +3,7 @@ defmodule PhoenixSvelteAdminlte.Image.Manager do
   import PhoenixSvelteAdminlte.Image.Helpers
   alias PhoenixSvelteAdminlte.Image
   alias PhoenixSvelteAdminlte.Helpers.PathHelpers
+  alias PhoenixSvelteAdminlte.Settings.Helpers, as: Settings
 
   # get
   def all_images() do
@@ -11,7 +12,7 @@ defmodule PhoenixSvelteAdminlte.Image.Manager do
 
   # save
 
-  def save_image(image_path, uuid, content_type) do
+  def save_image(image_path, uuid, content_type, og_filename) do
     filename = uuid <> content_type_ext(content_type)
 
     case copy_to_upload(image_path, filename) do
@@ -20,7 +21,7 @@ defmodule PhoenixSvelteAdminlte.Image.Manager do
         Logger.info(Path.dirname(PathHelpers.image_dir()))
         Logger.info("Going to query it now...")
 
-        input_image(path, uuid, PathHelpers.image_dir(), [75, 400])
+        input_image(path, uuid, PathHelpers.image_dir(), Settings.thumbnail_sizes(), og_filename)
         |> PhoenixSvelteAdminlte.Image.Queue.enqueue_image()
 
         :ok
@@ -34,12 +35,13 @@ defmodule PhoenixSvelteAdminlte.Image.Manager do
     end
   end
 
-  defp input_image(input_path, uuid, output_dir, thumbnail_sizes) do
+  defp input_image(input_path, uuid, output_dir, thumbnail_sizes, filename) do
     %PhoenixSvelteAdminlte.Image.InputImage{
       input_file: input_path,
       uuid: uuid,
       output_directory: output_dir,
-      thumbnail_sizes: thumbnail_sizes
+      thumbnail_sizes: thumbnail_sizes,
+      original_filename: filename
     }
   end
 
@@ -75,5 +77,29 @@ defmodule PhoenixSvelteAdminlte.Image.Manager do
 
   def image_dimensions(uuid) do
     Image.Proxy.dimensions(get_image_path(uuid))
+  end
+
+  def delete_image(uuid) do
+    Logger.emergency("deleting" <> uuid)
+
+    with :ok <- Image.Database.delete_image(uuid),
+         delete_image_result <- File.rm(get_image_path(uuid)) do
+      if delete_image_result in [:ok, {:error, :enoent}] do
+        Logger.debug("Tried to delete image that does not exist on filesystem")
+        delete_thumbnails(uuid)
+      else
+        delete_image_result
+      end
+    end
+  end
+
+  defp delete_thumbnails(uuid) do
+    for size <- Settings.thumbnail_sizes(),
+        path = get_thumbnail_path(uuid, size),
+        File.regular?(path) do
+      File.rm(path)
+    end
+
+    :ok
   end
 end

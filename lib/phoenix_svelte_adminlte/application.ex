@@ -16,7 +16,8 @@ defmodule PhoenixSvelteAdminlte.Application do
       PhoenixSvelteAdminlteWeb.Endpoint,
       PhoenixSvelteAdminlte.Helpers.MsgHelpers,
       PhoenixSvelteAdminlte.Image.Supervisor,
-      PhoenixSvelteAdminlteWeb.PhotoQueueDispatcher
+      PhoenixSvelteAdminlteWeb.PhotoQueueDispatcher,
+      PhoenixSvelteAdminlte.Repo
 
       # Start a worker by calling: PhoenixSvelteAdminlte.Worker.start_link(arg)
       # {PhoenixSvelteAdminlte.Worker, arg}

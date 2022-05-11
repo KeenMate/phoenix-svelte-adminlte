@@ -14,15 +14,16 @@ config :phoenix_svelte_adminlte, PhoenixSvelteAdminlteWeb.Endpoint,
   code_reloader: true,
   debug_errors: true,
   secret_key_base: "H9fFgrxN+4j/l0rZEqnJTC3fs3wyBZ0zuW7FVMq8VmmCexnhWSywPrgzDaymqy/u"
-  # ,
-  # watchers: [
-  #   node: [
-  #     "node_modules/rollup/dist/bin/rollup",
-  #     "--config",
-  #     "--watch",
-  #     cd: Path.expand("../assets", __DIR__)
-  #   ]
-  # ]
+
+# ,
+# watchers: [
+#   node: [
+#     "node_modules/rollup/dist/bin/rollup",
+#     "--config",
+#     "--watch",
+#     cd: Path.expand("../assets", __DIR__)
+#   ]
+# ]
 
 # ## SSL Support
 #
@@ -68,3 +69,26 @@ config :phoenix, :stacktrace_depth, 20
 
 # Initialize plugs at runtime for faster development compilation
 config :phoenix, :plug_init_mode, :runtime
+
+config :phoenix_svelte_adminlte, PhoenixSvelteAdminlte.Repo,
+  username: "phoenix_svelteadminlte_dev",
+  password: "Phoenix developer, from ashes to hero!",
+  database: "phoenix_svelteadminlte_dev",
+  hostname: "localhost",
+  show_sensitive_data_on_connection_error: true,
+  pool_size: 10
+
+config :ecto_gen,
+  otp_app: :phoenix_svelte_adminlte,
+  db_config: PhoenixSvelteAdminlte.Repo,
+  output_location: "lib/phoenix_svelte_adminlte/database",
+  output_module: "PhoenixSvelteAdminlte.Database",
+  db_project: [
+    public: [
+      # or ["func_name_1", "func_name_2"]
+      funcs: "*",
+
+      # makes sense to specify ignored functions (routines) only when funcs equal "*"
+      ignored_funcs: []
+    ]
+  ]

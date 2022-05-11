@@ -157,7 +157,8 @@ defmodule PhoenixSvelteAdminlte.Image.PilWorker do
            input_file: input_file,
            output_directory: output_dir,
            uuid: uuid,
-           thumbnail_sizes: sizes
+           thumbnail_sizes: sizes,
+           original_filename: filename
          },
          port,
          max_size
@@ -185,7 +186,7 @@ defmodule PhoenixSvelteAdminlte.Image.PilWorker do
       create_thumbnail(port, input_file, output_path, size)
     end
 
-    Image.Database.create_image(uuid, width, height, size)
+    Image.Database.create_image(uuid, filename, width, height, size)
 
     :ok
   end
@@ -256,7 +257,7 @@ defmodule PhoenixSvelteAdminlte.Image.PilWorker do
         ])
       end
 
-    # Logger.debug("Received result from python", result: inspect(python_result))
+    Logger.debug("Received result from python", response: inspect(python_result))
   end
 
   # defp squared_size(size) when is_binary(size) do

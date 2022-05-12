@@ -81,6 +81,7 @@
     "cancelSelection": "Cancel selection",
     "deletePhotosError": "Error while deleting photos",
     "deleteSelected": "Deleted selected ",
+    "deletedPhotos": "Photos were deleted",
     "preview": "Preview",
     "size": "Size",
     "title": "Photos",

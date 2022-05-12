@@ -90,7 +90,7 @@
 
 	// the name to use for the internal file input
 	let name = "filepond";
-	let size = 100;
+	let imgPerRow = 4;
 
 	// handle filepond events
 	function handleInit() {
@@ -164,7 +164,7 @@
 			await Promise.all(deleteTasks);
 
 			Toastr.success(
-				$_("deletedPhotos", { values: { n: deleteTasks.length } })
+				$_($_("photos.deletedPhotos"), { values: { n: deleteTasks.length } })
 			);
 		} catch (error) {
 			Toastr.error($_("photos.deletePhotosError"));
@@ -322,10 +322,10 @@
 				<Label inputId="sizeRange">{$_("photos.size")}</Label>
 				<input
 					type="range"
-					min="75"
-					max="250"
+					min="2"
+					max="8"
 					class="form-range"
-					bind:value={size}
+					bind:value={imgPerRow}
 					id="sizeRange"
 				/>
 				{#if selectedImageIds.length}
@@ -345,7 +345,7 @@
 			</svelte:fragment>
 			<WithLazyLoader task={photosTask}>
 				{#if photos?.length}
-					<Gallery images={photos} imageSize={size + "px"}>
+					<Gallery images={photos} imagesPerRow={imgPerRow}>
 						<svelte:fragment slot="image" let:image>
 							<div class="photo">
 								<figure>

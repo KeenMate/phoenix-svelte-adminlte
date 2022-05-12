@@ -1,9 +1,22 @@
 <script>
 	export let images = [];
 	export let imageSize = "150px";
+	export let imagesPerRow = null;
+	let container;
+	let innerWidth;
+	$: innerWidth,
+		(imageSize = resizeImages(imagesPerRow, container?.clientWidth));
+	function resizeImages(count, width) {
+		if (!count || !width) return imageSize;
+		let size = (width - 5 * count) / count;
+		return size + "px";
+	}
+
+	//
 </script>
 
-<div class="gallery">
+<svelte:window bind:innerWidth />
+<div class="gallery" bind:this={container}>
 	{#each images as image (image.id)}
 		<div class="gallery__item" style={"width: " + imageSize}>
 			<slot name="image" {image}>
@@ -20,7 +33,7 @@
 		display: flex;
 		flex-direction: row;
 		flex-wrap: wrap;
-		grid-gap: 0.5rem;
+		grid-gap: 5px;
 
 		&__item {
 			&:hover {

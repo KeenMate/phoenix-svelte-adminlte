@@ -14,11 +14,11 @@ defmodule PhoenixSvelteAdminlte.Application do
       {Phoenix.PubSub, name: PhoenixSvelteAdminlte.PubSub},
       # Start the Endpoint (http/https)
       PhoenixSvelteAdminlteWeb.Endpoint,
+      PhoenixSvelteAdminlte.Repo,
       PhoenixSvelteAdminlte.Helpers.MsgHelpers,
       PhoenixSvelteAdminlte.Image.Supervisor,
       PhoenixSvelteAdminlteWeb.PhotoQueueDispatcher,
-      PhoenixSvelteAdminlte.Repo
-
+      PhoenixSvelteAdminlte.Scheduler
       # Start a worker by calling: PhoenixSvelteAdminlte.Worker.start_link(arg)
       # {PhoenixSvelteAdminlte.Worker, arg}
     ]

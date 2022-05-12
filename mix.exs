@@ -51,7 +51,8 @@ defmodule PhoenixSvelteAdminlte.MixProject do
       {:ecto_gen, "~> 0.7.1", runtime: false, only: :dev},
       {:ecto_sql, "~> 3.6"},
       {:postgrex, ">= 0.0.0"},
-      {:ex_image_info, "~> 0.2.4"}
+      {:ex_image_info, "~> 0.2.4"},
+      {:quantum, "~> 3.0"}
     ]
   end
 

@@ -19,9 +19,11 @@ defmodule PhoenixSvelteAdminlte.Application do
       PhoenixSvelteAdminlte.Image.Supervisor,
       PhoenixSvelteAdminlteWeb.PhotoQueueDispatcher,
       PhoenixSvelteAdminlte.Scheduler,
-      PhoenixSvelteAdminlte.Scheduler.DbJobs
+      PhoenixSvelteAdminlte.Scheduler.DbJobs,
+
       # Start a worker by calling: PhoenixSvelteAdminlte.Worker.start_link(arg)
       # {PhoenixSvelteAdminlte.Worker, arg}
+      PhoenixSvelteAdminlte.Initialization
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

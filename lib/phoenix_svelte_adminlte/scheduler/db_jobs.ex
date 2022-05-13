@@ -17,7 +17,6 @@ defmodule PhoenixSvelteAdminlte.Scheduler.DbJobs do
 
   @impl true
   def init(init_arg) do
-    IO.puts("POME")
     {:ok, init_arg}
   end
 

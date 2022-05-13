@@ -12,7 +12,7 @@ defmodule PhoenixSvelteAdminlte.Scheduler.DatabaseScheduler do
   deletes old db jobs and adds new ones
   jobs is list of maps with **name, script_id and cron**
   """
-  def load_jobs(jobs) do
+  def add_jobs(jobs) do
     Scheduler.DbJobs.get_jobs()
 
     # deletes old db jobs
@@ -80,5 +80,21 @@ defmodule PhoenixSvelteAdminlte.Scheduler.DatabaseScheduler do
     # so you arent deleting same things multiple times
     Scheduler.DbJobs.set_jobs([])
     :ok
+  end
+
+  def load_jobs() do
+    # TODO replace with call to db
+    [
+      %{name: "delete1", script_id: 1, cron: "1 * * * *"},
+      %{name: "delete2", script_id: 2, cron: "*/5 * * * *"},
+      %{name: "bad_job", script_id: 1, cron: "*/2 * * * *"}
+    ]
+    |> atomize_names()
+    |> add_jobs()
+  end
+
+  defp atomize_names(jobs) do
+    # replaces string names with atom
+    Enum.map(jobs, &Map.put(&1, :name, String.to_atom(&1.name)))
   end
 end

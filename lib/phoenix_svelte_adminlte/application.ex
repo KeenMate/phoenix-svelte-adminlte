@@ -18,7 +18,8 @@ defmodule PhoenixSvelteAdminlte.Application do
       PhoenixSvelteAdminlte.Helpers.MsgHelpers,
       PhoenixSvelteAdminlte.Image.Supervisor,
       PhoenixSvelteAdminlteWeb.PhotoQueueDispatcher,
-      PhoenixSvelteAdminlte.Scheduler
+      PhoenixSvelteAdminlte.Scheduler,
+      PhoenixSvelteAdminlte.Scheduler.DbJobs
       # Start a worker by calling: PhoenixSvelteAdminlte.Worker.start_link(arg)
       # {PhoenixSvelteAdminlte.Worker, arg}
     ]

@@ -6,6 +6,7 @@ defmodule PhoenixSvelteAdminlte.Scheduler.DatabaseScheduler do
   require Logger
   alias PhoenixSvelteAdminlte.Scheduler
   alias PhoenixSvelteAdminlte.Scheduler.SchedulerHelper
+  alias PhoenixSvelteAdminlte.Database.DbContext
 
   # PhoenixSvelteAdminlte.Scheduler.DatabaseScheduler.load_jobs([%{name: :job1 ,script_id: 1,cron: "* * * * *" }])
   @doc """
@@ -32,28 +33,22 @@ defmodule PhoenixSvelteAdminlte.Scheduler.DatabaseScheduler do
   """
   def run_database_script(script_id) do
     # get script from database
-    case get_script(script_id)
-         |> PhoenixSvelteAdminlte.Repo.query() do
-      {:ok, _} ->
-        Logger.debug("Script run succesfully")
-
+    with {:ok, script} <- get_script(script_id),
+         {:ok, _} <- PhoenixSvelteAdminlte.Repo.query(script) do
+      Logger.debug("Script run succesfully")
+    else
       {:error, reason} ->
-        Logger.info(inspect(reason))
         Logger.error("Error running db query", reason: reason)
     end
   end
 
   defp get_script(script_id) do
-    # TODO replace with getting real script
-    case script_id do
-      1 ->
-        ~s(
-				DELETE
-				FROM photo
-			)
+    case DbContext.get_script(script_id) do
+      {:ok, [script]} ->
+        {:ok, script.content}
 
-      2 ->
-        "12564131dawda"
+      _ ->
+        {:error, :db}
     end
   end
 
@@ -68,10 +63,6 @@ defmodule PhoenixSvelteAdminlte.Scheduler.DatabaseScheduler do
     )
   end
 
-  defp get_names(jobs) do
-    Enum.map(jobs, & &1.name)
-  end
-
   def delete_db_jobs() do
     Scheduler.DbJobs.get_jobs()
     |> IO.inspect(label: "old jobs")
@@ -83,14 +74,19 @@ defmodule PhoenixSvelteAdminlte.Scheduler.DatabaseScheduler do
   end
 
   def load_jobs() do
-    # TODO replace with call to db
-    [
-      %{name: "delete1", script_id: 1, cron: "1 * * * *"},
-      %{name: "delete2", script_id: 2, cron: "*/5 * * * *"},
-      %{name: "bad_job", script_id: 1, cron: "*/2 * * * *"}
-    ]
-    |> atomize_names()
-    |> add_jobs()
+    case DbContext.get_jobs() do
+      {:ok, jobs} ->
+        jobs
+        |> atomize_names()
+        |> add_jobs()
+
+      {:error, reason} ->
+        Logger.error("Couldnt load jobs from db ", reason: reason)
+    end
+  end
+
+  defp get_names(jobs) do
+    Enum.map(jobs, & &1.name)
   end
 
   defp atomize_names(jobs) do

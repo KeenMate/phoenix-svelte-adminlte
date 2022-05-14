@@ -127,6 +127,18 @@ defmodule PhoenixSvelteAdminlte.Database.DbContext do
     |> PhoenixSvelteAdminlte.Database.Parsers.GetGalleryPhotosParser.parse_get_gallery_photos_result()
   end
 
+  @spec get_jobs() ::
+          {:error, any()} | {:ok, [PhoenixSvelteAdminlte.Database.Models.GetJobsItem.t()]}
+  def get_jobs() do
+    Logger.debug("Calling stored procedure", procedure: "get_jobs")
+
+    query(
+      "select * from public.get_jobs()",
+      []
+    )
+    |> PhoenixSvelteAdminlte.Database.Parsers.GetJobsParser.parse_get_jobs_result()
+  end
+
   @spec get_journal_msgs(integer(), DateTime.t(), DateTime.t()) ::
           {:error, any()} | {:ok, [PhoenixSvelteAdminlte.Database.Models.GetJournalMsgsItem.t()]}
   def get_journal_msgs(user_id, from, to) do
@@ -162,6 +174,18 @@ defmodule PhoenixSvelteAdminlte.Database.DbContext do
       [code]
     )
     |> PhoenixSvelteAdminlte.Database.Parsers.GetRandomPhotoParser.parse_get_random_photo_result()
+  end
+
+  @spec get_script(integer()) ::
+          {:error, any()} | {:ok, [PhoenixSvelteAdminlte.Database.Models.GetScriptItem.t()]}
+  def get_script(script_id) do
+    Logger.debug("Calling stored procedure", procedure: "get_script")
+
+    query(
+      "select * from public.get_script($1)",
+      [script_id]
+    )
+    |> PhoenixSvelteAdminlte.Database.Parsers.GetScriptParser.parse_get_script_result()
   end
 
   @spec get_top_photos(integer()) ::

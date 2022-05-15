@@ -135,7 +135,7 @@ defmodule PhoenixSvelteAdminlte.Image.PilWorker do
         # Logger.debug("Loaded max image dimensions: #{max_size}")
         {:noreply, %{state | max_size: max_size}}
 
-      {:error, reason} ->
+      {:error, _reason} ->
         # Logger.debug(
         #   "Image worker could not load max_size from settings. reason: #{inspect(reason)}",
         #   reason: inspect(reason)

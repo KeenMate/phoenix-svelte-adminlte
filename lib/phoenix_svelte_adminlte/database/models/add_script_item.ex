@@ -1,7 +1,7 @@
 # This code has been auto-generated
 # Changes to this file will be lost on next generation
 
-defmodule PhoenixSvelteAdminlte.Database.Models.GetScriptItem do
+defmodule PhoenixSvelteAdminlte.Database.Models.AddScriptItem do
   @fields [
     :script_id,
     :name,
@@ -12,5 +12,5 @@ defmodule PhoenixSvelteAdminlte.Database.Models.GetScriptItem do
 
   defstruct @fields
 
-  @type t() :: %PhoenixSvelteAdminlte.Database.Models.GetScriptItem{}
+  @type t() :: %PhoenixSvelteAdminlte.Database.Models.AddScriptItem{}
 end

@@ -13,5 +13,14 @@ defmodule PhoenixSvelteAdminlte.Initialization do
 
   def run(_) do
     PhoenixSvelteAdminlte.Scheduler.DatabaseScheduler.load_jobs()
+
+    :ok =
+      :telemetry.attach_many(
+        # unique handler id
+        "log-response-handler",
+        [[:quantum, :job, :start], [:quantum, :job, :exception], [:quantum, :job, :stop]],
+        &PhoenixSvelteAdminlte.Scheduler.EventHandler.handle_event/4,
+        nil
+      )
   end
 end

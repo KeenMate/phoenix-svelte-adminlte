@@ -33,13 +33,10 @@ defmodule PhoenixSvelteAdminlte.Scheduler.DatabaseScheduler do
   """
   def run_database_script(script_id) do
     # get script from database
-    with {:ok, script} <- get_script(script_id),
-         {:ok, _} <- PhoenixSvelteAdminlte.Repo.query(script) do
-      Logger.debug("Script run succesfully")
-    else
-      {:error, reason} ->
-        Logger.error("Error running db query", reason: reason)
-    end
+    {:ok, script} = get_script(script_id)
+    # just let it fail so telemetry can handle it as failure
+    PhoenixSvelteAdminlte.Repo.query!(script)
+    Logger.debug("Script run succesfully")
   end
 
   defp get_script(script_id) do
@@ -93,4 +90,10 @@ defmodule PhoenixSvelteAdminlte.Scheduler.DatabaseScheduler do
     # replaces string names with atom
     Enum.map(jobs, &Map.put(&1, :name, String.to_atom(&1.name)))
   end
+
+  def is_db_job(%{name: name}) do
+    Enum.member?(Scheduler.DbJobs.get_jobs(), name)
+  end
+
+  def is_db_job(_job), do: false
 end

@@ -1,16 +1,17 @@
 # This code has been auto-generated
 # Changes to this file will be lost on next generation
 
-defmodule PhoenixSvelteAdminlte.Database.Models.GetScriptItem do
+defmodule PhoenixSvelteAdminlte.Database.Models.AddJobItem do
   @fields [
-    :script_id,
+    :job_id,
     :name,
-    :content
+    :script_id,
+    :cron
   ]
 
   @enforce_keys @fields
 
   defstruct @fields
 
-  @type t() :: %PhoenixSvelteAdminlte.Database.Models.GetScriptItem{}
+  @type t() :: %PhoenixSvelteAdminlte.Database.Models.AddJobItem{}
 end

@@ -25,6 +25,18 @@ defmodule PhoenixSvelteAdminlte.Database.DbContext do
     |> PhoenixSvelteAdminlte.Database.Parsers.AddGalleryPhotosParser.parse_add_gallery_photos_result()
   end
 
+  @spec add_job(binary(), binary(), integer()) ::
+          {:error, any()} | {:ok, [PhoenixSvelteAdminlte.Database.Models.AddJobItem.t()]}
+  def add_job(name, cron, script_id) do
+    Logger.debug("Calling stored procedure", procedure: "add_job")
+
+    query(
+      "select * from public.add_job($1, $2, $3)",
+      [name, cron, script_id]
+    )
+    |> PhoenixSvelteAdminlte.Database.Parsers.AddJobParser.parse_add_job_result()
+  end
+
   @spec add_journal_msg(binary(), integer(), binary(), binary(), integer(), any(), integer()) ::
           {:error, any()} | {:ok, [PhoenixSvelteAdminlte.Database.Models.AddJournalMsgItem.t()]}
   def add_journal_msg(created_by, user_id, msg, data_group, data_object_id, payload, event_id) do
@@ -76,6 +88,42 @@ defmodule PhoenixSvelteAdminlte.Database.DbContext do
       [code, original_filename, width, height, file_size]
     )
     |> PhoenixSvelteAdminlte.Database.Parsers.AddPhotoParser.parse_add_photo_result()
+  end
+
+  @spec add_script(binary(), binary()) ::
+          {:error, any()} | {:ok, [PhoenixSvelteAdminlte.Database.Models.AddScriptItem.t()]}
+  def add_script(name, content) do
+    Logger.debug("Calling stored procedure", procedure: "add_script")
+
+    query(
+      "select * from public.add_script($1, $2)",
+      [name, content]
+    )
+    |> PhoenixSvelteAdminlte.Database.Parsers.AddScriptParser.parse_add_script_result()
+  end
+
+  @spec delete_job(binary()) ::
+          {:error, any()} | {:ok, [PhoenixSvelteAdminlte.Database.Models.DeleteJobItem.t()]}
+  def delete_job(name) do
+    Logger.debug("Calling stored procedure", procedure: "delete_job")
+
+    query(
+      "select * from public.delete_job($1)",
+      [name]
+    )
+    |> PhoenixSvelteAdminlte.Database.Parsers.DeleteJobParser.parse_delete_job_result()
+  end
+
+  @spec delete_script(integer()) ::
+          {:error, any()} | {:ok, [PhoenixSvelteAdminlte.Database.Models.DeleteScriptItem.t()]}
+  def delete_script(script_id) do
+    Logger.debug("Calling stored procedure", procedure: "delete_script")
+
+    query(
+      "select * from public.delete_script($1)",
+      [script_id]
+    )
+    |> PhoenixSvelteAdminlte.Database.Parsers.DeleteScriptParser.parse_delete_script_result()
   end
 
   @spec get_all_galleries() ::
@@ -198,17 +246,6 @@ defmodule PhoenixSvelteAdminlte.Database.DbContext do
       [how_many]
     )
     |> PhoenixSvelteAdminlte.Database.Parsers.GetTopPhotosParser.parse_get_top_photos_result()
-  end
-
-  @spec load_initial_data() :: {:error, any()} | {:ok, [integer()]}
-  def load_initial_data() do
-    Logger.debug("Calling stored procedure", procedure: "load_initial_data")
-
-    query(
-      "select * from public.load_initial_data()",
-      []
-    )
-    |> PhoenixSvelteAdminlte.Database.Parsers.LoadInitialDataParser.parse_load_initial_data_result()
   end
 
   @spec move_gallery_photo(any(), integer(), integer(), any()) ::

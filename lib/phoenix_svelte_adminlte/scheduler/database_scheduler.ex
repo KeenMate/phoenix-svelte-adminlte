@@ -14,9 +14,7 @@ defmodule PhoenixSvelteAdminlte.Scheduler.DatabaseScheduler do
   jobs is list of maps with **name, script_id and cron**
   """
   def add_jobs(jobs) do
-    Scheduler.DbJobs.get_jobs()
-
-    # deletes old db jobs
+    # Deletes old db jobs
     delete_db_jobs()
 
     Enum.each(jobs, fn job -> create_db_job(job.name, job.script_id, job.cron) end)
@@ -91,9 +89,33 @@ defmodule PhoenixSvelteAdminlte.Scheduler.DatabaseScheduler do
     Enum.map(jobs, &Map.put(&1, :name, String.to_atom(&1.name)))
   end
 
+  @doc """
+  check if job is in list of db jobs
+  """
   def is_db_job(%{name: name}) do
     Enum.member?(Scheduler.DbJobs.get_jobs(), name)
   end
 
   def is_db_job(_job), do: false
+
+  # PhoenixSvelteAdminlte.Scheduler.DatabaseScheduler.add_db_job("test", "* * * * * ", "SELECT * FROM job")
+
+  def add_db_job(name, cron, script_id) when is_number(script_id) do
+    DbContext.add_job(name, cron, script_id)
+  end
+
+  def add_db_job(name, cron, content) when is_bitstring(content) do
+    with {:ok, [script]} <- DbContext.add_script(name, content),
+         Logger.info(inspect(script)),
+         {:ok, _} <- DbContext.add_job(name, cron, script.script_id) do
+      load_jobs()
+    else
+      {:error, reason} ->
+        Logger.error("Coldnt create job and script", reason: reason)
+    end
+  end
+
+  def add_script(name, content) do
+    DbContext.add_script(name, content)
+  end
 end

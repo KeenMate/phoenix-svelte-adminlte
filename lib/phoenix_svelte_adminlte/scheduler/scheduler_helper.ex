@@ -2,7 +2,7 @@ defmodule PhoenixSvelteAdminlte.Scheduler.SchedulerHelper do
   require Logger
 
   def create_job(name, func, cron_expression) when is_bitstring(cron_expression) do
-    case Crontab.CronExpression.Parser.parse(cron_expression) do
+    case Crontab.CronExpression.Parser.parse(String.trim(cron_expression)) do
       {:ok, parsed_cron} ->
         create_job(name, func, parsed_cron)
 

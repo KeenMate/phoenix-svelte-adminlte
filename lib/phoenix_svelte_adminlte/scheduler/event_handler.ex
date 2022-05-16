@@ -12,19 +12,19 @@ defmodule PhoenixSvelteAdminlte.Scheduler.EventHandler do
     end
   end
 
-  def handle_db_event(event, _measurements, metadata) do
-    case event do
-      :exception ->
-        DbContext.add_job_run(:os.system_time(:millisecond), nil, metadata.job.name, "Start")
+  def handle_db_event(event, measurements, metadata) do
+    # case event do
+    #   :exception ->
+    #     DbContext.add_job_run(:os.system_time(:millisecond), nil, metadata.job.name, "Start")
 
-      :start ->
-        DbContext.add_job_run(nil, :os.system_time(:millisecond), metadata.job.name, "Error")
+    #   :start ->
+    #     DbContext.add_job_run(nil, :os.system_time(:millisecond), metadata.job.name, "Error")
 
-      :stop ->
-        DbContext.add_job_run(nil, :os.system_time(:millisecond), metadata.job.name, "Finish")
-    end
+    #   :stop ->
+    #     DbContext.add_job_run(nil, :os.system_time(:millisecond), metadata.job.name, "Finish")
+    # end
 
-    Logger.info("DB JOB [#{inspect(metadata.job)}] #{event} ")
+    Logger.info("DB JOB [#{inspect(metadata)}] [#{inspect(measurements)}] #{event} ")
 
     :ok
   end

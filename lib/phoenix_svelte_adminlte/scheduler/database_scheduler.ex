@@ -101,17 +101,21 @@ defmodule PhoenixSvelteAdminlte.Scheduler.DatabaseScheduler do
   # PhoenixSvelteAdminlte.Scheduler.DatabaseScheduler.add_db_job("test", "* * * * * ", "SELECT * FROM job")
 
   def add_db_job(name, cron, script_id) when is_number(script_id) do
-    DbContext.add_job(name, cron, script_id)
+    res = DbContext.add_job(name, cron, script_id)
+    load_jobs()
+    res
   end
 
   def add_db_job(name, cron, content) when is_bitstring(content) do
     with {:ok, [script]} <- DbContext.add_script(name, content),
          Logger.info(inspect(script)),
-         {:ok, _} <- DbContext.add_job(name, cron, script.script_id) do
+         {:ok, job} <- DbContext.add_job(name, cron, script.script_id) do
       load_jobs()
+      {:ok, job}
     else
       {:error, reason} ->
         Logger.error("Coldnt create job and script", reason: reason)
+        {:error, reason}
     end
   end
 
@@ -120,7 +124,14 @@ defmodule PhoenixSvelteAdminlte.Scheduler.DatabaseScheduler do
   end
 
   def delete_job(name) do
-    DbContext.delete_job(name)
-    load_jobs()
+    case DbContext.delete_job(name) do
+      {:ok, job} ->
+        load_jobs()
+        {:ok, job}
+
+      {:error, reason} ->
+        Logger.error("Database error: ", reason: reason)
+        {:error, "database error"}
+    end
   end
 end

@@ -2,6 +2,10 @@
   "List": {
     "text": "Více informaci na [Komponenty](#/components/show/dragable-container)"
   },
+  "addJobModal": {
+    "added": "Job uspesne pridana\n",
+    "addedError": "Chyba pri pridavani, zkuste pozdeji"
+  },
   "commen": {
     "error": {
       "noDataToShow": "Žádná data k zobrazení"
@@ -14,6 +18,7 @@
     "labels": {
       "Id": "",
       "actions": "",
+      "empty": "",
       "name": "Jméno"
     }
   },

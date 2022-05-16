@@ -1,5 +1,5 @@
 import BaseProvider from "./baseProvider";
-import { DELETE, GET } from "../constants/methods";
+import { DELETE, GET, POST } from "../constants/methods";
 import { JobsEndpoints } from "../constants/urls";
 
 export class JobsProvider extends BaseProvider {
@@ -12,6 +12,14 @@ export class JobsProvider extends BaseProvider {
 			DELETE,
 			JobsEndpoints.deleteJob(id)
 		);
+		return response;
+	}
+	async addJob(name, cron, script) {
+		const response = await this.fetchResource(POST, JobsEndpoints.addJob, {
+			name: name,
+			cron: cron,
+			script: script,
+		});
 		return response;
 	}
 }

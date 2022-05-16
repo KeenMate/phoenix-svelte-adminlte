@@ -37,6 +37,20 @@ defmodule PhoenixSvelteAdminlte.Database.DbContext do
     |> PhoenixSvelteAdminlte.Database.Parsers.AddJobParser.parse_add_job_result()
   end
 
+  @spec add_job_run(DateTime.t(), DateTime.t(), integer(), binary()) ::
+          {:error, any()} | {:ok, [PhoenixSvelteAdminlte.Database.Models.AddJobRunItem.t()]}
+  def add_job_run(start_time, end_time, job_id, status) do
+    Logger.debug("Calling stored procedure", procedure: "add_job_run")
+
+    Logger.warn("HALOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO")
+
+    query(
+      "select * from public.add_job_run($1, $2, $3, $4)",
+      [start_time, end_time, job_id, status]
+    )
+    |> PhoenixSvelteAdminlte.Database.Parsers.AddJobRunParser.parse_add_job_run_result()
+  end
+
   @spec add_journal_msg(binary(), integer(), binary(), binary(), integer(), any(), integer()) ::
           {:error, any()} | {:ok, [PhoenixSvelteAdminlte.Database.Models.AddJournalMsgItem.t()]}
   def add_journal_msg(created_by, user_id, msg, data_group, data_object_id, payload, event_id) do
@@ -102,14 +116,14 @@ defmodule PhoenixSvelteAdminlte.Database.DbContext do
     |> PhoenixSvelteAdminlte.Database.Parsers.AddScriptParser.parse_add_script_result()
   end
 
-  @spec delete_job(binary()) ::
+  @spec delete_job(integer()) ::
           {:error, any()} | {:ok, [PhoenixSvelteAdminlte.Database.Models.DeleteJobItem.t()]}
-  def delete_job(name) do
+  def delete_job(id) do
     Logger.debug("Calling stored procedure", procedure: "delete_job")
 
     query(
       "select * from public.delete_job($1)",
-      [name]
+      [id]
     )
     |> PhoenixSvelteAdminlte.Database.Parsers.DeleteJobParser.parse_delete_job_result()
   end
@@ -173,6 +187,18 @@ defmodule PhoenixSvelteAdminlte.Database.DbContext do
       [code, gallery_id]
     )
     |> PhoenixSvelteAdminlte.Database.Parsers.GetGalleryPhotosParser.parse_get_gallery_photos_result()
+  end
+
+  @spec get_job_runs(integer(), integer()) ::
+          {:error, any()} | {:ok, [PhoenixSvelteAdminlte.Database.Models.GetJobRunsItem.t()]}
+  def get_job_runs(start, count) do
+    Logger.debug("Calling stored procedure", procedure: "get_job_runs")
+
+    query(
+      "select * from public.get_job_runs($1, $2)",
+      [start, count]
+    )
+    |> PhoenixSvelteAdminlte.Database.Parsers.GetJobRunsParser.parse_get_job_runs_result()
   end
 
   @spec get_jobs() ::
@@ -246,6 +272,17 @@ defmodule PhoenixSvelteAdminlte.Database.DbContext do
       [how_many]
     )
     |> PhoenixSvelteAdminlte.Database.Parsers.GetTopPhotosParser.parse_get_top_photos_result()
+  end
+
+  @spec load_initial_data() :: {:error, any()} | {:ok, [integer()]}
+  def load_initial_data() do
+    Logger.debug("Calling stored procedure", procedure: "load_initial_data")
+
+    query(
+      "select * from public.load_initial_data()",
+      []
+    )
+    |> PhoenixSvelteAdminlte.Database.Parsers.LoadInitialDataParser.parse_load_initial_data_result()
   end
 
   @spec move_gallery_photo(any(), integer(), integer(), any()) ::

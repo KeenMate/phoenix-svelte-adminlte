@@ -2,6 +2,10 @@
   "List": {
     "text": "More info in [Components](#/components/show/dragable-container)"
   },
+  "addJobModal": {
+    "added": "Job added successfully",
+    "addedError": "Couldnt add job, try again later"
+  },
   "commen": {
     "error": {
       "noDataToShow": "No data to show"
@@ -14,6 +18,7 @@
     "labels": {
       "Id": "Id",
       "actions": "Action",
+      "empty": "No data to display",
       "name": "Name"
     }
   },

@@ -7,6 +7,7 @@
 		LteButton,
 		Modal,
 		ModalCloseButton,
+		AutoScroll,
 	} from "svelte-adminlte";
 	import JobsProvider from "../../providers/jobsProvider";
 
@@ -14,6 +15,7 @@
 	import github from "svelte-highlight/src/styles/github";
 	import sql from "svelte-highlight/src/languages/sql";
 	import notification from "../../providers/notificationProvider";
+	import AddJobModal from "./AddJobModal.svelte";
 
 	const dispatch = createEventDispatcher();
 	let jobs = [];
@@ -25,7 +27,7 @@
 		JobsProvider.getJobs()
 			.then((res) => {
 				console.log(res.data);
-				if (res.data.length) jobs = res.data;
+				if (res.data) jobs = res.data;
 			})
 			.catch((er) => console.log(er))
 			.finally(() => (loading = false));
@@ -39,22 +41,24 @@
 		shownJob = job;
 	}
 
+	let promise;
 	function deleteJob(job) {
 		if (loading === true) return;
 		loading = true;
 
-		JobsProvider.deleteJob(job.jobId)
+		promise = JobsProvider.deleteJob(job.jobId)
 			.then((res) => {
 				console.log(res.data);
 				notification.success(job.name, $_("localesList.deleted"));
 			})
 			.catch((er) => notification.error($_("localesList.deleteError")))
 			.finally(() => {
-				console.log("finally");
 				loadJobs();
 				loading = false;
 			});
 	}
+
+	let addModal;
 </script>
 
 <svelte:head>
@@ -67,65 +71,78 @@
 		<LteButton color="info" xsmall on:click={() => loadJobs()}>
 			<i class="fas fa-sync fa-fw" />
 		</LteButton>
-		<LteButton color="success" xsmall on:click={() => dispatch("add-job")}>
+		<LteButton color="success" xsmall on:click={() => addModal.openModal()}>
 			{$_("jobsList.newJob")}
 		</LteButton>
 	</div>
 
 	<div class="row">
 		<div class="col-12">
-			<TableCondensed>
-				<tr slot="headers">
-					<th class="actions">{$_("common.labels.actions")}</th>
-					<th>{$_("common.labels.Id")}</th>
-					<th>{$_("common.labels.name")}</th>
-					<th>{$_("jobsList.cron")}</th>
-					<th>{$_("jobsList.showScript")}</th>
-				</tr>
+			<AutoScroll>
+				<TableCondensed>
+					<tr slot="headers">
+						<th class="actions">{$_("common.labels.actions")}</th>
+						<th>{$_("common.labels.Id")}</th>
+						<th>{$_("common.labels.name")}</th>
+						<th>{$_("jobsList.cron")}</th>
+						<th>{$_("jobsList.showScript")}</th>
+					</tr>
+					{#if jobs?.length == 0}
+						<tr>
+							<td colspan="100">
+								{$_("common.labels.empty")}
+							</td>
+						</tr>
+					{/if}
+					{#each jobs as job}
+						<tr>
+							<td class="actions">
+								<LteButton
+									color="danger"
+									xsmall
+									on:click={() => deleteJob(job)}
+									disabled={loading}
+								>
+									<i class="fas fa-trash fa-fw" />
+								</LteButton>
+								<LteButton
+									disabled={loading}
+									color="success"
+									xsmall
+									on:click={() => dispatch("edit", job.jobId)}
+								>
+									<i class="fas fa-edit fa-fw" />
+								</LteButton>
+							</td>
+							<td>
+								{job.jobId}
+							</td>
+							<td class="title">
+								{job.name}
+							</td>
+							<td>
+								{job.cron}
+							</td>
 
-				{#each jobs as job}
-					<tr>
-						<td class="actions">
-							<LteButton
-								color="danger"
-								xsmall
-								on:click={() => deleteJob(job)}
-								disabled={loading}
-							>
-								<i class="fas fa-trash fa-fw" />
-							</LteButton>
-							<LteButton
-								disabled={loading}
-								color="success"
-								xsmall
-								on:click={() => dispatch("edit", job.jobId)}
-							>
-								<i class="fas fa-edit fa-fw" />
-							</LteButton>
-						</td>
-						<td>
-							{job.jobId}
-						</td>
-						<td class="title">
-							{job.name}
-						</td>
-						<td>
-							{job.cron}
-						</td>
-
-						<td class="actions">
-							<LteButton color="info" xsmall on:click={() => showCode(job)} disabled={loading}>
-								<i class="fas fa-eye fa-fw" />
-							</LteButton>
-						</td></tr
-					>
-				{/each}
-			</TableCondensed>
+							<td class="actions">
+								<LteButton
+									color="info"
+									xsmall
+									on:click={() => showCode(job)}
+									disabled={loading}
+								>
+									<i class="fas fa-eye fa-fw" />
+								</LteButton>
+							</td></tr
+						>
+					{/each}
+				</TableCondensed>
+			</AutoScroll>
 		</div>
 	</div>
 </Card>
 <Modal bind:show={showScript} bind:hide={hideScript} center>
-	<span slot="header">Add car</span>
+	<span slot="header">{showCode?.name}</span>
 
 	<HighlightSvelte code={shownJob?.content || ""} language={sql} />
 
@@ -133,3 +150,5 @@
 		<ModalCloseButton>Close</ModalCloseButton>
 	</svelte:fragment>
 </Modal>
+
+<AddJobModal bind:this={addModal} />

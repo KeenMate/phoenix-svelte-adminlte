@@ -8,7 +8,6 @@ defmodule PhoenixSvelteAdminlteWeb.JobsApiController do
   def get_jobs(conn, _params) do
     with {:ok, jobs} <- DbContext.get_jobs(),
          prepared_data <- PhoenixSvelteAdminlte.MapHelpers.camelize_array(jobs) do
-      JobManager.load_jobs()
       PhoenixSvelteAdminlteWeb.ConnHelper.success_response(conn, prepared_data)
     else
       {:error, reason} ->
@@ -25,7 +24,7 @@ defmodule PhoenixSvelteAdminlteWeb.JobsApiController do
     Logger.info("DELETING JOB")
 
     with {num, _} <- Integer.parse(id),
-         {:ok, jobs} <- DbContext.delete_job(num),
+         {:ok, jobs} <- JobManager.delete_job(num),
          prepared_data <- PhoenixSvelteAdminlte.MapHelpers.camelize_array(jobs) do
       PhoenixSvelteAdminlteWeb.ConnHelper.success_response(conn, prepared_data)
     else
@@ -35,13 +34,26 @@ defmodule PhoenixSvelteAdminlteWeb.JobsApiController do
           msg: "parametr wasnt number"
         )
 
-      {:error, reason} ->
-        Logger.error("Error getting jobs from db", reason: reason)
-
+      {:error, _} ->
         PhoenixSvelteAdminlteWeb.ConnHelper.error_response(conn,
           reason: :db_error,
           msg: "couldnt get data from database"
         )
     end
   end
+
+  def create_job(conn, %{"name" => name, "cron" => cron, "script" => script}) do
+    with {:ok, job} <- JobManager.add_db_job(name, cron, script),
+         prepared_data <- PhoenixSvelteAdminlte.MapHelpers.camelize_array(job) do
+      PhoenixSvelteAdminlteWeb.ConnHelper.success_response(conn, prepared_data)
+    else
+      {:error, _} ->
+        PhoenixSvelteAdminlteWeb.ConnHelper.error_response(conn,
+          reason: :db_error,
+          msg: "couldnt get data from database"
+        )
+    end
+  end
+
+
 end

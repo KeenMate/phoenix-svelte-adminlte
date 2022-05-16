@@ -14,4 +14,5 @@ config :logger, :console,
     :line,
     :register_name,
     :crash_reason
-  ]
+  ],
+  colors: [enabled: true]

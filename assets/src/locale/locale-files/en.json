@@ -10,6 +10,11 @@
   "common": {
     "buttons": {
       "delete": "Delete"
+    },
+    "labels": {
+      "Id": "Id",
+      "actions": "Action",
+      "name": "Name"
     }
   },
   "componentList": {
@@ -41,6 +46,12 @@
   "i18n": {
     "savedLocales": "{locale} is loaded from locale storage ."
   },
+  "jobsList": {
+    "cron": "Schedule(Cron)",
+    "jobId": "Id",
+    "newJob": "Add job",
+    "showScript": "Show script"
+  },
   "list": {
     "title": "List"
   },
@@ -49,10 +60,15 @@
     "title": "locale editor"
   },
   "localesList": {
-    "cardTitle": "Click on locale to edit",
+    "cardTitle": "Maintenance jobs",
     "code": "Code",
+    "deleteError": "Error while deleting job, try again later",
+    "deleted": "deleted",
     "flag": "Flag",
     "language": "Language"
+  },
+  "maintenance": {
+    "title": "Maintenance"
   },
   "multiselect": {
     "title": "svelte-multiselect"

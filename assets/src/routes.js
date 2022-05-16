@@ -9,6 +9,7 @@ import Components from "./pages/Components.svelte";
 import Multiselect from "./pages/Multiselect.svelte";
 import Otp from "./pages/Otp.svelte";
 import Photos from "./pages/Photos.svelte";
+import Maintenance from "./pages/Maintenance.svelte";
 
 import { _ } from "svelte-i18n";
 
@@ -106,6 +107,12 @@ export const Routes = [
 		route: "/photos",
 		icon: "fas fa-images",
 	},
+	{
+		name: "Maintenance",
+		title: "Maintenance",
+		route: "/maintenance",
+		icon: "fas fa-wrench",
+	},
 ];
 
 export const Urls = Routes.reduce((acc, x) => {
@@ -140,6 +147,7 @@ export default {
 	[Urls.Multiselect]: Multiselect,
 	[Urls.Otp]: Otp,
 	[Urls.Photos]: Photos,
+	[Urls.Maintenance]: Maintenance,
 
 	// The catch-all route must always be last
 	"*": NotFound,

@@ -1,7 +1,6 @@
 import CBuffer from "CBuffer";
 import { writable } from "svelte/store";
 
-
 import { Toastr } from "svelte-adminlte";
 
 const MessageCount = 500;
@@ -11,30 +10,30 @@ export const Success = "Success";
 export const Error = "Error";
 
 class NotificationProvider {
-  constructor() {
-    this.buffer = new CBuffer(MessageCount);
-    this.messages = writable([]);
-  }
+	constructor() {
+		this.buffer = new CBuffer(MessageCount);
+		this.messages = writable([]);
+	}
 
-  #saveMessage(type, message, title) {
-    this.buffer.push({ type, message, title, timestamp: + new Date() });
-    this.messages.set(this.buffer.toArray());
-  }
+	#saveMessage(type, message, title) {
+		this.buffer.push({ type, message, title, timestamp: +new Date() });
+		this.messages.set(this.buffer.toArray());
+	}
 
-  warning(message, title = undefined, options = {}) {
-    this.#saveMessage(Warning, message, title);
-    Toastr.warning(message, title, options);
-  }
+	warning(message, title = undefined, options = {}) {
+		this.#saveMessage(Warning, message, title);
+		Toastr.warning(message, title, options);
+	}
 
-  success(message, title = undefined, options = {}) {
-    this.#saveMessage(Success, message, title);
-    Toastr.success(message, title, options)
-  }
+	success(message, title = undefined, options = {}) {
+		this.#saveMessage(Success, message, title);
+		Toastr.success(message, title, options);
+	}
 
-  error(message, title = undefined, options = {}) {
-    this.#saveMessage(Error, message, title);
-    Toastr.error(message, title, options)
-  }
+	error(message, title = undefined, options = {}) {
+		this.#saveMessage(Error, message, title);
+		Toastr.error(message, title, options);
+	}
 }
 
 export default new NotificationProvider();

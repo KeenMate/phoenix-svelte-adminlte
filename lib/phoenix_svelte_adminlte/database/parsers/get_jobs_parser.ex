@@ -42,14 +42,16 @@ defmodule PhoenixSvelteAdminlte.Database.Parsers.GetJobsParser do
     {:ok, successful_results}
   end
 
-  def parse_get_jobs_result_row([job_id, name, script_id, cron]) do
+  def parse_get_jobs_result_row([job_id, name, script_id, cron, script_name, content]) do
     {
       :ok,
       %PhoenixSvelteAdminlte.Database.Models.GetJobsItem{
         job_id: job_id,
         name: name,
         script_id: script_id,
-        cron: cron
+        cron: cron,
+        script_name: script_name,
+        content: content
       }
     }
   end

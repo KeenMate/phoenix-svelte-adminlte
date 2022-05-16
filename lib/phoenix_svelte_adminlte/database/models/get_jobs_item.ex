@@ -6,7 +6,9 @@ defmodule PhoenixSvelteAdminlte.Database.Models.GetJobsItem do
     :job_id,
     :name,
     :script_id,
-    :cron
+    :cron,
+    :script_name,
+    :content
   ]
 
   @enforce_keys @fields

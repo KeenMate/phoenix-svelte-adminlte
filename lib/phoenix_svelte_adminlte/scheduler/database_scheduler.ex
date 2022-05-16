@@ -118,4 +118,9 @@ defmodule PhoenixSvelteAdminlte.Scheduler.DatabaseScheduler do
   def add_script(name, content) do
     DbContext.add_script(name, content)
   end
+
+  def delete_job(name) do
+    DbContext.delete_job(name)
+    load_jobs()
+  end
 end

@@ -34,6 +34,11 @@ defmodule PhoenixSvelteAdminlteWeb.Router do
       post "/process", PhotosApiController, :process
       delete "/:uuid", PhotosApiController, :delete
     end
+
+    scope "/jobs" do
+      get "/", JobsApiController, :get_jobs
+      delete "/:id", JobsApiController, :delete_job
+    end
   end
 
   scope "/assets", PhoenixSvelteAdminlteWeb do

@@ -10,6 +10,11 @@
   "common": {
     "buttons": {
       "delete": ""
+    },
+    "labels": {
+      "Id": "",
+      "actions": "",
+      "name": "Jméno"
     }
   },
   "componentList": {
@@ -41,6 +46,12 @@
   "i18n": {
     "savedLocales": "{locale} je načteno z lokálního úložiště"
   },
+  "jobsList": {
+    "cron": "Rozvrh (Cron)",
+    "jobId": "",
+    "newJob": "",
+    "showScript": ""
+  },
   "list": {
     "title": "Seznam"
   },
@@ -49,10 +60,15 @@
     "title": "Editor překladů"
   },
   "localesList": {
-    "cardTitle": "Klikněte na název jazyk pro lokální úpravu",
+    "cardTitle": "Údržbářské práce",
     "code": "Kód",
+    "deleteError": "Chyba pri mazání zkuste pozdeji",
+    "deleted": "Smazano",
     "flag": "Vlajka",
     "language": "Jazyk"
+  },
+  "maintenance": {
+    "title": "Údrzba"
   },
   "multiselect": {
     "title": ""

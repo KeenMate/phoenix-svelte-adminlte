@@ -37,16 +37,14 @@ defmodule PhoenixSvelteAdminlte.Database.DbContext do
     |> PhoenixSvelteAdminlte.Database.Parsers.AddJobParser.parse_add_job_result()
   end
 
-  @spec add_job_run(DateTime.t(), DateTime.t(), integer(), binary()) ::
+  @spec add_job_run(integer(), DateTime.t()) ::
           {:error, any()} | {:ok, [PhoenixSvelteAdminlte.Database.Models.AddJobRunItem.t()]}
-  def add_job_run(start_time, end_time, job_id, status) do
+  def add_job_run(job_id, start_time) do
     Logger.debug("Calling stored procedure", procedure: "add_job_run")
 
-    Logger.warn("HALOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO")
-
     query(
-      "select * from public.add_job_run($1, $2, $3, $4)",
-      [start_time, end_time, job_id, status]
+      "select * from public.add_job_run($1, $2)",
+      [job_id, start_time]
     )
     |> PhoenixSvelteAdminlte.Database.Parsers.AddJobRunParser.parse_add_job_run_result()
   end
@@ -114,6 +112,18 @@ defmodule PhoenixSvelteAdminlte.Database.DbContext do
       [name, content]
     )
     |> PhoenixSvelteAdminlte.Database.Parsers.AddScriptParser.parse_add_script_result()
+  end
+
+  @spec complete_job_run(integer(), DateTime.t(), binary()) ::
+          {:error, any()} | {:ok, [PhoenixSvelteAdminlte.Database.Models.CompleteJobRunItem.t()]}
+  def complete_job_run(job_id, end_time, status) do
+    Logger.debug("Calling stored procedure", procedure: "complete_job_run")
+
+    query(
+      "select * from public.complete_job_run($1, $2, $3)",
+      [job_id, end_time, status]
+    )
+    |> PhoenixSvelteAdminlte.Database.Parsers.CompleteJobRunParser.parse_complete_job_run_result()
   end
 
   @spec delete_job(integer()) ::
@@ -272,17 +282,6 @@ defmodule PhoenixSvelteAdminlte.Database.DbContext do
       [how_many]
     )
     |> PhoenixSvelteAdminlte.Database.Parsers.GetTopPhotosParser.parse_get_top_photos_result()
-  end
-
-  @spec load_initial_data() :: {:error, any()} | {:ok, [integer()]}
-  def load_initial_data() do
-    Logger.debug("Calling stored procedure", procedure: "load_initial_data")
-
-    query(
-      "select * from public.load_initial_data()",
-      []
-    )
-    |> PhoenixSvelteAdminlte.Database.Parsers.LoadInitialDataParser.parse_load_initial_data_result()
   end
 
   @spec move_gallery_photo(any(), integer(), integer(), any()) ::

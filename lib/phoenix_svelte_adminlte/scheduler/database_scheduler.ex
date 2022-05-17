@@ -17,7 +17,7 @@ defmodule PhoenixSvelteAdminlte.Scheduler.DatabaseScheduler do
     # Deletes old db jobs
     delete_db_jobs()
 
-    Enum.each(jobs, fn job -> create_db_job(job.name, job.script_id, job.cron) end)
+    Enum.each(jobs, fn job -> create_db_job(job.name, job.script_id, job.cron, job.job_id) end)
 
     get_names(jobs)
     |> IO.inspect(label: "new jobs")
@@ -29,12 +29,12 @@ defmodule PhoenixSvelteAdminlte.Scheduler.DatabaseScheduler do
   @doc """
   gets script with coresponding from database and runs it
   """
-  def run_database_script(script_id) do
+  def run_database_script(script_id, job_id) do
     # get script from database
     {:ok, script} = get_script(script_id)
     # just let it fail so telemetry can handle it as failure
-    PhoenixSvelteAdminlte.Repo.query!(script)
-    Logger.debug("Script run succesfully")
+    res = PhoenixSvelteAdminlte.Repo.query!(script)
+    {job_id, res}
   end
 
   defp get_script(script_id) do
@@ -50,10 +50,11 @@ defmodule PhoenixSvelteAdminlte.Scheduler.DatabaseScheduler do
   @doc """
   adds new job that will run db script with coresponding code
   """
-  def create_db_job(name, script_id, cron_expression) do
+  def create_db_job(name, script_id, cron_expression, job_id) do
     SchedulerHelper.create_job(
       name,
-      {PhoenixSvelteAdminlte.Scheduler.DatabaseScheduler, :run_database_script, [script_id]},
+      {PhoenixSvelteAdminlte.Scheduler.DatabaseScheduler, :run_database_script,
+       [script_id, job_id]},
       cron_expression
     )
   end

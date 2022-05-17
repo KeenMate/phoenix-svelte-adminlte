@@ -54,7 +54,6 @@
 			.catch((er) => notification.error($_("localesList.deleteError")))
 			.finally(() => {
 				loadJobs();
-				loading = false;
 			});
 	}
 

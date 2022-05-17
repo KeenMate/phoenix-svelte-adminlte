@@ -1,9 +1,9 @@
-import JwtDecode from "jwt-decode"
-const ContentType = "Content-Type"
+import JwtDecode from "jwt-decode";
+const ContentType = "Content-Type";
 
-const Authorization = "Authorization"
+const Authorization = "Authorization";
 //import {Json} from "../constants/contentTypes"
-let Json = "application/json"
+let Json = "application/json";
 //import {DomainUrl, LoginPath} from "../constants/urls"
 //import {LocalStorageAccessTokenKey} from "../constants/keys"
 // import toastr from "../helpers/toastr-helpers"
@@ -19,12 +19,12 @@ export default class BaseProvider {
 	/**
 	 * @type {string}
 	 */
-	static accessToken
+	static accessToken;
 
 	/**
 	 * @type {boolean}
 	 */
-	static localStorageAccessTokenTried = false
+	static localStorageAccessTokenTried = false;
 
 	/**
 	 * Unified fetch helper
@@ -52,33 +52,32 @@ export default class BaseProvider {
 		const headers = this.mergeHeaders(
 			BaseProvider.getCommonHeaders(),
 			customHeaders
-		)
+		);
 
 		const response = await fetch(url, {
 			method,
 			headers,
 			credentials: "include",
-			body: JSON.stringify(body)
-		})
+			body: JSON.stringify(body),
+		});
 
 		if (!response.ok) {
-			console.error("Not OK result received", response)
-			throw response
+			console.error("Not OK result received", response);
+			throw response;
 		}
 		if (response.status === 401) {
-			console.warn("resource returned 401 status. asking for access token")
-			await BaseProvider.fetchAccessTokenWithLoginRedirect(false)
+			console.warn("resource returned 401 status. asking for access token");
+			await BaseProvider.fetchAccessTokenWithLoginRedirect(false);
 
-			return this.fetchResource.apply(this, arguments)
+			return this.fetchResource.apply(this, arguments);
 		}
 		if (response.status === 403) {
 			// toastr.error("Insufficient rights", "")
-			return null
+			return null;
 		}
-		if (response.status < 200 || response.status > 300)
-			throw response
+		if (response.status < 200 || response.status > 300) throw response;
 
-		return (shouldDecode && response.json()) || response
+		return (shouldDecode && response.json()) || response;
 	}
 
 	/**
@@ -87,10 +86,10 @@ export default class BaseProvider {
 	 */
 	createQueryString(queryObject) {
 		const queryPairs = Object.keys(queryObject)
-			.map(key => `${key}=${encodeURI(queryObject[key] || "")}`)
-			.filter(x => x)
+			.map((key) => `${key}=${encodeURI(queryObject[key] ?? "")}`)
+			.filter((x) => x);
 
-		return (queryPairs.length && "?" + queryPairs.join("&")) || ""
+		return (queryPairs.length && "?" + queryPairs.join("&")) ?? "";
 	}
 
 	/**
@@ -99,7 +98,7 @@ export default class BaseProvider {
 	getEndpointUrl() {
 		throw new Error(
 			"Method `getEndpointUrl` must be overriden to provide specific api endpoint url"
-		)
+		);
 	}
 
 	// clearSessionStorage() {
@@ -113,13 +112,13 @@ export default class BaseProvider {
 	 * @return {Headers} Result (same as `headers` param, just for convenience)
 	 */
 	mergeHeaders(headers, tobeMerged) {
-		if (!tobeMerged || !tobeMerged.length) return headers
+		if (!tobeMerged || !tobeMerged.length) return headers;
 
-		tobeMerged.forEach(({key, value}) => {
-			headers.append(key, value)
-		})
+		tobeMerged.forEach(({ key, value }) => {
+			headers.append(key, value);
+		});
 
-		return headers
+		return headers;
 	}
 
 	/**
@@ -128,7 +127,7 @@ export default class BaseProvider {
 	 * @return {string | null}
 	 */
 	static getContentType(headers) {
-		return headers.get(ContentType)
+		return headers.get(ContentType);
 	}
 
 	/**
@@ -139,26 +138,24 @@ export default class BaseProvider {
 	 */
 	static getCommonHeaders() {
 		const headersObject = {
-			[ContentType]: Json
-		}
+			[ContentType]: Json,
+		};
 
 		if (BaseProvider.accessToken)
-			headersObject[Authorization] = `Bearer ${BaseProvider.accessToken}`
+			headersObject[Authorization] = `Bearer ${BaseProvider.accessToken}`;
 
-		return new Headers(headersObject)
+		return new Headers(headersObject);
 	}
 
 	static async fetchAccessTokenWithLoginRedirect(withRedirect = true) {
 		try {
-			await BaseProvider.fetchAccessToken()
+			await BaseProvider.fetchAccessToken();
 		} catch (err) {
-			console.error("Got error during fetching access token", err)
+			console.error("Got error during fetching access token", err);
 
 			if (err.message == 401)
-				if (withRedirect)
-					BaseProvider.redirectToLogin()
-				else
-					window.dispatchEvent(new RefreshTokenExpired())
+				if (withRedirect) BaseProvider.redirectToLogin();
+				else window.dispatchEvent(new RefreshTokenExpired());
 		}
 	}
 
@@ -181,7 +178,6 @@ export default class BaseProvider {
 	 */
 	static async fetchAccessToken() {
 		// makes request manually (not using helpers from this class intentionally)
-
 		// access token is not needed
 		// if (BaseProvider.fetchingAccessToken)
 		// 	return new Promise(resolve => {
@@ -248,12 +244,12 @@ export default class BaseProvider {
 	}
 
 	static setTokenRefreshTimer(exp) {
-		const tokenExpDate = new Date(exp * 1000)
-		const now = new Date()
-		const requestTokenAfter = (tokenExpDate - now) * 0.9
+		const tokenExpDate = new Date(exp * 1000);
+		const now = new Date();
+		const requestTokenAfter = (tokenExpDate - now) * 0.9;
 		setTimeout(() => {
-			BaseProvider.fetchAccessToken()
-		}, requestTokenAfter)
+			BaseProvider.fetchAccessToken();
+		}, requestTokenAfter);
 	}
 
 	// static setAccessToken(token) {
@@ -277,8 +273,8 @@ export default class BaseProvider {
 
 export class RefreshTokenExpired extends Event {
 	constructor() {
-		super("refreshtokenexpired")
+		super("refreshtokenexpired");
 	}
 }
 
-BaseProvider.fetchAccessTokenWithLoginRedirect()
+BaseProvider.fetchAccessTokenWithLoginRedirect();

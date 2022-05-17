@@ -22,7 +22,7 @@ export class JobsProvider extends BaseProvider {
 		});
 		return response;
 	}
-	async getJobRuns(start, count) {
+	async getJobRuns(start = 0, count = 50) {
 		const response = await this.fetchResource(
 			GET,
 			JobsEndpoints.getJobRuns +

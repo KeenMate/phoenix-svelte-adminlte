@@ -55,11 +55,25 @@ defmodule PhoenixSvelteAdminlteWeb.JobsApiController do
     end
   end
 
-  def get_job_runs(conn, %{"start" => _start, "count" => _count}) do
-    with {:ok, job_runs} <- JobManager.get_job_runs(0, 150),
+  def get_job_runs(conn, %{"start" => start, "count" => count}) do
+    with {{start, ""}, _} <- {Integer.parse(start), :parse_start},
+         {{count, ""}, _} <- {Integer.parse(count), :parse_count},
+         {:ok, job_runs} <- JobManager.get_job_runs(start, count),
          prepared_data <- PhoenixSvelteAdminlte.MapHelpers.camelize_array(job_runs) do
       PhoenixSvelteAdminlteWeb.ConnHelper.success_response(conn, prepared_data)
     else
+      {:error, :parse_start} ->
+        PhoenixSvelteAdminlteWeb.ConnHelper.error_response(conn,
+          reason: :start_nan,
+          msg: "start wasnt valid number"
+        )
+
+      {:error, :parse_count} ->
+        PhoenixSvelteAdminlteWeb.ConnHelper.error_response(conn,
+          reason: :count_nan,
+          msg: "count wasnt valid number"
+        )
+
       {:error, _} ->
         PhoenixSvelteAdminlteWeb.ConnHelper.error_response(conn,
           reason: :db_error,

@@ -42,7 +42,7 @@ defmodule PhoenixSvelteAdminlte.Database.Parsers.AddJobRunParser do
     {:ok, successful_results}
   end
 
-  def parse_add_job_run_result_row([id, start_time, end_time, status, job_id]) do
+  def parse_add_job_run_result_row([id, start_time, end_time, status, job_id, duration]) do
     {
       :ok,
       %PhoenixSvelteAdminlte.Database.Models.AddJobRunItem{
@@ -50,7 +50,8 @@ defmodule PhoenixSvelteAdminlte.Database.Parsers.AddJobRunParser do
         start_time: start_time,
         end_time: end_time,
         status: status,
-        job_id: job_id
+        job_id: job_id,
+        duration: duration
       }
     }
   end

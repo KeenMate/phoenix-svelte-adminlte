@@ -30,7 +30,9 @@ defmodule PhoenixSvelteAdminlte.Scheduler.EventHandler do
   end
 
   def handle_db_event(event, %{duration: duration}, metadata) do
-    Logger.emergency(DateTime.from_unix!(:os.system_time(:microsecond) - duration, :microsecond))
+    # Logger.emergency(DateTime.from_unix!(:os.system_time(:microsecond) - duration, :microsecond))
+    Logger.emergency(duration)
+
     Logger.info("DB JOB [#{metadata.job.name}} FINISHED (#{event}) ] ")
 
     timestamp = DateTime.from_unix!(:os.system_time(:microsecond), :microsecond)
@@ -43,9 +45,10 @@ defmodule PhoenixSvelteAdminlte.Scheduler.EventHandler do
         "Error"
       end
 
-    # :exception
-    # :stop
-    case(DbContext.complete_job_run(job_id, timestamp, status)) do
+    # native time can be different, this will make it same
+    duration_microsec = System.convert_time_unit(duration, :native, :microsecond)
+
+    case(DbContext.complete_job_run(job_id, timestamp, status, duration_microsec)) do
       {:ok, _} ->
         Logger.debug("completed run added to database")
 
@@ -55,7 +58,7 @@ defmodule PhoenixSvelteAdminlte.Scheduler.EventHandler do
   end
 
   def handle_other_event(event, _measurements, metadata) do
-    # TODO handle normal job event
+    # TODO handle normal job event NO
     Logger.info("NORMAL JOB #{event} [#{inspect(metadata.job)}]  ")
   end
 end

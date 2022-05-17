@@ -114,14 +114,14 @@ defmodule PhoenixSvelteAdminlte.Database.DbContext do
     |> PhoenixSvelteAdminlte.Database.Parsers.AddScriptParser.parse_add_script_result()
   end
 
-  @spec complete_job_run(integer(), DateTime.t(), binary()) ::
+  @spec complete_job_run(integer(), DateTime.t(), binary(), integer()) ::
           {:error, any()} | {:ok, [PhoenixSvelteAdminlte.Database.Models.CompleteJobRunItem.t()]}
-  def complete_job_run(job_id, end_time, status) do
+  def complete_job_run(job_id, end_time, status, duration) do
     Logger.debug("Calling stored procedure", procedure: "complete_job_run")
 
     query(
-      "select * from public.complete_job_run($1, $2, $3)",
-      [job_id, end_time, status]
+      "select * from public.complete_job_run($1, $2, $3, $4)",
+      [job_id, end_time, status, duration]
     )
     |> PhoenixSvelteAdminlte.Database.Parsers.CompleteJobRunParser.parse_complete_job_run_result()
   end

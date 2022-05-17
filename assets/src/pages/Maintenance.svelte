@@ -14,6 +14,7 @@
 	import { _ } from "svelte-i18n";
 	import notification from "../providers/notificationProvider";
 	import JobsList from "../components/maintenance/JobsList.svelte";
+	import JobRunsList from "../components/maintenance/JobRunsList.svelte";
 </script>
 
 <PageHeader>
@@ -30,5 +31,8 @@
 <div class="row">
 	<dir class="col-lg-6 col-md-12">
 		<JobsList />
+	</dir>
+	<dir class="col-lg-6 col-md-12">
+		<JobRunsList />
 	</dir>
 </div>

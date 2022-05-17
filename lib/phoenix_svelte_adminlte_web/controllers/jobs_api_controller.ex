@@ -55,5 +55,20 @@ defmodule PhoenixSvelteAdminlteWeb.JobsApiController do
     end
   end
 
+  def get_job_runs(conn, %{"start" => _start, "count" => _count}) do
+    with {:ok, job_runs} <- JobManager.get_job_runs(0, 150),
+         prepared_data <- PhoenixSvelteAdminlte.MapHelpers.camelize_array(job_runs) do
+      PhoenixSvelteAdminlteWeb.ConnHelper.success_response(conn, prepared_data)
+    else
+      {:error, _} ->
+        PhoenixSvelteAdminlteWeb.ConnHelper.error_response(conn,
+          reason: :db_error,
+          msg: "couldnt get data from database"
+        )
+    end
+  end
 
+  def get_job_runs(conn, _params) do
+    get_job_runs(conn, %{"start" => 0, "count" => 50})
+  end
 end

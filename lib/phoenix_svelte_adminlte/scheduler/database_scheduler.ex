@@ -135,4 +135,15 @@ defmodule PhoenixSvelteAdminlte.Scheduler.DatabaseScheduler do
         {:error, "database error"}
     end
   end
+
+  def get_job_runs(start, count \\ 50) do
+    case DbContext.get_job_runs(start, count) do
+      {:ok, job} ->
+        {:ok, job}
+
+      {:error, reason} ->
+        Logger.error("Database error: ", reason: reason)
+        {:error, "database error"}
+    end
+  end
 end

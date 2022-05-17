@@ -284,6 +284,17 @@ defmodule PhoenixSvelteAdminlte.Database.DbContext do
     |> PhoenixSvelteAdminlte.Database.Parsers.GetTopPhotosParser.parse_get_top_photos_result()
   end
 
+  @spec load_initial_data() :: {:error, any()} | {:ok, [integer()]}
+  def load_initial_data() do
+    Logger.debug("Calling stored procedure", procedure: "load_initial_data")
+
+    query(
+      "select * from public.load_initial_data()",
+      []
+    )
+    |> PhoenixSvelteAdminlte.Database.Parsers.LoadInitialDataParser.parse_load_initial_data_result()
+  end
+
   @spec move_gallery_photo(any(), integer(), integer(), any()) ::
           {:error, any()}
           | {:ok, [PhoenixSvelteAdminlte.Database.Models.MoveGalleryPhotoItem.t()]}

@@ -49,7 +49,7 @@
 		JobsProvider.addJob(code, cron, script)
 			.then((res) => {
 				console.log(res.data);
-				notification.success(job.name, $_("addJobModal.added"));
+				notification.success(name, $_("addJobModal.added"));
 			})
 			.catch((er) => {
 				console.log(er);
@@ -91,7 +91,7 @@
 		<FormGroup>
 			<Label inputId="script">sql code</Label>
 
-			<Textarea placeholder="script" id="script" bind:value={script} rows="5" />
+			<Textarea placeholder="script" id="script" bind:value={script} rows={5} />
 		</FormGroup>
 	</Form>
 

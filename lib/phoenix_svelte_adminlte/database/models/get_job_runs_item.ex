@@ -8,7 +8,10 @@ defmodule PhoenixSvelteAdminlte.Database.Models.GetJobRunsItem do
     :end_time,
     :status,
     :job_id,
-    :duration
+    :duration,
+    :script_name,
+    :job_name,
+    :script_id
   ]
 
   @enforce_keys @fields

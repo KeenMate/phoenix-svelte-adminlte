@@ -56,13 +56,15 @@
 <Card outline color="primary" noPadding>
 	<svelte:fragment slot="header">{$_("jobRuns.cardTitle")}</svelte:fragment>
 	<div slot="tools">
-		<Checkbox
-			id="auto-load"
-			on:click={() => setAutoload()}
-			bind:checked={autoload}
-		>
-			<Label inputId="auto-load">{$_("jobRuns.autoLoad")}</Label>
-		</Checkbox>
+		<div style="display: inline-block;">
+			<Checkbox
+				id="auto-load"
+				on:click={() => setAutoload()}
+				bind:checked={autoload}
+			>
+				<Label inputId="auto-load">{$_("jobRuns.autoLoad")}</Label>
+			</Checkbox>
+		</div>
 		<LteButton color="info" xsmall on:click={() => loadJobRuns()}>
 			<i class="fas fa-sync fa-fw" />
 		</LteButton>
@@ -98,7 +100,13 @@
 								{jobRun.scriptName}
 							</td>
 							<td>
-								{jobRun.status}
+								{#if jobRun.status == "Error"}
+									<span class="text-danger">
+										{jobRun.status}
+									</span>
+								{:else}
+									{jobRun.status}
+								{/if}
 							</td>
 
 							<td>
@@ -126,4 +134,6 @@
 	:global
 		.job-runs-table
 			max-height: 80vh
+
+
 </style>

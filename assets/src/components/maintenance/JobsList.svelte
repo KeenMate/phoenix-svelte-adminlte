@@ -132,7 +132,7 @@
 									on:click={() => showCode(job)}
 									disabled={loading}
 								>
-									<i class="fas fa-eye fa-fw" />
+									<i class="fas fa-scroll fa-fw" />
 								</LteButton>
 							</td></tr
 						>

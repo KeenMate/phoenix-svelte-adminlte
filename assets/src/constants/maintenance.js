@@ -1,1 +1,1 @@
-export const jobAutoRefreshTime = 60000;
+export const jobAutoRefreshTime = 30000;

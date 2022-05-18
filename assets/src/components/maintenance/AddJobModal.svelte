@@ -106,15 +106,14 @@
 				hide();
 			});
 	}
-</script>
+   </script>
 
 <Modal bind:show bind:hide center>
 	<span slot="header"
 		>{#if job?.jobId ?? false}
 			{$_("addJobModal.editTitle")}
 		{:else}
-		{$_("addJobModal.addTitle")}
-
+			{$_("addJobModal.addTitle")}
 		{/if}</span
 	>
 

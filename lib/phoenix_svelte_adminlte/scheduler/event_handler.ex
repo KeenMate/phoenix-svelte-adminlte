@@ -37,7 +37,6 @@ defmodule PhoenixSvelteAdminlte.Scheduler.EventHandler do
 
   def handle_db_event(event, %{duration: duration}, metadata) do
     # Logger.emergency(DateTime.from_unix!(:os.system_time(:microsecond) - duration, :microsecond))
-    Logger.emergency(duration)
 
     Logger.info("DB JOB [#{metadata.job.name}} FINISHED (#{event}) ] ")
 

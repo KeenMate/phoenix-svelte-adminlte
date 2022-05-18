@@ -27,7 +27,7 @@
 	let error;
 	export let job;
 	let code, cron, script;
-	let errorMsg;
+	let errorMsg, loading;
 
 	export function openModal() {
 		show();
@@ -42,6 +42,7 @@
 			error = true;
 			return;
 		}
+		loading = true;
 		error = false;
 		console.log("posting....");
 		//TODO post to server
@@ -77,21 +78,28 @@
 <Modal bind:show bind:hide center>
 	<span slot="header">Add job</span>
 
-	<Form id="add-car">
+	<Form id="add-job">
 		<FormGroup>
 			<Label inputId="code">name with underscores instrad of spaces</Label>
 
-			<TextInput placeholder="code" id="code" bind:value={code} />
+			<TextInput placeholder="code" id="code" bind:value={code} {loading} />
 		</FormGroup>
 		<FormGroup>
 			<Label inputId="cron">Schedule (cron expresion)</Label>
 
-			<TextInput placeholder="cron" id="cron" bind:value={cron} />
+			<TextInput placeholder="cron" id="cron" bind:value={cron} {loading} />
 		</FormGroup>
 		<FormGroup>
 			<Label inputId="script">sql code</Label>
 
-			<Textarea placeholder="script" id="script" bind:value={script} rows={5} />
+			<Textarea
+				class="add-job-textarea"
+				placeholder="script"
+				id="script"
+				bind:value={script}
+				rows={5}
+				{loading}
+			/>
 		</FormGroup>
 	</Form>
 
@@ -110,8 +118,19 @@
 
 	<svelte:fragment slot="actions">
 		<ModalCloseButton>Close</ModalCloseButton>
-		<LteButton type="submit" form="add-car" color="success" small on:click={add}
-			>Add</LteButton
+		<LteButton
+			type="submit"
+			form="add-car"
+			color="success"
+			small
+			on:click={add}
+			disabled={loading}>Add</LteButton
 		>
 	</svelte:fragment>
 </Modal>
+
+<style>
+	:global(.add-job-textarea) {
+		height: auto;
+	}
+</style>

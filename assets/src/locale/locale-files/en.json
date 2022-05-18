@@ -51,6 +51,14 @@
   "i18n": {
     "savedLocales": "{locale} is loaded from locale storage ."
   },
+  "jobRuns": {
+    "cardTitle": "Job runs",
+    "duration": "Execution time\n",
+    "job": "Job name",
+    "script": "Script name",
+    "status": "Job status",
+    "time": "Start time"
+  },
   "jobsList": {
     "cron": "Schedule(Cron)",
     "jobId": "Id",

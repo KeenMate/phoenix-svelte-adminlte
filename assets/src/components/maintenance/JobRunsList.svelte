@@ -3,12 +3,11 @@
 	import { _ } from "svelte-i18n";
 	import { Card, TableCondensed, LteButton, AutoScroll } from "svelte-adminlte";
 	import JobsProvider from "../../providers/jobsProvider";
-	import github from "svelte-highlight/src/styles/github";
 
 	const dispatch = createEventDispatcher();
 	let jobRuns = [];
 	let loading = false;
-	function loadJobs() {
+	function loadJobRuns() {
 		loading = true;
 		JobsProvider.getJobRuns()
 			.then((res) => {
@@ -18,19 +17,20 @@
 			.catch((er) => console.log(er))
 			.finally(() => (loading = false));
 	}
-	loadJobs();
 
-	let addModal;
+	function dateWithoutSeconds(time) {
+		var d = new Date();
+		// d.setSeconds(0, 0);
+		return d.toISOString();
+	}
+	loadJobRuns();
 </script>
 
 <Card outline color="primary" noPadding>
-	<svelte:fragment slot="header">{$_("localesList.cardTitle")}</svelte:fragment>
+	<svelte:fragment slot="header">{$_("jobRuns.cardTitle")}</svelte:fragment>
 	<div slot="tools">
-		<LteButton color="info" xsmall on:click={() => loadJobs()}>
+		<LteButton color="info" xsmall on:click={() => loadJobRuns()}>
 			<i class="fas fa-sync fa-fw" />
-		</LteButton>
-		<LteButton color="success" xsmall on:click={() => addModal.openModal()}>
-			{$_("jobsList.newJob")}
 		</LteButton>
 	</div>
 
@@ -39,11 +39,11 @@
 			<AutoScroll>
 				<TableCondensed>
 					<tr slot="headers">
-						<th class="actions">{$_("common.labels.actions")}</th>
-						<th>{$_("common.labels.Id")}</th>
-						<th>{$_("common.labels.name")}</th>
-						<th>{$_("jobsList.cron")}</th>
-						<th>{$_("jobsList.showScript")}</th>
+						<th class="actions">{$_("jobRuns.time")}</th>
+						<th>{$_("jobRuns.job")}</th>
+						<th>{$_("jobRuns.script")}</th>
+						<th>{$_("jobRuns.status")}</th>
+						<th>{$_("jobRuns.duration")}</th>
 					</tr>
 					{#if jobRuns?.length == 0}
 						<tr>
@@ -55,7 +55,7 @@
 					{#each jobRuns as jobRun}
 						<tr>
 							<td>
-								{jobRun.endTime}
+								{dateWithoutSeconds(jobRun.startTime)}
 							</td>
 							<td class="title">
 								{jobRun.jobName}

@@ -49,47 +49,6 @@ defmodule PhoenixSvelteAdminlte.Database.DbContext do
     |> PhoenixSvelteAdminlte.Database.Parsers.AddJobRunParser.parse_add_job_run_result()
   end
 
-  @spec add_journal_msg(binary(), integer(), binary(), binary(), integer(), any(), integer()) ::
-          {:error, any()} | {:ok, [PhoenixSvelteAdminlte.Database.Models.AddJournalMsgItem.t()]}
-  def add_journal_msg(created_by, user_id, msg, data_group, data_object_id, payload, event_id) do
-    Logger.debug("Calling stored procedure", procedure: "add_journal_msg")
-
-    query(
-      "select * from public.add_journal_msg($1, $2, $3, $4, $5, $6, $7)",
-      [created_by, user_id, msg, data_group, data_object_id, payload, event_id]
-    )
-    |> PhoenixSvelteAdminlte.Database.Parsers.AddJournalMsgParser.parse_add_journal_msg_result()
-  end
-
-  @spec add_journal_msg_jsonb(
-          binary(),
-          integer(),
-          binary(),
-          binary(),
-          integer(),
-          any(),
-          integer()
-        ) ::
-          {:error, any()}
-          | {:ok, [PhoenixSvelteAdminlte.Database.Models.AddJournalMsgJsonbItem.t()]}
-  def add_journal_msg_jsonb(
-        created_by,
-        user_id,
-        msg,
-        data_group,
-        data_object_id,
-        payload,
-        event_id
-      ) do
-    Logger.debug("Calling stored procedure", procedure: "add_journal_msg_jsonb")
-
-    query(
-      "select * from public.add_journal_msg_jsonb($1, $2, $3, $4, $5, $6, $7)",
-      [created_by, user_id, msg, data_group, data_object_id, payload, event_id]
-    )
-    |> PhoenixSvelteAdminlte.Database.Parsers.AddJournalMsgJsonbParser.parse_add_journal_msg_jsonb_result()
-  end
-
   @spec add_photo(binary(), binary(), integer(), integer(), integer()) ::
           {:error, any()} | {:ok, [PhoenixSvelteAdminlte.Database.Models.AddPhotoItem.t()]}
   def add_photo(code, original_filename, width, height, file_size) do
@@ -148,6 +107,19 @@ defmodule PhoenixSvelteAdminlte.Database.DbContext do
       [script_id]
     )
     |> PhoenixSvelteAdminlte.Database.Parsers.DeleteScriptParser.parse_delete_script_result()
+  end
+
+  @spec ensure_roles_and_permissions(binary(), any(), boolean(), boolean()) ::
+          {:error, any()}
+          | {:ok, [PhoenixSvelteAdminlte.Database.Models.EnsureRolesAndPermissionsItem.t()]}
+  def ensure_roles_and_permissions(oid, provider_groups, is_manager, is_trusted_user) do
+    Logger.debug("Calling stored procedure", procedure: "ensure_roles_and_permissions")
+
+    query(
+      "select * from public.ensure_roles_and_permissions($1, $2, $3, $4)",
+      [oid, provider_groups, is_manager, is_trusted_user]
+    )
+    |> PhoenixSvelteAdminlte.Database.Parsers.EnsureRolesAndPermissionsParser.parse_ensure_roles_and_permissions_result()
   end
 
   @spec get_all_galleries() ::
@@ -223,31 +195,6 @@ defmodule PhoenixSvelteAdminlte.Database.DbContext do
     |> PhoenixSvelteAdminlte.Database.Parsers.GetJobsParser.parse_get_jobs_result()
   end
 
-  @spec get_journal_msgs(integer(), DateTime.t(), DateTime.t()) ::
-          {:error, any()} | {:ok, [PhoenixSvelteAdminlte.Database.Models.GetJournalMsgsItem.t()]}
-  def get_journal_msgs(user_id, from, to) do
-    Logger.debug("Calling stored procedure", procedure: "get_journal_msgs")
-
-    query(
-      "select * from public.get_journal_msgs($1, $2, $3)",
-      [user_id, from, to]
-    )
-    |> PhoenixSvelteAdminlte.Database.Parsers.GetJournalMsgsParser.parse_get_journal_msgs_result()
-  end
-
-  @spec get_journal_payload(integer(), integer()) ::
-          {:error, any()}
-          | {:ok, [PhoenixSvelteAdminlte.Database.Models.GetJournalPayloadItem.t()]}
-  def get_journal_payload(user_id, journal_id) do
-    Logger.debug("Calling stored procedure", procedure: "get_journal_payload")
-
-    query(
-      "select * from public.get_journal_payload($1, $2)",
-      [user_id, journal_id]
-    )
-    |> PhoenixSvelteAdminlte.Database.Parsers.GetJournalPayloadParser.parse_get_journal_payload_result()
-  end
-
   @spec get_random_photo(binary()) ::
           {:error, any()} | {:ok, [PhoenixSvelteAdminlte.Database.Models.GetRandomPhotoItem.t()]}
   def get_random_photo(code) do
@@ -258,6 +205,19 @@ defmodule PhoenixSvelteAdminlte.Database.DbContext do
       [code]
     )
     |> PhoenixSvelteAdminlte.Database.Parsers.GetRandomPhotoParser.parse_get_random_photo_result()
+  end
+
+  @spec get_roles_and_permissions(binary()) ::
+          {:error, any()}
+          | {:ok, [PhoenixSvelteAdminlte.Database.Models.GetRolesAndPermissionsItem.t()]}
+  def get_roles_and_permissions(oid) do
+    Logger.debug("Calling stored procedure", procedure: "get_roles_and_permissions")
+
+    query(
+      "select * from public.get_roles_and_permissions($1)",
+      [oid]
+    )
+    |> PhoenixSvelteAdminlte.Database.Parsers.GetRolesAndPermissionsParser.parse_get_roles_and_permissions_result()
   end
 
   @spec get_script(integer()) ::
@@ -282,17 +242,6 @@ defmodule PhoenixSvelteAdminlte.Database.DbContext do
       [how_many]
     )
     |> PhoenixSvelteAdminlte.Database.Parsers.GetTopPhotosParser.parse_get_top_photos_result()
-  end
-
-  @spec load_initial_data() :: {:error, any()} | {:ok, [integer()]}
-  def load_initial_data() do
-    Logger.debug("Calling stored procedure", procedure: "load_initial_data")
-
-    query(
-      "select * from public.load_initial_data()",
-      []
-    )
-    |> PhoenixSvelteAdminlte.Database.Parsers.LoadInitialDataParser.parse_load_initial_data_result()
   end
 
   @spec move_gallery_photo(any(), integer(), integer(), any()) ::
@@ -355,16 +304,5 @@ defmodule PhoenixSvelteAdminlte.Database.DbContext do
       [code, title_cs, title_en, gallery_id]
     )
     |> PhoenixSvelteAdminlte.Database.Parsers.SaveGalleryParser.parse_save_gallery_result()
-  end
-
-  @spec trg_generate_code_from_title() :: {:error, any()} | {:ok, [any()]}
-  def trg_generate_code_from_title() do
-    Logger.debug("Calling stored procedure", procedure: "trg_generate_code_from_title")
-
-    query(
-      "select * from public.trg_generate_code_from_title()",
-      []
-    )
-    |> PhoenixSvelteAdminlte.Database.Parsers.TrgGenerateCodeFromTitleParser.parse_trg_generate_code_from_title_result()
   end
 end

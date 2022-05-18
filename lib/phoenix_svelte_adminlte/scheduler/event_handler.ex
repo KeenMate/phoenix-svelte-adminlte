@@ -18,7 +18,13 @@ defmodule PhoenixSvelteAdminlte.Scheduler.EventHandler do
     # get job_id from second paramet
     {_, _, [_ | [job_id]]} = metadata.job.task
 
-    case DbContext.add_job_run(job_id, DateTime.from_unix!(native_time, :microsecond)) do
+    case DbContext.add_job_run(
+           job_id,
+           DateTime.from_unix!(
+             System.convert_time_unit(native_time, :native, :microseconds),
+             :microsecond
+           )
+         ) do
       {:ok, _} ->
         :ok
 

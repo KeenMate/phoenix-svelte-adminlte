@@ -51,6 +51,14 @@
   "i18n": {
     "savedLocales": "{locale} je načteno z lokálního úložiště"
   },
+  "jobRuns": {
+    "cardTitle": "",
+    "duration": "",
+    "job": "",
+    "script": "",
+    "status": "",
+    "time": ""
+  },
   "jobsList": {
     "cron": "Rozvrh (Cron)",
     "jobId": "",

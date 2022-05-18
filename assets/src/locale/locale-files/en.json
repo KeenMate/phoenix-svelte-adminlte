@@ -3,8 +3,10 @@
     "text": "More info in [Components](#/components/show/dragable-container)"
   },
   "addJobModal": {
+    "addTitle": "Add Job",
     "added": "Job added successfully",
-    "addedError": "Couldnt add job, try again later"
+    "addedError": "Couldnt add job, try again later",
+    "editTitle": "Job\n"
   },
   "commen": {
     "error": {
@@ -52,6 +54,7 @@
     "savedLocales": "{locale} is loaded from locale storage ."
   },
   "jobRuns": {
+    "autoLoad": "Autoload",
     "cardTitle": "Job runs",
     "duration": "Execution time\n",
     "job": "Job name",
@@ -81,6 +84,7 @@
     "language": "Language"
   },
   "maintenance": {
+    "getJobError": "Error getting job info",
     "title": "Maintenance"
   },
   "multiselect": {

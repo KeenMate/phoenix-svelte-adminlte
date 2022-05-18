@@ -33,6 +33,17 @@ export class JobsProvider extends BaseProvider {
 		);
 		return response;
 	}
+	async getJob(id) {
+		const response = await this.fetchResource(
+			GET,
+			JobsEndpoints.getJob +
+				this.createQueryString({
+					id: id,
+				})
+		);
+
+		return response;
+	}
 }
 
 export default new JobsProvider();

@@ -21,4 +21,5 @@ export const JobsEndpoints = {
 	deleteJob: (id) => `${JobsApiPath}/${id}`,
 	addJob: `${JobsApiPath}`,
 	getJobRuns: `${JobsApiPath}/job_runs`,
+	getJob: `${JobsApiPath}/job`,
 };

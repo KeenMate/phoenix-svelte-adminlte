@@ -49,6 +49,47 @@ defmodule PhoenixSvelteAdminlte.Database.DbContext do
     |> PhoenixSvelteAdminlte.Database.Parsers.AddJobRunParser.parse_add_job_run_result()
   end
 
+  @spec add_journal_msg(binary(), integer(), binary(), binary(), integer(), any(), integer()) ::
+          {:error, any()} | {:ok, [PhoenixSvelteAdminlte.Database.Models.AddJournalMsgItem.t()]}
+  def add_journal_msg(created_by, user_id, msg, data_group, data_object_id, payload, event_id) do
+    Logger.debug("Calling stored procedure", procedure: "add_journal_msg")
+
+    query(
+      "select * from public.add_journal_msg($1, $2, $3, $4, $5, $6, $7)",
+      [created_by, user_id, msg, data_group, data_object_id, payload, event_id]
+    )
+    |> PhoenixSvelteAdminlte.Database.Parsers.AddJournalMsgParser.parse_add_journal_msg_result()
+  end
+
+  @spec add_journal_msg_jsonb(
+          binary(),
+          integer(),
+          binary(),
+          binary(),
+          integer(),
+          any(),
+          integer()
+        ) ::
+          {:error, any()}
+          | {:ok, [PhoenixSvelteAdminlte.Database.Models.AddJournalMsgJsonbItem.t()]}
+  def add_journal_msg_jsonb(
+        created_by,
+        user_id,
+        msg,
+        data_group,
+        data_object_id,
+        payload,
+        event_id
+      ) do
+    Logger.debug("Calling stored procedure", procedure: "add_journal_msg_jsonb")
+
+    query(
+      "select * from public.add_journal_msg_jsonb($1, $2, $3, $4, $5, $6, $7)",
+      [created_by, user_id, msg, data_group, data_object_id, payload, event_id]
+    )
+    |> PhoenixSvelteAdminlte.Database.Parsers.AddJournalMsgJsonbParser.parse_add_journal_msg_jsonb_result()
+  end
+
   @spec add_photo(binary(), binary(), integer(), integer(), integer()) ::
           {:error, any()} | {:ok, [PhoenixSvelteAdminlte.Database.Models.AddPhotoItem.t()]}
   def add_photo(code, original_filename, width, height, file_size) do
@@ -73,6 +114,26 @@ defmodule PhoenixSvelteAdminlte.Database.DbContext do
     |> PhoenixSvelteAdminlte.Database.Parsers.AddScriptParser.parse_add_script_result()
   end
 
+  @spec add_translation(binary(), integer(), binary(), binary(), binary(), integer(), binary()) ::
+          {:error, any()} | {:ok, [PhoenixSvelteAdminlte.Database.Models.AddTranslationItem.t()]}
+  def add_translation(
+        created_by,
+        user_id,
+        language_code,
+        data_group,
+        data_object_code,
+        data_object_id,
+        value
+      ) do
+    Logger.debug("Calling stored procedure", procedure: "add_translation")
+
+    query(
+      "select * from public.add_translation($1, $2, $3, $4, $5, $6, $7)",
+      [created_by, user_id, language_code, data_group, data_object_code, data_object_id, value]
+    )
+    |> PhoenixSvelteAdminlte.Database.Parsers.AddTranslationParser.parse_add_translation_result()
+  end
+
   @spec complete_job_run(integer(), DateTime.t(), binary(), integer()) ::
           {:error, any()} | {:ok, [PhoenixSvelteAdminlte.Database.Models.CompleteJobRunItem.t()]}
   def complete_job_run(job_id, end_time, status, duration) do
@@ -83,6 +144,39 @@ defmodule PhoenixSvelteAdminlte.Database.DbContext do
       [job_id, end_time, status, duration]
     )
     |> PhoenixSvelteAdminlte.Database.Parsers.CompleteJobRunParser.parse_complete_job_run_result()
+  end
+
+  @spec create_permission_by_code(binary(), integer(), binary(), binary(), boolean()) ::
+          {:error, any()}
+          | {:ok, [PhoenixSvelteAdminlte.Database.Models.CreatePermissionByCodeItem.t()]}
+  def create_permission_by_code(created_by, user_id, title, parent_code, is_assignable) do
+    Logger.debug("Calling stored procedure", procedure: "create_permission_by_code")
+
+    query(
+      "select * from public.create_permission_by_code($1, $2, $3, $4, $5)",
+      [created_by, user_id, title, parent_code, is_assignable]
+    )
+    |> PhoenixSvelteAdminlte.Database.Parsers.CreatePermissionByCodeParser.parse_create_permission_by_code_result()
+  end
+
+  @spec create_permission_by_path(binary(), integer(), binary(), binary(), binary(), boolean()) ::
+          {:error, any()}
+          | {:ok, [PhoenixSvelteAdminlte.Database.Models.CreatePermissionByPathItem.t()]}
+  def create_permission_by_path(
+        created_by,
+        user_id,
+        data_node_path,
+        title,
+        parent_path,
+        is_assignable
+      ) do
+    Logger.debug("Calling stored procedure", procedure: "create_permission_by_path")
+
+    query(
+      "select * from public.create_permission_by_path($1, $2, $3, $4, $5, $6)",
+      [created_by, user_id, data_node_path, title, parent_path, is_assignable]
+    )
+    |> PhoenixSvelteAdminlte.Database.Parsers.CreatePermissionByPathParser.parse_create_permission_by_path_result()
   end
 
   @spec delete_job(integer()) ::
@@ -171,6 +265,18 @@ defmodule PhoenixSvelteAdminlte.Database.DbContext do
     |> PhoenixSvelteAdminlte.Database.Parsers.GetGalleryPhotosParser.parse_get_gallery_photos_result()
   end
 
+  @spec get_job(integer()) ::
+          {:error, any()} | {:ok, [PhoenixSvelteAdminlte.Database.Models.GetJobItem.t()]}
+  def get_job(id) do
+    Logger.debug("Calling stored procedure", procedure: "get_job")
+
+    query(
+      "select * from public.get_job($1)",
+      [id]
+    )
+    |> PhoenixSvelteAdminlte.Database.Parsers.GetJobParser.parse_get_job_result()
+  end
+
   @spec get_job_runs(integer(), integer()) ::
           {:error, any()} | {:ok, [PhoenixSvelteAdminlte.Database.Models.GetJobRunsItem.t()]}
   def get_job_runs(start, count) do
@@ -193,6 +299,31 @@ defmodule PhoenixSvelteAdminlte.Database.DbContext do
       []
     )
     |> PhoenixSvelteAdminlte.Database.Parsers.GetJobsParser.parse_get_jobs_result()
+  end
+
+  @spec get_journal_msgs(integer(), DateTime.t(), DateTime.t()) ::
+          {:error, any()} | {:ok, [PhoenixSvelteAdminlte.Database.Models.GetJournalMsgsItem.t()]}
+  def get_journal_msgs(user_id, from, to) do
+    Logger.debug("Calling stored procedure", procedure: "get_journal_msgs")
+
+    query(
+      "select * from public.get_journal_msgs($1, $2, $3)",
+      [user_id, from, to]
+    )
+    |> PhoenixSvelteAdminlte.Database.Parsers.GetJournalMsgsParser.parse_get_journal_msgs_result()
+  end
+
+  @spec get_journal_payload(integer(), integer()) ::
+          {:error, any()}
+          | {:ok, [PhoenixSvelteAdminlte.Database.Models.GetJournalPayloadItem.t()]}
+  def get_journal_payload(user_id, journal_id) do
+    Logger.debug("Calling stored procedure", procedure: "get_journal_payload")
+
+    query(
+      "select * from public.get_journal_payload($1, $2)",
+      [user_id, journal_id]
+    )
+    |> PhoenixSvelteAdminlte.Database.Parsers.GetJournalPayloadParser.parse_get_journal_payload_result()
   end
 
   @spec get_random_photo(binary()) ::
@@ -242,6 +373,28 @@ defmodule PhoenixSvelteAdminlte.Database.DbContext do
       [how_many]
     )
     |> PhoenixSvelteAdminlte.Database.Parsers.GetTopPhotosParser.parse_get_top_photos_result()
+  end
+
+  @spec has_permission(integer(), binary(), boolean()) :: {:error, any()} | {:ok, [boolean()]}
+  def has_permission(user_id, perm_code, throw_err) do
+    Logger.debug("Calling stored procedure", procedure: "has_permission")
+
+    query(
+      "select * from public.has_permission($1, $2, $3)",
+      [user_id, perm_code, throw_err]
+    )
+    |> PhoenixSvelteAdminlte.Database.Parsers.HasPermissionParser.parse_has_permission_result()
+  end
+
+  @spec load_initial_data() :: {:error, any()} | {:ok, [integer()]}
+  def load_initial_data() do
+    Logger.debug("Calling stored procedure", procedure: "load_initial_data")
+
+    query(
+      "select * from public.load_initial_data()",
+      []
+    )
+    |> PhoenixSvelteAdminlte.Database.Parsers.LoadInitialDataParser.parse_load_initial_data_result()
   end
 
   @spec move_gallery_photo(any(), integer(), integer(), any()) ::
@@ -304,5 +457,77 @@ defmodule PhoenixSvelteAdminlte.Database.DbContext do
       [code, title_cs, title_en, gallery_id]
     )
     |> PhoenixSvelteAdminlte.Database.Parsers.SaveGalleryParser.parse_save_gallery_result()
+  end
+
+  @spec throw_no_permission(integer(), binary()) :: {:error, any()} | {:ok, [any()]}
+  def throw_no_permission(user_id, perm_code) do
+    Logger.debug("Calling stored procedure", procedure: "throw_no_permission")
+
+    query(
+      "select * from public.throw_no_permission($1, $2)",
+      [user_id, perm_code]
+    )
+    |> PhoenixSvelteAdminlte.Database.Parsers.ThrowNoPermissionParser.parse_throw_no_permission_result()
+  end
+
+  @spec trg_generate_code_from_title() :: {:error, any()} | {:ok, [any()]}
+  def trg_generate_code_from_title() do
+    Logger.debug("Calling stored procedure", procedure: "trg_generate_code_from_title")
+
+    query(
+      "select * from public.trg_generate_code_from_title()",
+      []
+    )
+    |> PhoenixSvelteAdminlte.Database.Parsers.TrgGenerateCodeFromTitleParser.parse_trg_generate_code_from_title_result()
+  end
+
+  @spec update_job(integer(), binary(), integer(), binary()) ::
+          {:error, any()} | {:ok, [PhoenixSvelteAdminlte.Database.Models.UpdateJobItem.t()]}
+  def update_job(job_id, name, script_id, cron) do
+    Logger.debug("Calling stored procedure", procedure: "update_job")
+
+    query(
+      "select * from public.update_job($1, $2, $3, $4)",
+      [job_id, name, script_id, cron]
+    )
+    |> PhoenixSvelteAdminlte.Database.Parsers.UpdateJobParser.parse_update_job_result()
+  end
+
+  @spec update_permission_full_code(any()) ::
+          {:error, any()}
+          | {:ok, [PhoenixSvelteAdminlte.Database.Models.UpdatePermissionFullCodeItem.t()]}
+  def update_permission_full_code(perm_path) do
+    Logger.debug("Calling stored procedure", procedure: "update_permission_full_code")
+
+    query(
+      "select * from public.update_permission_full_code($1)",
+      [perm_path]
+    )
+    |> PhoenixSvelteAdminlte.Database.Parsers.UpdatePermissionFullCodeParser.parse_update_permission_full_code_result()
+  end
+
+  @spec update_permission_full_title(any()) ::
+          {:error, any()}
+          | {:ok, [PhoenixSvelteAdminlte.Database.Models.UpdatePermissionFullTitleItem.t()]}
+  def update_permission_full_title(perm_path) do
+    Logger.debug("Calling stored procedure", procedure: "update_permission_full_title")
+
+    query(
+      "select * from public.update_permission_full_title($1)",
+      [perm_path]
+    )
+    |> PhoenixSvelteAdminlte.Database.Parsers.UpdatePermissionFullTitleParser.parse_update_permission_full_title_result()
+  end
+
+  @spec update_script(integer(), binary(), integer()) ::
+          {:error, any()} | {:ok, [PhoenixSvelteAdminlte.Database.Models.UpdateScriptItem.t()]}
+  def update_script(scipt_id, name, content) do
+    Logger.debug("Calling stored procedure", procedure: "update_script")
+
+    query(
+      "select * from public.update_script($1, $2, $3)",
+      [scipt_id, name, content]
+    )
+    |> PhoenixSvelteAdminlte.Database.Parsers.UpdateScriptParser.parse_update_script_result()
   end
 end

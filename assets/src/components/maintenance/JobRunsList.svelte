@@ -1,12 +1,21 @@
 <script>
 	import { createEventDispatcher } from "svelte";
 	import { _ } from "svelte-i18n";
-	import { Card, TableCondensed, LteButton, AutoScroll } from "svelte-adminlte";
+	import {
+		Card,
+		TableCondensed,
+		LteButton,
+		AutoScroll,
+		Checkbox,
+		Label,
+	} from "svelte-adminlte";
 	import JobsProvider from "../../providers/jobsProvider";
+	import { jobAutoRefreshTime } from "../../constants/maintenance";
 
 	const dispatch = createEventDispatcher();
 	let jobRuns = [];
-	let loading = false;
+	export let loading = false;
+
 	function loadJobRuns() {
 		loading = true;
 		JobsProvider.getJobRuns()
@@ -19,16 +28,41 @@
 	}
 
 	function dateWithoutSeconds(time) {
-		var d = new Date();
-		// d.setSeconds(0, 0);
-		return d.toISOString();
+		var d = new Date(time);
+		d.setSeconds(0, 0);
+		return d.toLocaleString();
 	}
 	loadJobRuns();
+
+	let intervalId,
+		autoload = true;
+
+	function setAutoload(set) {
+		//will automatically loda job runs
+		if (set ?? !autoload) {
+			console.log("autoload enabled ");
+			intervalId = setInterval(function () {
+				loadJobRuns(true);
+			}, jobAutoRefreshTime ?? 60 * 1000);
+		} else {
+			console.log("clearing autoload");
+			clearInterval(intervalId);
+		}
+	}
+
+	setAutoload(true);
 </script>
 
 <Card outline color="primary" noPadding>
 	<svelte:fragment slot="header">{$_("jobRuns.cardTitle")}</svelte:fragment>
 	<div slot="tools">
+		<Checkbox
+			id="auto-load"
+			on:click={() => setAutoload()}
+			bind:checked={autoload}
+		>
+			<Label inputId="auto-load">{$_("jobRuns.autoLoad")}</Label>
+		</Checkbox>
 		<LteButton color="info" xsmall on:click={() => loadJobRuns()}>
 			<i class="fas fa-sync fa-fw" />
 		</LteButton>
@@ -37,7 +71,7 @@
 	<div class="row">
 		<div class="col-12">
 			<AutoScroll>
-				<TableCondensed>
+				<TableCondensed class="job-runs-table">
 					<tr slot="headers">
 						<th class="actions">{$_("jobRuns.time")}</th>
 						<th>{$_("jobRuns.job")}</th>
@@ -74,7 +108,7 @@
 								<LteButton
 									color="info"
 									xsmall
-									on:click={() => console.log(jobRun)}
+									on:click={() => dispatch("open-job", jobRun)}
 									disabled={loading}
 								>
 									<i class="fas fa-eye fa-fw" />
@@ -87,3 +121,9 @@
 		</div>
 	</div>
 </Card>
+
+<style lang="sass">
+	:global
+		.job-runs-table
+			max-height: 80vh
+</style>

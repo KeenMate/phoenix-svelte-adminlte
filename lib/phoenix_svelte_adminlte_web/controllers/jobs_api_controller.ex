@@ -56,8 +56,8 @@ defmodule PhoenixSvelteAdminlteWeb.JobsApiController do
   end
 
   def get_job_runs(conn, %{"start" => start, "count" => count}) do
-    with {{start, ""}, _} <- {Integer.parse(start), :parse_start},
-         {{count, ""}, _} <- {Integer.parse(count), :parse_count},
+    with {{start, _}, _} <- {Integer.parse(start), :parse_start},
+         {{count, _}, _} <- {Integer.parse(count), :parse_count},
          {:ok, job_runs} <- JobManager.get_job_runs(start, count),
          prepared_data <- PhoenixSvelteAdminlte.MapHelpers.camelize_array(job_runs) do
       PhoenixSvelteAdminlteWeb.ConnHelper.success_response(conn, prepared_data)
@@ -84,5 +84,32 @@ defmodule PhoenixSvelteAdminlteWeb.JobsApiController do
 
   def get_job_runs(conn, _params) do
     get_job_runs(conn, %{"start" => 0, "count" => 50})
+  end
+
+  def get_job(conn, %{"id" => job_id}) do
+    with {{job_id, _}, _} <- {Integer.parse(job_id), :parse_id},
+         {:ok, job} <- JobManager.get_job(job_id),
+         {1, _} <- {length(job), :length},
+         [prepared_data] <- PhoenixSvelteAdminlte.MapHelpers.camelize_array(job) do
+      PhoenixSvelteAdminlteWeb.ConnHelper.success_response(conn, prepared_data)
+    else
+      {:error, :parse_id} ->
+        PhoenixSvelteAdminlteWeb.ConnHelper.error_response(conn,
+          reason: :start_nan,
+          msg: "id wasnt number"
+        )
+
+      {:error, _} ->
+        PhoenixSvelteAdminlteWeb.ConnHelper.error_response(conn,
+          reason: :db_error,
+          msg: "couldnt get data from database"
+        )
+
+      {0, :length} ->
+        PhoenixSvelteAdminlteWeb.ConnHelper.error_response(conn,
+          reason: :not_found,
+          msg: "Job with this id not found"
+        )
+    end
   end
 end

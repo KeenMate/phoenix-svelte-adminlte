@@ -108,7 +108,7 @@ defmodule PhoenixSvelteAdminlte.Scheduler.DatabaseScheduler do
   end
 
   def add_db_job(name, cron, content) when is_bitstring(content) do
-    with {:ok, [script]} <- DbContext.add_script(name, content),
+    with {:ok, [script]} <- DbContext.add_script(name <> "_script", content),
          Logger.info(inspect(script)),
          {:ok, job} <- DbContext.add_job(name, cron, script.script_id) do
       load_jobs()
@@ -138,6 +138,17 @@ defmodule PhoenixSvelteAdminlte.Scheduler.DatabaseScheduler do
 
   def get_job_runs(start, count \\ 50) do
     case DbContext.get_job_runs(start, count) do
+      {:ok, job} ->
+        {:ok, job}
+
+      {:error, reason} ->
+        Logger.error("Database error: ", reason: reason)
+        {:error, "database error"}
+    end
+  end
+
+  def get_job(job_id) do
+    case DbContext.get_job(job_id) do
       {:ok, job} ->
         {:ok, job}
 

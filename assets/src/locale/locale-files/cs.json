@@ -3,8 +3,10 @@
     "text": "Více informaci na [Komponenty](#/components/show/dragable-container)"
   },
   "addJobModal": {
+    "addTitle": "",
     "added": "Job uspesne pridana\n",
-    "addedError": "Chyba pri pridavani, zkuste pozdeji"
+    "addedError": "Chyba pri pridavani, zkuste pozdeji",
+    "editTitle": ""
   },
   "commen": {
     "error": {
@@ -52,6 +54,7 @@
     "savedLocales": "{locale} je načteno z lokálního úložiště"
   },
   "jobRuns": {
+    "autoLoad": "",
     "cardTitle": "",
     "duration": "",
     "job": "",
@@ -81,6 +84,7 @@
     "language": "Jazyk"
   },
   "maintenance": {
+    "getJobError": "",
     "title": "Údrzba"
   },
   "multiselect": {

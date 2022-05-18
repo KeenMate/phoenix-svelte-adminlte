@@ -39,7 +39,8 @@ defmodule PhoenixSvelteAdminlteWeb.Router do
       get "/", JobsApiController, :get_jobs
       delete "/:id", JobsApiController, :delete_job
       post "/", JobsApiController, :create_job
-			get "/job_runs", JobsApiController, :get_job_runs
+      get "/job_runs", JobsApiController, :get_job_runs
+      get "/job", JobsApiController, :get_job
     end
   end
 

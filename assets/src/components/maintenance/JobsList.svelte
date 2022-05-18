@@ -15,15 +15,14 @@
 	import github from "svelte-highlight/src/styles/github";
 	import sql from "svelte-highlight/src/languages/sql";
 	import notification from "../../providers/notificationProvider";
-	import AddJobModal from "./AddJobModal.svelte";
 
 	const dispatch = createEventDispatcher();
 	let jobs = [];
-	let loading = false,
-		showScript,
-		hideScript;
-	function loadJobs() {
-		loading = true;
+	export let loading = false;
+	let showScript, hideScript;
+	export function loadJobs(silent = false) {
+		//silent will disable loading
+		if (!silent) loading = true;
 		JobsProvider.getJobs()
 			.then((res) => {
 				console.log(res.data);
@@ -56,8 +55,6 @@
 				loadJobs();
 			});
 	}
-
-	let addModal;
 </script>
 
 <svelte:head>
@@ -70,7 +67,12 @@
 		<LteButton color="info" xsmall on:click={() => loadJobs()}>
 			<i class="fas fa-sync fa-fw" />
 		</LteButton>
-		<LteButton color="success" xsmall on:click={() => addModal.openModal()}>
+		<LteButton
+			color="success"
+			xsmall
+			on:click={() => dispatch("add-job")}
+			disabled={loading}
+		>
 			{$_("jobsList.newJob")}
 		</LteButton>
 	</div>
@@ -104,14 +106,14 @@
 								>
 									<i class="fas fa-trash fa-fw" />
 								</LteButton>
-								<LteButton
+								<!-- <LteButton
 									disabled={loading}
 									color="success"
 									xsmall
 									on:click={() => dispatch("edit", job.jobId)}
 								>
 									<i class="fas fa-edit fa-fw" />
-								</LteButton>
+								</LteButton> -->
 							</td>
 							<td>
 								{job.jobId}
@@ -149,5 +151,3 @@
 		<ModalCloseButton>Close</ModalCloseButton>
 	</svelte:fragment>
 </Modal>
-
-<AddJobModal bind:this={addModal} />

@@ -29,7 +29,13 @@
 	let code, cron, script;
 	let errorMsg, loading;
 
-	export function openModal() {
+	$: {
+		code = job?.name;
+		cron = job?.cron;
+		script = job?.content;
+	}
+	export function openModal(j) {
+		job = j;
 		show();
 	}
 
@@ -44,8 +50,6 @@
 		}
 		loading = true;
 		error = false;
-		console.log("posting....");
-		//TODO post to server
 
 		JobsProvider.addJob(code, cron, script)
 			.then((res) => {
@@ -58,6 +62,7 @@
 			})
 			.finally(() => {
 				loading = false;
+				hide();
 			});
 	}
 
@@ -73,10 +78,45 @@
 		return true;
 		//TODO check other
 	}
+
+	function update() {
+		console.log(code);
+		console.log(cron);
+		console.log(script);
+		if ((errorMsg = validate(code, cron, script)) !== true) {
+			showErrorAlert = true;
+			error = true;
+			return;
+		}
+		loading = true;
+		error = false;
+
+		JobsProvider.addJob(code, cron, script)
+			.then((res) => {
+				console.log(res.data);
+				notification.success(name, $_("addJobModal.added"));
+				dispatch("job-added");
+			})
+			.catch((er) => {
+				console.log(er);
+				notification.error($_("addJobModal.addedError"));
+			})
+			.finally(() => {
+				loading = false;
+				hide();
+			});
+	}
 </script>
 
 <Modal bind:show bind:hide center>
-	<span slot="header">Add job</span>
+	<span slot="header"
+		>{#if job?.jobId ?? false}
+			{$_("addJobModal.editTitle")}
+		{:else}
+		{$_("addJobModal.addTitle")}
+
+		{/if}</span
+	>
 
 	<Form id="add-job">
 		<FormGroup>
@@ -118,14 +158,25 @@
 
 	<svelte:fragment slot="actions">
 		<ModalCloseButton>Close</ModalCloseButton>
-		<LteButton
-			type="submit"
-			form="add-car"
-			color="success"
-			small
-			on:click={add}
-			disabled={loading}>Add</LteButton
-		>
+		{#if job?.jobId ?? false}
+			<!-- <LteButton
+				type="submit"
+				form="add-car"
+				color="success"
+				small
+				on:click={update}
+				disabled={loading}>Update</LteButton
+			> -->
+		{:else}
+			<LteButton
+				type="submit"
+				form="add-car"
+				color="success"
+				small
+				on:click={add}
+				disabled={loading}>Add</LteButton
+			>
+		{/if}
 	</svelte:fragment>
 </Modal>
 

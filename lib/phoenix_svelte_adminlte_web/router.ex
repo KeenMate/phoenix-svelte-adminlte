@@ -14,6 +14,9 @@ defmodule PhoenixSvelteAdminlteWeb.Router do
     plug(:accepts, ["json"])
   end
 
+  pipeline :protected do
+  end
+
   scope "/", PhoenixSvelteAdminlteWeb do
     pipe_through(:browser)
 

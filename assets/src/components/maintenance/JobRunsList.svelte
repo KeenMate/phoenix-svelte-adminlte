@@ -8,17 +8,19 @@
 		AutoScroll,
 		Checkbox,
 		Label,
+		DangerAlert,
 	} from "svelte-adminlte";
 	import JobsProvider from "../../providers/jobsProvider";
 	import { jobAutoRefreshTime } from "../../constants/maintenance";
+	import WithLazyLoader from "../common/WithLazyLoader.svelte";
 
 	const dispatch = createEventDispatcher();
 	let jobRuns = [];
 	export let loading = false;
-
+	let task;
 	function loadJobRuns() {
 		loading = true;
-		JobsProvider.getJobRuns()
+		task = JobsProvider.getJobRuns()
 			.then((res) => {
 				console.log(res.data);
 				if (res.data) jobRuns = res.data;
@@ -72,60 +74,64 @@
 
 	<div class="row">
 		<div class="col-12">
-			<AutoScroll>
-				<TableCondensed class="job-runs-table">
-					<tr slot="headers">
-						<th class="actions">{$_("jobRuns.time")}</th>
-						<th>{$_("jobRuns.job")}</th>
-						<th>{$_("jobRuns.script")}</th>
-						<th>{$_("jobRuns.status")}</th>
-						<th>{$_("jobRuns.duration")}</th>
-					</tr>
-					{#if jobRuns?.length == 0}
-						<tr>
-							<td colspan="100">
-								{$_("common.labels.empty")}
-							</td>
+			<WithLazyLoader {task}>
+				<AutoScroll>
+					<TableCondensed class="job-runs-table">
+						<tr slot="headers">
+							<th class="actions">{$_("jobRuns.time")}</th>
+							<th>{$_("jobRuns.job")}</th>
+							<th>{$_("jobRuns.script")}</th>
+							<th>{$_("jobRuns.status")}</th>
+							<th>{$_("jobRuns.duration")}</th>
 						</tr>
-					{/if}
-					{#each jobRuns as jobRun}
-						<tr>
-							<td>
-								{dateWithoutSeconds(jobRun.startTime)}
-							</td>
-							<td class="title">
-								{jobRun.jobName}
-							</td>
-							<td>
-								{jobRun.scriptName}
-							</td>
-							<td>
-								{#if jobRun.status == "Error"}
-									<span class="text-danger">
+						{#if jobRuns?.length == 0}
+							<tr>
+								<td colspan="100">
+									{$_("common.labels.empty")}
+								</td>
+							</tr>
+						{/if}
+						{#each jobRuns as jobRun}
+							<tr>
+								<td>
+									{dateWithoutSeconds(jobRun.startTime)}
+								</td>
+								<td class="title">
+									{jobRun.jobName}
+								</td>
+								<td>
+									{jobRun.scriptName}
+								</td>
+								<td>
+									{#if jobRun.status == "Error"}
+										<span class="text-danger">
+											{jobRun.status}
+										</span>
+									{:else}
 										{jobRun.status}
-									</span>
-								{:else}
-									{jobRun.status}
-								{/if}
-							</td>
+									{/if}
+								</td>
 
-							<td>
-								{jobRun.duration / 1000}ms
-							</td>
-							<td class="actions">
-								<LteButton
-									color="info"
-									xsmall
-									on:click={() => dispatch("open-job", jobRun)}
-									disabled={loading}
-								>
-									<i class="fas fa-eye fa-fw" />
-								</LteButton>
-							</td></tr
-						>
-					{/each}
-				</TableCondensed>
-			</AutoScroll>
+								<td>
+									{jobRun.duration / 1000}ms
+								</td>
+								<td class="actions">
+									<LteButton
+										color="info"
+										xsmall
+										on:click={() => dispatch("open-job", jobRun)}
+										disabled={loading}
+									>
+										<i class="fas fa-eye fa-fw" />
+									</LteButton>
+								</td></tr
+							>
+						{/each}
+					</TableCondensed>
+				</AutoScroll>
+
+				<DangerAlert slot="catch">ERROR FETCHING DATA</DangerAlert>
+			</WithLazyLoader>
 		</div>
 	</div>
 </Card>

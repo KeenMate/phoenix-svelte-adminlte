@@ -52,7 +52,10 @@ defmodule PhoenixSvelteAdminlte.MixProject do
       {:ecto_sql, "~> 3.6"},
       {:postgrex, ">= 0.0.0"},
       {:ex_image_info, "~> 0.2.4"},
-      {:quantum, "~> 3.0"}
+      {:quantum, "~> 3.0"},
+      {:joken, "~> 2.4"},
+      {:joken_jwks, "~> 1.6.0"},
+      {:hackney, "~> 1.13"}
     ]
   end
 

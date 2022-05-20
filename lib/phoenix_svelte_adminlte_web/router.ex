@@ -15,6 +15,7 @@ defmodule PhoenixSvelteAdminlteWeb.Router do
   end
 
   pipeline :protected do
+    plug PhoenixSvelteAdminlteWeb.Jwt.AuthPlug
   end
 
   scope "/", PhoenixSvelteAdminlteWeb do
@@ -31,6 +32,7 @@ defmodule PhoenixSvelteAdminlteWeb.Router do
 
   scope "/api", PhoenixSvelteAdminlteWeb do
     pipe_through :api
+    get "/test", DemoDataController, :test
 
     scope "/image" do
       get "/", PhotosApiController, :get

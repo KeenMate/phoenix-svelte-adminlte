@@ -23,6 +23,7 @@ defmodule PhoenixSvelteAdminlte.Application do
 
       # Start a worker by calling: PhoenixSvelteAdminlte.Worker.start_link(arg)
       # {PhoenixSvelteAdminlte.Worker, arg}
+      {PhoenixSvelteAdminlteWeb.Jwt.MicrosoftStrategy, time_interval: 30_000},
       PhoenixSvelteAdminlte.Initialization
     ]
 

@@ -7,7 +7,6 @@ defmodule Token do
   # This hook implements a before_verify callback that checks whether it has a signer configuration
   # cached. If it does not, it tries to fetch it from the jwks_url.
   add_hook(JokenJwks,
-    jwks_url: "https://login.microsoftonline.com/common/discovery/v2.0/keys",
     strategy: PhoenixSvelteAdminlteWeb.Jwt.MicrosoftStrategy
   )
 

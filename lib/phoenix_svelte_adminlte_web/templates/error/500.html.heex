@@ -1,0 +1,6 @@
+<%= render_layout PhoenixSvelteAdminlteWeb.ErrorView, "layout.html", assigns do %>
+	<%= render "_error_card.html",
+		title: "Internal server error",
+		message: "Error occurred while processing your request"
+	%>
+<% end %>

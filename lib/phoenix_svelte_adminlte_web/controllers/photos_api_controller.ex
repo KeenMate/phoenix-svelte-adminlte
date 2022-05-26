@@ -13,12 +13,12 @@ defmodule PhoenixSvelteAdminlteWeb.PhotosApiController do
           |> inscribe_image_urls(conn)
 
         # Logger.info("New image: #{inspect(images_with_url |> Enum.at(0))}")
-        PhoenixSvelteAdminlteWeb.ConnHelper.success_response(conn, images_with_url)
+        PhoenixSvelteAdminlteWeb.ConnHelpers.success_response(conn, images_with_url)
 
       {:error, reason} ->
         Logger.error("Could not load all images.", reason: inspect(reason))
 
-        PhoenixSvelteAdminlteWeb.ConnHelper.error_response(conn, %{
+        PhoenixSvelteAdminlteWeb.ConnHelpers.error_response(conn, %{
           msg: "Could not load all images."
         })
     end

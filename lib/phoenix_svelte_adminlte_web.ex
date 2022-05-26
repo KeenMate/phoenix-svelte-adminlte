@@ -23,6 +23,7 @@ defmodule PhoenixSvelteAdminlteWeb do
 
       import Plug.Conn
       import PhoenixSvelteAdminlteWeb.Gettext
+      import PhoenixSvelteAdminlteWeb.ConnHelpers
       alias PhoenixSvelteAdminlteWeb.Router.Helpers, as: Routes
     end
   end

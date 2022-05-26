@@ -44,7 +44,9 @@ defmodule PhoenixSvelteAdminlte.MixProject do
       {:gettext, "~> 0.18"},
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
-      {:inflex, "~> 2.0"}
+      {:inflex, "~> 2.0"},
+			{:keen_auth, "~> 0.2.1"},
+	    {:openid_connect, "~> 0.2.2"}
     ]
   end
 

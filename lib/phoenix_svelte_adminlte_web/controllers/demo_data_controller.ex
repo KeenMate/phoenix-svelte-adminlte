@@ -7,6 +7,6 @@ defmodule PhoenixSvelteAdminlteWeb.DemoDataController do
       PhoenixSvelteAdminlte.Tree.get_init_tree()
       |> PhoenixSvelteAdminlte.MapHelpers.camelize_array()
 
-      PhoenixSvelteAdminlteWeb.ConnHelper.success_response(conn,data)
+      PhoenixSvelteAdminlteWeb.ConnHelpers.success_response(conn,data)
   end
 end

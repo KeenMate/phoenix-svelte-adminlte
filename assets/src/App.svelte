@@ -1,11 +1,10 @@
 <script>
-	import { onMount, setContext } from "svelte";
-	import { get } from "svelte/store";
-	import Router from "svelte-spa-router";
-	import keymage from "keymage";
-	import "./locale/i18n";
-	import { locale } from "./locale/i18n";
-	import routes, { Routes } from "./routes";
+	import {onMount, setContext} from "svelte"
+	import Router from "svelte-spa-router"
+	import keymage from "keymage"
+	import "./locale/i18n"
+	import {locale} from "./locale/i18n"
+	import routes, {Routes} from "./routes"
 	import {
 		login,
 		isAuthenticated,
@@ -13,8 +12,8 @@
 		AzureProvider,
 		ZuubrProvider,
 		appMountCallback,
-		logout,
-	} from "./stores/authentication";
+		logout, loginViaApp
+	} from "./stores/authentication"
 	import {
 		TopNavigation,
 		Sidebar,
@@ -23,75 +22,73 @@
 		Dropdown,
 		DropdownItem,
 		DropdownButton,
-		DropdownMenu,
-		Checkbox,
-		Label,
-	} from "svelte-adminlte";
-	import MessageLog from "./components/modals/MessageLog.svelte";
-	import { initSocket } from "./providers/socket";
-	import SidebarNavTree from "./components/SidebarNavTree.svelte";
-	import LocaleDropdown from "./components/localEditor/LocaleDropdown.svelte";
-	import { _ } from "svelte-i18n";
-	import jq from "jquery";
+		DropdownMenu
+	} from "svelte-adminlte"
+	import {Multiselect} from "svelte-multiselect"
+	import {_} from "svelte-i18n"
+	import jQuery from "jquery"
+	import MessageLog from "./components/modals/MessageLog.svelte"
+	import {initSocket} from "./providers/socket"
+	import SidebarNavTree from "./components/SidebarNavTree.svelte"
+	import LocaleDropdown from "./components/localEditor/LocaleDropdown.svelte"
+	import {AppUrl} from "./constants/urls"
 
-	import { AppUrl } from "./constants/urls";
-
-	import SvelteSelect from "svelte-select";
-	import FormGroup from "svelte-adminlte/src/form/structure/FormGroup.svelte";
-	import { Multiselect } from "svelte-multiselect";
 	onMount(() => {
-		initSocket();
+		initSocket()
 		keymage("ctrl-0", () => {
-			console.log("opening logs");
-			showLog();
-		});
-	});
-	let loading = false;
-	let showLog;
-	let localeLanguage = "";
-	const subscription = locale.subscribe((x) => (localeLanguage = x));
+			console.log("opening logs")
+			showLog()
+		})
+	})
+	let loading = false
+	let showLog
+	let localeLanguage = ""
+	const subscription = locale.subscribe((x) => (localeLanguage = x))
 	setContext("loader", {
-		setLoading: (val) => (loading = val),
-	});
-	onMount(appMountCallback);
+		setLoading: (val) => (loading = val)
+	})
+	onMount(appMountCallback)
 
 	let fonts = [
 		{
 			label: "Source Sans Pro",
 			value:
-				'"Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
+				"\"Source Sans Pro\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\""
 		},
-		{ label: "Report", value: "Report" },
-		{ label: "Assailand", value: "Assailand" },
-		{ label: "Iunito", value: "Iunito" },
-		{ label: "Codec Pro", value: "Codec Pro" },
-		{ label: "Betinya Sans", value: "Betinya Sans" },
-		{ label: "Acephimere", value: "Acephimere" },
-		{ label: "Tepeno Sans", value: "Tepeno Sans" },
-		{ label: "Homizio Nova", value: "Homizio Nova" },
-	];
+		{label: "Report", value: "Report"},
+		{label: "Assailand", value: "Assailand"},
+		{label: "Iunito", value: "Iunito"},
+		{label: "Codec Pro", value: "Codec Pro"},
+		{label: "Betinya Sans", value: "Betinya Sans"},
+		{label: "Acephimere", value: "Acephimere"},
+		{label: "Tepeno Sans", value: "Tepeno Sans"},
+		{label: "Homizio Nova", value: "Homizio Nova"}
+	]
 
 	function changeFont(ev) {
-		console.log(ev.detail.value);
-		document.querySelector("body").style.fontFamily = ev.detail.value;
+		console.log(ev.detail.value)
+		document.querySelector("body").style.fontFamily = ev.detail.value
 	}
-	jq(function () {
-		jq('[data-toggle="tooltip"]').tooltip({ delay: { show: 800, hide: 0 } });
-	});
 
-	let condensed = false;
+	jQuery(function () {
+		jQuery("[data-toggle=\"tooltip\"]").tooltip({delay: {show: 800, hide: 0}})
+	})
+
+	let condensed = false
+
 	function setCondensed(e) {
 		setTimeout(() => {
-			condensed = !condensed;
+			condensed = !condensed
 			if (condensed) {
-				document.body.classList.add("condensed");
+				document.body.classList.add("condensed")
 			} else {
-				document.body.classList.remove("condensed");
+				document.body.classList.remove("condensed")
 			}
-		});
+		})
 	}
+
 	//will set initial condension
-	setCondensed();
+	setCondensed()
 </script>
 
 <div class="wrapper">
@@ -164,11 +161,14 @@
 				<Dropdown>
 					<DropdownButton>Log In</DropdownButton>
 					<DropdownMenu right>
-						<DropdownItem on:click={() => login(AzureProvider)}
-							>Azure
+						<DropdownItem on:click={loginViaApp}>
+							PhoenixSvelteAdminLTE
 						</DropdownItem>
-						<DropdownItem on:click={() => login(ZuubrProvider)}
-							>Zuubr
+						<DropdownItem on:click={() => login(AzureProvider)}>
+							Azure
+						</DropdownItem>
+						<DropdownItem on:click={() => login(ZuubrProvider)}>
+							Zuubr
 						</DropdownItem>
 					</DropdownMenu>
 				</Dropdown>
@@ -181,9 +181,9 @@
 			{#if !route.hide}
 				{#if route.nesting}
 					<SidebarNavTree icon={route.icon} href="#{route.route}"
-						>{$_("routes." + route.name + ".navtitle", {
-							default: route.title,
-						})}
+					>{$_("routes." + route.name + ".navtitle", {
+						default: route.title,
+					})}
 						<svelte:fragment slot="children">
 							{#each route.subroutes as sub}
 								<SidebarNavItem icon={sub.icon} href="#{sub.route}">

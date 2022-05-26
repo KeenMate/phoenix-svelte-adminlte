@@ -1,6 +1,6 @@
 import { derived, writable, get } from 'svelte/store';
 import { UserManager, WebStorageStateStore } from 'oidc-client';
-import { AppUrl } from '../constants/urls';
+import {AppLoginUrl, AppUrl} from "../constants/urls"
 
 export const AzureProvider = "AzureProvider";
 export const ZuubrProvider = "ZuubrProvider";
@@ -63,7 +63,7 @@ export const userManager = derived(provider, $provider => getUserManager($provid
 
 /**
  * Refresh the accessToken using the silentRenew method (hidden iframe)
- * 
+ *
  * @return bool indicated whether the token was refreshed, if false error will be set
  * in the authError store.
  */
@@ -88,6 +88,7 @@ export async function refreshToken() {
 /**
  * Initiate Register/Login flow.
  *
+ * @param newProvider
  * @param {boolean} preserveRoute - store current location so callback handler will navigate back to it.
  * @param {string} callback_url - explicit path to use for the callback.
  */
@@ -114,7 +115,7 @@ export async function login(newProvider, preserveRoute = true, callback_url = nu
 
 /**
  * Log out the current user.
- * 
+ *
  * @param {string} logout_url - specify the url to return to after login.
  */
 export async function logout(logout_url = null) {
@@ -174,10 +175,6 @@ function userUnloadedCallback() {
   userInfo.set({});
 }
 
-function silentRenewErrorCallback(error) {
-  authError.set(`SilentRenewError: ${error.message}`);
-}
-
 export async function appMountCallback() {
   // Not all browsers support this, please program defensively!
   const params = new URLSearchParams(window.location.search);
@@ -220,4 +217,12 @@ export async function appMountCallback() {
   }
 
   isLoading.set(false);
+}
+
+export function loginViaApp() {
+	window.location.href = AppLoginUrl
+}
+
+function silentRenewErrorCallback(error) {
+	authError.set(`SilentRenewError: ${error.message}`);
 }

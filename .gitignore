@@ -38,3 +38,9 @@ node_modules/
 .env
 .env.local
 assets/stats.html
+
+.idea
+
+config/.local.exs
+
+.mix_tasks

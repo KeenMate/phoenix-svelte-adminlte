@@ -1,4 +1,4 @@
-defmodule PhoenixSvelteAdminlteWeb.ConnHelper do
+defmodule PhoenixSvelteAdminlteWeb.ConnHelpers do
   import Plug.Conn
   import Phoenix.Controller, only: [json: 2]
 

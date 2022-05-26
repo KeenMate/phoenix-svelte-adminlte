@@ -17,7 +17,7 @@ config :phoenix_svelte_adminlte, PhoenixSvelteAdminlteWeb.Endpoint,
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
-  metadata: [:request_id]
+  metadata: [:module, :request_id, :remote_ip, :error, :reason, :detail, :response, :body, :application, :file, :line, :register_name, :crash_reason]
 
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
@@ -25,3 +25,5 @@ config :phoenix, :json_library, Jason
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{config_env()}.exs"
+
+File.regular?("config/.local.exs") && import_config(".local.exs")

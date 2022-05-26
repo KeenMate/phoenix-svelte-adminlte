@@ -23,7 +23,7 @@ defmodule PhoenixSvelteAdminlteWeb.Router do
   scope "/data", PhoenixSvelteAdminlteWeb do
     pipe_through(:browser)
 
-    get("/tree", DemoDataController, :tree_inital_data)
+    get "/tree", DemoDataController, :tree_inital_data
   end
 
   scope "/api", PhoenixSvelteAdminlteWeb do
@@ -35,12 +35,19 @@ defmodule PhoenixSvelteAdminlteWeb.Router do
     end
   end
 
-  scope "/assets", PlutoWeb do
+  scope "/assets", PhoenixSvelteAdminlteWeb do
     pipe_through :api
 
     get "/img/:uuid", ImageApiController, :original
     get "/img/:uuid/dims", ImageApiController, :dimensions
     get "/img/:uuid/t/:thumbnail_size", ImageApiController, :thumbnail
+  end
+
+  scope "/auth", PhoenixSvelteAdminlteWeb do
+    pipe_through :browser
+
+    get "/", AuthController, :login
+		get "/callback", AuthController, :callback
   end
 
   # Other scopes may use custom stacks.

@@ -19,10 +19,16 @@ defmodule PhoenixSvelteAdminlte.Application do
       # {PhoenixSvelteAdminlte.Worker, arg}
     ]
 
+    create_session_ets()
+
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: PhoenixSvelteAdminlte.Supervisor]
     Supervisor.start_link(children, opts)
+  end
+
+  defp create_session_ets() do
+	  :ets.new(:session, [:named_table, :public, read_concurrency: true])
   end
 
   # Tell Phoenix to update the endpoint configuration

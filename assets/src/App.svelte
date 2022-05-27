@@ -2,18 +2,6 @@
 	import {onMount, setContext} from "svelte"
 	import Router from "svelte-spa-router"
 	import keymage from "keymage"
-	import "./locale/i18n"
-	import {locale} from "./locale/i18n"
-	import routes, {Routes} from "./routes"
-	import {
-		login,
-		isAuthenticated,
-		userInfo,
-		AzureProvider,
-		ZuubrProvider,
-		appMountCallback,
-		logout, loginViaApp
-	} from "./stores/authentication"
 	import {
 		TopNavigation,
 		Sidebar,
@@ -27,11 +15,32 @@
 	import {Multiselect} from "svelte-multiselect"
 	import {_} from "svelte-i18n"
 	import jQuery from "jquery"
-	import MessageLog from "./components/modals/MessageLog.svelte"
+	import {AppUrl} from "./constants/urls"
+	import Fonts from "./constants/fonts"
+	import "./locale/i18n"
+	import routes, {Routes} from "./routes"
+	import {
+		login,
+		isAuthenticated,
+		userInfo,
+		AzureProvider,
+		ZuubrProvider,
+		appMountCallback,
+		logout, loginViaApp
+	} from "./stores/authentication"
+	import {loadCurrentUser} from "./stores/current-user"
 	import {initSocket} from "./providers/socket"
+	import MessageLog from "./components/modals/MessageLog.svelte"
 	import SidebarNavTree from "./components/SidebarNavTree.svelte"
 	import LocaleDropdown from "./components/localEditor/LocaleDropdown.svelte"
-	import {AppUrl} from "./constants/urls"
+
+	let loading = false
+	let showLog
+	let condensed = false
+
+	setContext("loader", {
+		setLoading: (val) => (loading = val)
+	})
 
 	onMount(() => {
 		initSocket()
@@ -39,56 +48,33 @@
 			console.log("opening logs")
 			showLog()
 		})
-	})
-	let loading = false
-	let showLog
-	let localeLanguage = ""
-	const subscription = locale.subscribe((x) => (localeLanguage = x))
-	setContext("loader", {
-		setLoading: (val) => (loading = val)
-	})
-	onMount(appMountCallback)
+		appMountCallback()
+		loadCurrentUser()
 
-	let fonts = [
-		{
-			label: "Source Sans Pro",
-			value:
-				"\"Source Sans Pro\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\""
-		},
-		{label: "Report", value: "Report"},
-		{label: "Assailand", value: "Assailand"},
-		{label: "Iunito", value: "Iunito"},
-		{label: "Codec Pro", value: "Codec Pro"},
-		{label: "Betinya Sans", value: "Betinya Sans"},
-		{label: "Acephimere", value: "Acephimere"},
-		{label: "Tepeno Sans", value: "Tepeno Sans"},
-		{label: "Homizio Nova", value: "Homizio Nova"}
-	]
+		jQuery(function () {
+			jQuery("[data-toggle=\"tooltip\"]").tooltip({delay: {show: 800, hide: 0}})
+		})
+
+		//will set initial condension
+		setCondensed()
+	})
 
 	function changeFont(ev) {
 		console.log(ev.detail.value)
 		document.querySelector("body").style.fontFamily = ev.detail.value
 	}
 
-	jQuery(function () {
-		jQuery("[data-toggle=\"tooltip\"]").tooltip({delay: {show: 800, hide: 0}})
-	})
-
-	let condensed = false
-
-	function setCondensed(e) {
-		setTimeout(() => {
-			condensed = !condensed
-			if (condensed) {
-				document.body.classList.add("condensed")
-			} else {
-				document.body.classList.remove("condensed")
-			}
-		})
+	function setCondensed() {
+		condensed = !condensed
+		if (condensed) {
+			document.body.classList.add("condensed")
+		} else {
+			document.body.classList.remove("condensed")
+		}
+		// setTimeout(() => {
+		//
+		// })
 	}
-
-	//will set initial condension
-	setCondensed()
 </script>
 
 <div class="wrapper">
@@ -126,10 +112,10 @@
 			<div class="m-1">
 				<Multiselect
 					small
-					options={fonts}
+					options={Fonts}
 					on:input={changeFont}
 					showLabels={false}
-					value={fonts[0]}
+					value={Fonts[0]}
 					trackBy="value"
 					label="label"
 					class="p1"
@@ -142,19 +128,13 @@
 			</div>
 			{#if $isAuthenticated}
 				<Dropdown slot="right">
-					<DropdownButton>{$userInfo.name}</DropdownButton>
+					<DropdownButton>{$userInfo.displayName}</DropdownButton>
 
 					<DropdownMenu right>
-						<DropdownItem on:click={() => logout()}>Log Out</DropdownItem>
-						<div
-							class="dropdown-item"
-							on:click={() => {
-								setCondensed(!condensed);
-								return false;
-							}}
-						>
+						<DropdownItem on:click={logout}>Log Out</DropdownItem>
+						<DropdownItem on:click={setCondensed}>
 							{condensed ? "Mobile" : "Condensed"} style
-						</div>
+						</DropdownItem>
 					</DropdownMenu>
 				</Dropdown>
 			{:else}
@@ -164,12 +144,12 @@
 						<DropdownItem on:click={loginViaApp}>
 							PhoenixSvelteAdminLTE
 						</DropdownItem>
-						<DropdownItem on:click={() => login(AzureProvider)}>
-							Azure
-						</DropdownItem>
-						<DropdownItem on:click={() => login(ZuubrProvider)}>
-							Zuubr
-						</DropdownItem>
+						<!--<DropdownItem on:click={() => login(AzureProvider)}>-->
+						<!--	Azure-->
+						<!--</DropdownItem>-->
+						<!--<DropdownItem on:click={() => login(ZuubrProvider)}>-->
+						<!--	Zuubr-->
+						<!--</DropdownItem>-->
 					</DropdownMenu>
 				</Dropdown>
 			{/if}
@@ -180,10 +160,11 @@
 		{#each Routes as route}
 			{#if !route.hide}
 				{#if route.nesting}
-					<SidebarNavTree icon={route.icon} href="#{route.route}"
-					>{$_("routes." + route.name + ".navtitle", {
-						default: route.title,
-					})}
+					<SidebarNavTree
+						icon={route.icon}
+						href="#{route.route}"
+					>
+						{$_("routes." + route.name + ".navtitle", {default: route.title})}
 						<svelte:fragment slot="children">
 							{#each route.subroutes as sub}
 								<SidebarNavItem icon={sub.icon} href="#{sub.route}">

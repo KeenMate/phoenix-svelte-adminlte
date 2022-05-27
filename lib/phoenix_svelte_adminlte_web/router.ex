@@ -14,6 +14,10 @@ defmodule PhoenixSvelteAdminlteWeb.Router do
     plug(:accepts, ["json"])
   end
 
+  pipeline :fetch_session_pipe do
+	  plug :fetch_session
+  end
+
   scope "/", PhoenixSvelteAdminlteWeb do
     pipe_through(:browser)
 
@@ -32,6 +36,12 @@ defmodule PhoenixSvelteAdminlteWeb.Router do
     scope "/image" do
       get "/", PhotosApiController, :get
       post "/process", PhotosApiController, :process
+    end
+
+    scope "/" do
+	    pipe_through :fetch_session_pipe
+
+	    get "/user/whoami", AuthController, :whoami
     end
   end
 

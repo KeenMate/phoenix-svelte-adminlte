@@ -1,4 +1,5 @@
 import JwtDecode from "jwt-decode"
+
 const ContentType = "Content-Type"
 
 const Authorization = "Authorization"

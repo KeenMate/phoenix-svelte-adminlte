@@ -365,7 +365,7 @@
 					</Gallery>
 				{:else}
 					<Callout color="warning">
-						{$_("commen.error.noDataToShow")}
+						{$_("common.error.noDataToShow")}
 					</Callout>
 				{/if}
 

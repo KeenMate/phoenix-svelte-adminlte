@@ -1,13 +1,13 @@
 {
-  "List": {
-    "text": "Více informaci na [Komponenty](#/components/show/dragable-container)"
-  },
-  "commen": {
-    "error": {
-      "noDataToShow": "Žádná data k zobrazení"
-    }
-  },
+	"auth": {
+		"messages": {
+			"currentUserNotLoaded": "Informace o aktuálním uživateli se nepodařilo načíst"
+		}
+	},
   "common": {
+	  "error": {
+		  "noDataToShow": "Žádná data k zobrazení"
+	  },
     "buttons": {
       "delete": ""
     }
@@ -42,6 +42,7 @@
     "savedLocales": "{locale} je načteno z lokálního úložiště"
   },
   "list": {
+	  "text": "Více informaci na [Komponenty](#/components/show/dragable-container)",
     "title": "Seznam"
   },
   "localeEditor": {

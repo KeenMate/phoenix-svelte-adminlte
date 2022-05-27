@@ -1,13 +1,13 @@
 {
-	"List": {
-		"text": "More info in [Components](#/components/show/dragable-container)"
-	},
-	"commen": {
-		"error": {
-			"noDataToShow": "No data to show"
+	"auth": {
+		"messages": {
+			"currentUserNotLoaded": "Current user info could not be loaded"
 		}
 	},
 	"common": {
+		"error": {
+			"noDataToShow": "No data to show"
+		},
 		"buttons": {
 			"delete": "Delete"
 		}
@@ -41,6 +41,7 @@
 		"savedLocales": "{locale} is loaded from locale storage ."
 	},
 	"list": {
+		"text": "More info in [Components](#/components/show/dragable-container)",
 		"title": "List"
 	},
 	"localeEditor": {

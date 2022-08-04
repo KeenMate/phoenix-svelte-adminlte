@@ -12,7 +12,6 @@ defmodule PhoenixSvelteAdminlte.Application do
       PhoenixSvelteAdminlteWeb.Telemetry,
       # Start the PubSub system
       {Phoenix.PubSub, name: PhoenixSvelteAdminlte.PubSub},
-		  {OpenIDConnect.Worker, Application.get_env(:phoenix_svelte_adminlte, :openid_connect_providers)},
       # Start the Endpoint (http/https)
       PhoenixSvelteAdminlteWeb.Endpoint
       # Start a worker by calling: PhoenixSvelteAdminlte.Worker.start_link(arg)

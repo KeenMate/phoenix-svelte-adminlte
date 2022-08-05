@@ -2,7 +2,7 @@
   import ComponentPageTemplate from "../../../components/component-templates/ComponentPageTemplate.svelte";
   import ComponentExampleTemplate from "../../../components/component-templates/ComponentExampleTemplate.svelte";
 
-  import { FlexContainer, LteButton } from "svelte-adminlte";
+  import { FlexContainer, LteButton } from "@keenmate/svelte-adminlte";
 
   let data = {
     name: "",

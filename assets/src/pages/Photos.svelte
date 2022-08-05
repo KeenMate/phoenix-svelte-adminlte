@@ -15,7 +15,7 @@
 		Callout,
 		LteButton,
 		BreadcrumbItem,
-	} from "svelte-adminlte";
+	} from "@keenmate/svelte-adminlte";
 	import WithLazyLoader from "../components/WithLazyLoader.svelte";
 	import Image from "../components/gallery/Image.svelte";
 	import Gallery from "../components/gallery/Gallery.svelte";

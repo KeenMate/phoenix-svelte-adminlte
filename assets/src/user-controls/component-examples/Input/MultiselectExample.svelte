@@ -2,7 +2,7 @@
     import ComponentPageTemplate from "../../../components/component-templates/ComponentPageTemplate.svelte";
     import ComponentExampleTemplate from "../../../components/component-templates/ComponentExampleTemplate.svelte";
   
-    import {Multiselect} from "svelte-adminlte"
+    import {Multiselect} from "@keenmate/svelte-adminlte"
 
     let data = {
       name: "Multiselect",

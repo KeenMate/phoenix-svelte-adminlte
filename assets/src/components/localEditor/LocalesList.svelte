@@ -2,7 +2,7 @@
   import {createEventDispatcher} from "svelte"
   import {_} from "svelte-i18n"
   import {getFlagPath, languages} from "../../locale/i18n"
-  import {Card, TableCondensed} from "svelte-adminlte"
+  import {Card, TableCondensed} from "@keenmate/svelte-adminlte"
   const dispatch = createEventDispatcher()
   export let expanded = false
   console.log(languages)

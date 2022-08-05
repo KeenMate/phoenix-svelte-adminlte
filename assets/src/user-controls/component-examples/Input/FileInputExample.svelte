@@ -2,7 +2,7 @@
   import ComponentPageTemplate from "../../../components/component-templates/ComponentPageTemplate.svelte";
   import ComponentExampleTemplate from "../../../components/component-templates/ComponentExampleTemplate.svelte";
 
-  import { FileInput, TableCondensed,Label } from "svelte-adminlte";
+  import { FileInput, TableCondensed,Label } from "@keenmate/svelte-adminlte";
 
   let data = {
     name: "FileInput",

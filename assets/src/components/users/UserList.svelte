@@ -13,7 +13,7 @@
     InputGroup,
     InputGroupAppend,
     Pagination,
-  } from "svelte-adminlte";
+  } from "@keenmate/svelte-adminlte";
 
   import { getUsers } from "../../providers/socket/usersChannel";
 

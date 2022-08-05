@@ -1,7 +1,7 @@
 <script>
   import { userInfo } from "../stores/authentication";
-  import { LteButton, Card, PageHeader,BreadcrumbItem } from "svelte-adminlte";
-  import { getConfig, setConfig } from "svelte-adminlte";
+  import { LteButton, Card, PageHeader,BreadcrumbItem } from "@keenmate/svelte-adminlte";
+  import { getConfig, setConfig } from "@keenmate/svelte-adminlte";
   import { _ } from "svelte-i18n";
   import notification from "../providers/notificationProvider";
   import SvelteMarkdown from 'svelte-markdown'

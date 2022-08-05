@@ -2,8 +2,8 @@
   import ComponentPageTemplate from "../../../components/component-templates/ComponentPageTemplate.svelte";
   import ComponentExampleTemplate from "../../../components/component-templates/ComponentExampleTemplate.svelte";
 
-  import { OneColumnNarrow } from "svelte-adminlte";
-  import LteButton from "svelte-adminlte/src/ui/LteButton.svelte";
+  import { OneColumnNarrow, LteButton } from "@keenmate/svelte-adminlte";
+  
   let data = {
     text: "Div with display flex and gap",
     examples: {

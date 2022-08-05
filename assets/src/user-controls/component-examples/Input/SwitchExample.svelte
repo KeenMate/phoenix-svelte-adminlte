@@ -2,7 +2,7 @@
   import ComponentPageTemplate from "../../../components/component-templates/ComponentPageTemplate.svelte";
   import ComponentExampleTemplate from "../../../components/component-templates/ComponentExampleTemplate.svelte";
   import notification from "../../../providers/notificationProvider";
-  import { Switch, TableCondensed, Checkbox, Label } from "svelte-adminlte";
+  import { Switch, TableCondensed, Checkbox, Label } from "@keenmate/svelte-adminlte";
   import SvelteSelect from "svelte-select";
   let data = {
     name: "Switch Example",

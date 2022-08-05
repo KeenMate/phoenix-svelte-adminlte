@@ -1,5 +1,5 @@
 <script>
-	import { Card } from "svelte-adminlte";
+	import { Card } from "@keenmate/svelte-adminlte";
 	import { _ } from "svelte-i18n";
 	import SvelteMarkdown from "svelte-markdown";
 	// name value comment

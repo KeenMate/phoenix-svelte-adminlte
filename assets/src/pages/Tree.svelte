@@ -8,7 +8,7 @@
 		NumberInput,
 		Label,
 		FormGroup,
-	} from "svelte-adminlte";
+	} from "@keenmate/svelte-adminlte";
 	import { _ } from "svelte-i18n";
 	import { TreeView } from "svelte-treeview";
 	import MenuOption from "svelte-treeview/src/MenuOption.svelte";

@@ -2,7 +2,7 @@ import CBuffer from "CBuffer";
 import { writable } from "svelte/store";
 
 
-import { Toastr } from "svelte-adminlte";
+import { Toastr } from "@keenmate/svelte-adminlte";
 
 const MessageCount = 500;
 

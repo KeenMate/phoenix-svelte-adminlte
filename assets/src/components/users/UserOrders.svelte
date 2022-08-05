@@ -12,7 +12,7 @@
     OneColumnNarrow,
     LoadingRow,
     LteButtonRefresh,
-  } from "svelte-adminlte";
+  } from "@keenmate/svelte-adminlte";
 
   // import { getUserOrders } from "../../providers/userProvider";
 

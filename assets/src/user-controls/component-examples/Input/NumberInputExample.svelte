@@ -2,7 +2,7 @@
   import ComponentPageTemplate from "../../../components/component-templates/ComponentPageTemplate.svelte";
   import ComponentExampleTemplate from "../../../components/component-templates/ComponentExampleTemplate.svelte";
 
-  import { NumberInput, InputGroup, TextInput ,Label} from "svelte-adminlte";
+  import { NumberInput, InputGroup, TextInput ,Label} from "@keenmate/svelte-adminlte";
   let data = {
     name: "NumberInput",
     text: "Input with type number",

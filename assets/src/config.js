@@ -1,5 +1,5 @@
 
-import {getConfig, setConfig} from "svelte-adminlte/src/config.js"
+import { getConfig, setConfig } from "@keenmate/svelte-adminlte/config"
 
 const custom = {
   ContactEmail: "example@keenmate.com"
@@ -9,4 +9,4 @@ const custom = {
 export function getCustomConfig() {
   setConfig(custom);
   return getConfig();
-  }
+}

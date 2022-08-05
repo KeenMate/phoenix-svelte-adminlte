@@ -8,7 +8,7 @@
     FileInput,
     InputGroup,
     InputGroupPrepend,
-  } from "svelte-adminlte";
+  } from "@keenmate/svelte-adminlte";
   import SvelteSelect from "svelte-select";
 
   const categoryItems = [

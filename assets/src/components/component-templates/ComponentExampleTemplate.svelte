@@ -1,7 +1,7 @@
 <script>
 	import { HighlightSvelte } from "svelte-highlight";
 
-	import { Card, LteButton } from "svelte-adminlte";
+	import { Card, LteButton } from "@keenmate/svelte-adminlte";
 	import notification from "../../providers/notificationProvider";
 
 	import { _ } from "svelte-i18n";

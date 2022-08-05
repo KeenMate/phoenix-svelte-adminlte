@@ -2,7 +2,7 @@
   import ComponentPageTemplate from "../../../components/component-templates/ComponentPageTemplate.svelte";
   import ComponentExampleTemplate from "../../../components/component-templates/ComponentExampleTemplate.svelte";
 
-  import { EmailInput, FormGroup, Label } from "svelte-adminlte";
+  import { EmailInput, FormGroup, Label } from "@keenmate/svelte-adminlte";
 
   let data = {
     name: "EmailInput",

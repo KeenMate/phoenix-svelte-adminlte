@@ -3,7 +3,7 @@
   import { getUser } from "../../providers/socket/usersChannel";
   import lazyLoader from "../../helpers/lazy-loader";
 
-  import { Card, Tabs, TabItem, Loader, LteButton } from "svelte-adminlte";
+  import { Card, Tabs, TabItem, Loader, LteButton } from "@keenmate/svelte-adminlte";
   import UserProfile from "./UserProfile.svelte";
   import UserOrders from "./UserOrders.svelte";
 

@@ -1,8 +1,8 @@
 <script>
   import notification, { Success, Warning, Error } from "../../providers/notificationProvider";
-  import { getConfig } from "svelte-adminlte";
+  import { getConfig } from "@keenmate/svelte-adminlte";
 
-  import { Modal, Card, TableCondensed } from "svelte-adminlte";
+  import { Modal, Card, TableCondensed } from "@keenmate/svelte-adminlte";
 
   export let show;
   export let hide;

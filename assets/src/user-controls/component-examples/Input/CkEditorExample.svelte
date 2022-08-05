@@ -1,8 +1,8 @@
 <script>
     import ComponentPageTemplate from "../../../components/component-templates/ComponentPageTemplate.svelte";
     import ComponentExampleTemplate from "../../../components/component-templates/ComponentExampleTemplate.svelte";
-    import notification from "../../../providers/notificationProvider";
-    import { CkEditor } from "svelte-adminlte";
+    // import notification from "../../../providers/notificationProvider";
+    // import { CkEditor } from "@keenmate/svelte-adminlte";
   
   
     let data = {
@@ -42,9 +42,9 @@
         code={data.examples.basic.code}
         name={data.examples.basic.name}
       >
-        <CkEditor bind:value={startingValue} id="editor1" toolbar={{items: [ 'bold', 'italic', '|', 'undo', 'redo', '|', 'numberedList', 'bulletedList' ]}}
+        <!-- <CkEditor bind:value={startingValue} id="editor1" toolbar={{items: [ 'bold', 'italic', '|', 'undo', 'redo', '|', 'numberedList', 'bulletedList' ]}}
           on:input={(e) => {notification.success(e.detail.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"),"CkEditor event e.datail")}}>
-        </CkEditor>
+        </CkEditor> -->
       </ComponentExampleTemplate>
       
     </svelte:fragment></ComponentPageTemplate

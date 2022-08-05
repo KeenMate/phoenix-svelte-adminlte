@@ -13,7 +13,7 @@
     InputGroupAppend,
     Tabs,
     TabItem,
-  } from "svelte-adminlte";
+  } from "@keenmate/svelte-adminlte";
 
   import { components, categories } from "../../user-controls/component-examples/components";
 

@@ -11,7 +11,7 @@
     PageHeader,
     DraggableContainer,
     BreadcrumbItem
-  } from "svelte-adminlte";
+  } from "@keenmate/svelte-adminlte";
   import CreateCarModal from "../components/list/CreateCarModal.svelte";
   import { bind } from "svelte/internal";
 

@@ -10,7 +10,7 @@
 		Label,
 		Tabs,
 		BreadcrumbItem,
-	} from "svelte-adminlte";
+	} from "@keenmate/svelte-adminlte";
 	import { _ } from "svelte-i18n";
 	import "jsoneditor/dist/jsoneditor.min.css";
 

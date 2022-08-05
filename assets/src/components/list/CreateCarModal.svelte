@@ -16,7 +16,7 @@
     NumberInput,
     WarningAlert,
     Checkbox,
-  } from "svelte-adminlte";
+  } from "@keenmate/svelte-adminlte";
 
   const dispatch = createEventDispatcher();
 

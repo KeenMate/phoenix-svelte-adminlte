@@ -6,7 +6,7 @@
 		getFlagPath,
 		locale,
 	} from "../../locale/i18n";
-	import { Dropdown, DropdownMenu, DropdownButton } from "svelte-adminlte";
+	import { Dropdown, DropdownMenu, DropdownButton } from "@keenmate/svelte-adminlte";
 	import { Multiselect } from "svelte-multiselect";
 	let localeLanguage = "";
 	onMount(() => {

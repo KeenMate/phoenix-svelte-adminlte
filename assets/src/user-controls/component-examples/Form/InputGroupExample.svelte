@@ -11,7 +11,7 @@
     Textarea,
     Checkbox,
     Label,
-  } from "svelte-adminlte";
+  } from "@keenmate/svelte-adminlte";
 
   let data = {
     name: "",

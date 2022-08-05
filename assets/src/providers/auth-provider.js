@@ -1,5 +1,5 @@
 import {get} from "svelte/store"
-import {Toastr} from "svelte-adminlte"
+import {Toastr} from "@keenmate/svelte-adminlte"
 import {_} from "svelte-i18n"
 import BaseProvider from "./baseProvider"
 import {GET} from "../constants/methods"

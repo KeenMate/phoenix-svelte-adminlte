@@ -2,7 +2,7 @@
   import ComponentPageTemplate from "../../../components/component-templates/ComponentPageTemplate.svelte";
   import ComponentExampleTemplate from "../../../components/component-templates/ComponentExampleTemplate.svelte";
 
-  import { Radio, Label, TableCondensed } from "svelte-adminlte";
+  import { Radio, Label, TableCondensed } from "@keenmate/svelte-adminlte";
   import SvelteSelect from "svelte-select";
   let data = {
     name: "RadioExample",

@@ -1,7 +1,7 @@
 import {get, writable} from "svelte/store"
 import AuthProvider from "../providers/auth-provider"
 import {isAuthenticated, userInfo} from "./authentication"
-import {Toastr} from "svelte-adminlte"
+import {Toastr} from "@keenmate/svelte-adminlte"
 import {_} from "svelte-i18n"
 
 const currentUserStore = writable(null)

@@ -1,6 +1,6 @@
 <script>
   import { _ } from "svelte-i18n";
-  import { PageHeader, BreadcrumbItem } from "svelte-adminlte";
+  import { PageHeader, BreadcrumbItem } from "@keenmate/svelte-adminlte";
   import UserDetail from "../components/users/UserDetail.svelte";
   import UserList from "../components/users/UserList.svelte";
   import UserOrders from "../components/users/UserOrders.svelte";

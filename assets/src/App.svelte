@@ -11,7 +11,7 @@
 		DropdownItem,
 		DropdownButton,
 		DropdownMenu
-	} from "svelte-adminlte"
+	} from "@keenmate/svelte-adminlte"
 	import {Multiselect} from "svelte-multiselect"
 	import {_} from "svelte-i18n"
 	import jQuery from "jquery"

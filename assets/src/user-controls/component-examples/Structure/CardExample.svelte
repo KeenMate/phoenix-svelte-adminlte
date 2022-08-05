@@ -2,7 +2,7 @@
   import ComponentPageTemplate from "../../../components/component-templates/ComponentPageTemplate.svelte";
   import ComponentExampleTemplate from "../../../components/component-templates/ComponentExampleTemplate.svelte";
 
-  import { Card } from "svelte-adminlte";
+  import { Card } from "@keenmate/svelte-adminlte";
 
 
   let data = {

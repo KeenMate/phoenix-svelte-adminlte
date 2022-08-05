@@ -2,7 +2,8 @@
   import ComponentPageTemplate from "../../../components/component-templates/ComponentPageTemplate.svelte";
   import ComponentExampleTemplate from "../../../components/component-templates/ComponentExampleTemplate.svelte";
 
-  import {UploadModal,LteButton} from "svelte-adminlte"
+  import {LteButton} from "@keenmate/svelte-adminlte"
+  // import {UploadModal,LteButton} from "@keenmate/svelte-adminlte"
   let data = {
     name: "",
     text: "Using [Uppy](https://uppy.io/). Examples can be found at [https://uppy.io/examples/dashboard/](https://uppy.io/examples/dashboard/)",
@@ -41,7 +42,7 @@
     >
       <b>This example always shows upload failed, because it isnt using real Endpoint</b>
       <LteButton on:click ={upload.openModal}>Upload files</LteButton> 
-      <UploadModal bind:this = {upload} endpoint="www.example.test"></UploadModal>
+      <!-- <UploadModal bind:this = {upload} endpoint="www.example.test"></UploadModal> -->
     </ComponentExampleTemplate>
     
   </svelte:fragment></ComponentPageTemplate

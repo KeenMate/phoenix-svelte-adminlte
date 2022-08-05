@@ -2,7 +2,8 @@
   import ComponentPageTemplate from "../../../components/component-templates//ComponentPageTemplate.svelte";
   import ComponentExampleTemplate from "../../../components/component-templates/ComponentExampleTemplate.svelte";
 
-  import {Dropdown,DropdownMenu,DropdownItem,DropdownButton} from 'svelte-adminlte';
+  import {Dropdown,DropdownMenu,DropdownItem,DropdownButton} from "@keenmate/svelte-adminlte";
+  
   let data = {
     text: "Dropdown with links. More info on [Bootstrap.com](https://getbootstrap.com/docs/4.0/components/dropdowns/). ",
     props: [{ name: "", type: "", comment: "" }],

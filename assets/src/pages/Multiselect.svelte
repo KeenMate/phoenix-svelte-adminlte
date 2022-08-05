@@ -5,7 +5,7 @@
 		BreadcrumbItem,
 		Card,
 		WarningAlert,
-	} from "svelte-adminlte";
+	} from "@keenmate/svelte-adminlte";
 	import { countries } from "../constants/countries";
 
 	import { Multiselect } from "svelte-multiselect";

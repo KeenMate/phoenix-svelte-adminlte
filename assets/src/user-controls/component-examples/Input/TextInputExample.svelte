@@ -2,7 +2,7 @@
   import ComponentPageTemplate from "../../../components/component-templates/ComponentPageTemplate.svelte";
   import ComponentExampleTemplate from "../../../components/component-templates/ComponentExampleTemplate.svelte";
 
-  import { TextInput ,Label} from "svelte-adminlte";
+  import { TextInput ,Label} from "@keenmate/svelte-adminlte";
   import SvelteSelect from "svelte-select";
 
   let data = {

@@ -6,7 +6,7 @@
     FormGroup,
     Label,
     TextInput,
-  } from "svelte-adminlte";
+  } from "@keenmate/svelte-adminlte";
 
   let data = {
     name: "FormGroup",

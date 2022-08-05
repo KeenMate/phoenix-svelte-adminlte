@@ -9,9 +9,9 @@
 		TextInput,
 		NumberInput,
 		Checkbox,
-	} from "svelte-adminlte";
+		InputGroup
+	} from "@keenmate/svelte-adminlte";
 	import { _ } from "svelte-i18n";
-	import InputGroup from "svelte-adminlte/src/form/structure/InputGroup.svelte";
 
 	let value,
 		onlyNumbers = true,

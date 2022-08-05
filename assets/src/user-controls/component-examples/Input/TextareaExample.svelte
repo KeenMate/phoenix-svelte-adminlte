@@ -2,7 +2,7 @@
   import ComponentPageTemplate from "../../../components/component-templates/ComponentPageTemplate.svelte";
   import ComponentExampleTemplate from "../../../components/component-templates/ComponentExampleTemplate.svelte";
 
-  import { Textarea, TextInput, InputGroup,Label } from "svelte-adminlte";
+  import { Textarea, TextInput, InputGroup,Label } from "@keenmate/svelte-adminlte";
   let data = {
     name: "",
     text: "",

@@ -22,11 +22,15 @@ environment:
 steps:
   - name: npm assets
     image: node:lts # we're using standard version because git is needed
+    environment:
+      NPM_TOKEN:
+        from_secret: github_npm_repo_token
     volumes:
     - name: npm-temp
       path: /root/.npm
     commands:
     - cd assets
+    - mv -f .npmrc-ci .npmrc
     - npm install
     - npm run build
 
@@ -136,11 +140,15 @@ environment:
 steps:
   - name: npm assets
     image: node:lts # we're using standard version because git is needed
+    environment:
+      NPM_TOKEN:
+        from_secret: github_npm_repo_token
     volumes:
     - name: npm-temp
       path: /root/.npm
     commands:
     - cd assets
+    - mv -f .npmrc-ci .npmrc
     - npm install
     - npm run build
 

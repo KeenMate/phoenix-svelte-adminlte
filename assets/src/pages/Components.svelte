@@ -1,7 +1,7 @@
 <script>
   import { _ } from "svelte-i18n";
   import { replace } from "svelte-spa-router";
-  import { PageHeader, BreadcrumbItem, LteButton,Card } from "svelte-adminlte";
+  import { PageHeader, BreadcrumbItem, LteButton,Card } from "@keenmate/svelte-adminlte";
   import github from "svelte-highlight/src/styles/github";
 
   import { components, categories } from "../user-controls/component-examples/components";

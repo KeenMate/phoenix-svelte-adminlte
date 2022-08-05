@@ -10,19 +10,27 @@ config :phoenix_svelte_adminlte, PhoenixSvelteAdminlteWeb.Endpoint,
   # Binding to loopback ipv4 address prevents access from other machines.
   # Change to `ip: {0, 0, 0, 0}` to allow access from other machines.
   http: [ip: {127, 0, 0, 1}, port: 4000],
+  # https: [
+  #   ip: {127, 0, 0, 1},
+  #   port: 4000,
+  #   cipher_suite: :strong,
+  #   keyfile: "priv/cert/selfsigned_key.pem",
+  #   certfile: "priv/cert/selfsigned.pem"
+  # ],
   check_origin: false,
   code_reloader: true,
   debug_errors: true,
   secret_key_base: "H9fFgrxN+4j/l0rZEqnJTC3fs3wyBZ0zuW7FVMq8VmmCexnhWSywPrgzDaymqy/u"
-  # ,
-  # watchers: [
-  #   node: [
-  #     "node_modules/rollup/dist/bin/rollup",
-  #     "--config",
-  #     "--watch",
-  #     cd: Path.expand("../assets", __DIR__)
-  #   ]
-  # ]
+
+# ,
+# watchers: [
+#   node: [
+#     "node_modules/rollup/dist/bin/rollup",
+#     "--config",
+#     "--watch",
+#     cd: Path.expand("../assets", __DIR__)
+#   ]
+# ]
 
 # ## SSL Support
 #

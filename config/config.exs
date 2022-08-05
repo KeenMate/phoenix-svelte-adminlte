@@ -22,6 +22,20 @@ config :logger, :console,
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
+common_auth_processor = PhoenixSvelteAdminlteWeb.Auth.Processor
+
+config :keen_auth,
+  strategies: [
+    aad: [
+      strategy: Assent.Strategy.AzureAD,
+      mapper: KeenAuth.UserMappers.AzureAD,
+      processor: common_auth_processor,
+      config: [
+        redirect_uri: "http://localhost:4000/auth/aad/callback"
+      ]
+    ]
+  ]
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{config_env()}.exs"

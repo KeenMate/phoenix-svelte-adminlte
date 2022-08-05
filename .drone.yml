@@ -44,6 +44,7 @@ steps:
       - name: mix-temp
         path: /root/.mix
     commands:
+    - apk add git --no-cache
     - mix do local.hex --force, local.rebar --force
     - mix do deps.get --only $MIX_ENV, deps.compile
 
@@ -56,6 +57,7 @@ steps:
       - name: mix-temp
         path: /root/.mix
     commands:
+    - apk add git --no-cache
     - mix phx.digest
 
   - name: assemble release
@@ -66,6 +68,7 @@ steps:
       - name: mix-temp
         path: /root/.mix
     commands:
+    - apk add git --no-cache
     - mix release
 
   - name: dockerfile build
@@ -155,6 +158,7 @@ steps:
       - name: mix-temp
         path: /root/.mix
     commands:
+    - apk add git --no-cache
     - mix do local.hex --force, local.rebar --force
     - mix do deps.get --only $MIX_ENV, deps.compile
 
@@ -167,6 +171,7 @@ steps:
       - name: mix-temp
         path: /root/.mix
     commands:
+    - apk add git --no-cache
     - mix phx.digest
 
   - name: assemble release
@@ -177,6 +182,7 @@ steps:
       - name: mix-temp
         path: /root/.mix
     commands:
+    - apk add git --no-cache
     - mix release
 
   - name: dockerfile build

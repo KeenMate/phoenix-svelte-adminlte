@@ -87,11 +87,11 @@
 	},
 	"route1": {
 		"welcomeHeader": "Welcome",
-		"welcomeText": "Go to [Componets](#/components) if you want to  see documentation for individual components."
+		"welcomeText": "Go to [Components](#/components) if you want to  see documentation for individual components."
 	},
 	"routes": {
-		"Componets": {
-			"navtitle": "Componets"
+		"Components": {
+			"navtitle": "Components"
 		},
 		"List": {
 			"navtitle": "List"

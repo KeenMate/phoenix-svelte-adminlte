@@ -1,6 +1,6 @@
 // export const ApiUrl = process.env.SERVER_URL
 
-export const AppUrl = process.env.APP_URL
+export const AppUrl = import.meta.env.VITE_APP_URL
 export const AppLoginUrl = AppUrl + "/auth"
 export const SocketPath = "/socket"
 

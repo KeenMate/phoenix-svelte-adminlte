@@ -32,7 +32,8 @@ steps:
     - cd assets
     - mv -f .npmrc-ci .npmrc
     - npm install
-    - npm run build
+    - npm run build-dev
+    - cp -a ./dist/. ../priv/static/
 
   # - name: download assets
   #   image: minio/mc
@@ -151,6 +152,7 @@ steps:
     - mv -f .npmrc-ci .npmrc
     - npm install
     - npm run build
+    - cp -a ./dist/. ../priv/static/
 
   # - name: download assets
   #   image: minio/mc

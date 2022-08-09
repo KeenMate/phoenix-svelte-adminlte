@@ -32,6 +32,18 @@ if config_env() == :prod do
     ],
     secret_key_base: secret_key_base
 
+  config :keen_auth,
+    strategies: [
+      aad: [
+        config: [
+          tenant_id: System.fetch_env!("AAD_TENANT_ID"),
+          client_id: System.fetch_env!("AAD_CLIENT_ID"),
+          client_secret: System.fetch_env!("AAD_CLIENT_SECRET"),
+        ]
+      ]
+    ]
+
+
   # ## Using releases
   #
   # If you are doing OTP releases, you need to instruct Phoenix

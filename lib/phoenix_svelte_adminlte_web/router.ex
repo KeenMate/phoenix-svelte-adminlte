@@ -30,6 +30,10 @@ defmodule PhoenixSvelteAdminlteWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+
+    scope "/admin" do
+      get "/secret", AdminController, :secret
+    end
   end
 
   scope "/auth" do

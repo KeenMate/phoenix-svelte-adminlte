@@ -22,14 +22,13 @@ config :logger, :console,
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
-common_auth_processor = PhoenixSvelteAdminlteWeb.Auth.Processor
-
 config :keen_auth,
+  login_path: "/auth/aad/new",
   strategies: [
     aad: [
       strategy: Assent.Strategy.AzureAD,
       mapper: KeenAuth.UserMappers.AzureAD,
-      processor: common_auth_processor,
+      processor: PhoenixSvelteAdminlteWeb.Auth.Processor,
       config: [
         redirect_uri: "http://localhost:4000/auth/aad/callback"
       ]

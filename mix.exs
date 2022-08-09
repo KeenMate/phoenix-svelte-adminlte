@@ -46,6 +46,7 @@ defmodule PhoenixSvelteAdminlte.MixProject do
       {:plug_cowboy, "~> 2.5"},
       {:inflex, "~> 2.0"},
       {:keen_auth, github: "keenmate/keen_auth", branch: "new-vision"}
+      # {:keen_auth, path: "../keen_auth"}
     ]
   end
 

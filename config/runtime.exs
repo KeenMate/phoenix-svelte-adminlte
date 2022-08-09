@@ -39,6 +39,9 @@ if config_env() == :prod do
           tenant_id: System.fetch_env!("AAD_TENANT_ID"),
           client_id: System.fetch_env!("AAD_CLIENT_ID"),
           client_secret: System.fetch_env!("AAD_CLIENT_SECRET"),
+          config: [
+            redirect_uri: System.fetch_env!("AAD_CALLBACK_URL")
+          ]
         ]
       ]
     ]

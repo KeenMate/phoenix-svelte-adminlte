@@ -28,10 +28,7 @@ config :keen_auth,
     aad: [
       strategy: Assent.Strategy.AzureAD,
       mapper: KeenAuth.UserMappers.AzureAD,
-      processor: PhoenixSvelteAdminlteWeb.Auth.Processor,
-      config: [
-        redirect_uri: "http://localhost:4000/auth/aad/callback"
-      ]
+      processor: PhoenixSvelteAdminlteWeb.Auth.Processor
     ]
   ]
 

@@ -142,7 +142,7 @@
 					<DropdownButton>Log In</DropdownButton>
 					<DropdownMenu right>
 						<DropdownItem on:click={loginViaApp}>
-							PhoenixSvelteAdminLTE
+							Azure AD
 						</DropdownItem>
 						<!--<DropdownItem on:click={() => login(AzureProvider)}>-->
 						<!--	Azure-->

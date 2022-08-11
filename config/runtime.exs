@@ -32,7 +32,7 @@ if config_env() == :prod do
     ],
     secret_key_base: secret_key_base
 
-  config :keen_auth,
+  config :phoenix_svelte_adminlte, :keen_auth,
     strategies: [
       aad: [
         config: [
@@ -43,7 +43,6 @@ if config_env() == :prod do
         ]
       ]
     ]
-
 
   # ## Using releases
   #

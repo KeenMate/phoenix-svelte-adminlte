@@ -17,17 +17,31 @@ config :phoenix_svelte_adminlte, PhoenixSvelteAdminlteWeb.Endpoint,
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
-  metadata: [:module, :request_id, :remote_ip, :error, :reason, :detail, :response, :body, :application, :file, :line, :register_name, :crash_reason]
+  metadata: [
+    :module,
+    :request_id,
+    :remote_ip,
+    :error,
+    :reason,
+    :detail,
+    :response,
+    :body,
+    :application,
+    :file,
+    :line,
+    :register_name,
+    :crash_reason
+  ]
 
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
-config :keen_auth,
+config :phoenix_svelte_adminlte, :keen_auth,
   unauthorized_redirect: &PhoenixSvelteAdminlteWeb.Auth.Unauthorized.redirect_path/2,
   strategies: [
     aad: [
       strategy: Assent.Strategy.AzureAD,
-      mapper: KeenAuth.UserMappers.AzureAD,
+      mapper: KeenAuth.Mapper.AzureAD,
       processor: PhoenixSvelteAdminlteWeb.Auth.Processor
     ]
   ]

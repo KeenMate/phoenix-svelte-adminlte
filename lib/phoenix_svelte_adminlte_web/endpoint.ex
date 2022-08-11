@@ -45,5 +45,6 @@ defmodule PhoenixSvelteAdminlteWeb.Endpoint do
   plug Plug.MethodOverride
   plug Plug.Head
   plug Plug.Session, @session_options
+  plug KeenAuth.Plug, otp_app: :phoenix_svelte_adminlte
   plug PhoenixSvelteAdminlteWeb.Router
 end

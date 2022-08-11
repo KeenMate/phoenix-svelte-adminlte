@@ -23,7 +23,7 @@ config :logger, :console,
 config :phoenix, :json_library, Jason
 
 config :keen_auth,
-  login_path: "/auth/aad/new",
+  unauthorized_redirect: &PhoenixSvelteAdminlteWeb.Auth.Unauthorized.redirect_path/2,
   strategies: [
     aad: [
       strategy: Assent.Strategy.AzureAD,

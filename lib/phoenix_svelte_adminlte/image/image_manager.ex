@@ -65,7 +65,7 @@ defmodule PhoenixSvelteAdminlte.Image.Manager do
     filename = uuid <> content_type_ext(content_type)
 
     case copy_to_upload(image_path, filename) do
-      {:ok, path} ->
+      {:ok, _path} ->
         # Logger.info("Image copied to uploaded directory")
         Logger.info(Path.dirname(PathHelpers.image_dir()))
 

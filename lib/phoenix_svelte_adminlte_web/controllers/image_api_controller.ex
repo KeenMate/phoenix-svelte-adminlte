@@ -16,7 +16,7 @@ defmodule PhoenixSvelteAdminlteWeb.ImageApiController do
     |> return_file(result_path)
   end
 
-  def dimensions(conn, %{"uuid" => uuid}) do
+  def dimensions(conn, %{"uuid" => _uuid}) do
     # TODO return real dimensions
     # result_path = Image.Manager.get_image_path(uuid)
 

@@ -6,9 +6,9 @@ defmodule PhoenixSvelteAdminlteWeb.Auth.Processor do
   require Logger
 
   @impl true
-  def process(conn, provider, response) do
+  def process(conn, provider, mapped_user, response) do
     Logger.debug("Processing OAuth response for #{provider}", response: inspect(response))
 
-    {:ok, put_session(conn, :oauth_response, response), response}
+    {:ok, put_session(conn, :oauth_response, response), mapped_user, response}
   end
 end

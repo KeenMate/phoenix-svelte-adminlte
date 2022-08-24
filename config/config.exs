@@ -38,13 +38,23 @@ config :phoenix, :json_library, Jason
 
 config :phoenix_svelte_adminlte, :keen_auth,
   unauthorized_redirect: &PhoenixSvelteAdminlteWeb.Auth.Unauthorized.redirect_path/2,
+  db_context: PhoenixSvelteAdminlte.Database.DbContext,
+  tenant: 1,
   strategies: [
     aad: [
       strategy: Assent.Strategy.AzureAD,
       mapper: KeenAuth.Mapper.AzureAD,
-      processor: PhoenixSvelteAdminlteWeb.Auth.Processor
+      processor: KeenAuthPermissions.Processor.AzureAD
+    ],
+    email: [
+      mapper: KeenAuthPermissions.Mapper.Email,
+      processor: KeenAuthPermissions.Processor.Email,
+      authentication_handler: PhoenixSvelteAdminlteWeb.Auth.EmailAuthenticationHandler
     ]
   ]
+
+config :keen_auth,
+  email_enabled: true
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

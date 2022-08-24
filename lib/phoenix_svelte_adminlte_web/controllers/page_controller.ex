@@ -10,4 +10,10 @@ defmodule PhoenixSvelteAdminlteWeb.PageController do
 
     html(conn, page)
   end
+
+  def me(conn, _params) do
+    user = KeenAuth.Storage.current_user(conn)
+
+    json(conn, Map.from_struct(user))
+  end
 end

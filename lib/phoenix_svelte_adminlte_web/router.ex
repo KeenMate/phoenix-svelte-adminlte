@@ -10,6 +10,7 @@ defmodule PhoenixSvelteAdminlteWeb.Router do
     plug :put_root_layout, {PhoenixSvelteAdminlteWeb.LayoutView, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug KeenAuth.Plug.FetchUser
   end
 
   pipeline :api do
@@ -23,13 +24,14 @@ defmodule PhoenixSvelteAdminlteWeb.Router do
 
   pipeline :authorization do
     plug :fetch_session
-    plug KeenAuth.Plug.FetchUser
+    # plug KeenAuth.Plug.FetchUser
   end
 
   scope "/", PhoenixSvelteAdminlteWeb do
     pipe_through :browser
 
     get "/", PageController, :index
+    get "/me", PageController, :me
 
     scope "/admin" do
       get "/secret", AdminController, :secret

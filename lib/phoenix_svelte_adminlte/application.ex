@@ -10,6 +10,7 @@ defmodule PhoenixSvelteAdminlte.Application do
     children = [
       # Start the Telemetry supervisor
       PhoenixSvelteAdminlteWeb.Telemetry,
+      PhoenixSvelteAdminlte.Repo,
       # Start the PubSub system
       {Phoenix.PubSub, name: PhoenixSvelteAdminlte.PubSub},
       # Start the Endpoint (http/https)

@@ -38,6 +38,8 @@ defmodule PhoenixSvelteAdminlte.MixProject do
       {:phoenix_html, "~> 3.0"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:phoenix_live_view, "~> 0.16.0"},
+      {:ecto_sql, "~> 3.6"},
+      {:postgrex, ">= 0.0.0"},
       {:floki, ">= 0.30.0", only: :test},
       {:telemetry_metrics, "~> 0.6"},
       {:telemetry_poller, "~> 1.0"},
@@ -45,8 +47,9 @@ defmodule PhoenixSvelteAdminlte.MixProject do
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
       {:inflex, "~> 2.0"},
-      {:keen_auth, github: "keenmate/keen_auth", branch: "new-vision"}
-      # {:keen_auth, path: "../keen_auth"}
+      # {:keen_auth, github: "keenmate/keen_auth", branch: "new-vision"}
+      {:keen_auth, path: "../keen_auth", override: true},
+      {:keen_auth_permissions, path: "../keen-auth-permissions"}
     ]
   end
 

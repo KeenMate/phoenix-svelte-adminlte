@@ -22,6 +22,10 @@ if config_env() == :prod do
       You can generate one by calling: mix phx.gen.secret
       """
 
+  config :phoenix_svelte_adminlte, PhoenixSvelteAdminlte.Repo,
+    url: System.fetch_env!("DATABASE_URL"),
+    pool_size: String.to_integer(System.fetch_env!("POOL_SIZE"))
+
   config :phoenix_svelte_adminlte, PhoenixSvelteAdminlteWeb.Endpoint,
     server: true,
     url: [scheme: "https", host: System.fetch_env!("HOST"), port: 443],

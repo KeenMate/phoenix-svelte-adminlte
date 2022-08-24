@@ -7,6 +7,9 @@
 # General application configuration
 import Config
 
+config :phoenix_svelte_adminlte,
+  ecto_repos: [PhoenixSvelteAdminlte.Repo]
+
 # Configures the endpoint
 config :phoenix_svelte_adminlte, PhoenixSvelteAdminlteWeb.Endpoint,
   url: [host: "localhost"],

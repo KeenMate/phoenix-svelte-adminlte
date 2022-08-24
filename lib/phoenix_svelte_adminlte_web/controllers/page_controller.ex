@@ -14,6 +14,11 @@ defmodule PhoenixSvelteAdminlteWeb.PageController do
   def me(conn, _params) do
     user = KeenAuth.Storage.current_user(conn)
 
-    json(conn, Map.from_struct(user))
+    map = case user do
+      nil -> %{}
+      user -> Map.from_struct(user)
+    end
+
+    json(conn, map)
   end
 end

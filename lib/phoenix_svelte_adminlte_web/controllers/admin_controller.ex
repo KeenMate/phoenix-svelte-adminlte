@@ -6,7 +6,7 @@ defmodule PhoenixSvelteAdminlteWeb.AdminController do
 
   plug RequireAuthenticated
 
-  plug Authorize.Permissions, op: :and, permissions: ["system.areas.admin"], only: [:secret]
+  plug Authorize.Permissions, op: :and, required: ["system.areas.admin"], only: [:secret]
 
   def secret(conn, _params) do
     conn

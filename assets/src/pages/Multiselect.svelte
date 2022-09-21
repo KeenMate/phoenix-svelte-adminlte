@@ -291,7 +291,7 @@
 		</ComponentExampleTemplate>
 
 		<ComponentExampleTemplate
-			code={texts.multiselect}
+			code={texts.async}
 			name="Asynchronous select"
 		>
 			<label class="typo__label">Async multiselect</label>

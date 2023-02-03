@@ -35,6 +35,14 @@
 		events = [],
 		showConsole = false;
 
+	const propNames = {
+		nodePath: "nodePath",
+		hasChildren: "hasChildren",
+		isDraggable: "isDraggable",
+		nestDisabled: "nestDisabled",
+		insertDisabled: "insertDisabled",
+	};
+
 	function handleClick(node) {
 		console.log("deleting: " + node.nodePath);
 		tree = tree.filter((n) => n.nodePath != node.nodePath);
@@ -148,7 +156,7 @@
 				on:moved={(e) => handleEvent(e, "moved")}
 				let:node
 				{recursive}
-				{checkboxes}
+				checkboxes={checkboxes ? "all" : "none"}
 				{leafNodeCheckboxesOnly}
 				{checkboxesDisabled}
 				{dragAndDrop}
@@ -158,12 +166,8 @@
 				{enableVerticalLines}
 				{recalculateNodePath}
 				{expandedLevel}
-				nodePathProperty="nodePath"
-				hasChildrenProperty="hasChildren"
-				isDraggableProperty="isDraggable"
-				nestDisabledProperty="nestDisabled"
-				insertDisabledProperty="insertDisabled"
 				beforeMovedCallback={callback}
+				{propNames}
 				{dragEnterCallback}
 				>{#if showNodes}
 					{JSON.stringify(node)}

@@ -32,7 +32,7 @@ steps:
     - cd assets
     - mv -f .npmrc-ci .npmrc
     - npm install
-    - npm run build-dev
+    - npm run build
     - cp -a ./dist/. ../priv/static/
 
   # - name: download assets

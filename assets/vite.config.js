@@ -3,7 +3,7 @@ import { svelte } from "@sveltejs/vite-plugin-svelte";
 import sveltePreprocess from "svelte-preprocess";
 
 const isProduction = process.env.NODE_ENV === "production";
-
+console.log("IS PRODUCTION BUILD: ", isProduction);
 // for prod build top dist so you can copy in pipeline
 const outRootDir = isProduction ? "dist" : "../priv/static";
 // https://vitejs.dev/config/

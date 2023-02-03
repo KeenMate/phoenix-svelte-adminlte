@@ -10,9 +10,7 @@
 		FormGroup,
 	} from "@keenmate/svelte-adminlte";
 	import { _ } from "svelte-i18n";
-	import { TreeView } from "svelte-treeview";
-	import MenuOption from "svelte-treeview/src/MenuOption.svelte";
-	import MenuDivider from "svelte-treeview/src/MenuDivider.svelte";
+	import { TreeView, MenuDivider, MenuOption } from "svelte-treeview";
 	import { onMount } from "svelte";
 	import treeProvider from "../providers/treeProvider";
 	import formatHighlight from "json-format-highlight";
